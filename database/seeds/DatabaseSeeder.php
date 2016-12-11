@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(RoleUserTableSeeder::class);
         $this->call(UsersRolesPermissions::class);
+        $this->call(SchoolTableSeeder::class);
         $this->command->info('User, Role and Permission tables seeded!');
 
         // Seed the Tags table

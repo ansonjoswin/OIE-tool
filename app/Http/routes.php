@@ -46,6 +46,7 @@ Route::get('laravel-version', function()
 
     Route::resource('users', 'UsersController');
     Route::resource('roles', 'RolesController');
+    Route::resource('schools', 'SchoolsController');
 
 //    Route::delete('/comments/{comment}', 'CommentsController@destroy');
 //    Route::resource('comments', 'CommentsController');
