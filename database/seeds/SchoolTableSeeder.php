@@ -55,7 +55,7 @@ class SchoolTableSeeder extends Seeder
             }
 
             $this->insert($row);
-            }
+        }
 
         fclose($handle);
         return $row;
