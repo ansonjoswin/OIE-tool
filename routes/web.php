@@ -39,11 +39,10 @@ Route::get('laravel-version', function()
 
 //Route::group(['middleware' => 'web'], function () {
     Route::auth();
-    Route::post('change-password', 'Auth\AuthController@updatePassword');
-    Route::get( 'change-password', 'Auth\AuthController@updatePassword');
 
     Route::get('/home', 'HomeController@index');
-
+Route::get('resetPassword', 'HomeController@resetPassword');
+    Route::post('updatePassword', 'HomeController@updatePassword');
     Route::resource('users', 'UsersController');
     Route::resource('roles', 'RolesController');
     Route::resource('schools', 'SchoolsController');
