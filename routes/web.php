@@ -38,14 +38,14 @@ Route::get('laravel-version', function()
 */
 
 //Route::group(['middleware' => 'web'], function () {
-    Route::auth();
+Route::auth();
 
-    Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index');
 Route::get('resetPassword', 'HomeController@resetPassword');
-    Route::post('updatePassword', 'HomeController@updatePassword');
-    Route::resource('users', 'UsersController');
-    Route::resource('roles', 'RolesController');
-    Route::resource('schools', 'SchoolsController');
+Route::post('updatePassword', 'HomeController@updatePassword');
+Route::resource('users', 'UsersController');
+Route::resource('roles', 'RolesController');
+Route::resource('schools', 'SchoolsController');
 
 //    Route::delete('/comments/{comment}', 'CommentsController@destroy');
 //    Route::resource('comments', 'CommentsController');

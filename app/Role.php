@@ -32,7 +32,7 @@ class Role extends EntrustRole
      */
     public function getPermissionListAttribute()
     {
-        return $this->perms->pluck('id')->all();
+        return $this->perms->lists('id')->all();
     }
 
 }
