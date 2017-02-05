@@ -29,17 +29,16 @@ class HomeController extends Controller
         return view('home');
     }
 
-     public function resetPassword()
+    public function resetPassword()
     {
         $user = User::where('email', Auth::user()->email)->first();
-        return view('auth.passwords.reset',compact('user'));
+        return view('users.resetPassword',compact('user'));
     }
 
     public function updatePassword(Request $request)
     {
         $passwordSuccess = 'failed';
         $this->validate($request,[
-                'email' => 'required|email',
                 'password' => 'required|confirmed',
             ]);
         $user = User::where('email',Auth::user()->email)->first();
@@ -48,8 +47,8 @@ class HomeController extends Controller
             $user->password = bcrypt($request->password);
             $user->update();
             $passwordSuccess = 'passed';
-            return view('home',compact('passwordSuccess'));
+            return view('users.RegistrationSuccess',compact('passwordSuccess'));
         }
-        return view('home',compact('passwordSuccess'));
+        return view('users.RegistrationSuccess',compact('passwordSuccess'));
     }
 }
