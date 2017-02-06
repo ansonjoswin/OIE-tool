@@ -28,6 +28,8 @@ class UsersController extends Controller
         $this->list_role = Role::pluck('display_name', 'id');
         $this->heading = "Users";
 
+
+        //$this->viewData = [ 'user' => $this->user, 'users' => $this->users, 'heading' => $this->heading ];
         $this->viewData = [ 'user' => $this->user, 'users' => $this->users, 'list_role' => $this->list_role, 'heading' => $this->heading ];
     }
 
@@ -73,9 +75,10 @@ class UsersController extends Controller
         return redirect()->back();
     }
 
-    public function edit(User $users)
+    //public function edit(User $users)
+    public function edit(User $user)
     {
-        $object = $users;
+        $object = $user;
         Log::info('UsersController.edit: '.$object->id.'|'.$object->name);
         $this->viewData['user'] = $object;
         $this->viewData['heading'] = "Edit User: ".$object->name;
