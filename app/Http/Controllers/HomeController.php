@@ -32,7 +32,7 @@ class HomeController extends Controller
     public function resetPassword()
     {
         $user = User::where('email', Auth::user()->email)->first();
-        return view('users.resetPassword',compact('user'));
+        return view('auth.passwords.reset',compact('user'));
     }
 
     public function updatePassword(Request $request)
