@@ -41,7 +41,7 @@ Route::get('laravel-version', function()
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
-//Route::get('resetPassword', 'HomeController@resetPassword');
+Route::get('resetPassword', 'HomeController@resetPassword');
 Route::post('updatePassword', 'HomeController@updatePassword');
 Route::resource('users', 'UsersController');
 Route::resource('roles', 'RolesController');
