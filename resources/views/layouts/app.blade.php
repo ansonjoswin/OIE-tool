@@ -25,17 +25,25 @@
         body { font-family: 'Lato'; }
         .fa-btn { margin-right: 6px; }
     </style>
-    <link href="{{ elixir('css/all.css') }}" rel="stylesheet">
+    <link href="../public/css/all.css" rel="stylesheet">
+    <link href="{{ url(mix('css/app.css')) }}" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
+            <script>
+          window.Laravel = <?php echo json_encode([
+              'csrfToken' => csrf_token(),
+          ]); ?>
+        </script>
 </head>
 <body id="app-layout">
+<div id="app"></div>
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
-    <script src="{{ elixir('js/all.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.4/papaparse.min.js"></script>
+    <script src="{{ url(mix('js/app.js')) }}"></script>
 
     <!-- Navigation Bar -->
     @include('common.nav')
@@ -103,5 +111,7 @@
 
     <!-- Footer -->
     @yield('footer');
+
+    <script src="../public/js/all.js"></script>
 </body>
 </html>
