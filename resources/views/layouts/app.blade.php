@@ -17,7 +17,6 @@
     {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.2/css/bootstrap.css">--}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
-    <link href="{{ elixir('css/all.css') }}" rel="stylesheet">
 
     <!-- Styles -->
     @yield('styles')
@@ -26,6 +25,7 @@
         body { font-family: 'Lato'; }
         .fa-btn { margin-right: 6px; }
     </style>
+    <link href="{{ elixir('css/all.css') }}" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
 </head>
 <body id="app-layout">
@@ -72,6 +72,31 @@
             -webkit-border-radius: 6px 0 6px 6px; -moz-border-radius: 6px 0 6px 6px; border-radius: 6px 0 6px 6px; }
 
     </style>
+
+    <!--Update the value of "agree" input when clicking the Agree/Disagree button-->
+
+    <script type="text/javascript">
+
+            //###########################################################################
+                //####                Change Password Validation              ####
+            //###########################################################################
+
+          
+            //###########################################################################
+                //####                Terms and Conditions Validation              ####
+            //###########################################################################
+
+                   
+                            $('button[name="registerBtn"]').on('click', function(e){
+                                var $form=$(this).closest('form');
+                                e.preventDefault();
+                                $('#termscond').modal({ backdrop: 'static', keyboard: false })
+                                    .one('click', '#agreeBtn', function() {
+                                        $form.trigger('submit'); // submit the form
+                                    });
+                                    // .one() is NOT a typo of .on()
+                    });
+    </script>
 
     <!-- Scripts -->
     @yield('scripts')

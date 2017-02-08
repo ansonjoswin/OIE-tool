@@ -4,6 +4,10 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
+=======
+    "hash": "780692099a3550f11d9b16283348be9a",
+>>>>>>> fa4cb24ea59901fcedbd8863e809ed2c24df3cb6
     "content-hash": "a81f37f436fe2ddda37fe68e88fb5830",
     "packages": [
         {
@@ -386,7 +390,11 @@
                 "persistence",
                 "queryobject"
             ],
+<<<<<<< HEAD
             "time": "2017-02-04T21:20:13+00:00"
+=======
+            "time": "2017-02-04 21:20:13"
+>>>>>>> fa4cb24ea59901fcedbd8863e809ed2c24df3cb6
         },
         {
             "name": "doctrine/inflector",
@@ -1186,7 +1194,11 @@
                 "parser",
                 "php"
             ],
+<<<<<<< HEAD
             "time": "2017-02-03T21:57:31+00:00"
+=======
+            "time": "2017-02-03 21:57:31"
+>>>>>>> fa4cb24ea59901fcedbd8863e809ed2c24df3cb6
         },
         {
             "name": "paragonie/random_compat",
@@ -3095,6 +3107,7 @@
         },
         {
             "name": "phpunit/phpunit",
+<<<<<<< HEAD
             "version": "5.7.10",
             "source": {
                 "type": "git",
@@ -3105,6 +3118,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/bf0804199f516fe80ffcc48ac6d4741c49baeb6e",
                 "reference": "bf0804199f516fe80ffcc48ac6d4741c49baeb6e",
+=======
+            "version": "5.7.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/phpunit.git",
+                "reference": "a6ad2472daba76b0689042b7709f86d4f06bcaab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a6ad2472daba76b0689042b7709f86d4f06bcaab",
+                "reference": "a6ad2472daba76b0689042b7709f86d4f06bcaab",
+>>>>>>> fa4cb24ea59901fcedbd8863e809ed2c24df3cb6
                 "shasum": ""
             },
             "require": {
@@ -3173,7 +3198,11 @@
                 "testing",
                 "xunit"
             ],
+<<<<<<< HEAD
             "time": "2017-02-04T09:03:53+00:00"
+=======
+            "time": "2017-02-05 15:31:31"
+>>>>>>> fa4cb24ea59901fcedbd8863e809ed2c24df3cb6
         },
         {
             "name": "phpunit/phpunit-mock-objects",
