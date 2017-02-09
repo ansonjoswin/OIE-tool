@@ -26,7 +26,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        if (Auth::check())
+        {
+            $user = Auth::user();
+            if ($user->hasRole('admin'))
+                return view('carousel', compact('user'));
+            elseif ($user->hasRole('student'))
+                return view('carousel', compact('user'));
+            else
+                return view('home', compact('user'));
+        }
     }
 
     public function resetPassword()

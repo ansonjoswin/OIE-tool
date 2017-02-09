@@ -73,6 +73,9 @@
 
     </style>
 
+     <!-- Scripts -->
+    @yield('scripts')
+
     <!--Update the value of "agree" input when clicking the Agree/Disagree button-->
 
     <script type="text/javascript">
@@ -81,11 +84,51 @@
                 //####                Change Password Validation              ####
             //###########################################################################
 
+        $(document).ready(function () {
+
+            function checkPasswordMatch() {
+                var password = $("#txtNewPassword").val();
+                var confirmPassword = $("#txtConfirmPassword").val();
+                var emailvalue = $("#email").val();
+
+                $("#emptyFieldWarning").css({"font-weight" : "bold" , "padding-left":"267px"});
+                $("#divCheckPasswordMatch").css({"font-weight" : "bold" , "padding-left":"267px"});
+
+                if(emailvalue === "" ){
+
+                    $("#emptyFieldWarning").html("Email can't be empty");
+                }
+                
+                else if (password != confirmPassword || password === ""){
+                    $("#divCheckPasswordMatch").html("Passwords do not match!");
+                    
+                }
+                else{
+                    $("#divCheckPasswordMatch").html("Passwords match!");
+                   }
+            }
+            $("#txtNewPassword, #txtConfirmPassword,#email").keyup(checkPasswordMatch); 
+    
+
+//  $(document).ready(function () {
+//            function checkEmptyfield(){
+
+//                             $("#emptyFieldWarning").css({"font-weight" : "bold" , "padding-left":"267px"});
+
+//                               if ((($(#email).val().length === 0))||(($txtNewPassword).value().length === 0))
+//                               $("#emptyFieldWarning").html("Can't be blank");
+
+//                               }
+
+//                               $("#txtNewPassword, #email").keyup(checkEmptyfield); 
+
+           
+       
+// });
           
             //###########################################################################
                 //####                Terms and Conditions Validation              ####
             //###########################################################################
-
                    
                             $('button[name="registerBtn"]').on('click', function(e){
                                 var $form=$(this).closest('form');
@@ -95,11 +138,15 @@
                                         $form.trigger('submit'); // submit the form
                                     });
                                     // .one() is NOT a typo of .on()
-                    });
+
+                                    
+                 });
+
+                             });
+
     </script>
 
-    <!-- Scripts -->
-    @yield('scripts')
+   
 
     <!-- Footer -->
     @yield('footer');
