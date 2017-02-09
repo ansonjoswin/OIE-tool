@@ -48,7 +48,7 @@ class User extends Authenticatable
      */
     public function getRoleListAttribute()
     {
-        return $this->roles->pluck('id')->all();
+        return $this->roles->pluck('id');
     }
 
     /**

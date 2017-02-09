@@ -28,6 +28,8 @@ class UsersController extends Controller
         $this->list_role = Role::pluck('display_name', 'id');
         $this->heading = "Users";
 
+
+        //$this->viewData = [ 'user' => $this->user, 'users' => $this->users, 'heading' => $this->heading ];
         $this->viewData = [ 'user' => $this->user, 'users' => $this->users, 'list_role' => $this->list_role, 'heading' => $this->heading ];
     }
 
@@ -73,30 +75,52 @@ class UsersController extends Controller
         return redirect()->back();
     }
 
-    public function edit(User $users)
+    //public function edit(User $users)
+    public function edit(User $user)
     {
-        $object = $users;
+        $object = $user;
         Log::info('UsersController.edit: '.$object->id.'|'.$object->name);
         $this->viewData['user'] = $object;
-        $this->viewData['heading'] = "Edit User: ".$object->name;
+        //$this->viewData['heading'] = "Edit User: ".$object->name;
+        $this->viewData['heading'] = "Edit User";
 
         return view('users.edit', $this->viewData);
     }
 
+
+    public function update(User $user, Request $request)
+    {   
+        var_dump($request->all());
+        $user->update($request->all());
+
+        $user->update([
+            'email' => $request->email,
+            'affiliation' => $request->affiliation,
+            'password'=> bcrypt($request->password),
+            'active' => $request->active
+        ]);
+
+        return redirect('users');
+    }
+
+    /*
     public function update(User $users, UserRequest $request)
-    {
+    {   
         $object = $users;
         Log::info('UsersController.update - Start: '.$object->id.'|'.$object->name);
 //        $this->authorize($object);
+        
         $this->populateUpdateFields($request);
         $request['active'] = $request['active'] == '' ? false : true;
 
         $object->update($request->all());
+        
         $this->syncRoles($object, $request->input('rolelist'));
         Session::flash('flash_message', 'User successfully updated!');
         Log::info('UsersController.update - End: '.$object->id.'|'.$object->name);
         return redirect('users');
     }
+    */
 
     /**
      * Destroy the given user.
