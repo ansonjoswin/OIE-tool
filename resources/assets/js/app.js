@@ -18,3 +18,13 @@ Vue.component('example', require('./components/Example.vue'));
 const app = new Vue({
     el: '#app'
 });
+
+$(document).ready(function() {
+	$('table.cds-datatable').DataTable({
+		"columnDefs" : [{
+			"targets": "no=sort",
+			"orderable": false
+		}],
+	});
+	$('.mav-select').select2();
+});

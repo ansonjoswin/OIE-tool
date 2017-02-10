@@ -7,49 +7,38 @@
             <div class="panel panel-default">
                 <div class="panel-heading" style="text-align: center;">Welcome {{$user->roles->first()->display_name}} - {{$user->name}}</div>
 
+            
                 <div class="panel-body">
-                    <!-- Carousel
+                    <!-- Carousel deleted
                     ================================================== -->
-                    <div id="myCarousel" class="carousel slide"  data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#myCarousel" data-slide-to="1"></li>
-                            <li data-target="#myCarousel" data-slide-to="2"></li>
-                        </ol>
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner" style="text-align: center;">
-                            <div class="item active" style="text-align: center;">
-                                <a href="http://www.unomaha.edu/college-of-information-science-and-technology" target="_blank">
-                                    <img src="/images/StudentWordCloud1.jpg" class="img-responsive">
-                                </a>
-                            </div>
-                            <div class="item" style="text-align: center;">
-                                {{--<a href="http://www.nacada.ksu.edu" target="_blank">--}}
-                                <a href="http://www.unomaha.edu/college-of-information-science-and-technology/academics/advising.php" target="_blank">
-                                    <img src="/images/StudentFaculty.jpg" class="img-responsive">
-                                </a>
-                            </div>
-                            <div class="item" style="text-align: center;">
-                                <a href="http://www.unomaha.edu" target="_blank">
-                                    <img src="/images/StudentLearning.jpg" class="img-responsive">
-                                </a>
+                  <form id="upload" method="post" action="upload.php" enctype="multipart/form-data">
+                        <div id="drop">
+                            <p>Browse the data files from the local machine to be uploaded</p>
+                            <div class="text-center">
+                                <!-- Browse files with a hidden input file element -->
+                                <a class="btn btn-info btn-md">Browse</a>
+                                <input type="file" name="upl" multiple />
                             </div>
                         </div>
-                        <!-- Left and right controls -->
-                        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"><span class="icon-prev"></span></a>
-                        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"><span class="icon-next"></span></a>
-                    </div>
-                    <!-- /.carousel -->
-                </div>
+                    </form> 
             </div>
         </div>
     </div>
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default col-sm-8">
+                <div id="uploadedFiles" class="panel-body">
+                    <ul>
+                        <!-- The file uploads will be shown here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
 </div>
 @endsection
 
 @section('footer')
 <style>
+
     /* -----------------------------------------------
     CUSTOMIZE THE CAROUSEL
     -------------------------------------------------- */
@@ -75,4 +64,102 @@
     span.icon-prev { margin-left: -30px !important }
     span.icon-next { margin-right: -30px !important }
 </style>
+<script>
+    $(function(){
+
+    var ul = $('#uploadedFiles ul');
+
+    $('#drop a').click(function(){
+        // Simulate a click on the file input button
+        // to show the file browser dialog
+        $(this).parent().find('input').click();
+    });
+
+    // Initialize the jQuery File Upload plugin
+    $('#upload').fileupload({
+
+        // This element will accept file drag/drop uploading
+        dropZone: $('#drop'),
+
+        // This function is called when a file is added to the queue;
+        // either via the browse button, or via drag/drop:
+        add: function (e, data) {
+
+            var tpl = $('<li class="working"><input type="text" value="0" data-width="48" data-height="48"'+
+                ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p></p><span></span></li>');
+
+            // Append the file name and file size
+            tpl.find('p').text(data.files[0].name)
+                         .append('<i>' + formatFileSize(data.files[0].size) + '</i>');
+
+            // Add the HTML to the UL element
+            data.context = tpl.appendTo(ul);
+
+            // Initialize the knob plugin
+            tpl.find('input').knob();
+
+            // Listen for clicks on the cancel icon
+            tpl.find('span').click(function(){
+
+                if(tpl.hasClass('working')){
+                    jqXHR.abort();
+                }
+
+                tpl.fadeOut(function(){
+                    tpl.remove();
+                });
+
+            });
+
+            // Automatically upload the file once it is added to the queue
+            var jqXHR = data.submit();
+        },
+
+        progress: function(e, data){
+
+            // Calculate the completion percentage of the upload
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+
+            // Update the hidden input field and trigger a change
+            // so that the jQuery knob plugin knows to update the dial
+            data.context.find('input').val(progress).change();
+
+            if(progress == 100){
+                data.context.removeClass('working');
+            }
+        },
+
+        fail:function(e, data){
+            // Something has gone wrong!
+            data.context.addClass('error');
+        }
+
+    });
+
+
+    // Prevent the default action when a file is dropped on the window
+    $(document).on('drop dragover', function (e) {
+        e.preventDefault();
+    });
+
+    // Helper function that formats the file sizes
+    function formatFileSize(bytes) {
+        if (typeof bytes !== 'number') {
+            return '';
+        }
+
+        if (bytes >= 1000000000) {
+            return (bytes / 1000000000).toFixed(2) + ' GB';
+        }
+
+        if (bytes >= 1000000) {
+            return (bytes / 1000000).toFixed(2) + ' MB';
+        }
+
+        return (bytes / 1000).toFixed(2) + ' KB';
+    }
+
+});
+    
+</script>
 @endsection
