@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDictionaryPublicTable extends Migration
+class CreateDictionaryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,10 @@ class CreateDictionaryPublicTable extends Migration
      */
     public function up()
     {
-        Schema::create('dictionary_publics', function (Blueprint $table) {
-
-            $table->integer('Public_ID')->unsigned();
-            $table->foreign('Public_ID')->references('Public_ID')->on('publics')->onUpdate('cascade')->onDelete('cascade');
+        Schema::create('dictionary', function (Blueprint $table) {
+            // School Table Attributes
             $table->string('varname')->nullable();
-            $table->string('Dictionary_Public')->nullable();
+            $table->string('Dictionary_Institution')->nullable();
             $table->string('Column_Names')->nullable();
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
@@ -33,6 +31,6 @@ class CreateDictionaryPublicTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dictionary_publics');
+        Schema::dropIfExists('dictionary');
     }
 }

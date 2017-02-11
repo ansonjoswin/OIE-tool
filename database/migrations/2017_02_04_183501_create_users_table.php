@@ -17,13 +17,12 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('affiliation');
-            //$table->string('role');
             $table->string('password');
+            $table->string('affiliation');
             $table->boolean('active')->default(true);
-            $table->rememberToken();
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
+            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
 
