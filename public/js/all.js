@@ -45,13 +45,13 @@ $.ajaxSetup({
 //    });
 //});
 
-/*$(document).ready(function(){
+$(document).ready(function(){
     $('table.cds-datatable').DataTable({
         "columnDefs": [ {
             "targets"  : 'no-sort',
             "orderable": false
         }]
     });
-});*/
+});
 
 //# sourceMappingURL=all.js.map

@@ -37,7 +37,7 @@ class HomeController extends Controller
             else
                 return view('home', compact('user'));
         }
-        
+
     }
 
      public function resetPassword()
