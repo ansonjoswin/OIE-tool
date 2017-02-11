@@ -29,9 +29,8 @@
 <div class="form-group{{ $errors->has('affiliation') ? ' has-error' : '' }}">
     {!! Form::label('affiliation', 'Affiliation:', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6"> 
-        {{-- {!! Form::text('affiliation', null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!}   --}}
 
-
+        {!! Form::text('affiliation', null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!}
 
         @if ($errors->has('affiliation'))
             <span class="help-block">
@@ -56,31 +55,14 @@
     <label class="col-md-4 control-label">Roles</label>
     <div class="col-md-6">
 
- {!! Form::select('rolelist[]', $list_role, null, ['class' => 'form-control roles mav-select', 'multiple', 'style' => 'width: 50%; margin-top: 10px;']) !!}
-
-    {{--
-
 {!! Form::select('roleField', $list_role, $user->getRoleListAttribute()->first(), ['placeholder'=>'User']) !!}
 
---}}
 
-{{--
-        {!! Form::select('rolelist[]', $list_role, $user->getRoleListAttribute()->first(), ['placeholder'=>'User']) !!}
---}}
-
-      {{--
-      {!! Form::select('rolelist[]', $list_role, null, ['class' => 'form-control roles cds-select', 'multiple', 'style' => 'width: 50%; margin-top: 10px;']) !!}
-
-            {!! Form::select('rolelist[]', $list_role, $user->getRoleListAttribute()->first(), ['multiple' => false, 'class' => 'form-control margin'] ) !!}
-
-
-                {!! Form::select('rolelist[]', $list_role, $user->getRoleListAttribute()->first() ) !!}
-      --}}
 
     </div>
 </div>
 
-@if($CRUD_Action == 'Create')
+@if($CRUD_Action == 'Create' || $CRUD_Action == 'Update')
     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
         <label class="col-md-4 control-label">Password</label>
         <div class="col-md-6">

@@ -1,20 +1,55 @@
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
+/*
+ * ConfirmDelete: Asks the user for confirmation when a record is being deleted
  */
+function ConfirmDelete() {
+    var x = confirm("Are you sure you want to delete?");
 
-require('./bootstrap');
+    if (x) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
 
-Vue.component('example', require('./components/Example.vue'));
+//$(function () {
+//    $('a[data-toggle="collapse"]').on('click',function(){
+//        var objectID=$(this).attr('href');
+//        $(objectID).collapse('toggle');
+//        if($(objectID).hasClass('in')) {
+//            $(objectID).collapse('hide');
+//        } else {
+//            $(objectID).collapse('show');
+//        }
+//    });
+//
+//    $('#expandAll').on('click',function(){
+//        $('a[data-toggle="collapse"]').each(function(){
+//            var objectID=$(this).attr('href');
+//            if($(objectID).hasClass('in')===false) {
+//                $(objectID).collapse('show');
+//            }
+//        });
+//    });
+//
+//    $('#collapseAll').on('click',function(){
+//        $('a[data-toggle="collapse"]').each(function() {
+//            var objectID=$(this).attr('href');
+//            $(objectID).collapse('hide');
+//        });
+//    });
+//});
 
-const app = new Vue({
-    el: '#app'
+$(document).ready(function(){
+    $('table.cds-datatable').DataTable({
+        "columnDefs": [ {
+            "targets"  : 'no-sort',
+            "orderable": false
+        }]
+    });
 });
