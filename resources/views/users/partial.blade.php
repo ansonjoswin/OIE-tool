@@ -29,7 +29,10 @@
 <div class="form-group{{ $errors->has('affiliation') ? ' has-error' : '' }}">
     {!! Form::label('affiliation', 'Affiliation:', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6"> 
-        {!! Form::text('affiliation', null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!}
+        {{-- {!! Form::text('affiliation', null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!}   --}}
+
+
+
         @if ($errors->has('affiliation'))
             <span class="help-block">
                 <strong>{{ $errors->first('affiliation') }}</strong>
