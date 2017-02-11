@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
+
 use App\Tag;
+
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -42,3 +45,4 @@ class TagsTableSeeder extends Seeder {
         Tag::create([ 'name' => 'Undergraduate']);
     }
 }
+

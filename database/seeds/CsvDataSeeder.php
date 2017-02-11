@@ -5,6 +5,7 @@ use App\School;
 
 abstract class CsvDataSeeder extends Seeder
 {
+
     public $table;
 
     public $filename;

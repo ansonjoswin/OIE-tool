@@ -1,11 +1,9 @@
 <?php
 
-use Illuminate\Database\Seeder;
 
-
-class TableDataSeeder extends Seeder
+Class SchoolTable extends CsvDataSeeder
 {
-     public $table;
+    public $table;
 
     public $filename;
 
