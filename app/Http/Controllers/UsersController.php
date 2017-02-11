@@ -25,7 +25,7 @@ class UsersController extends Controller
 
         $this->user = Auth::user();
         $this->users = User::all();
-        $this->list_role = Role::pluck('display_name', 'id');
+        $this->list_role = Role::pluck('User_Id');
         $this->heading = "Users";
 
         $this->viewData = [ 'user' => $this->user, 'users' => $this->users, 'list_role' => $this->list_role, 'heading' => $this->heading ];

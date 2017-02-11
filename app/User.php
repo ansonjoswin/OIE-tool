@@ -28,7 +28,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'affiliation', 'active', 'created_by', 'updated_by'
+        'User_Id',
+        'email',
+        'role',
     ];
 
     /**
@@ -47,7 +49,7 @@ class User extends Authenticatable
      */
     public function getRoleListAttribute()
     {
-        return $this->roles->pluck('id')->all();
+        return $this->roles->pluck('User_Id')->all();
     }
 
     /**

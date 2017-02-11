@@ -11,11 +11,83 @@ use Log;
 
 class School extends Model
 {
-    protected $fillable = [
-        'unit_id', 'school_name', 'school_city', 'school_state', 'longitude', 'latitude', 'created_by', 'updated_by', 'created_at', 'updated_at'
-    ];
-    protected $primaryKey = 'school_id';
+    protected $fillable=[
+    'School_Id',
+    'Unit_Id',
+    'School_Name',
+    'School_Address',
+    'School_City',
+    'School_State',
+    'School_Zip',
+    'School_St_FIPS',
+    'School_GeoLoc',
+    'Admin_Name',
+    'Admin_Title',
+    'School_TelNum',
+    'EmpID',
+    'OPE_ID',
+    'OPE_Flag',
+    'SchoolURL',
+    'AdmissionURL',
+    'FinanceURL',
+    'OnlineAppURL',
+    'NetPrice_CalcURL',
+    'VetURL',
+    'AuthURL',
+    'School_Sector',
+    'School_Level',
+    'School_Control',
+    'HL_Offering',
+    'UG_Offering',
+    'Grad_Offering',
+    'HD_Offered',
+    'Deg_GrantStat',
+    'Hist_BlkColg',
+    'Hospital',
+    'Inst_MedicalDeg',
+    'TribalClg',
+    'Deg_Urban',
+    'OpenPublic',
+    'MergedSchool_UNITID',
+    'School_Status',
+    'IPEDS_DeleteYr',
+    'School_ClosedDt',
+    'CurrentYr_Active',
+    'PostSec_Indicator',
+    'PostSec_InstIndicator',
+    'PostSec_4InstIndicator',
+    'Rpt_Method',
+    'Inst_NameAlias',
+    'Inst_Category',
+    'Land_GrandInst',
+    'Inst_SizeCategory',
+    'CBSA',
+    'CBSA_Type',
+    'Combined_StatArea',
+    'NewEng_CityTown',
+    'MultiInst',
+    'MultiInst_Name',
+    'MultiInst_ID',
+    'Fips_CtyCode',
+    'School_Country',
+    'Cogressional_DistCode',
+    'GeoLongitude',
+    'GeoLatitude',
+];
+    protected $primaryKey = 'School_Id';
     public static function getTableName() {
         return (new static)->getTable();
     }
+
+    public function ug_unduplicatedheadcount()
+    {
+        return $this->hasMany('App\UG_UnduplicatedHeadCount');
+
+    }
+    public function ug_credithour()
+    {
+        return $this->hasMany('App\UG_CreditHour');
+
+    }
 }
+
