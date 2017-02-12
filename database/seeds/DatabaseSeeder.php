@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
+
 use App\Tag;
 
 
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(RoleUserTableSeeder::class);
         $this->call(UsersRolesPermissions::class);
+        $this->call(MappingTableSeeder::class);
         $this->call(SchoolTable::class);
         $this->command->info('User, Role, Permission and School tables seeded!');
 

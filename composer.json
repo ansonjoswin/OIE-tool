@@ -21,11 +21,13 @@
     },
     "autoload": {
         "classmap": [
-            "database"
+            "database",
+            "database/seeds/TableDataSeeder.php"
             
         ],
         "psr-4": {
             "App\\": "app/"
+            
         }
     },
     "autoload-dev": {
@@ -33,9 +35,7 @@
             "Tests\\": "tests/"
         },
         "classmap": [
-            "tests/TestCase.php",
-            "database/seeds/TableDataSeeder.php"
-
+            "tests/TestCase.php"
         ]
         
     },
