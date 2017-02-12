@@ -76,52 +76,32 @@ class UsersController extends Controller
         return redirect()->back();
     }
 
-    //public function edit(User $users)
     public function edit(User $user)
     {
         $object = $user;
+        //var_dump($object->id);
         Log::info('UsersController.edit: '.$object->id.'|'.$object->name);
         $this->viewData['user'] = $object;
-        //$this->viewData['heading'] = "Edit User: ".$object->name;
         $this->viewData['heading'] = "Edit User";
-
         return view('users.edit', $this->viewData);
     }
 
-
-    public function update(User $user, Request $request)
-    {   
-        var_dump($request->all());
-        $user->update($request->all());
-
-        $user->update([
-            'email' => $request->email,
-            'affiliation' => $request->affiliation,
-            'password'=> bcrypt($request->password),
-            'active' => $request->active
-        ]);
-
-        return redirect('users');
-    }
-
-    /*
-    public function update(User $users, UserRequest $request)
-    {   
-        $object = $users;
+    public function update(User $user, UserRequest $request)
+    {
+        $object = $user;
+        
         Log::info('UsersController.update - Start: '.$object->id.'|'.$object->name);
 //        $this->authorize($object);
-        
         $this->populateUpdateFields($request);
         $request['active'] = $request['active'] == '' ? false : true;
-
         $object->update($request->all());
-        
+
         $this->syncRoles($object, $request->input('rolelist'));
         Session::flash('flash_message', 'User successfully updated!');
         Log::info('UsersController.update - End: '.$object->id.'|'.$object->name);
         return redirect('users');
     }
-    */
+
 
     /**
      * Destroy the given user.
@@ -130,15 +110,15 @@ class UsersController extends Controller
      * @param  User  $user
      * @return Response
      */
-    public function destroy(Request $request, User $users)
+    public function destroy(Request $request, User $user)
     {
-        $object = $users;
+        $object = $user;
         Log::info('UsersController.destroy: Start: '.$object->id.'|'.$object->name);
-        if ($this->authorize('destroy', $object))
-        {
+        //if ($this->authorize('destroy', $object))
+        //{
             Log::info('Authorization successful');
             $object->delete();
-        }
+        //}
         Log::info('UsersController.destroy: End: ');
         return redirect('/users');
     }
@@ -154,7 +134,7 @@ class UsersController extends Controller
         Log::info('UsersController.syncRoles: Start: '.$user->name);
         // ToDo: At somepoint need to update the timestamps and created_by/updated_by fields on the pivot table
         $user->roles()->sync($roles);
-//        $user->roles()->sync([$roles => ['created_by' => Auth::user()->name, 'updated_by' => Auth::user()->name]]);
+        //$user->roles()->sync([$roles => ['created_by' => Auth::user()->name, 'updated_by' => Auth::user()->name]]);
     }
 
 }

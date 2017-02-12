@@ -54,15 +54,11 @@
 <div class="form-group">
     <label class="col-md-4 control-label">Roles</label>
     <div class="col-md-6">
-
-{!! Form::select('roleField', $list_role, $user->getRoleListAttribute()->first(), ['placeholder'=>'User']) !!}
-
-
-
+{!! Form::select('rolelist[]', $list_role, $user->getRoleListAttribute()->first(), ['class' => 'form-control roles cds-select', 'style' => 'width: 50%; margin-top: 10px;']) !!}
     </div>
 </div>
 
-@if($CRUD_Action == 'Create' || $CRUD_Action == 'Update')
+@if($CRUD_Action == 'Create' )
     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
         <label class="col-md-4 control-label">Password</label>
         <div class="col-md-6">
