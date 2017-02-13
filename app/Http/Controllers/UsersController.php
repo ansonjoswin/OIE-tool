@@ -25,12 +25,10 @@ class UsersController extends Controller
 
         $this->user = Auth::user();
         $this->users = User::all();
+        $this->affiliation_list = ['Affiliation-1' => 'Affiliation-1', 'Affiliation-2' => 'Affiliation-2'];
         $this->list_role = Role::pluck('display_name', 'id');
         $this->heading = "Users";
-
-
-        //$this->viewData = [ 'user' => $this->user, 'users' => $this->users, 'heading' => $this->heading ];
-        $this->viewData = [ 'user' => $this->user, 'users' => $this->users, 'list_role' => $this->list_role, 'heading' => $this->heading ];
+        $this->viewData = [ 'user' => $this->user, 'users' => $this->users, 'list_role' => $this->list_role, 'heading' => $this->heading, 'affiliation_list'=>$this->affiliation_list ];
     }
 
     public function index()
@@ -79,7 +77,6 @@ class UsersController extends Controller
     public function edit(User $user)
     {
         $object = $user;
-        //var_dump($object->id);
         Log::info('UsersController.edit: '.$object->id.'|'.$object->name);
         $this->viewData['user'] = $object;
         $this->viewData['heading'] = "Edit User";
@@ -89,15 +86,21 @@ class UsersController extends Controller
     public function update(User $user, UserRequest $request)
     {
         $object = $user;
-        
         Log::info('UsersController.update - Start: '.$object->id.'|'.$object->name);
 //        $this->authorize($object);
         $this->populateUpdateFields($request);
         $request['active'] = $request['active'] == '' ? false : true;
-        $object->update($request->all());
 
-        $this->syncRoles($object, $request->input('rolelist'));
-        Session::flash('flash_message', 'User successfully updated!');
+        if($user->id == Auth::user()->id && ($request['active'] != $user->active)   ) {
+            Session::flash('flash_alert', 'You cannot update your own status.');
+        }elseif ($user->id == Auth::user()->id && ($request->input('rolelist') != $user->rolelist->toArray())) { 
+            Session::flash('flash_alert', 'You cannot update your own role.');
+        }else{
+            $object->update($request->all());
+            $this->syncRoles($object, $request->input('rolelist')); 
+            Session::flash('flash_message', 'User successfully updated!');
+        }
+
         Log::info('UsersController.update - End: '.$object->id.'|'.$object->name);
         return redirect('users');
     }
@@ -114,6 +117,7 @@ class UsersController extends Controller
     {
         $object = $user;
         Log::info('UsersController.destroy: Start: '.$object->id.'|'.$object->name);
+
         //if ($this->authorize('destroy', $object))
         //{
             Log::info('Authorization successful');

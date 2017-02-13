@@ -14,6 +14,7 @@
                         <div><h4>{{ $heading }}</h4></div>
                     </div>
                     <div class="panel-body">
+                        @include('common.flash')
                         @if (count($users) > 0)
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped cds-datatable">
@@ -25,7 +26,6 @@
 
                                 @foreach ($users as $user)
                                     <tr>
-                               
                                         <td class="table-text">
                                             <div><a href="{{ url('/users/'.$user->id.'/edit') }}">{{ $user->email }}</a> </div>
                                         </td>
@@ -34,24 +34,22 @@
                                         @else
                                             <td class="table-text"><div>InActive</div></td>
                                         @endif
-
-                                        @if ($user->getRoleListAttribute()->first() == null)
-                                            <td class="table-text"><div>User</div></td>
-                                        @else
-                                            <td class="table-text"><div>{{ $list_role->get($user->getRoleListAttribute()->first() )}} </div></td>
-                                        @endif
                                         
+                                        <td class="table-text"><div>
+                                            @if ($user->getRoleListAttribute()->first() != null)
+                                                {{ $list_role->get($user->getRoleListAttribute()->first() )}} 
+                                            @else
+                                                Registered User
+                                            @endif
+                                        </div></td>
                                         <td class="table-text"><div>{{ $user->created_at->format('m/d/Y') }}</div></td>
-
                                         <td>
-                                            @if($user->id != 1) <!-- Administrator User -->
+                                            @if($user->id != Auth::user()->id && $user->id != 1) <!-- Administrator User -->
                                                 <div class="pull-right" style="height: 25px;">
                                                 <form action="{{ url('users/'.$user->id) }}" method="POST" onsubmit="return ConfirmDelete();">{{ csrf_field() }}{{ method_field('DELETE') }}
                                                     <button type="submit" id="delete-user-{{ $user->id }}" class="btn btn-default"><i class="fa fa-trash"></i></button>
                                                 </form>
-                                                </div>
-
-                                                                                              
+                                                </div>                                            
                                             @endif
                                         </td>
                                     </tr>
