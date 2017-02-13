@@ -81,7 +81,7 @@
         @yield('scripts')
 
         <!--Update the value of "agree" input when clicking the Agree/Disagree button-->
-
+{{-- 
         <script type="text/javascript">
 
                 //###########################################################################
@@ -108,7 +108,7 @@
         
 
                                  });
-        </script>
+        </script> --}}
 
 
         <!-- Footer -->

@@ -12,7 +12,7 @@
 
                         
 	                   
-	                    <div class="form-group floating-label-form-group controls {{ $errors->has('oldpassword') ? ' has-error' : '' }}">
+	                    <div class="form-group {{ $errors->has('oldpassword') ? ' has-error' : '' }}">
 	                        <label for="oldpassword" class="col-md-4 control-label" style="color:#2c3e50;">Old Password</label>
 
 	                        <div class="col-md-6">
@@ -27,7 +27,7 @@
 	                    </div>
 	                   
 	                   
-	                    <div class="form-group floating-label-form-group controls {{ $errors->has('password') ? ' has-error' : '' }}">
+	                    <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
 	                        <label for="password" class="col-md-4 control-label" style="color:#2c3e50;">Password</label>
 
 	                        <div class="col-md-6">
@@ -41,7 +41,7 @@
 	                        </div>
 	                    </div>
 
-	                    <div class="form-group floating-label-form-group controls{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+	                    <div class="form-group {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
 	                        <label for="password_confirmation" class="col-md-4 control-label" style="color:#2c3e50;">Confirm Password</label>
 
 	                        <div class="col-md-6">
@@ -55,7 +55,7 @@
 	                        </div>
 	                    </div>
 
-                		<div style="color:#F2003C; padding-left: 260px;" class="form-group floating-label-form-group controls" id="divCheckPasswordMatch"></div>
+                		{{-- <div style="color:#F2003C; padding-left: 260px;" class="form-group floating-label-form-group controls" id="divCheckPasswordMatch"></div> --}}
 
 	                    <div class="form-group">
 	                        <div class="col-md-8 text-center">

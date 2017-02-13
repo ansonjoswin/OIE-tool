@@ -48,7 +48,8 @@ class HomeController extends Controller
     {
         $passwordSuccess = 'failed';
         $this->validate($request,[
-                'password' => 'required|confirmed',
+                'password' => 'required|min:6|different:oldpassword|confirmed',
+                
             ]);
         $user = User::where('email',Auth::user()->email)->first();
         if (Hash::check($request->oldpassword, $user->password))
