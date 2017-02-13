@@ -26,6 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+
         if (Auth::check())
         {
             $user = Auth::user();
@@ -37,6 +38,7 @@ class HomeController extends Controller
                 return view('home', compact('user'));
         }
     }
+
 
     public function resetPassword()
     {
