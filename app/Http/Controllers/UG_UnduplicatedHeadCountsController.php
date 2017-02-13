@@ -8,6 +8,11 @@ use App\School;
 
 class UG_UnduplicatedHeadCountsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $ug_unduplicatedheadcounts=UG_UnduplicatedHeadCount::all();

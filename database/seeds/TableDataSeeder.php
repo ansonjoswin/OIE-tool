@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 
 
-class TableDataSeeder extends Seeder
+class SchoolTable extends CsvDataSeeder
 {
      public $table;
 
@@ -11,7 +11,8 @@ class TableDataSeeder extends Seeder
 
     public function __construct()
     {
-        $this->filename = __DIR__ . '/../../schools.csv';
+        $this->filename = 'C:\wamp64\www\unoistoie-acbat\schools.csv';
+        //__DIR__ . '/../../schools.csv';
         $this->table = 'schools';
     }
 

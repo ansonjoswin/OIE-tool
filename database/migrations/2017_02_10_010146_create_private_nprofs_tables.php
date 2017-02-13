@@ -50,7 +50,7 @@ class CreatePrivateNprofsTables extends Migration
             $table->integer('LclAppro_PermRest')->nullable();
             $table->integer('FedGrntCntrc_Ttl')->nullable();
             $table->integer('FedGrntCntrc_UnRest')->nullable();
-            $table->integer('FedGrnt Cntrc_TmpRest')->nullable();
+            $table->integer('FedGrntCntrc_TmpRest')->nullable();
             $table->integer('FedGrntCntrc_PemRest')->nullable();
             $table->integer('StGrntCntrc_Ttl')->nullable();
             $table->integer('StGrntCntrc_UnRest')->nullable();
@@ -113,7 +113,7 @@ class CreatePrivateNprofsTables extends Migration
             $table->integer('IndpOps_Deprctn')->nullable();
             $table->integer('IndpOps_Interest')->nullable();
             $table->integer('IndpOps_AllOth')->nullable();
-            $table->integer('Ttl Expns_Oprtn_MaintPlant')->nullable();
+            $table->integer('TtlExpns_Oprtn_MaintPlant')->nullable();
             /*$table->char('X_TtlUnRestAss',5)->nullable();
             $table->char('X_TtlRestAss',5)->nullable();
             $table->char('X_PermRestAssincludedinTtlRestAss',5)->nullable();

@@ -39,7 +39,7 @@ class CreateFinancesTable extends Migration
             $table->integer('StateGrnt')->nullable();
             $table->integer('TtlStudGrant')->nullable();
             $table->integer('AllwncApplTut_fees')->nullable();
-            $table->integer('Allwnc AplAux_EntRev')->nullable();
+            $table->integer('AllwncAplAux_EntRev')->nullable();
             $table->integer('InstrcTtlAmt')->nullable();
             $table->integer('InstrcSal_wages')->nullable();
             $table->integer('InstrcBenefits')->nullable();

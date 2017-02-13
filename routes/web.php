@@ -48,7 +48,11 @@ Route::resource('roles', 'RolesController');
 Route::resource('schools', 'SchoolsController');
 Route::resource('ug_unduplicatedheadcounts', 'UG_UnduplicatedHeadCountsController');
 Route::resource('ug_credithours', 'UG_CreditHoursController');
-
+Route::resource('admissions', 'AdmissionsController');
+Route::resource('finances', 'FinancesController');
+Route::resource('private_nprofs', 'Private_NProfsController');
+Route::resource('private_profs', 'Private_ProfsController');
+Route::resource('publicfs', 'PublicFsController');
 //    Route::delete('/comments/{comment}', 'CommentsController@destroy');
 //    Route::resource('comments', 'CommentsController');
 //    Route::get('comments/{student}/addforstudent', ['as' => 'comments.addforstudent',

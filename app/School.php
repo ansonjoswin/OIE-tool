@@ -89,5 +89,10 @@ class School extends Model
         return $this->hasMany('App\UG_CreditHour');
 
     }
+    public function admission()
+    {
+        return $this->hasMany('App\Admission');
+
+    }
 }
 
