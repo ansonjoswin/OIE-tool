@@ -12,7 +12,13 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 		exit;
 	}
 
-	if(move_uploaded_file($_FILES['upl']['tmp_name'], '../storage/uploads/'.$_FILES['upl']['name'])){
+	$upload_dir = '../storage/app/uploads/';
+
+	if (!file_exists($upload_dir)) {
+    	mkdir($upload_dir, 0777, true);
+	}
+
+	if(move_uploaded_file($_FILES['upl']['tmp_name'], $upload_dir.$_FILES['upl']['name'])){
 		echo '{"status":"success"}';
 		exit;
 	}
