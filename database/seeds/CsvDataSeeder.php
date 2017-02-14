@@ -132,7 +132,7 @@ abstract class CsvDataSeeder extends Seeder
     }
 
     public function fillMapArray($source_array, $mapping) {
-        var_dump($source_array);
+        
 
         $row_values = [];
         $columns = Schema::getColumnListing('maps');
