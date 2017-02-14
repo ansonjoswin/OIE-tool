@@ -1,7 +1,11 @@
 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
     {!! Form::label('name', 'Name:', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::text('name', null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!}
+        @if($role->name != 'admin' && $role->name != 'user')
+            {!! Form::text('name', null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!}
+        @else
+            {!! Form::text('name', null, ['class' => 'col-md-6 form-control', 'required' => 'required', 'disabled'=>'true']) !!}
+        @endif
         @if ($errors->has('name'))
             <span class="help-block"><strong>{{ $errors->first('name') }}</strong></span>
         @endif
@@ -30,7 +34,13 @@
 
 <div class="form-group">
     <label class="col-md-4 control-label">Permissions</label>
-    <div class="col-md-6">{!! Form::select('permissionlist[]', $list_permission, null, ['class' => 'form-control roles cds-select', 'multiple', 'style' => 'width: 50%; margin-top: 10px;']) !!}</div>
+    <div class="col-md-6">
+        @if($role->name != 'admin')
+            {!! Form::select('permissionlist[]', $list_permission, null, ['class' => 'form-control roles cds-select', 'multiple', 'style' => 'width: 50%; margin-top: 10px;']) !!}
+        @else
+            {!! Form::select('permissionlist[]', $list_permission, null, ['class' => 'form-control roles cds-select', 'multiple', 'style' => 'width: 50%; margin-top: 10px;','disabled'=>'true']) !!}
+        @endif
+    </div>
 </div>
 
 <div class="form-group">

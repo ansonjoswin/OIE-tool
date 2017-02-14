@@ -7,9 +7,11 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="pull-right">
+                            @if($role->name != 'admin' && $role->name != 'user')
                             <form action="{{ url('roles/'.$role->id) }}" method="POST" onsubmit="return ConfirmDelete();">{{ csrf_field() }}{{ method_field('DELETE') }}
                                 <button type="submit" id="delete" class="btn btn-default btn-danger"><i class="fa fa-btn fa-trash"></i>Delete</button>
                             </form>
+                            @endif
                         </div>
                         <div><h4>{{ $heading }}</h4></div>
                     </div>
