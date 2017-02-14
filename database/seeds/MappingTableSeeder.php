@@ -11,7 +11,7 @@ class MappingTableSeeder extends Seeder {
 
         //Fill columns of the table with Database columns
         // and corresponding CSV header column names
-        // DB::table('maps')->delete();
+        DB::table('maps')->delete();
         // Map::create([  'column_header' => 'unit_id', 'csv_header' => 'unitid', 'table_name' => 'schools', 'filename' => 'schools', 'created_at' => date_create(), 'updated_at' => date_create()]);
 
         // Map::create([  'column_header' => 'school_name', 'csv_header' => 'instnm', 'table_name' => 'schools', 'filename' => 'schools', 'created_at' => date_create(), 'updated_at' => date_create()]);

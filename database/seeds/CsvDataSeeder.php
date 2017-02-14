@@ -132,6 +132,7 @@ abstract class CsvDataSeeder extends Seeder
     }
 
     public function fillMapArray($source_array, $mapping) {
+        var_dump($source_array);
 
         $row_values = [];
         $columns = Schema::getColumnListing('maps');
@@ -139,9 +140,11 @@ abstract class CsvDataSeeder extends Seeder
         // Retrieve the CSV column header corresponding to
         // the Database column and store in a map
         foreach($mapping as $dbCol) {
-            if($no_of_columns_to_fill > 0) {
+               if($no_of_columns_to_fill > 0) {
                 $csv_Column_name = DB::Table('maps')->where($columns[3], '=', $this->table)
+
                                                     ->where($columns[1], $dbCol)->value($columns[2]);
+
                 $row_values[$dbCol] = $source_array[$csv_Column_name];
                 $no_of_columns_to_fill--;
             }
