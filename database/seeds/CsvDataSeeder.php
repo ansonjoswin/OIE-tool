@@ -144,9 +144,12 @@ abstract class CsvDataSeeder extends Seeder
                 $csv_Column_name = DB::Table('maps')->where($columns[3], '=', $this->table)
 
                                                     ->where($columns[1], $dbCol)->value($columns[2]);
-
+                if ($csv_Column_name === Null)
+                {$no_of_columns_to_fill--;}
+            else{
                 $row_values[$dbCol] = $source_array[$csv_Column_name];
                 $no_of_columns_to_fill--;
+            }
             }
         }
         return $row_values;
