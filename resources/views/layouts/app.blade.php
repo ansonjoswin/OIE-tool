@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,7 +84,10 @@
 
 <!--Update the value of "agree" input when clicking the Agree/Disagree button-->
 
-<script type="text/javascript">
+<!-- Scripts -->
+@yield('scripts')
+
+{{-- <script type="text/javascript">
 
     //###########################################################################
     //####                Change Password Validation              ####
@@ -104,10 +108,9 @@
                 });
         // .one() is NOT a typo of .on()
     });
-</script>
+</script> --}}
 
-<!-- Scripts -->
-@yield('scripts')
+
 
 <!-- Footer -->
 @yield('footer');
@@ -115,3 +118,4 @@
 <script src="../public/js/all.js"></script>
 </body>
 </html>
+

@@ -5,13 +5,8 @@ use App\User;
 use App\Role;
 use App\Permission;
 
-class UsersTableSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+class UsersTableSeeder extends Seeder {
+
     public function run()
     {
         DB::table('users')->delete();
@@ -19,9 +14,9 @@ class UsersTableSeeder extends Seeder
             'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create()]);     
         User::create([  'name' => 'Sachin Pawaskar', 'password' => bcrypt('secret'), 'email' => 'spawaskar@unomaha.edu', 'affiliation' => 'University of Nebraska, Omaha', 'active' => true,
             'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create()]);
-        User::create([  'name' => 'Hank Robinson', 'password' => bcrypt('secret'), 'email' => 'trobinson@unomaha.edu', 'affiliation' => 'University of Nebraska, Omaha', 'active' => true,
+        User::create([  'name' => 'Hank Robinson', 'password' => bcrypt('secret'), 'email' => 'trobinson@unomaha.edu','affiliation' => 'AffiliationName', 'active' => true,
             'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create()]);
-        User::create([  'name' => 'Lindsey Bandow', 'password' => bcrypt('secret'), 'email' => 'lbandow@unomaha.edu', 'affiliation' => 'University of Nebraska, Omaha', 'active' => true,
+        User::create([  'name' => 'Lindsey Bandow', 'password' => bcrypt('secret'), 'email' => 'lbandow@unomaha.edu', 'affiliation' => 'AffiliationName','active' => true,
             'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create()]);
     }
 }
@@ -101,5 +96,5 @@ class UsersRolesPermissions extends Seeder
         $studentRole = Role::where('name', '=', 'staff')->first();
         $studentRole->attachPermissions(array($readonlyAll));
     }
-    
 }
+

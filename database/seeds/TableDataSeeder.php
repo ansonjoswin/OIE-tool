@@ -1,17 +1,15 @@
 <?php
 
-use Illuminate\Database\Seeder;
 
-
-class TableDataSeeder extends Seeder
+Class SchoolTable extends CsvDataSeeder
 {
-     public $table;
+    public $table;
 
     public $filename;
 
     public function __construct()
     {
-        $this->filename = __DIR__ . '/../../schools.csv';
+        $this->filename = __DIR__ . '/../..\storage\app\schools.csv';
         $this->table = 'schools';
     }
 

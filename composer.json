@@ -22,16 +22,23 @@
     },
     "autoload": {
         "classmap": [
-            "database"
+            "database",
+            "database/seeds/TableDataSeeder.php"
+            
         ],
         "psr-4": {
             "App\\": "app/"
+            
         }
     },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        }
+        },
+        "classmap": [
+            "tests/TestCase.php"
+        ]
+        
     },
     "scripts": {
         "post-root-package-install": [

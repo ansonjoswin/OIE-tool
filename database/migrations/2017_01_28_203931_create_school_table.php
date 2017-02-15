@@ -342,6 +342,27 @@ class CreateSchoolTable extends Migration
             $table->primary(array('year','school_id'));
         });
 
+        Schema::create('map_tables', function (Blueprint $table) {
+            $table->increments("id");
+            $table->string('table_name')->unique();
+            $table->string('filename')->unique();
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+
+        Schema::create('maps', function (Blueprint $table) {
+            $table->increments('maps_id');
+            $table->string('column_header');
+            $table->string('csv_header')->nullable();
+            $table->string('table_name')->nullable();
+            $table->string('filename')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+            $table->foreign('table_name')->references('table_name')->on('map_tables');
+            $table->foreign('filename')->references('filename')->on('map_tables');
+        });
+
     }
 
     /**
@@ -371,5 +392,7 @@ class CreateSchoolTable extends Migration
         Schema::drop('students');
         Schema::drop('peer_group');
         Schema::drop('schools');
+        Schema::drop('maps');
+        Schema::drop('map_tables');
     }
 }
