@@ -4,7 +4,10 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< 6522c2d79bfd2321efddcaa9b93b0b65e7937a2c
 
+=======
+>>>>>>> scheduler added
     "content-hash": "3da6b9b7d678d8845d9f40c966454c33",
 
     "packages": [
@@ -388,11 +391,15 @@
                 "persistence",
                 "queryobject"
             ],
+<<<<<<< 6522c2d79bfd2321efddcaa9b93b0b65e7937a2c
 <<<<<<< HEAD
             "time": "2017-02-08 12:53:47"
 =======
             "time": "2017-02-08T12:53:47+00:00"
 >>>>>>> development
+=======
+            "time": "2017-02-08T12:53:47+00:00"
+>>>>>>> scheduler added
         },
         {
             "name": "doctrine/inflector",
@@ -746,7 +753,11 @@
                 "testing",
                 "webdriver"
             ],
+<<<<<<< 6522c2d79bfd2321efddcaa9b93b0b65e7937a2c
             "time": "2017-02-15T20:21:39+00:00"
+=======
+            "time": "2017-02-01T16:55:39+00:00"
+>>>>>>> scheduler added
         },
         {
             "name": "laravel/framework",
@@ -875,11 +886,15 @@
                 "framework",
                 "laravel"
             ],
+<<<<<<< 6522c2d79bfd2321efddcaa9b93b0b65e7937a2c
 <<<<<<< HEAD
             "time": "2017-02-15 14:31:32"
 =======
             "time": "2017-02-15T14:31:32+00:00"
 >>>>>>> development
+=======
+            "time": "2017-02-10T19:40:54+00:00"
+>>>>>>> scheduler added
         },
         {
             "name": "laravel/tinker",
@@ -1074,11 +1089,15 @@
                 "sftp",
                 "storage"
             ],
+<<<<<<< 6522c2d79bfd2321efddcaa9b93b0b65e7937a2c
 <<<<<<< HEAD
             "time": "2017-02-09 11:33:58"
 =======
             "time": "2017-02-09T11:33:58+00:00"
 >>>>>>> development
+=======
+            "time": "2017-02-09T11:33:58+00:00"
+>>>>>>> scheduler added
         },
         {
             "name": "monolog/monolog",
@@ -1304,11 +1323,15 @@
                 "parser",
                 "php"
             ],
+<<<<<<< 6522c2d79bfd2321efddcaa9b93b0b65e7937a2c
 <<<<<<< HEAD
             "time": "2017-02-10 20:20:03"
 =======
             "time": "2017-02-10T20:20:03+00:00"
 >>>>>>> development
+=======
+            "time": "2017-02-10T20:20:03+00:00"
+>>>>>>> scheduler added
         },
         {
             "name": "paragonie/random_compat",
@@ -1612,11 +1635,15 @@
                 "mail",
                 "mailer"
             ],
+<<<<<<< 6522c2d79bfd2321efddcaa9b93b0b65e7937a2c
 <<<<<<< HEAD
             "time": "2017-02-13 07:52:53"
 =======
             "time": "2017-02-13T07:52:53+00:00"
 >>>>>>> development
+=======
+            "time": "2017-02-13T07:52:53+00:00"
+>>>>>>> scheduler added
         },
         {
             "name": "symfony/console",
@@ -1679,11 +1706,15 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
+<<<<<<< 6522c2d79bfd2321efddcaa9b93b0b65e7937a2c
 <<<<<<< HEAD
             "time": "2017-02-16 14:07:22"
 =======
             "time": "2017-02-16T14:07:22+00:00"
 >>>>>>> development
+=======
+            "time": "2017-02-06T12:04:21+00:00"
+>>>>>>> scheduler added
         },
         {
             "name": "symfony/css-selector",
@@ -1793,11 +1824,15 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
+<<<<<<< 6522c2d79bfd2321efddcaa9b93b0b65e7937a2c
 <<<<<<< HEAD
             "time": "2017-02-16 16:34:18"
 =======
             "time": "2017-02-16T16:34:18+00:00"
 >>>>>>> development
+=======
+            "time": "2017-01-28T02:37:08+00:00"
+>>>>>>> scheduler added
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1959,11 +1994,15 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
+<<<<<<< 6522c2d79bfd2321efddcaa9b93b0b65e7937a2c
 <<<<<<< HEAD
             "time": "2017-02-16 22:46:52"
 =======
             "time": "2017-02-16T22:46:52+00:00"
 >>>>>>> development
+=======
+            "time": "2017-02-02T13:47:35+00:00"
+>>>>>>> scheduler added
         },
         {
             "name": "symfony/http-kernel",
@@ -2045,11 +2084,15 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
+<<<<<<< 6522c2d79bfd2321efddcaa9b93b0b65e7937a2c
 <<<<<<< HEAD
             "time": "2017-02-16 23:59:56"
 =======
             "time": "2017-02-16T23:59:56+00:00"
 >>>>>>> development
+=======
+            "time": "2017-02-06T13:15:19+00:00"
+>>>>>>> scheduler added
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -2157,11 +2200,15 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
+<<<<<<< 6522c2d79bfd2321efddcaa9b93b0b65e7937a2c
 <<<<<<< HEAD
             "time": "2017-02-16 14:07:22"
 =======
             "time": "2017-02-16T14:07:22+00:00"
 >>>>>>> development
+=======
+            "time": "2017-02-03T12:11:38+00:00"
+>>>>>>> scheduler added
         },
         {
             "name": "symfony/routing",
@@ -2236,11 +2283,15 @@
                 "uri",
                 "url"
             ],
+<<<<<<< 6522c2d79bfd2321efddcaa9b93b0b65e7937a2c
 <<<<<<< HEAD
             "time": "2017-01-28 02:37:08"
 =======
             "time": "2017-01-28T02:37:08+00:00"
 >>>>>>> development
+=======
+            "time": "2017-01-28T02:37:08+00:00"
+>>>>>>> scheduler added
         },
         {
             "name": "symfony/translation",
@@ -2304,11 +2355,15 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
+<<<<<<< 6522c2d79bfd2321efddcaa9b93b0b65e7937a2c
 <<<<<<< HEAD
             "time": "2017-02-16 22:46:52"
 =======
             "time": "2017-02-16T22:46:52+00:00"
 >>>>>>> development
+=======
+            "time": "2017-01-21T17:06:35+00:00"
+>>>>>>> scheduler added
         },
         {
             "name": "symfony/var-dumper",
@@ -2371,11 +2426,15 @@
                 "debug",
                 "dump"
             ],
+<<<<<<< 6522c2d79bfd2321efddcaa9b93b0b65e7937a2c
 <<<<<<< HEAD
             "time": "2017-02-16 22:46:52"
 =======
             "time": "2017-02-16T22:46:52+00:00"
 >>>>>>> development
+=======
+            "time": "2017-01-24T12:58:58+00:00"
+>>>>>>> scheduler added
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -2754,11 +2813,15 @@
                 "test double",
                 "testing"
             ],
+<<<<<<< 6522c2d79bfd2321efddcaa9b93b0b65e7937a2c
 <<<<<<< HEAD
             "time": "2017-02-09 13:29:38"
 =======
             "time": "2017-02-09T13:29:38+00:00"
 >>>>>>> development
+=======
+            "time": "2017-02-09T13:29:38+00:00"
+>>>>>>> scheduler added
         },
         {
             "name": "myclabs/deep-copy",
@@ -3348,11 +3411,15 @@
                 "testing",
                 "xunit"
             ],
+<<<<<<< 6522c2d79bfd2321efddcaa9b93b0b65e7937a2c
 <<<<<<< HEAD
             "time": "2017-02-19 07:22:16"
 =======
             "time": "2017-02-10T09:05:10+00:00"
 >>>>>>> development
+=======
+            "time": "2017-02-10T09:05:10+00:00"
+>>>>>>> scheduler added
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3786,11 +3853,15 @@
             ],
             "description": "Traverses array structures and object graphs to enumerate all referenced objects",
             "homepage": "https://github.com/sebastianbergmann/object-enumerator/",
+<<<<<<< 6522c2d79bfd2321efddcaa9b93b0b65e7937a2c
 <<<<<<< HEAD
             "time": "2017-02-18 15:18:39"
 =======
             "time": "2017-02-18T15:18:39+00:00"
 >>>>>>> development
+=======
+            "time": "2016-11-19T07:35:10+00:00"
+>>>>>>> scheduler added
         },
         {
             "name": "sebastian/recursion-context",
@@ -4039,11 +4110,15 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
+<<<<<<< 6522c2d79bfd2321efddcaa9b93b0b65e7937a2c
 <<<<<<< HEAD
             "time": "2017-02-16 22:46:52"
 =======
             "time": "2017-02-16T22:46:52+00:00"
 >>>>>>> development
+=======
+            "time": "2017-01-21T17:06:35+00:00"
+>>>>>>> scheduler added
         },
         {
             "name": "webmozart/assert",
