@@ -35,13 +35,13 @@ class Kernel extends ConsoleKernel
      if(File::isDirectory(storage_path('app\uploads'))){
 
               $file=storage_path('logs\Scheduerlog.log');
-             $email = Auth::user()->email;
+             //$email = Auth::user()->email;
          
              $schedule->command('db:seed')
                       ->hourlyAT('47')
                      // ->dailyAT('01:00')
                       ->sendOutputTo($file)
-                      ->emailOutputTo($email);   
+                      ->emailOutputTo('tkandula@unomaha.edu');   
         
                Storage::deletedirectory('uploads');
     }
