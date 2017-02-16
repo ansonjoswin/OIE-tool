@@ -27,7 +27,7 @@
         .fa-btn { margin-right: 6px; }
     </style>
     <link href="../public/css/all.css" rel="stylesheet">
-    <link href="{{ url(mix('css/app.css')) }}" rel="stylesheet">
+    <link href="{{ url(mix('css/app.css')) }}" rel="stylesheet"> 
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <script>
         window.Laravel = <?php echo json_encode([

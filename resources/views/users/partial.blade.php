@@ -29,7 +29,12 @@
 <div class="form-group{{ $errors->has('affiliation') ? ' has-error' : '' }}">
     {!! Form::label('affiliation', 'Affiliation:', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6"> 
-        {!! Form::text('affiliation', null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!}
+        @if($CRUD_Action == 'Create' )
+            {!! Form::select('affiliation',[null=>''] + $affiliation_list, null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!} 
+        @else
+            {!! Form::select('affiliation', $affiliation_list, $user->affiliation, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!} 
+        @endif
+
         @if ($errors->has('affiliation'))
             <span class="help-block">
                 <strong>{{ $errors->first('affiliation') }}</strong>
@@ -49,35 +54,21 @@
     </div>
 </div>
 
+
 <div class="form-group">
     <label class="col-md-4 control-label">Roles</label>
     <div class="col-md-6">
-
- {!! Form::select('rolelist[]', $list_role, null, ['class' => 'form-control roles mav-select', 'multiple', 'style' => 'width: 50%; margin-top: 10px;']) !!}
-
-    {{--
-
-{!! Form::select('roleField', $list_role, $user->getRoleListAttribute()->first(), ['placeholder'=>'User']) !!}
-
---}}
-
-{{--
-        {!! Form::select('rolelist[]', $list_role, $user->getRoleListAttribute()->first(), ['placeholder'=>'User']) !!}
---}}
-
-      {{--
-      {!! Form::select('rolelist[]', $list_role, null, ['class' => 'form-control roles cds-select', 'multiple', 'style' => 'width: 50%; margin-top: 10px;']) !!}
-
-            {!! Form::select('rolelist[]', $list_role, $user->getRoleListAttribute()->first(), ['multiple' => false, 'class' => 'form-control margin'] ) !!}
-
-
-                {!! Form::select('rolelist[]', $list_role, $user->getRoleListAttribute()->first() ) !!}
-      --}}
-
+        @if($CRUD_Action == 'Create' )  <!--New users have no default role-->
+            {!! Form::select('rolelist[]', $list_role, null, ['placeholder' => '', 'class' => 'form-control roles cds-select', 'style' => 'width: 50%; margin-top: 10px;']) !!}
+        @elseif($user->getRoleListAttribute()->first() != null) <!--Existing users default to existing role--> 
+            {!! Form::select('rolelist[]', $list_role, $user->getRoleListAttribute()->first(), ['class' => 'form-control roles cds-select', 'style' => 'width: 50%; margin-top: 10px;']) !!}
+        @else <!--If user has no role, it is a Registered User-->
+            {!! Form::select('rolelist[]', $list_role, $list_role->search('Registered User'), ['class' => 'form-control roles cds-select', 'style' => 'width: 50%; margin-top: 10px;']) !!}
+        @endif
     </div>
 </div>
 
-@if($CRUD_Action == 'Create')
+@if($CRUD_Action == 'Create' )
     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
         <label class="col-md-4 control-label">Password</label>
         <div class="col-md-6">
