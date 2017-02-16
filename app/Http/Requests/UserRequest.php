@@ -24,8 +24,8 @@ class UserRequest extends Request
      */
     public function rules()
     {
-       $rules = [
-            'name' => 'required|max:255',
+        $rules = [
+            //'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
 //            'role_id' => 'required',
         ];
@@ -38,5 +38,4 @@ class UserRequest extends Request
 
         return $rules;
     }
-    
 }
