@@ -157,12 +157,32 @@ abstract class CsvDataSeeder extends Seeder
 
     public function insert( array $seedData )
     {
-        try {
-            DB::table($this->table)->insert($seedData);
+        try { 
+            //$tabledata=DB::table($this->table)->get();
+           
+            // foreach ($seedData as $rowData) {
+
+                //Log::info('\n\n\n\n\nRow Format from the csv file: '.$seedData.'\n\n\n');
+                //if (DB::table($this->table)->where('unit_id',$rowData['UNITID'])->get())
+                // {
+                //     DB::table($this->table)->where('unit_id',$rowData['UNITID'])->update($rowData);
+                // }   
+                // else
+                // {
+            foreach ($seedData as $row) {
+                if($row)
+                {
+                   DB::table($this->table)->insert($row); 
+                }
+            }
+                // }
+            // }
+            // DB::table($this->table)->insert($seedData);
         } catch (\Exception $e) {
             Log::error("CSV insert failed: " . $e->getMessage() . " - CSV " . $this->filename);
             return FALSE;
         }
         return TRUE;
     }
+
 }
