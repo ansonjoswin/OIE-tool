@@ -64,8 +64,7 @@ class RolesController extends Controller
         $this->syncPermissions($object, $request->input('permissionlist'));
         Session::flash('flash_message', 'Role successfully added!');
         Log::info('RolesController.store - End: '.$object->id.'|'.$object->name);
-
-        return redirect()->back();
+        return redirect()->action('RolesController@index');
     }
 
     public function edit(Role $role)
@@ -107,6 +106,7 @@ class RolesController extends Controller
             Log::info('Authorization successful');
             $object->delete();
         //}
+        Session::flash('flash_message', 'Role successfully deleted!');
         Log::info('RolesController.destroy: End: ');
         return redirect('/roles');
     }
