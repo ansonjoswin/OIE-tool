@@ -17,7 +17,7 @@
                             <div class="text-center">
                                 <!-- Browse files with a hidden input file element -->
                                 <a class="btn btn-info btn-md">Browse</a>
-                                <input type="file" name="upl" multiple />
+                                <input type="file" style="visibility: hidden" name="upl" multiple />
                             </div>
                         </div>
                     </form> 
@@ -46,7 +46,7 @@
                 <h4 class="modal-title">Upload Success!</h4>
             </div>
         <div class="modal-body">
-            <p>The selected file(s) have been successfully uploaded to <strong>/storage/app/uploads</strong> folder.</p>
+            <p>The selected file(s) have been uploaded successfully.</p>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary btn-md" data-dismiss="modal">OK</button>
