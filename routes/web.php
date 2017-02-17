@@ -46,6 +46,7 @@ Route::post('updatePassword', 'HomeController@updatePassword');
 Route::resource('users', 'UsersController');
 Route::resource('roles', 'RolesController');
 Route::resource('schools', 'SchoolsController');
+Route::resource('jobs','JobsController');
 
 //    Route::delete('/comments/{comment}', 'CommentsController@destroy');
 //    Route::resource('comments', 'CommentsController');
