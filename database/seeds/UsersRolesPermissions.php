@@ -28,8 +28,6 @@ class RolesTableSeeder extends Seeder {
         DB::table('roles')->delete();
         Role::create([ 'name' => 'admin', 'display_name' => 'Administrator', 'description' => 'Admin is allowed to manage and edit other users',
             'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create()]);
-        Role::create([ 'name' => 'staff', 'display_name' => 'Staff', 'description' => 'Staff is allowed to manage ...',
-            'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create()]);
         Role::create([ 'name' => 'user', 'display_name' => 'Registered User', 'description' => 'User of webpage who is external to UNO.',
             'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create()]);
     }
