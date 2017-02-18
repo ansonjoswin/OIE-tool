@@ -23,7 +23,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/home') }}">Home</a></li>
                 {{-- Menu for Users with Administration Role Only --}}
-                @role('admin')
+                @if(Auth::user()->can(['manage-users','manage-roles']))
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <i class="fa fa-btn fa-fw fa-cogs"></i>Administration<span class="caret"></span></a>
@@ -35,7 +35,7 @@
                             {{--<li><a href="{{ url('/files') }}"><i class="fa fa-btn fa-fw fa-file"></i>Files</a></li>--}}
                         </ul>
                     </li>
-                @endrole
+                @endif
             </ul>
             @endif
 
