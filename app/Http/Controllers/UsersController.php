@@ -63,7 +63,7 @@ class UsersController extends Controller
         Log::info('UsersController.store - Start: ');
         $input = $request->all();
         $this->populateCreateFields($input);
-        $input['name'] = '';  
+        $input['name'] = 'test';  
         $input['password'] = bcrypt($request['password']);
         $input['active'] = $request['active'] == '' ? false : true;
 
@@ -71,7 +71,7 @@ class UsersController extends Controller
         $this->syncRoles($object, $request->input('rolelist'));
         Session::flash('flash_message', 'User successfully added!');
         Log::info('UsersController.store - End: '.$object->id.'|'.$object->name);
-        return redirect()->back();
+        return redirect()->action('UsersController@index');
     }
 
     public function edit(User $user)
@@ -123,6 +123,7 @@ class UsersController extends Controller
             Log::info('Authorization successful');
             $object->delete();
         //}
+        Session::flash('flash_message', 'Role successfully deleted!');
         Log::info('UsersController.destroy: End: ');
         return redirect('/users');
     }

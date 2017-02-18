@@ -46,7 +46,8 @@
                                         <td>
                                             @if($user->id != Auth::user()->id && $user->id != 1) <!-- Administrator User -->
                                                 <div class="pull-right" style="height: 25px;">
-                                                <form action="{{ url('users/'.$user->id) }}" method="POST" onsubmit="return ConfirmDelete();">{{ csrf_field() }}{{ method_field('DELETE') }}
+                                                <form action="{{ url('users/'.$user->id) }}" method="POST" onsubmit="return ConfirmDelete();">
+                                                {{ csrf_field() }}{{ method_field('DELETE') }}
                                                     <button type="submit" id="delete-user-{{ $user->id }}" class="btn btn-default"><i class="fa fa-trash"></i></button>
                                                 </form>
                                                 </div>                                            
