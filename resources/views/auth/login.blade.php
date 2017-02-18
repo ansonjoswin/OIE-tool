@@ -10,7 +10,7 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
                     
-                        <div style="color: red;text-align: center;">{!! Session::has('inactive') ? Session::get("inactive") : '' !!}</div>
+                        <strong><div style="color:#b32d00;text-align: center;">{!! Session::has('inactive') ? Session::get("inactive") : '' !!}</div></strong>
                         <br/>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">

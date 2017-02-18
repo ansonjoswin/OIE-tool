@@ -13,7 +13,7 @@
                         
 	                   
 	                    <div class="form-group {{ $errors->has('oldpassword') ? ' has-error' : '' }}">
-	                        <label for="oldpassword" class="col-md-4 control-label" style="color:#2c3e50;">Old Password</label>
+	                        <label for="oldpassword" class="col-md-4 control-label" style="color:#b32d00;">Old Password</label>
 
 	                        <div class="col-md-6">
 	                            <input id="oldpassword" type="password" class="form-control" placeholder="Old Password"  name="oldpassword" required>
@@ -28,7 +28,7 @@
 	                   
 	                   
 	                    <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
-	                        <label for="password" class="col-md-4 control-label" style="color:#2c3e50;">Password</label>
+	                        <label for="password" class="col-md-4 control-label" style="color:#b32d00;">Password</label>
 
 	                        <div class="col-md-6">
 	                            <input id="txtNewPassword" type="password" class="form-control" placeholder="Password"  name="password" required>
@@ -42,7 +42,7 @@
 	                    </div>
 
 	                    <div class="form-group {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-	                        <label for="password_confirmation" class="col-md-4 control-label" style="color:#2c3e50;">Confirm Password</label>
+	                        <label for="password_confirmation" class="col-md-4 control-label" style="color:#b32d00;">Confirm Password</label>
 
 	                        <div class="col-md-6">
 	                            <input id="txtConfirmPassword" type="password" class="form-control" placeholder="Confirm Password" name="password_confirmation" onchange="checkPasswordMatch();" required>

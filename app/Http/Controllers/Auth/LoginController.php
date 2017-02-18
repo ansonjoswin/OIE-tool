@@ -57,7 +57,7 @@ class LoginController extends Controller
             return $this->sendFailedLoginResponse($request);
         }
 
-        Session::flash('inactive','You are locked please contact the administrator!');
+        Session::flash('inactive','You are locked, please contact the administrator!');
         return redirect()->back()->withInput($request->only($this->username()));
     }
 
