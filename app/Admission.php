@@ -12,9 +12,9 @@ use Log;
 class Admission extends Model
 {
     protected $fillable=[
-        'Admission_ID',
+        //'Admission_ID',
         'year',
-        'School_Id',
+        'School_ID',
         'Ttl_Apl',
         'Ttl_Admn',
         'Ttl_FTEnr',

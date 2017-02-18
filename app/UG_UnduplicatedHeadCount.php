@@ -13,7 +13,7 @@ class UG_UnduplicatedHeadCount extends Model
 {
     public $table = "ug_unduplicatedheadcounts";
     protected $fillable=[
-        'UG_UndupHdcnt_ID',
+        //'UG_UndupHdcnt_ID',
         'School_ID',
         'Dgr_Lvl_Enrl',
         'Year',

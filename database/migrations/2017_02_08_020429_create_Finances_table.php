@@ -237,7 +237,8 @@ class CreateFinancesTable extends Migration
             $table->char('X_Sales_SrvcsAuxEntrp',5)->nullable();*/
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->softDeletes();
             $table->foreign('School_ID')->references('School_ID')->on('schools')->onUpdate('cascade')->onDelete('cascade');
 

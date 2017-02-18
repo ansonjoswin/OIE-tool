@@ -14,8 +14,8 @@ class CreateCompletionsTable extends Migration
     {
         Schema::create('completions', function (Blueprint $table) {
             //
-            $table->increments('Completions_ID');
-            $table->integer('School_Id');
+            $table->increments('Completion_ID');
+            $table->integer('School_ID');
             $table->integer('year')->nullable();
             $table->integer('InsPgCode')->nullable();
             $table->integer('MajNum')->nullable();
@@ -83,8 +83,9 @@ class CreateCompletionsTable extends Migration
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
             $table->softDeletes();
-            $table->timestamps();
-            $table->foreign('School_Id')->references('School_Id')->on('schools')->onUpdate('cascade')->onDelete('cascade');
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->foreign('School_ID')->references('School_ID')->on('schools')->onUpdate('cascade')->onDelete('cascade');
 
 
         });

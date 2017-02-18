@@ -12,7 +12,7 @@ use Log;
 class Finance extends Model
 {
     protected $fillable=[
-        'Finance_ID',
+        //'Finance_ID',
         'School_ID',
         'year',
         'Sector_Flag',

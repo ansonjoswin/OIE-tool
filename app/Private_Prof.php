@@ -13,7 +13,7 @@ class Private_Prof extends Model
 {
     public $table = "private_profs";
     protected $fillable=[
-        'PrivateProf_ID',
+        //'PrivateProf_ID',
         'Finance_ID',
         'TtlEquity',
         'TtlLiab_Equity',

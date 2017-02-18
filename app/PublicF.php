@@ -13,7 +13,7 @@ class PublicF extends Model
 {
     public $table = "publics";
     protected $fillable=[
-        'Public_ID',
+        //'Public_ID',
         'Finance_ID',
         'TtlCurntAsst',
         'Dep_CapAsst_NetDep',

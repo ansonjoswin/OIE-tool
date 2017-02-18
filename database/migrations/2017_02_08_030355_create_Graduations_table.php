@@ -16,7 +16,7 @@ class CreateGraduationsTable extends Migration
         Schema::create('graduations', function (Blueprint $table) {
             //
             $table->increments('Graduation_ID');
-            $table->integer('School_Id');
+            $table->integer('School_ID');
             $table->integer('year')->nullable();
             //$table->char('X_Rev_BacDgr_CH2006')->nullable();
             $table->integer('Rev_BacDgr_CH2006')->nullable();
@@ -29,7 +29,7 @@ class CreateGraduationsTable extends Migration
             //$table->char('X_GradRate4yr_BacDgr100')->nullable();
             $table->integer('GradRate4yr_BacDgr100')->nullable();
             //$table->char('X_ComCNT_Bac_D150_4yr')->nullable();
-            $table->integer('ComCNT_Bac_D150_4yr')->nullable();
+            //////$table->integer('ComCNT_Bac_D150_4yr')->nullable();
             //$table->char('X_ComCNT_Bac_D150_6yr')->nullable();
             $table->integer('ComCNT_Bac_D150_6yr')->nullable();
             //$table->char('X_GradRate6yr_BacDgr150')->nullable();
@@ -74,9 +74,10 @@ class CreateGraduationsTable extends Migration
             $table->integer('GradRate_DgrCer200')->nullable();
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->softDeletes();
-            $table->foreign('School_Id')->references('School_Id')->on('schools')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('School_ID')->references('School_ID')->on('schools')->onUpdate('cascade')->onDelete('cascade');
 
         });
     }

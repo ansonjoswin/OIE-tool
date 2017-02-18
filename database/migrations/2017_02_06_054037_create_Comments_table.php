@@ -20,7 +20,8 @@ class CreateCommentsTable extends Migration
             $table->morphs('commentable');
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->softDeletes();
 
             $table->foreign('user_id')->references('user_id')->on('users')->onUpdate('cascade')->onDelete('cascade');

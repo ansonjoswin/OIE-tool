@@ -12,7 +12,7 @@ use Log;
 class School extends Model
 {
     protected $fillable=[
-    'School_Id',
+    //'School_Id',
     'Unit_Id',
     'School_Name',
     'School_Address',
@@ -74,7 +74,7 @@ class School extends Model
     'GeoLongitude',
     'GeoLatitude',
 ];
-    protected $primaryKey = 'School_Id';
+    protected $primaryKey = 'School_ID';
     public static function getTableName() {
         return (new static)->getTable();
     }
@@ -94,5 +94,56 @@ class School extends Model
         return $this->hasMany('App\Admission');
 
     }
+    public function applicationdetail()
+    {
+        return $this->hasMany('App\ApplicationDetail');
+
+    }
+    public function defaultrate()
+    {
+        return $this->hasMany('App\DefaultRate');
+
+    }
+    public function completion()
+    {
+        return $this->hasMany('App\Completion');
+
+    }
+    public function school_peergroup()
+    {
+        return $this->hasMany('App\School_PeerGroup');
+
+    }
+    public function user()
+    {
+        return $this->hasMany('App\User');
+
+    }
+    public function graduation()
+    {
+        return $this->hasMany('App\Graduation');
+
+    }
+    public function employee()
+    {
+        return $this->hasMany('App\Employee');
+
+    }
+    public function instructional_es()
+    {
+        return $this->hasMany('App\Instruction_ES');
+
+    }
+    public function noninstructional_es()
+    {
+        return $this->hasMany('App\NonInstructional_ES');
+
+    }
+    public function carneige_classification()
+    {
+        return $this->hasOne('App\Carneige_classification');
+
+    }
+
 }
 

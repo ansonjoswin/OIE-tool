@@ -53,6 +53,27 @@ Route::resource('finances', 'FinancesController');
 Route::resource('private_nprofs', 'Private_NProfsController');
 Route::resource('private_profs', 'Private_ProfsController');
 Route::resource('publicfs', 'PublicFsController');
+
+Route::resource('instructional_ess', 'Instructional_ESsController');
+
+Route::resource('noninstructional_ess', 'NonInstructional_ESsController');
+
+Route::resource('peergroups', 'PeerGroupsController');
+
+Route::resource('school_peergroups', 'School_PeerGroupsController');
+
+Route::resource('applicationdetails', 'ApplicationDetailsController');
+
+Route::resource('comments', 'CommentsController');
+
+Route::resource('defaultrates', 'DefaultRatesController');
+
+Route::resource('employees', 'EmployeesController');
+
+Route::resource('graduations', 'GraduationsController');
+
+Route::resource('completions', 'completionsController');
+
 //    Route::delete('/comments/{comment}', 'CommentsController@destroy');
 //    Route::resource('comments', 'CommentsController');
 //    Route::get('comments/{student}/addforstudent', ['as' => 'comments.addforstudent',

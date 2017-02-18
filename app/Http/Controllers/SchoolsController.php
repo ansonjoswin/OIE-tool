@@ -24,35 +24,7 @@ class SchoolsController extends Controller
 
     public function index()
     {
-        $schools=School::all();
-        return view('schools.index',compact('schools'));
-    }
-    public function store(Request $request)
-    {
-        $school= new School($request->all());
-        $school->save();
-        return redirect('schools');
-    }
-    public function update($School_Id,Request $request)
-    {
-        //
-        $school= new School($request->all());
-        $school=School::find($School_Id);
-        $school->update($request->all());
-        return redirect('schools');
-    }
-    public function destroy($School_Id)
-    {
-        try {
-
-            $ug_credithour = UG_CreditHour::where('School_Id', '=', $School_Id)->delete();
-            $ug_unduplicatedheadcount = UG_UnduplicatedHeadCount::where('School_Id', '=', $School_Id)->delete();
-
-
-        }catch(Exception $ex) {
-
-            Log::exception($ex);
-        }
-        return redirect('schools'); //Once Deleted the page is redirected to customers.
+        $schools = School::all();
+        return view('schools.index', compact('schools'));
     }
 }

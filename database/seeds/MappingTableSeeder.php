@@ -13,7 +13,7 @@ class MappingTableSeeder extends Seeder
         //Fill columns of the table with Database columns
         // and corresponding CSV header column names
 
-        $file = 'C:\wamp64\www\unoistoie-acbat-feature-SchoolClass\mapping.csv';
+        $file = 'C:\wamp64\www\unoistoie-acbat\mapping.csv';
         $content = file($file);
 
       $array = array();
@@ -26,7 +26,6 @@ class MappingTableSeeder extends Seeder
             }
         }
 
-      /* print_r(($array[0]));*/
 
             DB::table('maps')->delete();
             foreach ($array as $value)
@@ -70,7 +69,7 @@ class MappingTableSeeder extends Seeder
     }
 }
 
-class MapTableSeeder extends Seeder {
+/*class MapTableSeeder extends Seeder {
     public function run()
     {
         //Fill names of tables in database and the corresponding CSV filename
@@ -78,4 +77,4 @@ class MapTableSeeder extends Seeder {
         MapTable::create([ 'table_name' => 'testschool', 'filename' => 'hd2014','created_at' => date_create(), 'updated_at' => date_create()]);
 
     }
-}
+}*/

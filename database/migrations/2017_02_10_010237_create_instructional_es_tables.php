@@ -15,7 +15,7 @@ class CreateInstructionalEsTables extends Migration
     {
         Schema::create('instructional_ess', function (Blueprint $table){
 
-            $table->increments('InstructionalES_id');
+            $table->increments('InstructionalES_ID');
             $table->integer('School_Id');
             $table->integer('year')->nullable();
             $table->integer('Acad_Rank')->nullable();
@@ -69,9 +69,10 @@ class CreateInstructionalEsTables extends Migration
             $table->bigInteger('Avg_Wgt_Mth_Sal_W')->nullable();
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->softDeletes();
-            $table->foreign('School_Id')->references('school_id')->on('schools')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('School_ID')->references('School_ID')->on('schools')->onUpdate('cascade')->onDelete('cascade');
             //$table->primary('InstructionalES_id');
 
         });

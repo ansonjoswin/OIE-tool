@@ -47,7 +47,8 @@ class CreatePrivateProfTable extends Migration
             $table->integer('DesignPaidReprtTaxExpns')->nullable();
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->softDeletes();
             $table->foreign('Finance_ID')->references('Finance_ID')->on('finances')->onUpdate('cascade')->onDelete('cascade');
 

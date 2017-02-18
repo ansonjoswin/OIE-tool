@@ -13,8 +13,8 @@ class UG_CreditHour extends Model
 {
     public $table = "ug_credithours";
     protected $fillable=[
-        'UG_CreditHours_ID',
-        'School_Id',
+        //'UG_CreditHours_ID',
+        'School_ID',
         'Year',
         'Twelve_Mnt_UG_credit_hrs',
         'Twelve_Mnt_UG_contact_hrs',

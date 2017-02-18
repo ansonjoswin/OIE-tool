@@ -115,6 +115,7 @@ abstract class CsvDataSeeder extends Seeder
         return $source_array;
     }
     public function fillMapArray($source_array, $mapping) {
+
         $row_values = [];
         $columns = Schema::getColumnListing('maps');
         $no_of_columns_to_fill = sizeof($source_array);
@@ -124,8 +125,12 @@ abstract class CsvDataSeeder extends Seeder
             if($no_of_columns_to_fill > 0) {
                 $csv_Column_name = DB::Table('maps')->where($columns[3], '=', $this->table)
                     ->where($columns[1], $dbCol)->value($columns[2]);
-                $row_values[$dbCol] = $source_array[$csv_Column_name];
-                $no_of_columns_to_fill--;
+                if ($csv_Column_name === Null)
+                {$no_of_columns_to_fill--;}
+                else{
+                    $row_values[$dbCol] = $source_array[$csv_Column_name];
+                    $no_of_columns_to_fill--;
+                }
             }
         }
         return $row_values;

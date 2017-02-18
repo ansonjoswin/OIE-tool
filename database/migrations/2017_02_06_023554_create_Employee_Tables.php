@@ -18,7 +18,7 @@ class CreateEmployeeTables extends Migration
             //$table->primary(['year'],['school_id'])->nullable();
             
             $table->increments('E_ID');
-            $table->bigInteger('School_Id')->unsigned();
+            $table->bigInteger('School_ID')->unsigned();
             $table->integer('year')->nullable();
             $table->integer('Occup_FTPT')->nullable();
             $table->integer('FTPT_status')->nullable();
@@ -56,9 +56,10 @@ class CreateEmployeeTables extends Migration
             $table->integer('Emp_NR_Alien_Ttl_W')->nullable();
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->softDeletes();
-            $table->foreign('School_Id')->references('School_Id')->on('schools')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('School_ID')->references('School_ID')->on('schools')->onUpdate('cascade')->onDelete('cascade');
 
         });
     }
