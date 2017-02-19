@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -13,7 +11,6 @@ use Session;
 use Input;
 use DB;
 use Log;
-
 class UsersController extends Controller
 {
     public function __construct()
@@ -22,42 +19,36 @@ class UsersController extends Controller
 //        $this->middleware('administrator');
 //        $this->middleware('role:admin|root');
         $this->middleware('role:admin');
-
         $this->user = Auth::user();
         $this->users = User::all();
         $this->affiliation_list = ['Affiliation-1' => 'Affiliation-1', 'Affiliation-2' => 'Affiliation-2'];
         $this->list_role = Role::pluck('display_name', 'id');
         $this->heading = "Users";
-        $this->viewData = [ 'user' => $this->user, 'users' => $this->users, 'list_role' => $this->list_role, 'heading' => $this->heading, 'affiliation_list'=>$this->affiliation_list ];
-    }
 
+        $this->viewData = [ 'user' => $this->user, 'users' => $this->users, 'list_role' => $this->list_role, 'heading' => $this->heading, 'affiliation_list'=>$this->affiliation_list ];
+
+    }
     public function index()
     {
         Log::info('UsersController.index: ');
         $users = User::all();
         $this->viewData['users'] = $users;
-
         return view('users.index', $this->viewData);
     }
-
     public function show(User $users)
     {
         $object = $users;
         Log::info('UsersController.show: '.$object->id.'|'.$object->name);
         $this->viewData['user'] = $object;
         $this->viewData['heading'] = "View User: ".$object->name;
-
         return view('users.show', $this->viewData);
     }
-
     public function create()
     {
         Log::info('UsersController.create: ');
         $this->viewData['heading'] = "New User";
-
         return view('users.create', $this->viewData);
     }
-
     public function store(UserRequest $request)
     {
         Log::info('UsersController.store - Start: ');
@@ -66,7 +57,6 @@ class UsersController extends Controller
         $input['name'] = 'test';  
         $input['password'] = bcrypt($request['password']);
         $input['active'] = $request['active'] == '' ? false : true;
-
         $object = User::create($input);
         $this->syncRoles($object, $request->input('rolelist'));
         Session::flash('flash_message', 'User successfully added!');
@@ -74,22 +64,28 @@ class UsersController extends Controller
         return redirect()->action('UsersController@index');
     }
 
+
+
     public function edit(User $user)
     {
         $object = $user;
         Log::info('UsersController.edit: '.$object->id.'|'.$object->name);
         $this->viewData['user'] = $object;
+
         $this->viewData['heading'] = "Edit User";
         return view('users.edit', $this->viewData);
     }
 
     public function update(User $user, UserRequest $request)
+
     {
         $object = $user;
         Log::info('UsersController.update - Start: '.$object->id.'|'.$object->name);
 //        $this->authorize($object);
+
         $this->populateUpdateFields($request);
         $request['active'] = $request['active'] == '' ? false : true;
+
 
         if($user->id == Auth::user()->id && ($request['active'] != $user->active)   ) {
             Session::flash('flash_alert', 'You cannot update your own status.');
@@ -104,6 +100,7 @@ class UsersController extends Controller
         Log::info('UsersController.update - End: '.$object->id.'|'.$object->name);
         return redirect('users');
     }
+
 
 
     /**
@@ -127,7 +124,6 @@ class UsersController extends Controller
         Log::info('UsersController.destroy: End: ');
         return redirect('/users');
     }
-
     /**
      * Sync up the list of roles for the given user record.
      *
@@ -141,5 +137,4 @@ class UsersController extends Controller
         $user->roles()->sync($roles);
         //$user->roles()->sync([$roles => ['created_by' => Auth::user()->name, 'updated_by' => Auth::user()->name]]);
     }
-
 }

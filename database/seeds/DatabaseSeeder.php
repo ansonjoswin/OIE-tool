@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Seed the System Users/Roles/Permissions tables
+         //Seed the System Users/Roles/Permissions tables
         $this->call(RolesTableSeeder::class);
         $this->call(PermissionsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
@@ -24,10 +24,14 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersRolesPermissions::class);
         $this->call(MappingTableSeeder::class);
         $this->call(SchoolTable::class);
+        $this->call(CngTable::class);
+        $this->call(GradTable::class);
+        $this->call(AppdetTable::class);
+        //$this->call(CMSeeder::class);
         $this->command->info('User, Role, Permission and School tables seeded!');
 
         // Seed the Tags table
-        $this->call(TagsTableSeeder::class);
+        //$this->call(TagsTableSeeder::class);
         $this->command->info('Tags tables seeded!');
     }
 }

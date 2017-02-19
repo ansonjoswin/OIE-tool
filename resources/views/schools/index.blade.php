@@ -1,59 +1,36 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <div class="pull-right">
-                            <form action="{{ url('schools/create') }}" method="GET">{{ csrf_field() }}
-                                <button type="submit" id="create" class="btn btn-primary"><i class="fa fa-btn fa-file-o"></i>Create</button>
-                            </form>
-                        </div>
-                        <div><h4>{{ $heading }}</h4></div>
-                    </div>
-                    <div class="panel-body">
-                        @if (count($schools) > 0)
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped cds-datatable">
-                                    <thead> <!-- Table Headings -->
-                                    <th>Name</th><th>City</th><th>State</th>
-                                    </thead>
-                                    <tbody> <!-- Table Body -->
-                                    @foreach ($schools as $school)
-                                        <tr>
-                                            <td class="table-text"><div><a href="{{ url('/schools/'.$school->school_id.'/edit') }}">{{ $school->school_name }}</a></div></td>
-                                            <td class="table-text"><div>{{ $school->school_city }}</div></td>
-                                            <td class="table-text"><div>{{ $school->school_state }}</div></td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        @else
-                            <div class="panel-body"><h4>No School Records found</h4></div>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-@endsection
+    <h1>Customer</h1>
 
-@section('footer')
-    <style>
-        .table td { border: 0px !important; }
-        .tooltip-inner { white-space:pre-wrap; max-width: 400px; }
-    </style>
+    <a href="{{url('/schools/create')}}" class="btn btn-success">Create School</a>
+    <hr>
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr class="bg-info">
+            <th> School ID</th>
+            <th>School Name</th>
+            <th>School City</th>
+            <th>School State</th>
 
-    <script>
-        $(document).ready(function() {
-            $('table.cds-datatable').on( 'draw.dt', function () {
-                $('tr').tooltip({html: true, placement: 'auto' });
-            } );
+        </tr>
+        </thead>
+        <tbody>
+        @foreach ($schools as $school)
+            <tr>
+                <td>{{ $school->School_Id}}</td>
+                <td>{{ $school->School_Name}}</td>
+                <td>{{ $school->School_Address}}</td>
+                <td>{{ $school->School_City}}</td>
+                <td>
+                    {!! Form::open(['method' => 'DELETE', 'route'=>['schools.destroy', $school->School_Id]]) !!}
+                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                    {!! Form::close() !!}
+                </td>
+            </tr>
+        @endforeach
 
-            $('tr').tooltip({html: true, placement: 'auto' });
-        } );
-    </script>
+        </tbody>
+
+    </table>
 @endsection

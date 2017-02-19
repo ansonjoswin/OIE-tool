@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -11,3 +12,4 @@ class MapTable extends Model
         'table_name', 'filename'
     ];
 }
+

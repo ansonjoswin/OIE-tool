@@ -1,34 +1,25 @@
 <?php
-
 use Illuminate\Database\Seeder;
 use App\School;
-
 abstract class CsvDataSeeder extends Seeder
 {
 
     public $table;
-
     public $filename;
-
     public $insert_chunk_size = 500;
-
     public $csv_delimiter = ',';
-
     public $offset_rows = 1;
 
     // Array to store Database column names
     public $mapping = [];
-
     public function setTableName($tablename)
     {
         $this->table = $tablename;
     }
-
     public function setFileName($filename)
     {
         $this->filename = $filename;
     }
-
     public function setColumnMapping()
     {
         //Retrieve the column names of the table
@@ -39,18 +30,15 @@ abstract class CsvDataSeeder extends Seeder
             array_push($this->mapping, $columns[$i+1]);
             $i++;
         }
-
     }
     public function openCSV($filename)
     {
         if (!file_exists($filename) || !is_readable($filename)) {
             Log::error("CSV insert failed" . $filename . "does not exist or is not readable");
         }
-
         $handle = fopen($filename, 'r');
         return $handle;
     }
-
     public function seedFromCSV($filename, $deliminator = ',')
     {
         $handle = $this->openCSV($filename);
@@ -93,6 +81,7 @@ abstract class CsvDataSeeder extends Seeder
                 // the corresponding values
                 $row = $this->fillMapArray($source_array, $mapping);
 
+
                 // insert only non-empty rows from the csv file
                 if ( !$row )
                     continue;
@@ -100,8 +89,10 @@ abstract class CsvDataSeeder extends Seeder
                 // Chunk size reached, insert
                 if ( ++$row_count == $this->insert_chunk_size )
                 {
+                    //var_dump($this->insert($data));
                     $this->insert($data);
                     $row_count = 0;
+                    //var_dump($data[0]);
                     // clear the data array explicitly to
                     // avoid duplicate inserts
                     $data = array();
@@ -130,31 +121,43 @@ abstract class CsvDataSeeder extends Seeder
         }
         return $source_array;
     }
-
     public function fillMapArray($source_array, $mapping) {
-        
 
         $row_values = [];
         $columns = Schema::getColumnListing('maps');
         $no_of_columns_to_fill = sizeof($source_array);
         // Retrieve the CSV column header corresponding to
         // the Database column and store in a map
-        foreach($mapping as $dbCol) {
-               if($no_of_columns_to_fill > 0) {
-                $csv_Column_name = DB::Table('maps')->where($columns[3], '=', $this->table)
 
-                                                    ->where($columns[1], $dbCol)->value($columns[2]);
-                if ($csv_Column_name === Null)
-                {$no_of_columns_to_fill--;}
-            else{
-                $row_values[$dbCol] = $source_array[$csv_Column_name];
-                $no_of_columns_to_fill--;
-            }
+        foreach($mapping as $dbCol) {
+            if ($dbCol === 'year') {
+                $row_values[$dbCol] = 2014;
+            } else {
+
+                if ($dbCol === 'School_ID') {
+                    $temp1 = DB::Table('schools')->where('Unit_Id', '=',
+                        $source_array['UNITID'])->value('School_ID');
+
+                    $row_values[$dbCol] = $temp1;
+                } else {
+                    if ($no_of_columns_to_fill > 0) {
+
+
+                        $csv_Column_name = DB::Table('maps')->where($columns[3], '=', $this->table)
+                            ->where($columns[1], $dbCol)->value($columns[2]);
+                        if ($csv_Column_name === Null) {
+                            $no_of_columns_to_fill--;
+                        } else {
+                            $row_values[$dbCol] = $source_array[$csv_Column_name];
+                            $no_of_columns_to_fill--;
+                        }
+                    }
+                }
             }
         }
+        //var_dump($row_values);
         return $row_values;
     }
-
     public function insert( array $seedData )
     {
         try { 
@@ -185,4 +188,6 @@ abstract class CsvDataSeeder extends Seeder
         return TRUE;
     }
 
+
 }
+

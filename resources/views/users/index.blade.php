@@ -26,6 +26,7 @@
 
                                 @foreach ($users as $user)
                                     <tr>
+
                                         <td class="table-text">
                                             <div><a href="{{ url('/users/'.$user->id.'/edit') }}">{{ $user->email }}</a> </div>
                                         </td>
@@ -34,6 +35,7 @@
                                         @else
                                             <td class="table-text"><div>InActive</div></td>
                                         @endif
+
                                         
                                         <td class="table-text"><div>
                                             @if ($user->getRoleListAttribute()->first() != null)
@@ -51,6 +53,7 @@
                                                     <button type="submit" id="delete-user-{{ $user->id }}" class="btn btn-default"><i class="fa fa-trash"></i></button>
                                                 </form>
                                                 </div>                                            
+
                                             @endif
                                         </td>
                                     </tr>

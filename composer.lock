@@ -4,7 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+
     "content-hash": "3da6b9b7d678d8845d9f40c966454c33",
+
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -386,7 +388,11 @@
                 "persistence",
                 "queryobject"
             ],
+<<<<<<< HEAD
+            "time": "2017-02-08 12:53:47"
+=======
             "time": "2017-02-08T12:53:47+00:00"
+>>>>>>> development
         },
         {
             "name": "doctrine/inflector",
@@ -869,7 +875,11 @@
                 "framework",
                 "laravel"
             ],
+<<<<<<< HEAD
+            "time": "2017-02-15 14:31:32"
+=======
             "time": "2017-02-15T14:31:32+00:00"
+>>>>>>> development
         },
         {
             "name": "laravel/tinker",
@@ -1064,7 +1074,11 @@
                 "sftp",
                 "storage"
             ],
+<<<<<<< HEAD
+            "time": "2017-02-09 11:33:58"
+=======
             "time": "2017-02-09T11:33:58+00:00"
+>>>>>>> development
         },
         {
             "name": "monolog/monolog",
@@ -1290,7 +1304,11 @@
                 "parser",
                 "php"
             ],
+<<<<<<< HEAD
+            "time": "2017-02-10 20:20:03"
+=======
             "time": "2017-02-10T20:20:03+00:00"
+>>>>>>> development
         },
         {
             "name": "paragonie/random_compat",
@@ -1594,7 +1612,11 @@
                 "mail",
                 "mailer"
             ],
+<<<<<<< HEAD
+            "time": "2017-02-13 07:52:53"
+=======
             "time": "2017-02-13T07:52:53+00:00"
+>>>>>>> development
         },
         {
             "name": "symfony/console",
@@ -1657,7 +1679,11 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "time": "2017-02-16 14:07:22"
+=======
             "time": "2017-02-16T14:07:22+00:00"
+>>>>>>> development
         },
         {
             "name": "symfony/css-selector",
@@ -1767,7 +1793,11 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "time": "2017-02-16 16:34:18"
+=======
             "time": "2017-02-16T16:34:18+00:00"
+>>>>>>> development
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1929,7 +1959,11 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "time": "2017-02-16 22:46:52"
+=======
             "time": "2017-02-16T22:46:52+00:00"
+>>>>>>> development
         },
         {
             "name": "symfony/http-kernel",
@@ -2011,7 +2045,11 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "time": "2017-02-16 23:59:56"
+=======
             "time": "2017-02-16T23:59:56+00:00"
+>>>>>>> development
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -2119,7 +2157,11 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "time": "2017-02-16 14:07:22"
+=======
             "time": "2017-02-16T14:07:22+00:00"
+>>>>>>> development
         },
         {
             "name": "symfony/routing",
@@ -2194,7 +2236,11 @@
                 "uri",
                 "url"
             ],
+<<<<<<< HEAD
+            "time": "2017-01-28 02:37:08"
+=======
             "time": "2017-01-28T02:37:08+00:00"
+>>>>>>> development
         },
         {
             "name": "symfony/translation",
@@ -2258,7 +2304,11 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "time": "2017-02-16 22:46:52"
+=======
             "time": "2017-02-16T22:46:52+00:00"
+>>>>>>> development
         },
         {
             "name": "symfony/var-dumper",
@@ -2321,7 +2371,11 @@
                 "debug",
                 "dump"
             ],
+<<<<<<< HEAD
+            "time": "2017-02-16 22:46:52"
+=======
             "time": "2017-02-16T22:46:52+00:00"
+>>>>>>> development
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -2700,7 +2754,11 @@
                 "test double",
                 "testing"
             ],
+<<<<<<< HEAD
+            "time": "2017-02-09 13:29:38"
+=======
             "time": "2017-02-09T13:29:38+00:00"
+>>>>>>> development
         },
         {
             "name": "myclabs/deep-copy",
@@ -3199,6 +3257,18 @@
         },
         {
             "name": "phpunit/phpunit",
+<<<<<<< HEAD
+            "version": "5.7.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/phpunit.git",
+                "reference": "4906b8faf23e42612182fd212eb6f4c0f2954b57"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/4906b8faf23e42612182fd212eb6f4c0f2954b57",
+                "reference": "4906b8faf23e42612182fd212eb6f4c0f2954b57",
+=======
             "version": "5.7.13",
             "source": {
                 "type": "git",
@@ -3209,6 +3279,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/60ebeed87a35ea46fd7f7d8029df2d6f013ebb34",
                 "reference": "60ebeed87a35ea46fd7f7d8029df2d6f013ebb34",
+>>>>>>> development
                 "shasum": ""
             },
             "require": {
@@ -3232,7 +3303,7 @@
                 "sebastian/global-state": "^1.1",
                 "sebastian/object-enumerator": "~2.0",
                 "sebastian/resource-operations": "~1.0",
-                "sebastian/version": "~1.0|~2.0",
+                "sebastian/version": "~1.0.3|~2.0",
                 "symfony/yaml": "~2.1|~3.0"
             },
             "conflict": {
@@ -3277,7 +3348,11 @@
                 "testing",
                 "xunit"
             ],
+<<<<<<< HEAD
+            "time": "2017-02-19 07:22:16"
+=======
             "time": "2017-02-10T09:05:10+00:00"
+>>>>>>> development
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3711,7 +3786,11 @@
             ],
             "description": "Traverses array structures and object graphs to enumerate all referenced objects",
             "homepage": "https://github.com/sebastianbergmann/object-enumerator/",
+<<<<<<< HEAD
+            "time": "2017-02-18 15:18:39"
+=======
             "time": "2017-02-18T15:18:39+00:00"
+>>>>>>> development
         },
         {
             "name": "sebastian/recursion-context",
@@ -3960,7 +4039,11 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "time": "2017-02-16 22:46:52"
+=======
             "time": "2017-02-16T22:46:52+00:00"
+>>>>>>> development
         },
         {
             "name": "webmozart/assert",
