@@ -9,7 +9,7 @@ Class SchoolTable extends CsvDataSeeder
 
     public function __construct()
     {
-        $this->filename = __DIR__ . '/../..\storage\app\schools.csv';
+        $this->filename = __DIR__ . '/../..\storage\app\uploads\schools.csv';
         $this->table = 'schools';
     }
 

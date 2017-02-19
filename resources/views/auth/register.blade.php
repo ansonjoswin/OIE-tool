@@ -30,7 +30,7 @@
                                 <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                    <input id="email" type="email" class="form-control" placeholder="E-Mail" name="email" value="{{ old('email') }}" required>
 
                                     @if ($errors->has('email'))
                                         <span class="help-block">
@@ -43,7 +43,7 @@
                                 <label for="affiliation" class="col-md-4 control-label">Affiliation</label>
 
                                 <div class="col-md-6">
-                                    <select id="affiliation" class="form-control" name="affiliation" value="{{ old('affiliation') }}" required autofocus>
+                                    <select id="affiliation" class="form-control" placeholder="Affiliation" name="affiliation" value="{{ old('affiliation') }}" required autofocus>
                                     <option value="AffiliationName">Affiliation-1</option>
                                     <option value="AffiliationName">Affiliation-2</option>
                                     </select>
@@ -61,7 +61,7 @@
                                 <label for="password" class="col-md-4 control-label">Password</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control" name="password" required>
+                                    <input id="password" type="password" placeholder="password" class="form-control" name="password" required>
 
                                     @if ($errors->has('password'))
                                         <span class="help-block">
@@ -75,7 +75,7 @@
                                 <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                    <input id="password-confirm" type="password" placeholder="Confirm Password" class="form-control" name="password_confirmation" required>
                                 </div>
                             </div>
 
