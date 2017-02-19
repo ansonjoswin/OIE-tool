@@ -31,9 +31,9 @@ class HomeController extends Controller
         {
             $user = Auth::user();
             if ($user->hasRole('admin'))
-                return view('carousel', compact('user'));
+                return view('home', compact('user'));
             elseif ($user->hasRole('student'))
-                return view('carousel', compact('user'));
+                return view('home', compact('user'));
             else
                 return view('home', compact('user'));
         }
@@ -45,6 +45,22 @@ class HomeController extends Controller
         $user = User::where('email', Auth::user()->email)->first();
         return view('auth.passwords.update',compact('user'));
     }
+	
+	public function uploads()
+	{
+         if (Auth::check())
+        {
+            $user = Auth::user();
+            if ($user->hasRole('admin'))
+                return view('carousel', compact('user'));
+            elseif ($user->hasRole('student'))
+                return view('carousel', compact('user'));
+            else
+                return view('home', compact('user'));
+        }
+    
+        
+	}
 
     public function updatePassword(Request $request)
     {

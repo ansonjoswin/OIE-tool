@@ -74,7 +74,6 @@ div.se-highlights {
 }
 
 #uploadedFiles ul li p{
-    width: 144px;
     overflow: hidden;
     white-space: nowrap;
     color: #333;

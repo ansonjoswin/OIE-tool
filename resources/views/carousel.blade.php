@@ -5,7 +5,6 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading" style="text-align: center;">Welcome {{$user->roles->first()->display_name}} - {{$user->name}}</div>
                 <div class="panel-body">
                   <form id="upload" method="post" action="upload.php" enctype="multipart/form-data">
                         <div id="drop">
@@ -21,7 +20,7 @@
         </div>
     </div>
         <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default col-sm-8">
+            <div class="panel panel-default col-sm-12">
                 <div id="uploadedFiles" class="panel-body">
                     <ul>
                         <!-- The file uploads will be shown here -->
@@ -101,7 +100,7 @@
         add: function (e, data) {
 
             var tpl = $('<li class="working"><input type="text" value="0" data-width="48" data-height="48"'+
-                ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p></p><span></span></li>');
+                ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p>      </p><span></span></li>');
 
             // Append the file name and file size
             tpl.find('p').text(data.files[0].name)
