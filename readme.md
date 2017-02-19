@@ -1,3 +1,61 @@
+#OIE Analytics - Capstone Sprin 2017 Sec 003
+
+## GitHub Ignore
+Github ignores certain files and folders for security reasons, they include :
+
+#Folders that will not be copied:
+node_modules
+public/storage
+public/hot
+storage/*.key
+vendor
+.idea
+
+#Files that will not be copied:
+Homestead.json
+Homestead.yaml
+.env
+composer.lock
+
+Please pull down the code and add the .env file from another project of yours because github doesnt upload the .env files, find the required CSV files for file upload under /resources/assets/csv folder.
+
+##Configure your .env file so it can access the application.
+
+| Key | Values |
+|-----|--------|
+|APP_ENV=|local| 
+|APP_KEY=|generated automatically , or you can generate it with php artisan key:generate|
+|APP_DEBUG=|true|
+|APP_LOG_LEVEL=|debug|	
+|APP_URL=|http://localhost|
+
+##Configure your .env file so it can access the database.
+
+| Key | Values |
+|-----|--------|
+|DB_CONNECTION=|mysql| 
+|DB_HOST=|localhost|
+|DB_PORT=|3306|
+|DB_DATABASE=|oie|	
+|DB_USERNAME=|Username|
+|DB_PASSWORD=
+
+## Configure your mail drivers so that it can send a mail.
+
+| Key | Values |
+|-----|--------|
+|MAIL_DRIVER=|smtp| 
+|MAIL_HOST=|smtp.gmail.com|
+|MAIL_PORT=|587|
+|MAIL_USERNAME=|your email|	
+|MAIL_PASSWORD=|your password|
+|MAIL_ENCRYPTION=|tls|
+
+
+## Development Tools
+
+### Laravel PHP Framework
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
@@ -38,3 +96,9 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+
+### PHP 7.0.4
+
+### Heroku Cloud
+
+### GitHub
