@@ -12,14 +12,14 @@
                             <div class="text-center">
                                 <!-- Browse files with a hidden input file element -->
                                 <a class="btn btn-info btn-md">Browse</a>
-                                <input type="file" style="visibility: hidden" name="upl" multiple />
+                                <input id="uploadFileBtn" type="file" name="upl" multiple />
                             </div>
                         </div>
                     </form> 
+                </div>
             </div>
         </div>
-    </div>
-        <div class="col-md-10 col-md-offset-1">
+        <div id="fileListTable" class="col-md-10 col-md-offset-1 files-table">
             <div class="panel panel-default col-sm-12">
                 <div id="uploadedFiles" class="panel-body">
                     <ul>
@@ -49,6 +49,26 @@
       </div>      
     </div>
 </div>
+
+<!-- Invalid File Modal -->
+<div class="modal fade" id="invalidFileModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Error!</h4>
+            </div>
+        <div class="modal-body">
+            <p>Invalid file format. Please select only .csv files.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-md" data-dismiss="modal">OK</button>
+        </div>
+      </div>      
+    </div>
+</div>
+
 @endsection
 
 @section('footer')
@@ -77,6 +97,10 @@
     /*span.icon-next, span.icon-prev { margin: 0px !important; position: static !important; }*/
     span.icon-prev { margin-left: -30px !important }
     span.icon-next { margin-right: -30px !important }
+
+    #fileListTable { display: none; }
+
+    #uploadFileBtn { visibility: hidden; }
 </style>
 <script>
     $(function(){
@@ -99,34 +123,50 @@
         // either via the browse button, or via drag/drop:
         add: function (e, data) {
 
-            var tpl = $('<li class="working"><input type="text" value="0" data-width="48" data-height="48"'+
-                ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p></p><span></span></li>');
-
-            // Append the file name and file size
-            tpl.find('p').text(data.files[0].name)
-                         .append('<i>' + formatFileSize(data.files[0].size) + '</i>');
-
-            // Add the HTML to the UL element
-            data.context = tpl.appendTo(ul);
-
-            // Initialize the knob plugin
-            tpl.find('input').knob();
-
-            // Listen for clicks on the cancel icon
-            tpl.find('span').click(function(){
-
-                if(tpl.hasClass('working')){
-                    jqXHR.abort();
+            var wrongFile = false;
+            for (var i=0; i<data.files.length; i++) {
+                var ext = data.files[i].name.substr(-3);
+                if(ext != "csv")  {
+                    wrongFile = true;
+                    $("#invalidFileModal").modal();
+                    return false;
                 }
+            }
 
-                tpl.fadeOut(function(){
-                    tpl.remove();
+            if(!wrongFile) {
+
+                $("#fileListTable").show();
+
+                var tpl = $('<li class="working"><input type="text" value="0" data-width="48" data-height="48"'+
+                    ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p></p><span></span></li>');
+
+                // Append the file name and file size
+                tpl.find('p').text(data.files[0].name)
+                             .append('<i>' + formatFileSize(data.files[0].size) + '</i>');
+
+                // Add the HTML to the UL element
+                data.context = tpl.appendTo(ul);
+
+                // Initialize the knob plugin
+                tpl.find('input').knob();
+
+                // Listen for clicks on the cancel icon
+                tpl.find('span').click(function(){
+
+                    if(tpl.hasClass('working')){
+                        jqXHR.abort();
+                    }
+
+                    tpl.fadeOut(function(){
+                        tpl.remove();
+                    });
+
                 });
 
-            });
-
-            // Automatically upload the file once it is added to the queue
-            var jqXHR = data.submit();
+                // Automatically upload the file once it is added to the queue
+                var jqXHR = data.submit();
+                return false;
+            }
         },
 
         progress: function(e, data){

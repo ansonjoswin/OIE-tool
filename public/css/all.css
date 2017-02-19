@@ -63,10 +63,9 @@ div.se-highlights {
 
 #uploadedFiles ul li{
     position: relative;
-    background-color:#e6e6e6;
-    border-top:1px solid #ccc;
-    border-bottom:1px solid #ccc;
-    height: 80px;
+    background-color:#f9f9f9;
+    border:1px solid #ccc;
+    min-height: 80px;
 }
 
 #uploadedFiles ul li input{
@@ -74,15 +73,13 @@ div.se-highlights {
 }
 
 #uploadedFiles ul li p{
-	width: 39em;
-	height: 3em;
-	word-wrap: break-word;
+    width: 78%;
     overflow: hidden;
     color: #333;
     font-size: 16px;
-    position: absolute;
-    top: 20px;
-    left: 100px;
+    word-break: break-all;
+    margin-left: 100px;
+    margin-top: 10px;
 }
 
 #uploadedFiles ul li i{
@@ -115,4 +112,12 @@ div.se-highlights {
 
 #uploadedFiles ul li.error p{
     color: #ec1010;
+}
+
+.files-table {
+    margin-top: 15px;
+}
+
+.files-table .panel {
+    padding: 0;
 }
