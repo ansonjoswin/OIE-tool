@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Database\Seeder;
 use App\School;
-use App\Carnegie_Classification;
+//use App\Carnegie_Classification;
 
 abstract class CMCsvDataSeeder extends Seeder
 {
@@ -127,7 +127,7 @@ abstract class CMCsvDataSeeder extends Seeder
         // the Database column and store in a map
 
         foreach($mapping as $dbCol) {
-            if ($dbCol === 'year') {
+            if ($dbCol === 'Year') {
                 $row_values[$dbCol] = 2014;
             } else {
 
@@ -158,7 +158,13 @@ abstract class CMCsvDataSeeder extends Seeder
     public function insert( array $seedData )
     {
         try {
-            DB::table($this->table)->insert($seedData);
+            
+            foreach ($seedData as $row) {
+                if($row)
+                {
+                   DB::table($this->table)->insert($row); 
+                }
+            }
         } catch (\Exception $e) {
             Log::error("CSV insert failed: " . $e->getMessage() . " - CSV " . $this->filename);
             return FALSE;

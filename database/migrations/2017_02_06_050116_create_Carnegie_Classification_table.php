@@ -13,7 +13,7 @@ class CreateCarnegieClassificationTable extends Migration
      */
     public function up()
     {
-        Schema::create('carneige_classifications', function (Blueprint $table) {
+        Schema::create('carnegie_classifications', function (Blueprint $table) {
             //
             $table->integer('School_ID');
             $table->integer('Year');
@@ -42,7 +42,7 @@ class CreateCarnegieClassificationTable extends Migration
      */
     public function down()
     {
-        Schema::drop('carneige_classifications');
+        Schema::drop('carnegie_classifications');
     }
 }
 

@@ -36,7 +36,7 @@ Class CngTable extends CMCsvDataSeeder
     {
         $this->filename = __DIR__ . '/../..\storage\app\uploads\hd2014.csv';
      
-        $this->table = 'carneige_classifications';
+        $this->table = 'carnegie_classifications';
     }
 
     public function run()
