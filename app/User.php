@@ -10,6 +10,9 @@ class User extends Authenticatable
     // ToDo: This needs to checked to remove the below SoftDelete comment once the traits clash is fixed.
 //    use SoftDeletes;
     use EntrustUserTrait; // Entrust Package requires this trait
+
+    use Notifiable;
+
     /**
      * The attributes that should be mutated to dates.
      *
@@ -22,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'affiliation', 'active', 'created_by', 'updated_by'
+        'name','user','email', 'password', 'affiliation', 'active', 'created_by', 'updated_by'
     ];
     /**
      * The attributes excluded from the model's JSON form.

@@ -47,3 +47,77 @@ div.se-highlights {
 /*# sourceMappingURL=app.css.map */
 
 /*# sourceMappingURL=all.css.map */
+
+
+/* File Upload Styles */
+
+#drop input{
+    display:none;
+}
+
+#uploadedFiles ul{
+    padding: 0;
+    margin: 0;
+    list-style:none;
+}
+
+#uploadedFiles ul li{
+    position: relative;
+    background-color:#f9f9f9;
+    border:1px solid #ccc;
+    min-height: 80px;
+}
+
+#uploadedFiles ul li input{
+    display: none;
+}
+
+#uploadedFiles ul li p{
+    width: 78%;
+    overflow: hidden;
+    color: #333;
+    font-size: 16px;
+    word-break: break-all;
+    margin-left: 100px;
+    margin-top: 10px;
+}
+
+#uploadedFiles ul li i{
+    font-weight: normal;
+    font-style:normal;
+    color:#7f7f7f;
+    display:block;
+}
+
+#uploadedFiles ul li canvas{
+    top: 15px;
+    left: 32px;
+    position: absolute;
+}
+
+#uploadedFiles ul li span{
+    width: 15px;
+    height: 12px;
+    background: url('../images/icons.png') no-repeat;
+    position: absolute;
+    top: 34px;
+    right: 33px;
+    cursor:pointer;
+}
+
+#uploadedFiles ul li.working span{
+    height: 16px;
+    background-position: 0 -12px;
+}
+
+#uploadedFiles ul li.error p{
+    color: #ec1010;
+}
+
+.files-table {
+    margin-top: 15px;
+}
+
+.files-table .panel {
+    padding: 0;
+}

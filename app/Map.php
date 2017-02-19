@@ -1,6 +1,11 @@
 <?php
+
+
 namespace App;
+
 use Illuminate\Database\Eloquent\Model;
+
+
 class Map extends Model
 {
     // Map class to map Database columns to CSV header columns
@@ -9,4 +14,3 @@ class Map extends Model
     ];
     protected $primaryKey = 'maps_id';
 }
-

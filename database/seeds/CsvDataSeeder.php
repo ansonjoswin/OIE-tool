@@ -3,11 +3,13 @@ use Illuminate\Database\Seeder;
 use App\School;
 abstract class CsvDataSeeder extends Seeder
 {
+
     public $table;
     public $filename;
     public $insert_chunk_size = 500;
     public $csv_delimiter = ',';
     public $offset_rows = 1;
+
     // Array to store Database column names
     public $mapping = [];
     public function setTableName($tablename)
@@ -78,6 +80,8 @@ abstract class CsvDataSeeder extends Seeder
                 // Create a map of database column names to
                 // the corresponding values
                 $row = $this->fillMapArray($source_array, $mapping);
+
+
                 // insert only non-empty rows from the csv file
                 if ( !$row )
                     continue;
@@ -101,6 +105,7 @@ abstract class CsvDataSeeder extends Seeder
         fclose($handle);
         return $data;
     }
+
     public function readRow( array $row, array $Csv_header_array )
     {
         // Read the values of CSV column headers and map them
@@ -155,13 +160,34 @@ abstract class CsvDataSeeder extends Seeder
     }
     public function insert( array $seedData )
     {
-        try {
-            DB::table($this->table)->insert($seedData);
+        try { 
+            //$tabledata=DB::table($this->table)->get();
+           
+            // foreach ($seedData as $rowData) {
+
+                //Log::info('\n\n\n\n\nRow Format from the csv file: '.$seedData.'\n\n\n');
+                //if (DB::table($this->table)->where('unit_id',$rowData['UNITID'])->get())
+                // {
+                //     DB::table($this->table)->where('unit_id',$rowData['UNITID'])->update($rowData);
+                // }   
+                // else
+                // {
+            foreach ($seedData as $row) {
+                if($row)
+                {
+                   DB::table($this->table)->insert($row); 
+                }
+            }
+                // }
+            // }
+            // DB::table($this->table)->insert($seedData);
         } catch (\Exception $e) {
             Log::error("CSV insert failed: " . $e->getMessage() . " - CSV " . $this->filename);
             return FALSE;
         }
         return TRUE;
     }
+
+
 }
 

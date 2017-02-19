@@ -21,10 +21,12 @@ class UsersController extends Controller
         $this->middleware('role:admin');
         $this->user = Auth::user();
         $this->users = User::all();
+        $this->affiliation_list = ['Affiliation-1' => 'Affiliation-1', 'Affiliation-2' => 'Affiliation-2'];
         $this->list_role = Role::pluck('display_name', 'id');
         $this->heading = "Users";
-        //$this->viewData = [ 'user' => $this->user, 'users' => $this->users, 'heading' => $this->heading ];
-        $this->viewData = [ 'user' => $this->user, 'users' => $this->users, 'list_role' => $this->list_role, 'heading' => $this->heading ];
+
+        $this->viewData = [ 'user' => $this->user, 'users' => $this->users, 'list_role' => $this->list_role, 'heading' => $this->heading, 'affiliation_list'=>$this->affiliation_list ];
+
     }
     public function index()
     {
@@ -52,53 +54,55 @@ class UsersController extends Controller
         Log::info('UsersController.store - Start: ');
         $input = $request->all();
         $this->populateCreateFields($input);
+        $input['name'] = 'test';  
         $input['password'] = bcrypt($request['password']);
         $input['active'] = $request['active'] == '' ? false : true;
         $object = User::create($input);
         $this->syncRoles($object, $request->input('rolelist'));
         Session::flash('flash_message', 'User successfully added!');
         Log::info('UsersController.store - End: '.$object->id.'|'.$object->name);
-        return redirect()->back();
+        return redirect()->action('UsersController@index');
     }
-    //public function edit(User $users)
+
+
+
     public function edit(User $user)
     {
         $object = $user;
         Log::info('UsersController.edit: '.$object->id.'|'.$object->name);
         $this->viewData['user'] = $object;
-        //$this->viewData['heading'] = "Edit User: ".$object->name;
+
         $this->viewData['heading'] = "Edit User";
         return view('users.edit', $this->viewData);
     }
-    public function update(User $user, Request $request)
+
+    public function update(User $user, UserRequest $request)
+
     {
-        var_dump($request->all());
-        $user->update($request->all());
-        $user->update([
-            'email' => $request->email,
-            'affiliation' => $request->affiliation,
-            'password'=> bcrypt($request->password),
-            'active' => $request->active
-        ]);
-        return redirect('users');
-    }
-    /*
-    public function update(User $users, UserRequest $request)
-    {
-        $object = $users;
+        $object = $user;
         Log::info('UsersController.update - Start: '.$object->id.'|'.$object->name);
 //        $this->authorize($object);
 
         $this->populateUpdateFields($request);
         $request['active'] = $request['active'] == '' ? false : true;
-        $object->update($request->all());
 
-        $this->syncRoles($object, $request->input('rolelist'));
-        Session::flash('flash_message', 'User successfully updated!');
+
+        if($user->id == Auth::user()->id && ($request['active'] != $user->active)   ) {
+            Session::flash('flash_alert', 'You cannot update your own status.');
+        }elseif ($user->id == Auth::user()->id && ($request->input('rolelist') != $user->rolelist->toArray())) { 
+            Session::flash('flash_alert', 'You cannot update your own role.');
+        }else{
+            $object->update($request->all());
+            $this->syncRoles($object, $request->input('rolelist')); 
+            Session::flash('flash_message', 'User successfully updated!');
+        }
+
         Log::info('UsersController.update - End: '.$object->id.'|'.$object->name);
         return redirect('users');
     }
-    */
+
+
+
     /**
      * Destroy the given user.
      *
@@ -106,15 +110,17 @@ class UsersController extends Controller
      * @param  User  $user
      * @return Response
      */
-    public function destroy(Request $request, User $users)
+    public function destroy(Request $request, User $user)
     {
-        $object = $users;
+        $object = $user;
         Log::info('UsersController.destroy: Start: '.$object->id.'|'.$object->name);
-        if ($this->authorize('destroy', $object))
-        {
+
+        //if ($this->authorize('destroy', $object))
+        //{
             Log::info('Authorization successful');
             $object->delete();
-        }
+        //}
+        Session::flash('flash_message', 'Role successfully deleted!');
         Log::info('UsersController.destroy: End: ');
         return redirect('/users');
     }
@@ -129,6 +135,6 @@ class UsersController extends Controller
         Log::info('UsersController.syncRoles: Start: '.$user->name);
         // ToDo: At somepoint need to update the timestamps and created_by/updated_by fields on the pivot table
         $user->roles()->sync($roles);
-//        $user->roles()->sync([$roles => ['created_by' => Auth::user()->name, 'updated_by' => Auth::user()->name]]);
+        //$user->roles()->sync([$roles => ['created_by' => Auth::user()->name, 'updated_by' => Auth::user()->name]]);
     }
 }

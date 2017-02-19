@@ -23,19 +23,24 @@
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/home') }}">Home</a></li>
                 {{-- Menu for Users with Administration Role Only --}}
-                @role('admin')
+                @if(Auth::user()->can(['manage-users','manage-roles']))
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <i class="fa fa-btn fa-fw fa-cogs"></i>Administration<span class="caret"></span></a>
                         <ul class="dropdown-menu multi level" role="menu">
                             <li><a href="{{ url('/users') }}"><i class="fa fa-btn fa-fw fa-user"></i>Users</a></li>
                             <li><a href="{{ url('/roles') }}"><i class="fa fa-btn fa-fw fa-users"></i>Roles</a></li>
-                            <li><a href="{{ url('/schools') }}"><i class="fa fa-btn fa-fw fa-university"></i>Schools</a></li>
+
+                          {{-- (for next sprint)  <li><a href="{{ url('/schools') }}"><i class="fa fa-btn fa-fw fa-university"></i>Schools</a></li> --}}
+							<li><a href="{{ url('/uploads') }}"><i class="fa fa-btn fa-fw fa-upload"></i>Uploads</a></li>
+
+                            {{--<li><a href="{{ url('/schools') }}"><i class="fa fa-btn fa-fw fa-university"></i>Schools</a></li>--}}
+
                             {{--<li class="divider"></li>--}}
                             {{--<li><a href="{{ url('/files') }}"><i class="fa fa-btn fa-fw fa-file"></i>Files</a></li>--}}
                         </ul>
                     </li>
-                @endrole
+                @endif
             </ul>
             @endif
 

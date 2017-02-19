@@ -9,7 +9,9 @@ Class SchoolTable extends CsvDataSeeder
 
     public function __construct()
     {
-        $this->filename = __DIR__ . '/../..\resources\assets\csv\hd2014.csv';
+
+        $this->filename = __DIR__ . '/../..\storage\app\uploads\hd2014.csv';
+
         $this->table = 'schools';
     }
 
@@ -21,6 +23,7 @@ Class SchoolTable extends CsvDataSeeder
         $schooltable->setColumnMapping();
         $schooltable->seedFromCSV($this->filename);
     }
+
 }
 
 Class CngTable extends CMCsvDataSeeder
@@ -31,7 +34,8 @@ Class CngTable extends CMCsvDataSeeder
 
     public function __construct()
     {
-        $this->filename = __DIR__ . '/../..\resources\assets\csv\hd2014.csv';
+        $this->filename = __DIR__ . '/../..\storage\app\uploads\hd2014.csv';
+     
         $this->table = 'carneige_classifications';
     }
 
@@ -53,7 +57,8 @@ Class GradTable extends OtherCsvDataSeeder
 
     public function __construct()
     {
-        $this->filename = __DIR__ . '/../..\resources\assets\csv\gr200_14.csv';
+        $this->filename = __DIR__ . '/../..\storage\app\uploads\gr200_14.csv';
+        
         $this->table = 'graduations';
     }
 
@@ -75,7 +80,8 @@ Class AppdetTable extends OtherCsvDataSeeder
 
     public function __construct()
     {
-        $this->filename =__DIR__ . '/../..\resources\assets\csv\adm2014.csv';
+        //$this->filename =__DIR__ . '/../..\resources\assets\csv\adm2014.csv';
+        $this->filename = __DIR__ . '/../..\storage\app\uploads\adm2014.csv';
         $this->table = 'applicationdetails';
     }
 
@@ -87,4 +93,5 @@ Class AppdetTable extends OtherCsvDataSeeder
         $appdettable->setColumnMapping();
         $appdettable->seedFromCSV($this->filename);
     }
+
 }

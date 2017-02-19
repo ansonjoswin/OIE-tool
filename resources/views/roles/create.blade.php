@@ -7,10 +7,13 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"> {{ $heading }}</div>
                     <div class="panel-body">
+                        {{--
                         {!! Form::open(['class' => 'form-horizontal', 'route' => 'roles.store', 'onsubmit' => 'return validateOnSave();']) !!}
+                        --}}
+                        {!! Form::open(['url' => 'roles', 'class' => 'form-horizontal']) !!}
                         @include('common.errors')
                         @include('common.flash')
-
+                        
                         @include ('roles.partial', ['CRUD_Action' => 'Create'])
                         {!! Form::close() !!}
                     </div>
