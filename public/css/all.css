@@ -74,8 +74,10 @@ div.se-highlights {
 }
 
 #uploadedFiles ul li p{
+	width: 39em;
+	height: 3em;
+	word-wrap: break-word;
     overflow: hidden;
-    white-space: nowrap;
     color: #333;
     font-size: 16px;
     position: absolute;
