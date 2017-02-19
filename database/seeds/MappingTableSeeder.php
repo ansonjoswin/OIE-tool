@@ -13,7 +13,7 @@ class MappingTableSeeder extends Seeder
         //Fill columns of the table with Database columns
         // and corresponding CSV header column names
 
-        $file = 'C:\wamp64\www\unoistoie-acbat\mapping.csv';
+        $file = __DIR__ . '/../..\resources\assets\csv\mapping.csv';
         $content = file($file);
 
       $array = array();

@@ -9,7 +9,7 @@ Class SchoolTable extends CsvDataSeeder
 
     public function __construct()
     {
-        $this->filename ='C:\wamp64\www\unoistoie-acbat\hd2014.csv';
+        $this->filename = __DIR__ . '/../..\resources\assets\csv\hd2014.csv';
         $this->table = 'schools';
     }
 
@@ -31,7 +31,7 @@ Class CngTable extends CMCsvDataSeeder
 
     public function __construct()
     {
-        $this->filename ='C:\wamp64\www\unoistoie-acbat\hd2014.csv';
+        $this->filename = __DIR__ . '/../..\resources\assets\csv\hd2014.csv';
         $this->table = 'carneige_classifications';
     }
 
@@ -53,7 +53,7 @@ Class GradTable extends OtherCsvDataSeeder
 
     public function __construct()
     {
-        $this->filename ='C:\wamp64\www\unoistoie-acbat\gr200_14.csv';
+        $this->filename = __DIR__ . '/../..\resources\assets\csv\gr200_14.csv';
         $this->table = 'graduations';
     }
 
@@ -64,5 +64,27 @@ Class GradTable extends OtherCsvDataSeeder
         $gradtable->setFileName($this->filename);
         $gradtable->setColumnMapping();
         $gradtable->seedFromCSV($this->filename);
+    }
+}
+
+Class AppdetTable extends OtherCsvDataSeeder
+{
+    public $table;
+
+    public $filename;
+
+    public function __construct()
+    {
+        $this->filename =__DIR__ . '/../..\resources\assets\csv\adm2014.csv';
+        $this->table = 'applicationdetails';
+    }
+
+    public function run()
+    {
+        $appdettable = new AppdetTable();
+        $appdettable->setTableName($this->table);
+        $appdettable->setFileName($this->filename);
+        $appdettable->setColumnMapping();
+        $appdettable->seedFromCSV($this->filename);
     }
 }
