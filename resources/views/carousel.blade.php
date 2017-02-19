@@ -8,7 +8,7 @@
                 <div class="panel-body">
                   <form id="upload" method="post" action="upload.php" enctype="multipart/form-data">
                         <div id="drop">
-                            <p>Browse the data files from the local machine to be uploaded</p>
+                            <p align="center">Browse the data files from the local machine to be uploaded</p>
                             <div class="text-center">
                                 <!-- Browse files with a hidden input file element -->
                                 <a class="btn btn-info btn-md">Browse</a>
@@ -100,7 +100,7 @@
         add: function (e, data) {
 
             var tpl = $('<li class="working"><input type="text" value="0" data-width="48" data-height="48"'+
-                ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p>      </p><span></span></li>');
+                ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p></p><span></span></li>');
 
             // Append the file name and file size
             tpl.find('p').text(data.files[0].name)
