@@ -22,6 +22,7 @@
         <div id="fileListTable" class="col-md-10 col-md-offset-1 files-table">
             <div class="panel panel-default col-sm-12">
                 <div id="uploadedFiles" class="panel-body">
+                    <p class="text-center">List of uploaded files<i id="closeFileList" class="fa fa-times" aria-hidden="true"></i></p>
                     <ul>
                         <!-- The file uploads will be shown here -->
                     </ul>
@@ -101,6 +102,14 @@
     #fileListTable { display: none; }
 
     #uploadFileBtn { visibility: hidden; }
+
+    #closeFileList {
+        float: right;
+        font-size: 16px;
+        color: #ababab;
+        cursor: pointer;
+    }
+
 </style>
 <script>
     $(function(){
@@ -165,7 +174,6 @@
 
                 // Automatically upload the file once it is added to the queue
                 var jqXHR = data.submit();
-                return false;
             }
         },
 
@@ -190,6 +198,10 @@
         }
     });
 
+    $("#closeFileList").click(function(){
+        $("#fileListTable").hide();
+        $("#uploadedFiles ul").empty();
+    });
 
     // Prevent the default action when a file is dropped on the window
     $(document).on('drop dragover', function (e) {
