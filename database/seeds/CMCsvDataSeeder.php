@@ -127,24 +127,27 @@ abstract class CMCsvDataSeeder extends Seeder
         // the Database column and store in a map
 
         foreach($mapping as $dbCol) {
+            if ($dbCol === 'year') {
+                $row_values[$dbCol] = 2014;
+            } else {
 
-            if($dbCol==='School_ID'){
-                $temp1=DB::Table('schools')->where('Unit_Id','=',
-                    $source_array['UNITID'])->value('School_ID');
+                if ($dbCol === 'School_ID') {
+                    $temp1 = DB::Table('schools')->where('Unit_Id', '=',
+                        $source_array['UNITID'])->value('School_ID');
 
-                $row_values[$dbCol] =$temp1;
-            }
-            else{
-                if($no_of_columns_to_fill > 0) {
+                    $row_values[$dbCol] = $temp1;
+                } else {
+                    if ($no_of_columns_to_fill > 0) {
 
 
-                    $csv_Column_name = DB::Table('maps')->where($columns[3], '=', $this->table)
-                        ->where($columns[1], $dbCol)->value($columns[2]);
-                    if ($csv_Column_name === Null)
-                    {$no_of_columns_to_fill--;}
-                    else{
-                        $row_values[$dbCol] = $source_array[$csv_Column_name];
-                        $no_of_columns_to_fill--;
+                        $csv_Column_name = DB::Table('maps')->where($columns[3], '=', $this->table)
+                            ->where($columns[1], $dbCol)->value($columns[2]);
+                        if ($csv_Column_name === Null) {
+                            $no_of_columns_to_fill--;
+                        } else {
+                            $row_values[$dbCol] = $source_array[$csv_Column_name];
+                            $no_of_columns_to_fill--;
+                        }
                     }
                 }
             }
