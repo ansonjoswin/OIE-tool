@@ -103,14 +103,18 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
 ### Built With
-|Tools|
-|-----------------------------------------------------------------------|
-|Laravel 5.4.* - PHP Framework|
-|PHP 7.0.4|
-|Heroku - Integration Environmnet|
-|Yodiz - Issue and Project Management|
-|Laravel Dusk - Testing|
-|GitHub - Version Control|
+
+    Laravel 5.4.* - PHP Framework
+
+    Heroku - Integration Environment
+
+    Yodiz - Issue and Project Management
+
+    Laravel Dusk - Testing
+
+    GitHub - Version Control
+
+    PHP 7.0.4 , HTML 5, CSS, JScript , D3.JS - Web Development
 
 ### Heroku Cloud
 
