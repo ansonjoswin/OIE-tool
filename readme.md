@@ -1,21 +1,26 @@
-#OIE Analytics - Capstone Sprin 2017 Sec 003
+#OIE Analytics - Capstone Spring 2017 Sec 003
 
 ## GitHub Ignore
 Github ignores certain files and folders for security reasons, they include :
 
 #Folders that will not be copied:
-node_modules
-public/storage
-public/hot
-storage/*.key
-vendor
-.idea
+
+|Folders|
+|-------------|
+|node_modules|
+|public/storage|
+|public/hot|
+|storage/*.key|
+|vendor|
+|.idea|
 
 #Files that will not be copied:
-Homestead.json
-Homestead.yaml
-.env
-composer.lock
+|Files|
+|-------------|
+|Homestead.json|
+|Homestead.yaml|
+|.env|
+|composer.lock|
 
 Please pull down the code and add the .env file from another project of yours because github doesnt upload the .env files, find the required CSV files for file upload under /resources/assets/csv folder.
 
@@ -97,8 +102,55 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
-### PHP 7.0.4
+### Built With
+|Laravel 5.4.* - PHP Framework|
+|PHP 7.0.4|
+|Heroku - Integration Environmnet|
+|Yodiz - Issue and Project Management|
+|Laravel Dusk - Testing|
+|GitHub - Version Control|
 
 ### Heroku Cloud
 
-### GitHub
+# Heroku Repo plugin
+
+This plugin adds some commands to the heroku gem to interact with the app's repo
+
+## Installation
+
+To install:
+
+    $ heroku plugins:install heroku-repo
+
+## Commands
+
+### clone
+
+    $ heroku repo:clone -a appname
+
+This will clone the applications repo to your local filesystem. No collaboration necessary!
+
+### download
+
+    $ heroku repo:download -a appname
+
+This will download the applications repo as a tarball.
+
+### gc
+
+    $ heroku repo:gc -a appname
+
+This will run a `git gc --agressive` against the applications repo. This is done inside a run process on the application.
+
+### purge_cache
+
+    $ heroku repo:purge_cache -a appname
+
+This will delete the contents of the build cache stored in the repository. This is done inside a run process on the application.
+
+### reset
+
+    $ heroku repo:reset -a appname
+
+This will empty the remote repository.
+
