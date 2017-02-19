@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call(GradTable::class);
         $this->call(AppdetTable::class);
         //$this->call(CMSeeder::class);
-        $this->command->info('User, Role, Permission and School tables seeded!');
+        $this->command->info('User, Role, Permission, Data Dictionary, School , Carnegie Classification, Graduation and Application Details tables seeded!');
 
         // Seed the Tags table
         //$this->call(TagsTableSeeder::class);
