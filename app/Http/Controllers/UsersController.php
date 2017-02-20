@@ -120,7 +120,7 @@ class UsersController extends Controller
             Log::info('Authorization successful');
             $object->delete();
         //}
-        Session::flash('flash_message', 'Role successfully deleted!');
+        Session::flash('flash_message', 'User successfully deleted!');
         Log::info('UsersController.destroy: End: ');
         return redirect('/users');
     }
