@@ -6,44 +6,7 @@
 
 ### Screen Shots
 
-<div class="panel-body">
-                    <!-- Carousel
-                    ================================================== -->
-                <div id="myCarousel" class="carousel slide"  data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#myCarousel" data-slide-to="1"></li>
-                            <li data-target="#myCarousel" data-slide-to="2"></li>
-                
-                        </ol>
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner" style="text-align: center;">
-                            <div class="item active" style="text-align: center;">
-                                <a href="http://www.unomaha.edu/college-of-information-science-and-technology" target="_blank">
-                                    <img src=" {{ asset('images/User.png') }}" class="img-responsive">
-                                </a>
-                            </div>
-                            <div class="item" style="text-align: center;">
-                                    
-                                    <a href="http://www.unomaha.edu/college-of-information-science-and-technology/academics/advising.php" target="_blank">
-                                        <img src="{{ asset('images/StudentFaculty.jpg') }}" class="img-responsive">
-                                        {{-- {{ HTML::image('/images/StudentFaculty.jpg', '', array('class' => ' img-responsive')) }} --}}                           
-                                    </a>
-                            </div>
-                            <div class="item" style="text-align: center;">
-                                    <a href="http://www.unomaha.edu" target="_blank">
-                                        <img src="{{ asset('images/StudentLearning.jpg') }}" class="img-responsive">
-                                    </a>
-                            </div>
-                        </div>
-                        <!-- Left and right controls -->
-                        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"><span class="icon-prev"></span></a>
-                        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"><span class="icon-next"></span></a>
-</div>
-                    <!-- /.carousel -->
-</div>
-
+![alt tag](http://makeagif.com/i/ds-2Qm)
 
 ### Cloning Instructions
 
@@ -145,5 +108,29 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 
 ### Our Team
-
-<img src="https://cloud.githubusercontent.com/assets/4307137/10105283/251b6868-63ae-11e5-9918-b789d9d682ec.png" width="20%"></img> <img src="https://cloud.githubusercontent.com/assets/4307137/10105290/2a183f3a-63ae-11e5-9380-50d9f6d8afd6.png" width="20%"></img> <img src="https://cloud.githubusercontent.com/assets/4307137/10105284/26aa7ad4-63ae-11e5-88b7-bc523a095c9f.png" width="20%"></img> <img src="https://cloud.githubusercontent.com/assets/4307137/10105288/28698fae-63ae-11e5-8ba7-a62360a8e8a7.png" width="20%"></img> <img src="https://cloud.githubusercontent.com/assets/4307137/10105283/251b6868-63ae-11e5-9918-b789d9d682ec.png" width="20%"></img> <img src="https://cloud.githubusercontent.com/assets/4307137/10105290/2a183f3a-63ae-11e5-9380-50d9f6d8afd6.png" width="20%"></img>           
+<!--Kavya-->
+<img src="{{ asset('images/team/Kavya.jpg') }}" class="img-responsive" width="50%"></img> 
+<!--Tulasi-->
+<img src="{{ asset('images/team/Tulasi.jpg') }}" class="img-responsive" width="50%"></img> 
+<!--Apoorva-->
+<img src="{{ asset('images/team/Apoorva.jpg') }}" class="img-responsive" width="50%"></img> 
+<!--Mathias-->
+<img src="{{ asset('images/team/Mathias.jpg') }}" class="img-responsive" width="50%"></img> 
+<!--Manjiri-->
+<img src="{{ asset('images/team/Manjiri.jpg') }}" class="img-responsive" width="50%"></img> 
+<!--Anson-->
+<img src="{{ asset('images/team/Anson.jpg') }}" class="img-responsive" width="50%"></img> 
+<!--Hrishi-->
+<img src="{{ asset('images/team/Hrishikesh.jpg') }}" class="img-responsive" width="50%"></img> 
+<!--Pavithra-->
+<img src="{{ asset('images/team/Pavithra.jpg') }}" class="img-responsive" width="50%"></img> 
+<!--Nikitha-->
+<img src="{{ asset('images/team/nikitha.jpg') }}" class="img-responsive" width="50%"></img> 
+<!--Elaine-->
+<img src="{{ asset('images/team/Elaine.jpg') }}" class="img-responsive" width="50%"></img> 
+<!--Anusha-->
+<img src="{{ asset('images/team/Anusha.jpg') }}" class="img-responsive" width="50%"></img> 
+<!--Pawaskar-->
+<img src="{{ asset('images/sachin-pawaskar.png') }}" class="img-responsive" width="50%"></img> 
+<!--Praveen-->
+<img src="{{ asset('images/Praveen.jpg') }}" class="img-responsive" width="50%"></img> 
