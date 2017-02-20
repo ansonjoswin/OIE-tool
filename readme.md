@@ -6,6 +6,8 @@
 
 ### Screen Shots
 
+![](http://makeagif.com/i/ds-2Qm.gif)
+
 ![alt tag](http://makeagif.com/i/ds-2Qm)
 
 ### Cloning Instructions
