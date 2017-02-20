@@ -116,7 +116,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
  <!--Manjiri--><a href="https://github.com/manjiri93"><img src="https://cloud.githubusercontent.com/assets/22160054/23142118/e0ee5ce2-f77f-11e6-8dfc-7afbd771e503.jpg" width="200px" height="200px"></img></a>
   <!--Anson--><a href="https://github.com/ansonjoswin"><img src="https://cloud.githubusercontent.com/assets/22160054/23142061/988cbda4-f77f-11e6-8597-f898f3b18b7c.jpg" width="200px" height="200px"></img></a>
    <!--Hrishi--><a href="https://github.com/hshanbhogue"><img src="https://cloud.githubusercontent.com/assets/22160054/23142109/d27ac9fc-f77f-11e6-9ba2-be7b71a5a8c8.jpg" width="200px" height="200px"></img></a> 
-<!--Pavithra--><a href="https://github.com/pavithrauno"><img src="https://cloud.githubusercontent.com/assets/22160054/23142562/3dabb536-f782-11e6-984c-34526443a08c.jpg" width="20%"></img> </a>
+<!--Pavithra--><a href="https://github.com/pavithrauno"><img src="https://cloud.githubusercontent.com/assets/22160054/23142562/3dabb536-f782-11e6-984c-34526443a08c.jpg" width="200px" height="200px"></img> </a>
 <!--Nikitha--><a href="https://github.com/nanumula"><img src="https://cloud.githubusercontent.com/assets/22160054/23142144/0a6c9106-f780-11e6-898b-0c03b9187912.jpg" width="200px" height="200px"></img> </a>
 <!--Elaine--><a href="https://github.com/elocke2017"><img src="https://cloud.githubusercontent.com/assets/22160054/23142096/c30b6904-f77f-11e6-801f-787bfedc7fb8.JPG" width="200px" height="200px"></img> </a>
 <!--Anusha--><a href="https://github.com/amathur24"><img src="https://cloud.githubusercontent.com/assets/22160054/23143170/86c2a18c-f785-11e6-904c-a9ea606c5b58.jpg" width="200px" height="200px"></img> </a>
