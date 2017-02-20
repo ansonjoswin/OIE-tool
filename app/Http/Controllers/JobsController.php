@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Job;
 
 class JobsController extends Controller
 {
@@ -18,9 +19,14 @@ class JobsController extends Controller
         {
             $user = Auth::user();
             if ($user->hasRole('admin'))
+            {
+                $jobs = Job::all();
                 return view('jobs.index', compact('jobs'));
-                        else
+            }
+            else
+            {
                 return view('home', compact('user'));
+            }
         }
     }
 

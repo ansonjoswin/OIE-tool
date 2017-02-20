@@ -77,6 +77,7 @@ Route::resource('graduations', 'GraduationsController');
 Route::resource('completions', 'completionsController');
 
 Route::resource('uploads','UploadsController');
+Route::post('uploads/enqueue','UploadsController@enqueue');
 
 
 //    Route::delete('/comments/{comment}', 'CommentsController@destroy');
