@@ -6,7 +6,7 @@
 
 ### Screen Shots
 
-![oiescreenshots](https://cloud.githubusercontent.com/assets/22160054/23142678/d47f99a0-f782-11e6-8b87-f3c162a8824f.gif)
+![oiescreenshots](https://cloud.githubusercontent.com/assets/22160054/23142768/3abfb1f0-f783-11e6-91ab-4a7a170c5518.gif)
 
 ### Cloning Instructions
 
