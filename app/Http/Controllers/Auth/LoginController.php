@@ -62,6 +62,19 @@ class LoginController extends Controller
     }
 
     /**
+     * Validate the user login request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+            $this->username() => 'required|exists:users,email', 'password' => 'required',
+        ]);
+    }
+
+    /**
      * Where to redirect users after login.
      *
      * @var string
