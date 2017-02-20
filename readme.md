@@ -109,12 +109,12 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Our Team
 <!--Kavya-->
-<img src="https://cloud.githubusercontent.com/assets/22160054/23142033/7bb9dfb8-f77f-11e6-80db-639b410a87df.JPG" width="200px" height="200px"></img> <!--Tulasi--><img src="https://cloud.githubusercontent.com/assets/22160054/23142086/b5ee30b2-f77f-11e6-8da6-e39cda29ffe8.jpg" width="200px" height="200px"></img> <!--Apoorva--><img src="https://cloud.githubusercontent.com/assets/22160054/23142072/a7ac362a-f77f-11e6-82bf-f84729cc5b52.jpg" width="20%"></img> <!--Mathias--><img src="https://cloud.githubusercontent.com/assets/22160054/23142136/fe049602-f77f-11e6-882c-b78edef73309.jpg" width="20%"></img> <!--Manjiri--><img src="https://cloud.githubusercontent.com/assets/22160054/23142118/e0ee5ce2-f77f-11e6-8dfc-7afbd771e503.jpg" width="20%"></img> <!--Anson--><img src="https://cloud.githubusercontent.com/assets/22160054/23142061/988cbda4-f77f-11e6-8597-f898f3b18b7c.jpg" width="20%"></img> <!--Hrishi--><img src="https://cloud.githubusercontent.com/assets/22160054/23142109/d27ac9fc-f77f-11e6-9ba2-be7b71a5a8c8.jpg" width="20%"></img> 
+<img src="https://cloud.githubusercontent.com/assets/22160054/23142033/7bb9dfb8-f77f-11e6-80db-639b410a87df.JPG" width="200px" height="200px">Kavya</img> <!--Tulasi--><img src="https://cloud.githubusercontent.com/assets/22160054/23142086/b5ee30b2-f77f-11e6-8da6-e39cda29ffe8.jpg" width="200px" height="200px">Tulasi</img> <!--Apoorva--><img src="https://cloud.githubusercontent.com/assets/22160054/23142072/a7ac362a-f77f-11e6-82bf-f84729cc5b52.jpg" width="200px" height="200px">Apoorva</img> <!--Mathias--><img src="https://cloud.githubusercontent.com/assets/22160054/23142136/fe049602-f77f-11e6-882c-b78edef73309.jpg" width="200px" height="200px"></img> <!--Manjiri--><img src="https://cloud.githubusercontent.com/assets/22160054/23142118/e0ee5ce2-f77f-11e6-8dfc-7afbd771e503.jpg" width="200px" height="200px"></img> <!--Anson--><img src="https://cloud.githubusercontent.com/assets/22160054/23142061/988cbda4-f77f-11e6-8597-f898f3b18b7c.jpg" width="200px" height="200px"></img> <!--Hrishi--><img src="https://cloud.githubusercontent.com/assets/22160054/23142109/d27ac9fc-f77f-11e6-9ba2-be7b71a5a8c8.jpg" width="200px" height="200px"></img> 
 <!--Pavithra--><img src="{{ asset('images/team/Pavithra.jpg') }}" class="img-responsive" width="20%"></img> 
-<!--Nikitha--><img src="https://cloud.githubusercontent.com/assets/22160054/23142144/0a6c9106-f780-11e6-898b-0c03b9187912.jpg" width="20%"></img> 
-<!--Elaine--><img src="https://cloud.githubusercontent.com/assets/22160054/23142096/c30b6904-f77f-11e6-801f-787bfedc7fb8.JPG" width="20%"></img> 
-<!--Anusha--><img src="" width="20%"></img> 
+<!--Nikitha--><img src="https://cloud.githubusercontent.com/assets/22160054/23142144/0a6c9106-f780-11e6-898b-0c03b9187912.jpg" width="200px" height="200px"></img> 
+<!--Elaine--><img src="https://cloud.githubusercontent.com/assets/22160054/23142096/c30b6904-f77f-11e6-801f-787bfedc7fb8.JPG" width="200px" height="200px"></img> 
+<!--Anusha--><img src="" width="200px" height="200px"></img> 
 
 ## Advisors
-<!--Pawaskar--><img src="https://cloud.githubusercontent.com/assets/22160054/23142125/ef4138be-f77f-11e6-8f30-00b7ff854f38.png" width="20%"></img> 
-<!--Praveen--><img src="" width="20%"></img> 
+<!--Pawaskar--><img src="https://cloud.githubusercontent.com/assets/22160054/23142125/ef4138be-f77f-11e6-8f30-00b7ff854f38.png" width="200px" height="200px"></img> 
+<!--Praveen--><img src="" width="200px" height="200px"></img> 
