@@ -1,5 +1,52 @@
 #OIE Analytics - Capstone Spring 2017 Sec 003
 
+### Live Demo
+
+<link>Heroku website
+
+### Screen Shots
+
+<div class="panel-body">
+                    <!-- Carousel
+                    ================================================== -->
+                <div id="myCarousel" class="carousel slide"  data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                
+                        </ol>
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" style="text-align: center;">
+                            <div class="item active" style="text-align: center;">
+                                <a href="http://www.unomaha.edu/college-of-information-science-and-technology" target="_blank">
+                                    <img src=" {{ asset('images/User.png') }}" class="img-responsive">
+                                </a>
+                            </div>
+                            <div class="item" style="text-align: center;">
+                                    
+                                    <a href="http://www.unomaha.edu/college-of-information-science-and-technology/academics/advising.php" target="_blank">
+                                        <img src="{{ asset('images/StudentFaculty.jpg') }}" class="img-responsive">
+                                        {{-- {{ HTML::image('/images/StudentFaculty.jpg', '', array('class' => ' img-responsive')) }} --}}                           
+                                    </a>
+                            </div>
+                            <div class="item" style="text-align: center;">
+                                    <a href="http://www.unomaha.edu" target="_blank">
+                                        <img src="{{ asset('images/StudentLearning.jpg') }}" class="img-responsive">
+                                    </a>
+                            </div>
+                        </div>
+                        <!-- Left and right controls -->
+                        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"><span class="icon-prev"></span></a>
+                        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"><span class="icon-next"></span></a>
+</div>
+                    <!-- /.carousel -->
+</div>
+
+
+### Cloning Instructions
+
 ## GitHub Ignore
 Github ignores certain files and folders for security reasons, they include :
 
@@ -72,31 +119,11 @@ Please pull down the code and add the .env file from another project of yours be
 
 ## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
-
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects. Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+Thank you for considering contributing to the OIE ANALYTICS website! If you discover a security vulnerability within our website, please send an e-mail to Dr. Sachin Pawaskar at spawaskar@unomaha.edu. All security vulnerabilities will be promptly addressed.
 
 ## License
 
@@ -116,47 +143,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
     PHP 7.0.4 , HTML 5, CSS, JScript , D3.JS - Web Development
 
-### Heroku Cloud
 
-# Heroku Repo plugin
+### Our Team
 
-This plugin adds some commands to the heroku gem to interact with the app's repo
-
-## Installation
-
-To install:
-
-    $ heroku plugins:install heroku-repo
-
-## Commands
-
-### clone
-
-    $ heroku repo:clone -a appname
-
-This will clone the applications repo to your local filesystem. No collaboration necessary!
-
-### download
-
-    $ heroku repo:download -a appname
-
-This will download the applications repo as a tarball.
-
-### gc
-
-    $ heroku repo:gc -a appname
-
-This will run a `git gc --agressive` against the applications repo. This is done inside a run process on the application.
-
-### purge_cache
-
-    $ heroku repo:purge_cache -a appname
-
-This will delete the contents of the build cache stored in the repository. This is done inside a run process on the application.
-
-### reset
-
-    $ heroku repo:reset -a appname
-
-This will empty the remote repository.
-
+<img src="https://cloud.githubusercontent.com/assets/4307137/10105283/251b6868-63ae-11e5-9918-b789d9d682ec.png" width="20%"></img> <img src="https://cloud.githubusercontent.com/assets/4307137/10105290/2a183f3a-63ae-11e5-9380-50d9f6d8afd6.png" width="20%"></img> <img src="https://cloud.githubusercontent.com/assets/4307137/10105284/26aa7ad4-63ae-11e5-88b7-bc523a095c9f.png" width="20%"></img> <img src="https://cloud.githubusercontent.com/assets/4307137/10105288/28698fae-63ae-11e5-8ba7-a62360a8e8a7.png" width="20%"></img> <img src="https://cloud.githubusercontent.com/assets/4307137/10105283/251b6868-63ae-11e5-9918-b789d9d682ec.png" width="20%"></img> <img src="https://cloud.githubusercontent.com/assets/4307137/10105290/2a183f3a-63ae-11e5-9380-50d9f6d8afd6.png" width="20%"></img>           
