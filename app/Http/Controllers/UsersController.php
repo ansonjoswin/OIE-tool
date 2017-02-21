@@ -54,7 +54,7 @@ class UsersController extends Controller
         Log::info('UsersController.store - Start: ');
         $input = $request->all();
         $this->populateCreateFields($input);
-        $input['name'] = 'test';  
+        $input['name'] = 'User';  
         $input['password'] = bcrypt($request['password']);
         $input['active'] = $request['active'] == '' ? false : true;
         $object = User::create($input);
