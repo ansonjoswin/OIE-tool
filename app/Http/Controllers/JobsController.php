@@ -93,6 +93,18 @@ class JobsController extends Controller
      */
     public function destroy($id)
     {
-        Route::resource('jobs', 'jobsController');//
+        if (Auth::check())
+        {
+            $user = Auth::user();
+            if ($user->hasRole('admin'))
+            {
+                Job::find($id)->delete();
+                return redirect('jobs');
+            }
+            else
+            {
+                return redirect('jobs');
+            }
+        }
     }
 }

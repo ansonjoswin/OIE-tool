@@ -14,7 +14,7 @@
      <table class="table table-bordered table-striped cds-datatable">
         <thead>
         <tr class="bg-info">
-            <th>ID</th>
+            <th>Job ID</th>
             <th>Job Name</th>
             <th>Scheduled At</th>
             <th>Created At</th>
@@ -24,25 +24,17 @@
         <tbody>
         @foreach ($jobs as $job)
             <tr>
-                <td>{{ $job->id }}</td>
-                <td>{{ substr($job->payload,27,11)}}  </td>
-                <td>{{ $job->created_at }}</td>
-                <td>{{ $job->created_at }}</td>
-                 <td>
-                    {!! Form::open(['method' => 'DELETE', 'route'=>['jobs.destroy', $job->id]]) !!}
-                    {!! Form::submit('Cancel', ['class' => 'btn btn-danger']) !!}
-                    {!! Form::close() !!}
-                </td>
+              <td>{{ $job->id }}</td>
+              <td>{{ substr($job->payload,27,11)}}</td>
+              <td>{{ date("Y-m-d", strtotime('+1 day', strtotime($job->created_at))). ' 01:00:00' }}</td>
+              <td>{{ $job->created_at }}</td>
+               <td>
+                  {!! Form::open(['method' => 'DELETE', 'route'=>['jobs.destroy', $job->id]]) !!}
+                  {!! Form::submit('Cancel', ['class' => 'btn btn-danger']) !!}
+                  {!! Form::close() !!}
+              </td>
             </tr>
         @endforeach
-          <p id="demo">
-          </p>
-          <script>
-          var str = $jobs->payload;
-          var variable = " '+str+' ";
-          var res = variable.substring(25,36);
-          document.getElementById("demo").innerHTML = res;
-          </script>
         </tbody>
     </table>
     </div>

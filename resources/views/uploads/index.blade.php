@@ -8,10 +8,11 @@
                 <div class="panel-body">
                   <form id="upload" method="post" action="{{url('/uploads/enqueue')}}" enctype="multipart/form-data">
                         <div id="drop">
-                            <p align="center">Browse the data files from the local machine to be uploaded</p>
+                            <p id="allowUploadsMsg" align="center">Browse the data files from the local machine to be uploaded</p>
+                            <p id="stopUploadsMsg" align="center">File uploads not permitted from 1:00 AM to 4:00 AM</p>
                             <div class="text-center">
                                 <!-- Browse files with a hidden input file element -->
-                                <a class="btn btn-info btn-md">Browse</a>
+                                <a id="uploadFileHref" class="btn btn-info btn-md">Browse</a>
                                 <input id="uploadFileBtn" type="file" name="upl" multiple />
                             </div>
                         </div>
@@ -115,6 +116,21 @@
     $(function(){
 
     var ul = $('#uploadedFiles ul');
+
+    //Restrict file upload between 1:00 AM and 4:00 AM.
+    var currentTime = new Date().getHours();
+    if(currentTime >=1 && currentTime <= 4)
+    {
+        $('#allowUploadsMsg').hide();
+        $('#uploadFileHref').hide();
+        $('#stopUploadsMsg').show();
+    }
+    else
+    {
+        $('#allowUploadsMsg').show();
+        $('#uploadFileHref').show();
+        $('#stopUploadsMsg').hide();
+    }
 
     $('#drop a').click(function(){
         // Simulate a click on the file input button
