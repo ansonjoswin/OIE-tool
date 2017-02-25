@@ -3,7 +3,7 @@
 namespace App\Console;
 
 USE DB;
-
+use Illuminate\Database\Seeder;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -37,14 +37,14 @@ class Kernel extends ConsoleKernel
               $file=storage_path('logs\Scheduerlog.log');
            //  $job=(new seedschools);
          
-             $schedule->command('db:seed')
-                      ->hourlyAT('47')
+             $schedule->command('queue:work')
+                      ->hourlyAT('53')
                    // ->dailyAT('01:00')
-                      ->sendOutputTo($file)
-                      ->emailOutputTo('oie.team2017@gmail.com')   
+                      ->sendOutputTo($file);
+                   /*   ->emailOutputTo('oie.team2017@gmail.com')   
                       ->after( function () {
                         Storage::deletedirectory('uploads');
-                      });
+                      });*/
                
     }
     }   
