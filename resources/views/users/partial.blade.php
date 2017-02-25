@@ -58,19 +58,18 @@
 
 
 <div class="form-group">
-    <label class="col-md-4 control-label">Roles</label>
+    <label class="col-md-4 control-label" id ="roles">Roles</label>
     <div class="col-md-6">
-
         @if($CRUD_Action == 'Create' )  <!--New users have no default role-->
-            {!! Form::select('rolelist[]', $list_role, null, ['placeholder' => '', 'class' => 'form-control roles cds-select', 'style' => 'width: 50%; margin-top: 10px;', 'required' => 'required']) !!}
+            {!! Form::select('rolelist[]', $list_role, ['Registered User'=>'2'], ['placeholder' => '', 'class' => 'form-control roles cds-select', 'style' => 'width: 50%; margin-top: 10px;', 'required' => 'required','id' => 'roles'])  !!}
         @elseif($user->getRoleListAttribute()->first() != null) <!--Existing users default to existing role--> 
-            {!! Form::select('rolelist[]', $list_role, $user->getRoleListAttribute()->first(), ['class' => 'form-control roles cds-select', 'style' => 'width: 50%; margin-top: 10px;', 'required' => 'required']) !!}
+            {!! Form::select('rolelist[]', $list_role, $user->getRoleListAttribute()->first(), ['class' => 'form-control roles cds-select', 'style' => 'width: 50%; margin-top: 10px;', 'required' => 'required','id' => 'roles']) !!}
         @else <!--If user has no role, it is a Registered User-->
-            {!! Form::select('rolelist[]', $list_role, $list_role->search('Registered User'), ['class' => 'form-control roles cds-select', 'style' => 'width: 50%; margin-top: 10px;', 'required' => 'required']) !!}
+            {!! Form::select('rolelist[]', $list_role, $list_role->search('Registered User'), ['class' => 'form-control roles cds-select', 'style' => 'width: 50%; margin-top: 10px;', 'required' => 'required','id' => 'roles']) !!}
         @endif
+		
     </div>
 </div>
-
 
 @if($CRUD_Action == 'Create' )
 

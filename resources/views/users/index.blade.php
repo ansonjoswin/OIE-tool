@@ -28,7 +28,7 @@
                                     <tr>
 
                                         <td class="table-text">
-                                            <div><a href="{{ url('/users/'.$user->id.'/edit') }}">{{ $user->email }}</a> </div>
+                                            <div><a href="{{ url('/users/'.$user->id.'/edit') }}" id="email">{{ $user->email }}</a> </div>
                                         </td>
                                         @if ($user->active)
                                             <td class="table-text"><div>Active</div></td>
