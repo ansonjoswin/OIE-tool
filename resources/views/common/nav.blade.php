@@ -26,9 +26,9 @@
                 @if(Auth::user()->can(['manage-users','manage-roles']))
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <i class="fa fa-btn fa-fw fa-cogs"></i>Administration<span class="caret"></span></a>
+                            <i class="fa fa-btn fa-fw fa-cogs" id = "Administration"></i>Administration<span class="caret"></span></a>
                         <ul class="dropdown-menu multi level" role="menu">
-                            <li><a href="{{ url('/users') }}"><i class="fa fa-btn fa-fw fa-user"></i>Users</a></li>
+                            <li><a href="{{ url('/users') }}"><i class="fa fa-btn fa-fw fa-user" id = "Users"></i>Users</a></li>
                             <li><a href="{{ url('/roles') }}"><i class="fa fa-btn fa-fw fa-users"></i>Roles</a></li>
 
                           {{-- (for next sprint)  <li><a href="{{ url('/schools') }}"><i class="fa fa-btn fa-fw fa-university"></i>Schools</a></li> --}}
@@ -48,14 +48,14 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
-                    {{--<li><a href="{{ url('/login') }}"><i class="fa fa-btn fa-lg fa-fw fa-sign-in"></i>Login</a></li>--}}
-                    <li><a href="{{ url('/login') }}"><i class="fa fa-btn fa-fw fa-user"></i>Login</a></li>
-                    <li><a href="{{ url('/register') }}"><i class="fa fa-btn fa-fw fa-hand-o-right"></i>Register</a></li>
+                    {{--<li><a href="{{ url('/login') }}" id = "login"><i class="fa fa-btn fa-lg fa-fw fa-sign-in"></i>Login</a></li>--}}
+                    <li><a href="{{ url('/login') }}" id = "login"><i class="fa fa-btn fa-fw fa-user"></i>Login</a></li>
+                    <li><a href="{{ url('/register') }}" id = "register"><i class="fa fa-btn fa-fw fa-hand-o-right"></i>Register</a></li>
                 @else
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id = "dropdown-menu">{{ Auth::user()->name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('/logout') }}"
+                            <li><a href="{{ url('/logout') }}logout-button" id = "logout-button" 
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i class="fa fa-btn fa-fw fa-sign-out" aria-hidden="true" ></i>
                                             Logout

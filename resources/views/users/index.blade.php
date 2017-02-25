@@ -8,7 +8,7 @@
                     <div class="panel-heading">
                         <div class="pull-right">
                             <form action="{{ url('users/create') }}" method="GET">{{ csrf_field() }}
-                                <button type="submit" id="create-user" class="btn btn-primary"><i class="fa fa-btn fa-file-o"></i>Create</button>
+                                <button type="submit" id="create-user" name="create-user" class="btn btn-primary"><i class="fa fa-btn fa-file-o"></i>Create</button>
                             </form>
                         </div>
                         <div><h4>{{ $heading }}</h4></div>
@@ -28,7 +28,7 @@
                                     <tr>
 
                                         <td class="table-text">
-                                            <div><a href="{{ url('/users/'.$user->id.'/edit') }}">{{ $user->email }}</a> </div>
+                                            <div><a href="{{ url('/users/'.$user->id.'/edit') }}" id = "email">{{ $user->email }}</a> </div>
                                         </td>
                                         @if ($user->active)
                                             <td class="table-text"><div>Active</div></td>

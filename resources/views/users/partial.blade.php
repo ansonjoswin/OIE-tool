@@ -48,7 +48,7 @@
 
 <div class="form-group">
     <div class="col-md-6 col-md-offset-4">
-        <div class="checkbox">
+        <div class="checkbox" id = "Active">
             <label>
                 {{ Form::hidden('active', false) }}{{ Form::checkbox('active', true, old('active')) }} Active
             </label>
@@ -57,9 +57,9 @@
 </div>
 
 
-<div class="form-group">
-    <label class="col-md-4 control-label">Roles</label>
-    <div class="col-md-6">
+<div class="form-group" id = "roles" name="roles">
+    <label class="col-md-4 control-label" id = "roles" name="roles">Roles</label>
+    <div class="col-md-6" id = "roles" name="roles">
 
         @if($CRUD_Action == 'Create' )  <!--New users have no default role-->
             {!! Form::select('rolelist[]', $list_role, null, ['placeholder' => '', 'class' => 'form-control roles cds-select', 'style' => 'width: 50%; margin-top: 10px;', 'required' => 'required']) !!}

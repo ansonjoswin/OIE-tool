@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                             <div class="form-group{{ $errors->has('affiliation') ? ' has-error' : '' }}">
-                                <label for="affiliation" class="col-md-4 control-label">Affiliation</label>
+                                <label for="affiliation" class="col-md-4 control-label" id = "affiliation">Affiliation</label>
 
                                 <div class="col-md-6">
                                     <select id="affiliation" class="form-control" placeholder="Affiliation" name="affiliation" value="{{ old('affiliation') }}" required autofocus>
