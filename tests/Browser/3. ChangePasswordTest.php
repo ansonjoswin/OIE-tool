@@ -65,8 +65,7 @@ class ChangePasswordTest extends DuskTestCase
 				->click('.btn-primary') //valid email
 				->type('password','12345678')
 				->click('.btn-primary') //correct password
-			    ->assertSee('Home')
-				->click('#dropdown-menu')
+			    ->click('#dropdown-menu')
 				->click('#logout-button')
 				->assertDontSee('Home')->pause(2000);
 			});

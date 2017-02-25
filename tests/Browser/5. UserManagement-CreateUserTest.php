@@ -45,8 +45,8 @@ class UserManagementCreateTest extends DuskTestCase
 				->click('.btn-primary') // password less than 6 characters
 				->type('password','123456')
 				->type('password_confirmation','123456')
-				->click('.btn-primary')// valid passwords
-				->assertSee('Users');													
+				->click('.btn-primary');// valid passwords
+																	
 	        });
     }
 }
