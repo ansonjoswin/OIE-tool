@@ -25,10 +25,12 @@
                 {{-- Menu for Users with Administration Role Only --}}
                 @if(Auth::user()->can(['manage-users','manage-roles']))
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <i class="fa fa-btn fa-fw fa-cogs" id = "Administration"></i>Administration<span class="caret"></span></a>
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" >
+                            <i class="fa fa-btn fa-fw fa-cogs" id="administration"></i>Administration<span class="caret"></span></a>
                         <ul class="dropdown-menu multi level" role="menu">
-                            <li><a href="{{ url('/users') }}"><i class="fa fa-btn fa-fw fa-user" id = "Users"></i>Users</a></li>
+                            <li><a href="{{ url('/users') }}" id = "users"><i class="fa fa-btn fa-fw fa-user"></i>Users</a></li>
+
                             <li><a href="{{ url('/roles') }}"><i class="fa fa-btn fa-fw fa-users"></i>Roles</a></li>
 
                           {{-- (for next sprint)  <li><a href="{{ url('/schools') }}"><i class="fa fa-btn fa-fw fa-university"></i>Schools</a></li> --}}
@@ -65,7 +67,7 @@
                                             {{ csrf_field() }}
                                         </form>
                             </li>
-                            <li><a href="{{ url('/resetPassword') }}"><i class="fa fa-btn fa-fw fa-lock"></i>Change Password</a></li>
+                            <li><a href="{{ url('/resetPassword') }}" id = "change-password" ><i class="fa fa-btn fa-fw fa-lock"></i>Change Password</a></li>
                             <li class="divider"></li>
                             <li><a href="{{ url('/help') }}"><i class="fa fa-btn fa-fw fa-question-circle"></i>Help</a></li>
                         </ul>

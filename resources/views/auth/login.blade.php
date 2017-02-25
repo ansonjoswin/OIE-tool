@@ -61,7 +61,7 @@
 
                                 </button>
 
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
+                                <a class="btn btn-link" id="forgotpassword" href="{{ url('/password/reset') }}">
                                     Forgot Your Password?
                                 </a>
                             </div>
