@@ -25,7 +25,7 @@
         @foreach ($jobs as $job)
             <tr>
               <td>{{ $job->id }}</td>
-              <td>{{ substr($job->payload,27,11)}}</td>
+              <td>{{ substr(json_decode($job->payload)->{'displayName'}, 9) }}</td>
               <td>{{ date("Y-m-d", strtotime('+1 day', strtotime($job->created_at))). ' 01:00:00' }}</td>
               <td>{{ $job->created_at }}</td>
                <td>

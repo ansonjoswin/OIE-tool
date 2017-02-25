@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Jobs\SeedSchools;
+use App\Jobs\SeedGraduations;
+use App\Jobs\SeedAdmissions;
 use Auth;
 
 class UploadsController extends Controller
@@ -57,7 +59,18 @@ class UploadsController extends Controller
             }
 
             if(move_uploaded_file($_FILES['upl']['tmp_name'], $upload_dir.$_FILES['upl']['name'])){
-                $this->dispatch(new SeedSchools());
+                
+                $filename = $_FILES['upl']['name'];
+
+                if($filename == 'hd2014.csv')
+                   $this->dispatch(new SeedSchools());
+
+                if($filename == 'gr200_14.csv')
+                   $this->dispatch(new SeedGraduations());
+
+                if($filename == 'adm2014.csv')
+                   $this->dispatch(new SeedAdmissions());
+
                 return '{"status":"success"}';
             }
         }
