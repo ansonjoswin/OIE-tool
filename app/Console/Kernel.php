@@ -37,8 +37,8 @@ class Kernel extends ConsoleKernel
               $file=storage_path('logs\Scheduerlog.log');
            
          
-             $schedule->command('queue:work --queue=database-high,database-medium,database-low')
-                      ->hourlyAT('15')
+             $schedule->command('queue:work --queue=database-high,database-low')
+                      ->hourlyAT('33')
                    // ->dailyAT('01:00')
                       ->sendOutputTo($file);
                    /*   ->emailOutputTo('oie.team2017@gmail.com')   

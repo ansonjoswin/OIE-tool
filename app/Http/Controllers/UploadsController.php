@@ -79,13 +79,13 @@ class UploadsController extends Controller
                 $filename = $_FILES['upl']['name'];
                 
                 if($filetype == 'schools')
-                   $this->dispatch(new SeedSchools());
+                   $this->dispatch((new SeedSchools())->onQueue('database-high'));
 
                 if($filetype == 'admissions')
-                   $this->dispatch(new SeedAdmissions());
+                   $this->dispatch((new SeedAdmissions()));
 
                 if($filetype == 'fallenrollment')
-                   $this->dispatch(new SeedFallenrollment());
+                   $this->dispatch((new SeedFallenrollment()));
 
                 if($filetype == 'employees')
                    $this->dispatch(new SeedEmployees());
