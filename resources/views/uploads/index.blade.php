@@ -8,7 +8,9 @@
                 <div class="panel-body">
                   <form id="upload" method="post" action="{{url('/uploads/enqueue')}}" enctype="multipart/form-data">
                         <div id="drop">
-                            <p id="allowUploadsMsg" align="center">Browse the data files from the local machine to be uploaded</p>
+                        	<div  class="alert alert-info">
+                            	<p id="allowUploadsMsg"align="center">Browse the data files from the local machine to be uploaded</p>
+                            </div>
                         	<div id="stopUploadsMsg" class="alert alert-danger">
                             	<p align="center">File uploads not permitted from 12:00 AM to 4:00 AM</p>
                             </div>
