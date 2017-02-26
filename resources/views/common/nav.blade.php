@@ -22,6 +22,9 @@
                     <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/home') }}">Home</a></li>
+                {{--(EHL Sprint 2) Peer Groups page--}}
+                <li><a href="{{ url('/pgfilter') }}">Peer Groups</a></li>
+
                 {{-- Menu for Users with Administration Role Only --}}
                 @if(Auth::user()->can(['manage-users','manage-roles']))
                     <li class="dropdown">
