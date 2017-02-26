@@ -63,13 +63,13 @@ class UploadsController extends Controller
                 $filename = $_FILES['upl']['name'];
 
                 if($filename == 'hd2014.csv')
-                   $this->dispatch(new SeedSchools());
+                   $this->dispatch((new SeedSchools())->onQueue('database-high'));
 
                 if($filename == 'gr200_14.csv')
-                   $this->dispatch(new SeedGraduations());
+                   $this->dispatch((new SeedGraduations())->onQueue('database-medium'));
 
                 if($filename == 'adm2014.csv')
-                   $this->dispatch(new SeedAdmissions());
+                   $this->dispatch((new SeedAdmissions())->onQueue('database-low'));
 
                 return '{"status":"success"}';
             }

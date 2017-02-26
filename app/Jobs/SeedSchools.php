@@ -35,14 +35,9 @@ class SeedSchools implements ShouldQueue
     {
         //
        Artisan::call('db:seed', [
-      '--class'   => 'SchoolTable',
-      '--force'   => true
+      '--class'   => 'SchoolTable'
 ]);
 
-       Artisan::call('db:seed', [
-      '--class'   => 'CngTable',
-      '--force'   => true
-]);
-       
+           
     }
 }

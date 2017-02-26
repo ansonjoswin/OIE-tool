@@ -35,10 +35,10 @@ class Kernel extends ConsoleKernel
      if(File::isDirectory(storage_path('app\uploads'))){
 
               $file=storage_path('logs\Scheduerlog.log');
-           //  $job=(new seedschools);
+           
          
-             $schedule->command('queue:work')
-                      ->hourlyAT('53')
+             $schedule->command('queue:work --queue=database-high,database-medium,database-low')
+                      ->hourlyAT('15')
                    // ->dailyAT('01:00')
                       ->sendOutputTo($file);
                    /*   ->emailOutputTo('oie.team2017@gmail.com')   

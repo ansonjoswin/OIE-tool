@@ -35,8 +35,7 @@ class SeedAdmissions implements ShouldQueue
     {
         //
         Artisan::call('db:seed', [
-      '--class'   => 'AppdetTable',
-      '--force'   => true
+      '--class'   => 'AppdetTable'
 ]);
     }
 }

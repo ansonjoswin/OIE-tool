@@ -35,8 +35,7 @@ class SeedGraduations implements ShouldQueue
     {
         //
         Artisan::call('db:seed', [
-      '--class'   => 'GradTable',
-      '--force'   => true
+      '--class'   => 'GradTable'
 ]);
     }
 }
