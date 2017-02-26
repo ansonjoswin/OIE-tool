@@ -29,8 +29,9 @@
                             <i class="fa fa-btn fa-fw fa-cogs"></i>Administration<span class="caret"></span></a>
                         <ul class="dropdown-menu multi level" role="menu">
                             <li><a href="{{ url('/users') }}"><i class="fa fa-btn fa-fw fa-user"></i>Users</a></li>
-                            <li><a href="{{ url('/roles') }}"><i class="fa fa-btn fa-fw fa-users"></i>Roles</a></li>
-
+                            <li><a href="{{ url('/usercomments') }}"><i class="fa fa-btn fa-fw fa-tasks"></i>Manage Discussions</a></li>
+                             {{-- <li><a href="{{ url('/usercomments/reply') }}"><i class="fa fa-btn fa-fw fa-users"></i>Discussions Feed</a></li>
+ --}}
                           {{-- (for next sprint)  <li><a href="{{ url('/schools') }}"><i class="fa fa-btn fa-fw fa-university"></i>Schools</a></li> --}}
 							<li><a href="{{ url('/uploads') }}"><i class="fa fa-btn fa-fw fa-upload"></i>Uploads</a></li>
 
@@ -40,6 +41,16 @@
                             {{--<li><a href="{{ url('/files') }}"><i class="fa fa-btn fa-fw fa-file"></i>Files</a></li>--}}
                         </ul>
                     </li>
+                    {{-- @else
+                    
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <i class="fa fa-btn fa-fw fa-cogs"></i>User Action<span class="caret"></span></a>
+                        <ul class="dropdown-menu multi level" role="menu">
+                            <li><a href="{{ url('/usercomments') }}"><i class="fa fa-btn fa-fw fa-user"></i>Discussions</a></li>
+                            </ul>
+                            </li>--}}
+                    
                 @endif
             </ul>
             @endif

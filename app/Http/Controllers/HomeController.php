@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use Auth;
+use App\UserComment;
 
 class HomeController extends Controller
 {
@@ -31,9 +32,9 @@ class HomeController extends Controller
         {
             $user = Auth::user();
             if ($user->hasRole('admin'))
-                return view('home', compact('user'));
-            elseif ($user->hasRole('student'))
-                return view('home', compact('user'));
+                return view('adminhome', compact('user'));
+            // elseif ($user->hasRole('student'))
+            //     return view('adminhome', compact('user'));
             else
                 return view('home', compact('user'));
         }
@@ -53,8 +54,8 @@ class HomeController extends Controller
             $user = Auth::user();
             if ($user->hasRole('admin'))
                 return view('carousel', compact('user'));
-            elseif ($user->hasRole('student'))
-                return view('carousel', compact('user'));
+            // elseif ($user->hasRole('student'))
+            //     return view('carousel', compact('user'));
             else
                 return view('home', compact('user'));
         }

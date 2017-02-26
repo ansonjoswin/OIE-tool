@@ -65,7 +65,11 @@ Route::resource('school_peergroups', 'School_PeerGroupsController');
 
 Route::resource('applicationdetails', 'ApplicationDetailsController');
 
-Route::resource('comments', 'CommentsController');
+//Route::resource('comments', 'CommentsController');
+Route::resource('usercomments', 'UserCommentsController');
+//Route::resource('usercomments/reply', 'UserCommentsController@reply');
+Route::resource('usercomment/replies', 'CommentRepliesController');
+
 
 Route::resource('defaultrates', 'DefaultRatesController');
 
@@ -78,9 +82,9 @@ Route::resource('completions', 'completionsController');
 Route::resource('uploads','UploadsController');
 
 
-//    Route::delete('/comments/{comment}', 'CommentsController@destroy');
-//    Route::resource('comments', 'CommentsController');
-//    Route::get('comments/{student}/addforstudent', ['as' => 'comments.addforstudent',
+//Route::delete('/comments/{comment}', 'CommentsController@destroy');
+//Route::resource('comments', 'CommentsController');
+//Route::get('comments/{student}/addforstudent', ['as' => 'comments.addforstudent',
 //        'uses' => 'CommentsController@addforstudent']);
 //    Route::get('comments/{planofstudy}/addforplanofstudy', ['as' => 'comments.addforplanofstudy',
 //        'uses' => 'CommentsController@addforplanofstudy']);
