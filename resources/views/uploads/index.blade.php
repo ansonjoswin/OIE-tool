@@ -9,29 +9,38 @@
                   <form id="upload" method="post" action="{{url('/uploads/enqueue')}}" enctype="multipart/form-data">
                         <div id="drop">
                             <p id="allowUploadsMsg" align="center">Browse the data files from the local machine to be uploaded</p>
-                            <p id="stopUploadsMsg" align="center">File uploads not permitted from 12:00 AM to 4:00 AM</p>
-                            <div class="text-center" id="browseFilesDiv">
-                                <select id="fileyearid" name="fileyear"></select>
-                                <select name="filetype">
-                                   <option value="default">-- Select File Type --</option>
-                                   <option value="schools">Schools</option>
-                                   <option value="admissions">Admissions</option>
-                                   <option value="fallenrollment">FallEnrollment</option>
-                                   <option value="employees">Employees</option>
-                                   <option value="defaultrates">DefaultRates</option>
-                                   <option value="graduations">Graduations</option>
-                                   <option value="instructionalstaff">InstructionalStaff</option>
-                                   <option value="noninstructionalstaff">NonInstructionalStaff</option>
-                                   <option value="completions">Completions</option>
-                                   <option value="ugcredithours">UGCredithours</option>
-                                   <option value="ugunduplicatedheadcount">UGUnduplicatedHeadcount</option>
-                                   <option value="privateprofit">PrivateProfit</option>
-                                   <option value="privatenonprofit">PrivateNonProfit</option>
-                                   <option value="public">Public</option>
-                                </select>
-                                <!-- Browse files with a hidden input file element -->
-                                <a id="uploadFileHref" class="btn btn-info btn-md">Browse</a>
-                                <input id="uploadFileBtn" type="file" name="upl" single />
+                        	<div id="stopUploadsMsg" class="alert alert-danger">
+                            	<p align="center">File uploads not permitted from 12:00 AM to 4:00 AM</p>
+                            </div>
+                            <br>
+                            <div class="text-center row" id="browseFilesDiv">
+                            	<div class="form-group col-xs-3 col-xs-offset-2">
+                                	<select id="fileyearid" name="fileyear" class="form-control"></select>
+                               	</div>
+                            	<div class="form-group col-xs-4">
+	                                <select name="filetype" class="form-control">
+	                                   <option value="default">-- Select File Type --</option>
+	                                   <option value="schools">Schools</option>
+	                                   <option value="admissions">Admissions</option>
+	                                   <option value="fallenrollment">FallEnrollment</option>
+	                                   <option value="employees">Employees</option>
+	                                   <option value="defaultrates">DefaultRates</option>
+	                                   <option value="graduations">Graduations</option>
+	                                   <option value="instructionalstaff">InstructionalStaff</option>
+	                                   <option value="noninstructionalstaff">NonInstructionalStaff</option>
+	                                   <option value="completions">Completions</option>
+	                                   <option value="ugcredithours">UGCredithours</option>
+	                                   <option value="ugunduplicatedheadcount">UGUnduplicatedHeadcount</option>
+	                                   <option value="privateprofit">PrivateProfit</option>
+	                                   <option value="privatenonprofit">PrivateNonProfit</option>
+	                                   <option value="public">Public</option>
+	                                </select>
+	                            </div>
+	                            <div class="form-group col-xs-2">
+	                                <!-- Browse files with a hidden input file element -->
+	                                <a id="uploadFileHref" class="btn btn-info btn-md">Browse</a>
+	                                <input id="uploadFileBtn" type="file" name="upl" single />
+                                </div>
                             </div>
                         </div>
                     </form> 
@@ -148,7 +157,7 @@
 
     //Restrict file upload between 12:00 AM and 4:00 AM.
     var currentTime = new Date().getHours();
-    if(currentTime >=0 && currentTime <= 4)
+    if(currentTime >=6 && currentTime <= 7)
     {
         $('#allowUploadsMsg').hide();
         $('#browseFilesDiv').hide();
