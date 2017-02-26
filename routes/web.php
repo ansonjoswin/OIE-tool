@@ -78,6 +78,7 @@ Route::resource('completions', 'completionsController');
 
 Route::resource('uploads','UploadsController');
 Route::post('uploads/enqueue','UploadsController@enqueue');
+Route::resource('map_tables','Map_TablesController');
 
 
 //    Route::delete('/comments/{comment}', 'CommentsController@destroy');
