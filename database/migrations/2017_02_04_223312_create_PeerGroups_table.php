@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSchoolPeerGroupTable extends Migration
+class CreatePeerGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,19 +12,18 @@ class CreateSchoolPeerGroupTable extends Migration
      */
     public function up()
     {
-        Schema::create('school_peergroups', function (Blueprint $table) {
+        Schema::create('peergroups', function (Blueprint $table) {
 
-            $table->increments('School_PeerGroup_ID');
-            //$table->primary(array('PeerGroupID','School_Id'));
-            $table->integer('School_ID')->unsigned();
-            $table->integer('PeerGroupID')->unsigned();
+            $table->increments('PeerGroupID');
+            $table->integer('User_ID')->unsigned();
+            $table->string('PeerGroupName')->nullable();
+            $table->string('PriPubFlg')->nullable();
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->softDeletes();
-            $table->foreign('School_ID')->references('School_ID')->on('schools')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('PeerGroupID')->references('PeerGroupID')->on('peer_Groups')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('User_ID')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
         });
     }
@@ -36,6 +35,6 @@ class CreateSchoolPeerGroupTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('school_peergroups');
+        Schema::dropIfExists('peergroups');
     }
 }

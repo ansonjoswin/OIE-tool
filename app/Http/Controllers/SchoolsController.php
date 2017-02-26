@@ -27,4 +27,11 @@ class SchoolsController extends Controller
         $schools = School::all();
         return view('schools.index', compact('schools'));
     }
+
+    public static function getSchools()
+    {
+        $schools = School::all();
+        return $schools;
+    }
+
 }

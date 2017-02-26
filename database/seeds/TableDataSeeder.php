@@ -10,7 +10,7 @@ Class SchoolTable extends CsvDataSeeder
     public function __construct()
     {
 
-        $this->filename = __DIR__ . '/../..\storage\app\uploads\hd2014.csv';
+        $this->filename = __DIR__ . '/../..\resources\assets\csv\hd2014.csv';
 
         $this->table = 'schools';
     }
@@ -34,7 +34,7 @@ Class CarnegieTable extends CMCsvDataSeeder
 
     public function __construct()
     {
-        $this->filename = __DIR__ . '/../..\storage\app\uploads\hd2014.csv';
+        $this->filename = __DIR__ . '/../..\resources\assets\csv\hd2014.csv';
      
         $this->table = 'carnegie_classifications';
     }
@@ -57,7 +57,7 @@ Class GraduationTable extends OtherCsvDataSeeder
 
     public function __construct()
     {
-        $this->filename = __DIR__ . '/../..\storage\app\uploads\gr200_14.csv';
+        $this->filename = __DIR__ . '/../..\resources\assets\csv\gr200_14.csv';
         
         $this->table = 'graduations';
     }
@@ -81,7 +81,7 @@ Class ApplicationDetailsTable extends OtherCsvDataSeeder
     public function __construct()
     {
         //$this->filename =__DIR__ . '/../..\resources\assets\csv\adm2014.csv';
-        $this->filename = __DIR__ . '/../..\storage\app\uploads\adm2014.csv';
+        $this->filename = __DIR__ . '/../..\resources\assets\csv\adm2014.csv';
         $this->table = 'applicationdetails';
     }
 

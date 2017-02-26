@@ -18,7 +18,7 @@ class PeerGroup extends Model
 
 			'PeerGroupName',
 			'PriPubFlg',
-			'User_Id',
+			'User_ID',
     ];
 
     protected $primaryKey = 'PeerGroupID';
