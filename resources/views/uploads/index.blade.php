@@ -117,9 +117,9 @@
 
     var ul = $('#uploadedFiles ul');
 
-    //Restrict file upload between 1:00 AM and 4:00 AM.
+    //Restrict file upload between 12:00 AM and 4:00 AM.
     var currentTime = new Date().getHours();
-    if(currentTime >=1 && currentTime <= 4)
+    if(currentTime >=0 && currentTime <= 4)
     {
         $('#allowUploadsMsg').hide();
         $('#uploadFileHref').hide();
