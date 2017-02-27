@@ -30,7 +30,7 @@
               <td>{{ $job->created_at }}</td>
                <td>
                   {!! Form::open(['method' => 'DELETE', 'route'=>['jobs.destroy', $job->id]]) !!}
-                  {!! Form::submit('Cancel', ['class' => 'btn btn-danger']) !!}
+                  {!! Form::submit('Cancel', ['id' => 'cancelBtn_'.$job->id, 'class' => 'btn btn-danger']) !!}
                   {!! Form::close() !!}
               </td>
             </tr>
@@ -49,5 +49,14 @@
 @endsection
 
 @section('footer')
-
+<script>
+    $(function(){
+      //Disable cancel buttons from 1:00 AM to 4:00 AM.
+      var currentTime = new Date().getHours();
+      if(currentTime >=1 && currentTime <= 4)
+      {
+          $('[id^=cancelBtn]').attr('disabled', true);
+      }
+    });
+</script>
 @endsection
