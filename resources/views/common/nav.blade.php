@@ -13,7 +13,7 @@
             <!-- Branding Image -->
             {{--<a class="navbar-brand" href="{{ url('/') }}">Laravel</a>--}}
             <a class="navbar-brand" href="{{ url('/') }}">
-                OIE Analytics Tool
+                <img id="portalLogo" src="{{asset('images/UNO-icon-color.png')}}">OIE Analytics Tool
             </a>
         </div>
 
@@ -64,8 +64,8 @@
                                         </form>
                             </li>
                             <li><a href="{{ url('/resetPassword') }}"><i class="fa fa-btn fa-fw fa-lock"></i>Change Password</a></li>
-                            <li class="divider"></li>
-                            <li><a href="{{ url('/help') }}"><i class="fa fa-btn fa-fw fa-question-circle"></i>Help</a></li>
+                            <!-- <li class="divider"></li> -->
+                            <!-- <li><a href="{{ url('/help') }}"><i class="fa fa-btn fa-fw fa-question-circle"></i>Help</a></li> -->
                         </ul>
                     </li>
                 @endif
@@ -73,3 +73,12 @@
         </div>
     </div>
 </nav>
+
+<style type="text/css">
+    #portalLogo {
+        width: 50px;
+        height: 50px;
+        float: left;
+        margin-top: -14px;
+    }
+</style>
