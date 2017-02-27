@@ -13,7 +13,7 @@
     <div class="table-responsive">
      <table class="table table-bordered table-striped cds-datatable">
         <thead>
-        <tr class="bg-info">
+        <tr>
             <th>Job ID</th>
             <th>Job Name</th>
             <th>Scheduled At</th>
