@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Job;
+use Illuminate\support\facades\log;
 
 class JobsController extends Controller
 {

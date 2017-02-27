@@ -6,7 +6,12 @@
                <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading"> 
-    <h4>Scheduled Jobs</h4> </div>
+                     <div class="pull-right">
+                            <form action="{{ url('logs') }}" method="GET">{{ csrf_field() }}
+                                <button type="submit" id="check-logs" class="btn btn-primary"><i class="fa fa-btn fa-file-o"></i>Check logs</button>
+                            </form>
+                        </div>
+   <div><h4>Scheduled Jobs</h4> </div>
      @include('common.flash')
     @if (count($jobs) > 0)
     <div class="panel-body">

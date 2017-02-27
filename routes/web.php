@@ -42,7 +42,10 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 Route::get('resetPassword', 'HomeController@resetPassword');
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
 Route::post('updatePassword', 'HomeController@updatePassword');
+
 Route::resource('users', 'UsersController');
 Route::resource('roles', 'RolesController');
 Route::resource('schools', 'SchoolsController');
