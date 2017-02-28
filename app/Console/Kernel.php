@@ -76,6 +76,7 @@ $line = substr_replace($line,'',((strpos($line, '[39m'))-1),5);
 $line = substr_replace($line,'',((strpos($line, '[37;41m'))-1),8);
 $line = substr_replace($line,'',((strpos($line, '[39;49m'))-1),8);
 $temp = $temp.$line;
+
 //var_dump($temp);<br>
                //}
                  //var_dump($t);

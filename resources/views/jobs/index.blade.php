@@ -19,7 +19,7 @@
      <table class="table table-bordered table-striped cds-datatable">
         <thead>
         <tr>
-            <th>Job ID</th>
+          
             <th>Job Name</th>
             <th>Scheduled At</th>
             <th>Created At</th>
@@ -29,10 +29,10 @@
         <tbody>
         @foreach ($jobs as $job)
             <tr>
-              <td>{{ $job->id }}</td>
+             
               <td>{{ substr(json_decode($job->payload)->{'displayName'}, 9) }}</td>
-              <td>{{ date("Y-m-d", strtotime('+1 day', strtotime($job->created_at))). ' 01:00:00' }}</td>
-              <td>{{ $job->created_at }}</td>
+              <td>{{ date("Y-m-d", strtotime('+1 day, -6 hours', strtotime($job->created_at))). ' 01:00:00'  }}</td>
+              <td>{{ date("Y-m-d h:i:s", strtotime('-6 hours', strtotime($job->created_at))) }}</td>
                <td>
                   {!! Form::open(['method' => 'DELETE', 'route'=>['jobs.destroy', $job->id]]) !!}
                   {!! Form::submit('Cancel', ['id' => 'cancelBtn_'.$job->id, 'class' => 'btn btn-danger']) !!}
