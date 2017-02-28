@@ -10,6 +10,8 @@ use Input;
 use DB;
 use App\User;
 use App\School;
+use App\PeerGroup;
+use App\School_PeerGroup;
 
 class PeerGroupFilterController extends Controller
 {
@@ -18,7 +20,16 @@ class PeerGroupFilterController extends Controller
     {
         $this->middleware('auth');
         $this->user = Auth::user();
-        $this->results = DB::table('schools')->pluck('school_name');
+        $this->results = School::pluck('school_name','school_ID');
+
+//        School::chunk(200, function ($schools) {
+//        foreach ($schools as $school) {
+////            $results = ;
+//            }
+//        });
+//        dd($this->results);
+        $this->userpeergroups = PeerGroup::all();
+            // DB::table('peergroups');
 //        dd($this->results);
         //        $schools = School::all();  //EHLbug: This crashes everything and causes an http 500 error :(
     }
@@ -29,22 +40,85 @@ class PeerGroupFilterController extends Controller
         $selected_attribute2_list = [];
         $selected_attribute3_list = [];
         //dd(DB::table('schools'));
-        $results = DB::table('schools')->pluck('school_name');
+        $results = School::pluck('school_name','school_ID');
         //dd($results);
         $attribute1_list = [
-            '1' => 'Public',
-            '2' => 'Private not-for-profit',
-            '3' => 'Private for-profit',
-            '-3' => '{Not available}'
-        ]; // CONTROL column (Schools table) - all options
+            '0' => 'All',
+            '1' => 'Degree-granting, graduate with no undergraduate degrees',
+            '2' => 'Degree-granting, primarily baccalaureate or above',
+            '3' => 'Degree-granting, not primarily baccalaureate or above',
+            '4' => 'Degree-granting, associate\'s and certificates',
+            '5' => 'Nondegree-granting, above the baccalaureate',
+            '6' => 'Nondegree-granting, sub-baccalaureate',
+            '7' => 'Not reported',
+            '9' => 'Not applicable'
+        ]; // INSTCAT column (Schools table) - all options
+
         $attribute2_list = [
+            '0' => 'All',
             'AL' => 'Alabama',
             'AK' => 'Alaska',
             'AZ' => 'Arizona',
-            'AR' => 'Arkansas'
-        ]; // STABBR column (Schools table) - sample of the options (need to complete list)
+            'AR' => 'Arkansas',
+            'CA' => 'California',
+            'CO' => 'Colorado',
+            'CT' => 'Connecticut',
+            'DE' => 'Delaware',
+            'DC' => 'District of Columbia',
+            'FL' => 'Florida',
+            'GA' => 'Georgia',
+            'HI' => 'Hawaii',
+            'ID' => 'Idaho',
+            'IL' => 'Illinois',
+            'IN' => 'Indiana',
+            'IA' => 'Iowa',
+            'KS' => 'Kansas',
+            'KY' => 'Kentucky',
+            'LA' => 'Louisiana',
+            'ME' => 'Maine',
+            'MD' => 'Maryland',
+            'MA' => 'Massachusetts',
+            'MI' => 'Michigan',
+            'MN' => 'Minnesota',
+            'MS' => 'Mississippi',
+            'MO' => 'Missouri',
+            'MT' => 'Montana',
+            'NE' => 'Nebraska',
+            'NV' => 'Nevada',
+            'NH' => 'New Hampshire',
+            'NJ' => 'New Jersey',
+            'NM' => 'New Mexico',
+            'NY' => 'New York',
+            'NC' => 'North Carolina',
+            'ND' => 'North Dakota',
+            'OH' => 'Ohio',
+            'OK' => 'Oklahoma',
+            'OR' => 'Oregon',
+            'PA' => 'Pennsylvania',
+            'RI' => 'Rhode Island',
+            'SC' => 'South Carolina',
+            'SD' => 'South Dakota',
+            'TN' => 'Tennessee',
+            'TX' => 'Texas',
+            'UT' => 'Utah',
+            'VT' => 'Vermont',
+            'VA' => 'Virginia',
+            'WA' => 'Washington',
+            'WV' => 'West Virginia',
+            'WI' => 'Wisconsin',
+            'WY' => 'Wyoming',
+            'AS' => 'American Samoa',
+            'FM' => 'Federated States of Micronesia',
+            'GU' => 'Guam',
+            'MH' => 'Marshall Islands',
+            'MP' => 'Northern Marianas',
+            'PW' => 'Palau',
+            'PR' => 'Puerto Rico',
+            'VI' => 'Virgin Islands'
+        ]; // STABBR column (Schools table)
 
         $attribute3_list = [
+            '0' => 'All',
             '17' => 'Doctoral/Research Universities',
             '18' => 'Master\'s Colleges and Universities (larger programs)',
             '23' => 'Baccalaureate/Associate\'s Colleges'
@@ -60,34 +134,98 @@ class PeerGroupFilterController extends Controller
 //        var_dump($results);
 //        dd($attribute1_list);
 
+
         return view('pgfilter.index', compact('attribute1_list', 'attribute2_list', 'attribute3_list', 'results', 'selected_attribute1_list', 'selected_attribute2_list', 'selected_attribute3_list'));
     }
 
-
+// EHLbug: need to make create, edit, delete, etc functions - refactor!!! code is terribly written :(
 
 
     public function store(PeerGroupFormRequest $request)
-        // need to create or update in another function?
+        // need to create or update in another function
     {
 
         $selected_attribute1_list = [];
         $selected_attribute2_list = [];
         $selected_attribute3_list = [];
-        //$var1 = $request->get('attribute1');
+
         $attribute1_list = [
-            '1' => 'Public',
-            '2' => 'Private not-for-profit',
-            '3' => 'Private for-profit',
-            '-3' => '{Not available}'
-        ]; // CONTROL column (Schools table) - all options
+            '0' => 'All',
+            '1' => 'Degree-granting, graduate with no undergraduate degrees',
+            '2' => 'Degree-granting, primarily baccalaureate or above',
+            '3' => 'Degree-granting, not primarily baccalaureate or above',
+            '4' => 'Degree-granting, associate\'s and certificates',
+            '5' => 'Nondegree-granting, above the baccalaureate',
+            '6' => 'Nondegree-granting, sub-baccalaureate',
+            '-1' => 'Not reported',
+            '-2' => 'Not applicable'
+        ]; // INSTCAT column (Schools table) - all options
+
         $attribute2_list = [
+            '0' => 'All',
             'AL' => 'Alabama',
             'AK' => 'Alaska',
             'AZ' => 'Arizona',
-            'AR' => 'Arkansas'
-        ]; // STABBR column (Schools table) - sample of the options (need to complete list)
+            'AR' => 'Arkansas',
+            'CA' => 'California',
+            'CO' => 'Colorado',
+            'CT' => 'Connecticut',
+            'DE' => 'Delaware',
+            'DC' => 'District of Columbia',
+            'FL' => 'Florida',
+            'GA' => 'Georgia',
+            'HI' => 'Hawaii',
+            'ID' => 'Idaho',
+            'IL' => 'Illinois',
+            'IN' => 'Indiana',
+            'IA' => 'Iowa',
+            'KS' => 'Kansas',
+            'KY' => 'Kentucky',
+            'LA' => 'Louisiana',
+            'ME' => 'Maine',
+            'MD' => 'Maryland',
+            'MA' => 'Massachusetts',
+            'MI' => 'Michigan',
+            'MN' => 'Minnesota',
+            'MS' => 'Mississippi',
+            'MO' => 'Missouri',
+            'MT' => 'Montana',
+            'NE' => 'Nebraska',
+            'NV' => 'Nevada',
+            'NH' => 'New Hampshire',
+            'NJ' => 'New Jersey',
+            'NM' => 'New Mexico',
+            'NY' => 'New York',
+            'NC' => 'North Carolina',
+            'ND' => 'North Dakota',
+            'OH' => 'Ohio',
+            'OK' => 'Oklahoma',
+            'OR' => 'Oregon',
+            'PA' => 'Pennsylvania',
+            'RI' => 'Rhode Island',
+            'SC' => 'South Carolina',
+            'SD' => 'South Dakota',
+            'TN' => 'Tennessee',
+            'TX' => 'Texas',
+            'UT' => 'Utah',
+            'VT' => 'Vermont',
+            'VA' => 'Virginia',
+            'WA' => 'Washington',
+            'WV' => 'West Virginia',
+            'WI' => 'Wisconsin',
+            'WY' => 'Wyoming',
+            'AS' => 'American Samoa',
+            'FM' => 'Federated States of Micronesia',
+            'GU' => 'Guam',
+            'MH' => 'Marshall Islands',
+            'MP' => 'Northern Marianas',
+            'PW' => 'Palau',
+            'PR' => 'Puerto Rico',
+            'VI' => 'Virgin Islands'
+        ]; // STABBR column (Schools table)
 
         $attribute3_list = [
+            '0' => 'All',
             '17' => 'Doctoral/Research Universities',
             '18' => 'Master\'s Colleges and Universities (larger programs)',
             '23' => 'Baccalaureate/Associate\'s Colleges'
@@ -97,12 +235,51 @@ class PeerGroupFilterController extends Controller
         array_push($selected_attribute2_list, $request->get('attribute2'));
         array_push($selected_attribute3_list, $request->get('attribute3'));
 
-        $results = DB::table('schools')->where('School_Control', '=', $selected_attribute1_list)->where('School_State', '=', $selected_attribute2_list)->pluck('school_name')->toArray();
+        $flag1 = 0;
+        $flag2 = 0;
+//dd($request->get('attribute2'));
+        if ($request->get('attribute1') === '0') {
+            $flag1 = 1;
+            $selected_attribute1_list = null;
+        }
+        if($request->get('attribute2') === '0') {
+            $flag2 = 1;
+            $selected_attribute2_list = null;
+        }
+//dd($flag2);
 
-        $input = $request->all();
-        $this->populateCreateFields($input);
+        if(($flag1 == '1') && ($flag2 == '1')) {
+            //dd('3');
+            $results = School::pluck('school_name','school_ID')->toArray();
+
+        } elseif($flag2 == '1') {
+//            dd('1');
+            $results = School::where('Inst_Catgry', '=', $selected_attribute1_list)->pluck('school_name','school_ID')->toArray();
+        } elseif ($flag1 == '1') {
+//            dd('2');
+            $results = School::where('School_State', '=', $selected_attribute2_list)->pluck('school_name','school_ID')->toArray();
+            //dd($results);
+        }   else {
+//            dd('dd');
+            $results = School::where('Inst_Catgry', '=', $selected_attribute1_list)->where('School_State', '=', $selected_attribute2_list)->pluck('school_name','school_ID')->toArray();
+        }
+
+//        $results = School::where('Inst_Catgry', '=', $selected_attribute1_list)->where('School_State', '=', $selected_attribute2_list)->pluck('school_name','school_ID')->toArray();
+dd($results);
+//        request->all();
+//        $this->populateCreateFields($input);
         return view('pgfilter.index', compact('attribute1_list', 'attribute2_list', 'attribute3_list', 'selected_attribute1_list', 'selected_attribute2_list', 'selected_attribute3_list', 'results'));
 
     }
+
+//    public function showpeergroups($userpeergroups)
+//    {
+//        //        $peergroups = $this->user->peergroups()->get();
+//        $this->userpeergroups = PeerGroup::where('user_ID','=', Auth::id())->get();
+////        var_dump($this->peergroups);
+//        dd($this->userpeergroups);
+////        dd($user);
+//        return redirect('pgfilter/viewpeergroups', compact('userpeergroups'));
+//    }
 
 }

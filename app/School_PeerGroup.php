@@ -12,6 +12,7 @@ use Log;
 
 class School_PeerGroup extends Model
 {
+	public $table = "school_peergroups";
     protected $fillable=[
 
         'School_ID',

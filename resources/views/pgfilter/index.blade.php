@@ -18,6 +18,9 @@
                     <div class="panel-heading">
                         <h1>Peer Group selection by institution attributes</h1>
                     </div>
+                    {{--<form action="{{ url('pgfilter/viewpeergroups') }}" method="POST">{{ csrf_field() }}--}}
+                        {{--<button type="submit" id="view-peergroups" class="btn btn-primary"><i class="fa fa-btn fa-file-o"></i>View Peer Groups</button>--}}
+                    {{--</form>--}}
                     <div class="panel-body">
                         <div class="row" style="margin-top:5px">
 
@@ -80,7 +83,7 @@
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
                                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                                                    Attribute 3: Carnegie Classification 2010: Basic (may change this attribute)</a>
+                                                    Attribute 3: !!Currently unused- need to pull from different table!!</a>
                                             </h4>
                                         </div>
                                         <div id="collapse3" class="panel-collapse collapse in">
