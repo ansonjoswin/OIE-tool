@@ -3,22 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Map_Table;
-use App\Jobs\SeedAdmissions;
-use App\Jobs\SeedCompletions;
-use App\Jobs\SeedDefaultrates;
-use App\Jobs\SeedEmployees;
-use App\Jobs\SeedFallenrollment;
+use Illuminate\Support\Facades\Request;
+use App\Jobs\SeedSchools;
 use App\Jobs\SeedGraduations;
+use App\Jobs\SeedAdmissions;
+use App\Jobs\SeedFallenrollment;
+use App\Jobs\SeedEmployees;
+use App\Jobs\SeedDefaultrates;
 use App\Jobs\SeedInstructionalstaff;
 use App\Jobs\SeedNoninstructionalstaff;
-use App\Jobs\SeedPrivateNonprofit;
+use App\Jobs\SeedCompletions;
 use App\Jobs\SeedPrivateprofit;
-use App\Jobs\SeedPublic;
-use App\Jobs\SeedSchools;
 use App\Jobs\SeedUGCredithours;
+use App\Jobs\SeedPublic;
+use App\Jobs\SeedPrivateNonprofit;
 use App\Jobs\SeedUGUnduplicatedheadcount;
 use Auth;
-use Illuminate\Support\Facades\Request;
 
 class UploadsController extends Controller
 {
