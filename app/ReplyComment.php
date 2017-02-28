@@ -10,7 +10,7 @@ class ReplyComment extends Model
 
     protected $fillable = [
 
-						'comment_id',
+						'user_comment_id',
 						'comment_text',
 						'author',
 						'email',
@@ -19,8 +19,8 @@ class ReplyComment extends Model
 					];
 
 
-	public function usercomment(){
-		return this->belongsTo('App\UserComment');
+	public function comments(){
+		return $this->belongsTo('App\UserComment');
 	}
 
 

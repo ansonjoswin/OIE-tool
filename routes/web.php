@@ -68,7 +68,8 @@ Route::resource('applicationdetails', 'ApplicationDetailsController');
 //Route::resource('comments', 'CommentsController');
 Route::resource('usercomments', 'UserCommentsController');
 //Route::resource('usercomments/reply', 'UserCommentsController@reply');
-Route::resource('usercomment/replies', 'CommentRepliesController');
+//Route::get('replies', 'CommentRepliesController@createreply');
+Route::post('replies', 'CommentRepliesController@createreply');
 
 
 Route::resource('defaultrates', 'DefaultRatesController');

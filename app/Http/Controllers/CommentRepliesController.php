@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use App\User;
+use App\UserComment;
+use Session;
+use DB;
+use Log;
+use App\ReplyComment;
 
 class CommentRepliesController extends Controller
 {
@@ -12,9 +18,17 @@ class CommentRepliesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    
+        public function index()
     {
-        //
+        if(Auth::user()->hasRole('admin')){
+                $comments = UserComment::all();
+            return view('usercomments.index',compact('comments'));
+        }
+        else
+        {
+            return redirect('/login');
+        }
     }
 
     /**
@@ -37,6 +51,40 @@ class CommentRepliesController extends Controller
     {
         //
     }
+  /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function createreply(Request $request)
+    {
+        if(Auth::user()){  
+            $user = Auth::user();
+            $data=[
+                'user_comment_id'=>$request->user_comment_id,
+                'author'=>$user->name,
+                'email'=>$user->email,
+                'comment_text'=>$request->comment_text
+            ];
+
+            ReplyComment::create($data);
+
+          
+            Session::flash('flash_message', 'Your comment has been posted');
+
+       // $request->session()->flash('comment_flash','Your comment has been submitted and is waiting moderation by the administrator');
+
+        return redirect()->back();
+    }
+
+    else
+    {
+        return redirect('/login');
+    }
+
+    }
+
 
     /**
      * Display the specified resource.
@@ -46,7 +94,9 @@ class CommentRepliesController extends Controller
      */
     public function show($id)
     {
-        //
+         $user = User::findOrfail($id);
+        $comments = $user->comments;
+        return view('usercomments/replies/show',compact('comments'));
     }
 
     /**
@@ -69,7 +119,8 @@ class CommentRepliesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         UserComment::findOrfail($id)->update($request->all());
+        return redirect('/usercomments');
     }
 
     /**

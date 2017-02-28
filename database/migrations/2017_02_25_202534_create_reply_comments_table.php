@@ -15,14 +15,14 @@ class CreateReplyCommentsTable extends Migration
     {
         Schema::create('reply_comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('comment_id')->index();
-            $table->integer('is_active')->default(0);
+            $table->integer('user_comment_id')->index();
+            $table->integer('is_active')->default(1);
             $table->string('author');
             $table->string('email');
             $table->text('comment_text');
             $table->timestamps();
 
-            $table->foreign('comment_id')->references('id')->on('user_comments')->onDelete('cascade');
+            $table->foreign('user_comment_id')->references('id')->on('user_comments')->onDelete('cascade');
         });
     }
 

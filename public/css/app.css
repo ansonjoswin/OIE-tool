@@ -8316,3 +8316,8 @@ button.close {
     display: none !important;
   }
 }
+
+
+.commentReply {
+  display: hidden;
+}

@@ -121,3 +121,7 @@ div.se-highlights {
 .files-table .panel {
     padding: 0;
 }
+
+#commentReply {
+  display: none;
+}

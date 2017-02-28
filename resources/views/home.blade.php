@@ -98,59 +98,71 @@
                 </div>
             </div>
             </div>
+            
 
-          {{--       <!-- Posted Comments -->
+           <!-- Posted Comments -->
+
 
                 @if(count($comments) > 0)
+          
+               
+                    @foreach($comments as $comment)
+                    
+                    <div class="col-md-8 col-md-offset-2 well" style="margin-top: 20px;">
+                        @if($comment->is_active)
 
-                @foreach($comments as $comment)
-
-
-                 <!-- Comment -->
-
-                   <div class="col-md-8 col-md-offset-2">
-                   <br>
-                   <br>
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">Start Bootstrap
-                            <small>August 25, 2014 at 9:30 PM</small>
-                        </h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div>
-
-               @endforeach
-
-                @endif
-
-                <!-- Comment -->
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">Start Bootstrap
-                            <small>August 25, 2014 at 9:30 PM</small>
-                        </h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                   
+                     <!-- Comment -->
+                        <a class="pull-left">
+                             <img class="media-object" src=" {{ asset('images/usericon.png') }}" width='30px' height = '30px' class="img-responsive">
+                        </a>
+                        <div class="media-body">
+                            <h5 class="media-heading" style="padding-left: 5px;">{{$comment->user->email}}
+                                <small style="padding-left: 20px;">{{$comment->created_at->diffForHumans()}}</small>
+                            </h5>
+                            <p style="padding-left: 5px;"> {{$comment->comment_text}}</p>
+                        </div>
+                        
                         <!-- Nested Comment -->
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img class="media-object" src="http://placehold.it/64x64" alt="">
-                            </a>
-                            <div class="media-body">
-                                <h4 class="media-heading">Nested Start Bootstrap
-                                    <small>August 25, 2014 at 9:30 PM</small>
-                                </h4>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        @if($replyexists)
+                            @foreach($comment->replies as $reply)
+                                @if($reply->is_active)
+                                    <div class="media" style="padding-left: 50px;">
+                                        <a class="pull-left">
+                                            <img class="media-object" src=" {{ asset('images/usericon.png') }}" width='30px' height = '30px' class="img-responsive">
+                                        </a>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">{{$comment->user->email}}
+                                                <small style="padding-left: 20px;">{{$comment->created_at->diffForHumans()}}</small>
+                                            </h5>
+                                            <p style="padding-left: 5px;"> {{$reply->comment_text}}</p>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                        @endif
+                        <button class="btn btn-primary replyBtn">reply</button>
+                        <!-- End Nested Comment -->
+                        <div class="commentReply" style="display: none;">
+                            {!!Form::open(['method'=>'POST','url'=>'replies','class'=>'form-horizontal', 'role'=>'form'])!!}
+                            <div class="form-group">
+                                {!!Form::label('comment_text','Comment:')!!}
+                                {!!Form::textarea('comment_text', null, ['class'=>'form-control','rows'=>3])!!}
+                                <input type="hidden" name="user_comment_id" value="{{$comment->id}}">
+                            </div>
+                           <div>
+                                {!!Form::submit('Submit',['class'=>'btn btn-primary'])!!}
+                                {!!Form::close()!!}
                             </div>
                         </div>
-                        <!-- End Nested Comment --> --}}
-                
+                        @endif
+                </div>
+
+    
+                   @endforeach
+       
+                    @endif
+                                  
 
 @endsection
 

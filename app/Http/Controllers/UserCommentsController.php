@@ -21,7 +21,7 @@ class UserCommentsController extends Controller
      */
     public function index()
     {
-        if(Auth::check()){
+        if(Auth::user()->hasRole('admin')){
             $comments = UserComment::all();
         return view('usercomments.index',compact('comments'));
     }

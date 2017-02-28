@@ -15,7 +15,7 @@ protected $fillable = [
 					];
 
 
-    public function userreplies(){
+    public function replies(){
     	return $this->hasMany('App\ReplyComment');
     }
 

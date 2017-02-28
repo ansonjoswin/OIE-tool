@@ -16,8 +16,10 @@
                                 <thead> 
                                 <!-- Table Headings -->
                                 <tr class="bg-info">
-                                    <th>Email</th><th>Comment</th><th></th><th></th><th></th>
-                                    
+                                    <th>User ID</th>
+                                    <th>Email</th>
+                                    <th>Comment</th>
+                                    <th colspan="3"></th>
                                 </tr>
                                 </thead>
                                 <tbody> 
@@ -27,19 +29,17 @@
                                     <tr>
 
                                         
+                                            <td>{{$comment->id}}</td>
                                             <td>{{$comment->email}}</td>
                                             <td>{{$comment->comment_text}}</td>
                                             <td>
-
-                        
-                                            
                                     
                                         @if($comment->is_active == 1)
                                         {!! Form::model($comment,['method' => 'PATCH','route'=>['usercomments.update',$comment->id]]) !!}
                                                 
                                                     <input type="hidden" name="is_active" value="0">
                                                     <div class="form-group">
-                                                    <button class="btn btn-primary">Unpublish</button>
+                                                    {!!Form::submit('Unpublish', ['class'=>'btn btn-primary'])!!}
                                                     </div>
                                                 {!!Form::close()!!}
                                        @else
@@ -47,20 +47,15 @@
                                                 
                                                 <input type="hidden" name="is_active" value="1">
                                                     <div class="form-group">
-                                                    <button class="btn btn-success" style="padding: 6px 22px 6px 22px">Publish</button>
+                                                    {!!Form::submit('Publish ', ['class'=>'btn btn-success'])!!}
                                                     </div>
                                                 {!!Form::close()!!}
 
-                                            @endif     
-                                            </td>     
-                                                
-                                            <td>
-                                            <button class="btn btn-default" style="padding: 6px 22px 6px 22px" ="{{url('/usercomments/replies/index')}}">Reply</button>
+                                            @endif 
 
-                                            </td>          
-                                                                         
-<td>
-                                                                          
+                                                                                        </td>                              
+
+                                            <td>                               
                                                <form action="{{ url('usercomments/'.$comment->id) }}" method="POST" onsubmit="return ConfirmDelete();">{{ csrf_field() }}{{ method_field('DELETE') }}
                                                     <button type="submit" id="delete" class="btn btn-default btn-danger"><i class="fa fa-btn fa-trash"></i></button>
                                                 </form>

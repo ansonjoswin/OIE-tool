@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\User;
 use Auth;
 use App\UserComment;
+use App\ReplyComment;
 
 class HomeController extends Controller
 {
@@ -35,8 +36,17 @@ class HomeController extends Controller
                 return view('adminhome', compact('user'));
             // elseif ($user->hasRole('student'))
             //     return view('adminhome', compact('user'));
-            else
-                return view('home', compact('user'));
+            else{
+                $comments = UserComment::all();
+                if(ReplyComment::first())
+                {
+                    $replyexists = true;
+                }
+                else{
+                    $replyexists = false;
+                }
+                return view('home', compact('user', 'comments', 'replyexists'));
+            }
         }
     }
 
