@@ -33,7 +33,18 @@ class HomeController extends Controller
         {
             $user = Auth::user();
             if ($user->hasRole('admin'))
-                return view('adminhome', compact('user'));
+            {
+                $comments = UserComment::all();
+                if(ReplyComment::first())
+                {
+                    $replyexists = true;
+                }
+                else{
+                    $replyexists = false;
+                }
+                return view('home', compact('user','comments','replyexists'));
+            }
+            
             // elseif ($user->hasRole('student'))
             //     return view('adminhome', compact('user'));
             else{

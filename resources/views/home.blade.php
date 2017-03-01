@@ -107,17 +107,17 @@
           
                
                     @foreach($comments as $comment)
+                   
                     
-                    <div class="col-md-8 col-md-offset-2 well" style="margin-top: 20px;">
                         @if($comment->is_active)
-
+                            <div class="col-md-8 col-md-offset-2 well" style="margin-top: 20px;">
                    
                      <!-- Comment -->
                         <a class="pull-left">
                              <img class="media-object" src=" {{ asset('images/usericon.png') }}" width='30px' height = '30px' class="img-responsive">
                         </a>
                         <div class="media-body">
-                            <h5 class="media-heading" style="padding-left: 5px;">{{$comment->user->email}}
+                            <h5 class="media-heading" style="padding-left: 5px;">{{$comment->email}}
                                 <small style="padding-left: 20px;">{{$comment->created_at->diffForHumans()}}</small>
                             </h5>
                             <p style="padding-left: 5px;"> {{$comment->comment_text}}</p>
@@ -132,8 +132,8 @@
                                             <img class="media-object" src=" {{ asset('images/usericon.png') }}" width='30px' height = '30px' class="img-responsive">
                                         </a>
                                         <div class="media-body">
-                                            <h5 class="media-heading">{{$comment->user->email}}
-                                                <small style="padding-left: 20px;">{{$comment->created_at->diffForHumans()}}</small>
+                                            <h5 class="media-heading">{{$reply->email}}
+                                                <small style="padding-left: 20px;">{{$reply->created_at->diffForHumans()}}</small>
                                             </h5>
                                             <p style="padding-left: 5px;"> {{$reply->comment_text}}</p>
                                         </div>

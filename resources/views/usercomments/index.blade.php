@@ -16,7 +16,7 @@
                                 <thead> 
                                 <!-- Table Headings -->
                                 <tr class="bg-info">
-                                    <th>Email</th><th>Comment</th><th></th><th></th><th></th>
+                                    <th>ID</th><th>Email</th><th>Comment</th><th></th><th></th>
                                     
                                 </tr>
                                 </thead>
@@ -26,7 +26,7 @@
                                 @foreach ($comments as $comment)
                                     <tr>
 
-                                        
+                                         <td>{{$comment->id}}</td> 
                                             <td>{{$comment->email}}</td>
                                             <td>{{$comment->comment_text}}</td>
                                             <td>
@@ -54,10 +54,7 @@
                                             @endif     
                                             </td>     
                                                 
-                                            <td>
-                                            <button class="btn btn-default" style="padding: 6px 22px 6px 22px" ="{{url('/usercomments/replies/index')}}">Reply</button>
-
-                                            </td>          
+                                                   
                                                                          
 <td>
                                                                           
@@ -65,6 +62,8 @@
                                                     <button type="submit" id="delete" class="btn btn-default btn-danger"><i class="fa fa-btn fa-trash"></i></button>
                                                 </form>
                                             </td>
+
+
                                     </tr>
                                 
                                 @endforeach

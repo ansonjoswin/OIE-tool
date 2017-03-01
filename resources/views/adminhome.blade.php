@@ -51,13 +51,29 @@
         </div>
     </div>
 </div>
-{{-- <br>
 <br>
 <br>
 <br>
-  --}}
+<br>
+<!-- Comments Form -->
+                {{-- <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+            <div class="panel-heading" style="text-align: center;"><h4>Discussions</h4></div>
+                
+                 <div class="panel-body">
+                                        <form role="form">
+                        <div class="form-group">
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
 
-        {{-- <div class="col-md-8 col-md-offset-2">
+                <hr> --}}
+
+       
+
+        <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
             <div class="panel-heading" style="text-align: center;"><h4>Discussions</h4></div>
             <div class="panel-body">
@@ -82,9 +98,72 @@
                 </div>
             </div>
             </div>
-      
-                
- --}}
+            
+
+           <!-- Posted Comments -->
+
+
+                @if(count($comments) > 0)
+          
+               
+                    @foreach($comments as $comment)
+                    
+                    <div class="col-md-8 col-md-offset-2 well" style="margin-top: 20px;">
+                        @if($comment->is_active)
+
+                   
+                     <!-- Comment -->
+                        <a class="pull-left">
+                             <img class="media-object" src=" {{ asset('images/usericon.png') }}" width='30px' height = '30px' class="img-responsive">
+                        </a>
+                        <div class="media-body">
+                            <h5 class="media-heading" style="padding-left: 5px;">{{$comment->user->email}}
+                                <small style="padding-left: 20px;">{{$comment->created_at->diffForHumans()}}</small>
+                            </h5>
+                            <p style="padding-left: 5px;"> {{$comment->comment_text}}</p>
+                        </div>
+                        
+                        <!-- Nested Comment -->
+                        @if($replyexists)
+                            @foreach($comment->replies as $reply)
+                                @if($reply->is_active)
+                                    <div class="media" style="padding-left: 50px;">
+                                        <a class="pull-left">
+                                            <img class="media-object" src=" {{ asset('images/usericon.png') }}" width='30px' height = '30px' class="img-responsive">
+                                        </a>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">{{$comment->user->email}}
+                                                <small style="padding-left: 20px;">{{$comment->created_at->diffForHumans()}}</small>
+                                            </h5>
+                                            <p style="padding-left: 5px;"> {{$reply->comment_text}}</p>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                        @endif
+                        <button class="btn btn-primary replyBtn">reply</button>
+                        <!-- End Nested Comment -->
+                        <div class="commentReply" style="display: none;">
+                            {!!Form::open(['method'=>'POST','url'=>'replies','class'=>'form-horizontal', 'role'=>'form'])!!}
+                            <div class="form-group">
+                                {!!Form::label('comment_text','Comment:')!!}
+                                {!!Form::textarea('comment_text', null, ['class'=>'form-control','rows'=>3])!!}
+                                <input type="hidden" name="user_comment_id" value="{{$comment->id}}">
+                            </div>
+                           <div>
+                                {!!Form::submit('Submit',['class'=>'btn btn-primary'])!!}
+                                {!!Form::close()!!}
+                            </div>
+                        </div>
+                        @endif
+                </div>
+
+    
+                   @endforeach
+       
+                    @endif
+                                  
+
 @endsection
 
 @section('footer')
