@@ -48,7 +48,7 @@ class Kernel extends ConsoleKernel
               //$view_log->addInfo("User $user clicked");
          
              $schedule->command('queue:work --queue=database-high,database-low')
-                      //->hourlyAT('37')
+                      //->hourlyAT('09')
                       ->dailyAT('01:00')
                       ->appendOutputTo($file)
                      // ->emailOutputTo('oie.team2017@gmail.com')   
@@ -58,7 +58,8 @@ class Kernel extends ConsoleKernel
                       });
 
                      //$ab=File::get($file);
-                    
+      if(file::exists($file))
+      {              
                    $temp = '';
                       $handle = fopen($file, "r");
         if ($handle) {
@@ -85,6 +86,8 @@ $temp = $temp.$line;
           }
                           
               $view_log->addINFO($temp);
+            }
+        
     }
     }   
 
