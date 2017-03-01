@@ -51,10 +51,7 @@
         </div>
     </div>
 </div>
-<br>
-<br>
-<br>
-<br>
+
 <!-- Comments Form -->
                 {{-- <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -73,7 +70,7 @@
 
        
 
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 col-md-offset-2" style="padding-top: 60px">
             <div class="panel panel-default">
             <div class="panel-heading" style="text-align: center;"><h4>Discussions</h4></div>
             <div class="panel-body">
@@ -108,9 +105,9 @@
                
                     @foreach($comments as $comment)
                     
-                    <div class="col-md-8 col-md-offset-2 well" style="margin-top: 20px;">
+                    
                         @if($comment->is_active)
-
+                        <div class="col-md-8 col-md-offset-2 well" style="margin-top: 20px;">
                    
                      <!-- Comment -->
                         <a class="pull-left">
@@ -132,19 +129,27 @@
                                             <img class="media-object" src=" {{ asset('images/usericon.png') }}" width='30px' height = '30px' class="img-responsive">
                                         </a>
                                         <div class="media-body">
-                                            <h5 class="media-heading">{{$comment->user->email}}
-                                                <small style="padding-left: 20px;">{{$comment->created_at->diffForHumans()}}</small>
+                                            <h5 class="media-heading">{{$reply->email}}
+                                                <small style="padding-left: 20px;">{{$reply->created_at->diffForHumans()}}</small>
                                             </h5>
                                             <p style="padding-left: 5px;"> {{$reply->comment_text}}</p>
+                                            {!! Form::open(['method' => 'DELETE', 'onSubmit'=> 'if(!confirm("\n\nAre you sure you want to delete the reply?")){return false;}', 'style'=>'padding-left:20px;' , 'url'=>['replies', $reply->id]])!!}
+                                             {!! Form::submit('Delete', ['class' => 'btn btn-danger', 'style'=>'padding: 2px 8px 2px 8px']) !!}
+                                            {!! Form::close() !!}
                                         </div>
                                     </div>
                                 @endif
                             @endforeach
                         @endif
+
                         <button class="btn btn-primary replyBtn">reply</button>
+                         
+
+                        
                         <!-- End Nested Comment -->
                         <div class="commentReply" style="display: none;">
                             {!!Form::open(['method'=>'POST','url'=>'replies','class'=>'form-horizontal', 'role'=>'form'])!!}
+
                             <div class="form-group">
                                 {!!Form::label('comment_text','Comment:')!!}
                                 {!!Form::textarea('comment_text', null, ['class'=>'form-control','rows'=>3])!!}

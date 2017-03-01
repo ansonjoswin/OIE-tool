@@ -49,7 +49,28 @@ class CommentRepliesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(Auth::user()){  
+            $user = Auth::user();
+            $data=[
+                'user_comment_id'=>$request->user_comment_id,
+                'author'=>$user->name,
+                'email'=>$user->email,
+                'comment_text'=>$request->comment_text
+            ];
+
+            ReplyComment::create($data);
+
+          
+            Session::flash('flash_message', 'Your comment has been posted');
+
+            // $request->session()->flash('comment_flash','Your comment has been submitted and is waiting moderation by the administrator');
+
+            return redirect()->back();
+        }
+        else
+        {
+            return redirect('/login');
+        }
     }
   /**
      * Store a newly created resource in storage.
@@ -73,16 +94,14 @@ class CommentRepliesController extends Controller
           
             Session::flash('flash_message', 'Your comment has been posted');
 
-       // $request->session()->flash('comment_flash','Your comment has been submitted and is waiting moderation by the administrator');
+            // $request->session()->flash('comment_flash','Your comment has been submitted and is waiting moderation by the administrator');
 
-        return redirect()->back();
-    }
-
-    else
-    {
-        return redirect('/login');
-    }
-
+            return redirect()->back();
+        }
+        else
+        {
+            return redirect('/login');
+        }
     }
 
 
@@ -131,6 +150,11 @@ class CommentRepliesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        ReplyComment::find($id)->delete();
+        
+ 
+        Session::flash('flash_message', 'Reply successfully deleted!');
+        //Log::info('UsersController.destroy: End: ');
+        return redirect()->back();
     }
 }

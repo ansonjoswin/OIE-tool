@@ -42,9 +42,9 @@ class HomeController extends Controller
                 else{
                     $replyexists = false;
                 }
-                return view('home', compact('user','comments','replyexists'));
+                return view('adminhome', compact('user','comments','replyexists'));
             }
-            
+
             // elseif ($user->hasRole('student'))
             //     return view('adminhome', compact('user'));
             else{

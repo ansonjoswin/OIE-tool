@@ -82,6 +82,17 @@
 
 <!--Update the value of "agree" input when clicking the Agree/Disagree button-->
 
+
+
+
+<!-- Footer -->
+@yield('footer');
+
+<script src="../public/js/all.js"></script>
+<script src="../public/js/jquery.ui.widget.js"></script>
+<script src="../public/js/jquery.knob.js"></script>
+<script src="../public/js/jquery.iframe-transport.js"></script>
+<script src="../public/js/jquery.fileupload.js"></script>
 <!-- Scripts -->
 @yield('scripts')
 
@@ -107,17 +118,7 @@
         // .one() is NOT a typo of .on()
     });
 </script> --}}
-
-
-
-<!-- Footer -->
-@yield('footer');
-
-<script src="../public/js/all.js"></script>
-<script src="../public/js/jquery.ui.widget.js"></script>
-<script src="../public/js/jquery.knob.js"></script>
-<script src="../public/js/jquery.iframe-transport.js"></script>
-<script src="../public/js/jquery.fileupload.js"></script>
 </body>
 </html>
+
 
