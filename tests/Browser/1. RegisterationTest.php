@@ -52,7 +52,7 @@ class RegisterationTest extends DuskTestCase
 				->click('#registerBtn')// correct password and confirm password
 				->check('agree') // click agree button
 				->click('#registerBtn')
-				->assertSee('Welcome User !')
+				->assertSee('Welcome user !')
 				->click('#dropdown-menu')
 				->click('#logout-button')
 				->assertDontSee('Home')->pause(2000);       
