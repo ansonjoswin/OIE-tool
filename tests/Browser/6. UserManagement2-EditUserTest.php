@@ -33,7 +33,7 @@ class UserManagementEditTest extends DuskTestCase
 				->click('.btn-primary') //email with missing @
 				->type('email','anson12@')
 				->click('.btn-primary') //email with missing .
-				->type('email','anson111@gmail.com')
+				->type('email','anson502@gmail.com')
 				->click('.btn-primary')//valid email
 				//->check('active') // click agree button
 				->click('.btn-primary');						

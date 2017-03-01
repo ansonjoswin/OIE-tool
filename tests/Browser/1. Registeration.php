@@ -30,7 +30,7 @@ class RegisterationTest extends DuskTestCase
 				->click('#registerBtn') //email with missing @
 				->type('email','anson12@')
 				->click('#registerBtn') //email with missing .
-				->type('email','anson127@gmail.com')
+				->type('email','anson500@gmail.com')
 				->click('#registerBtn') //valid email
 				->type('password','')
 				->type('password_confirmation','') 

@@ -31,7 +31,7 @@ class UserManagementCreateTest extends DuskTestCase
 				->click('.btn-primary')// all fields blank
 				->type('email','anson12@')
 				->click('.btn-primary')// invalid email
-				->type('email','anson211@gmail.com')
+				->type('email','anson501@gmail.com')
 				->click('.btn-primary')// valid email
 				->select('affiliation','')
 				->click('.btn-primary')// no affiliation
