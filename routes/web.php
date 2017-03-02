@@ -85,18 +85,9 @@ Route::resource('uploads','UploadsController');
 //    Route::get('comments/{planofstudy}/addforplanofstudy', ['as' => 'comments.addforplanofstudy',
 //        'uses' => 'CommentsController@addforplanofstudy']);
 
-//});
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index');
-
 // Peer Group Filter routes
 Route::resource('pgfilter', 'PeerGroupFilterController');
 
-
-
+Route::get('/test', function () {
+    return view('/test');
+});

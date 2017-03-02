@@ -16,6 +16,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // Seed the attributes tables
+        $this->call(InstcatSeeder::class);
+        $this->call(StabbrSeeder::class);
+
          //Seed the System Users/Roles/Permissions tables
         $this->call(RolesTableSeeder::class);
         $this->call(PermissionsTableSeeder::class);
@@ -33,6 +37,8 @@ class DatabaseSeeder extends Seeder
         // Seed the Tags table
         //$this->call(TagsTableSeeder::class);
         $this->command->info('Tags tables seeded!');
+
+
     }
 }
 
