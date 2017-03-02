@@ -79,6 +79,8 @@
                  @include('common.errors')
                  @include('common.flash')
 
+                 <input type="hidden" name="is_active" value="1">
+
                 <input type="hidden" name="user_id" value="{{$user->id}}">
 
 
@@ -106,7 +108,7 @@
                     @foreach($comments as $comment)
                     
                     
-                        @if($comment->is_active)
+                        
                         <div class="col-md-8 col-md-offset-2 well" style="margin-top: 20px;">
                    
                      <!-- Comment -->
@@ -160,7 +162,7 @@
                                 {!!Form::close()!!}
                             </div>
                         </div>
-                        @endif
+                        
                 </div>
 
     

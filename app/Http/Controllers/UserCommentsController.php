@@ -65,33 +65,49 @@ class UserCommentsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        if(Auth::check()){  
-        $user = Auth::user();
-        $data=[
-        'user_id'=>$request->user_id,
-        'author'=>$user->name,
-        'email'=>$user->email,
-        'comment_text'=>$request->comment_text
-        ];
+        {
+            if(Auth::check()){  
+            $user = Auth::user();
 
+                if ($user->hasRole('admin')){
+                
+                $data=[
+                'user_id'=>$request->user_id,
+                 'is_active'=>$request->is_active,
+                'author'=>$user->name,
+                'email'=>$user->email,
+                'comment_text'=>$request->comment_text
+                        ];
 
-UserComment::create($data);
+                }
+                else
+                    {
+                      $data=[
+                            'user_id'=>$request->user_id,
+                            'author'=>$user->name,
+                            'email'=>$user->email,
+                            'comment_text'=>$request->comment_text
+                            ];  
+                    }
+            UserComment::create($data);
 
-      
-        Session::flash('flash_message', 'Your comment has been submitted and is waiting moderation by the administrator');
+                    if ($user->hasRole('admin'))
+                            Session::flash('flash_message', 'Your comment has been submitted');
+                    else
 
-       // $request->session()->flash('comment_flash','Your comment has been submitted and is waiting moderation by the administrator');
+                            Session::flash('flash_message', 'Your comment has been submitted and is waiting moderation by the administrator');
 
-        return redirect()->back();
-    }
+                       // $request->session()->flash('comment_flash','Your comment has been submitted and is waiting moderation by the administrator');
 
-    else
-    {
-        return redirect('/login');
-    }
+                        return redirect()->back();
+                }
 
-    }
+            else
+            {
+                return redirect('/login');
+            }
+
+            }
 
     /**
      * Display the specified resource.
