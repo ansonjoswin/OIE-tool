@@ -7,7 +7,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="pull-right">
-                            <form action="{{ url('peergroups/create') }}" method="GET">{{ csrf_field() }}
+                            <!-- <form action="{{ url('peergroups/create') }}" method="POST">{{ csrf_field() }} -->
+                            <form action="{{ url('pgfilter') }}" method="GET">{{ csrf_field() }}
                                 <button type="submit" id="create-peergroup" class="btn btn-primary"><i class="fa fa-btn fa-file-o"></i>Create</button>
                             </form>
                         </div>
@@ -87,34 +88,3 @@
 @endsection
 
 
-
-<!-- <div class="modal fade demo_popup" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
-        <h3 class="modal-title">What kind of Peer Group do you want to create?</h3>
-    </div>
-    <div class="modal-body">
-        <p>First, you'll need to select what institutions you want to compare.</p>
-        <p>How do you want to select your institutions?</p>
-        <table>
-            <tr>
-            <td> 
-                <div class="panel-body">   
-                            <form action="{{ url('school_peergroups') }}" method="GET">{{ csrf_field() }}
-                                <button type="submit" id="create-peergroup" class="btn btn-primary"><i class="fa fa-btn fa-file-o"></i>By Specific Institution</button>
-                            </form>                
-                </div>
-             </td>
-             <td>
-                <div class="panel-body"> 
-                <button type="submit" disabled="disabled" id="create-peergroup" class="btn btn-primary"><i class="fa fa-btn fa-file-o"></i>By Institution Attributes</button>
-                </div>
-             </td>
-             </tr>
-         </table>
-    </div>
-</div>
-</div>
-</div> -->

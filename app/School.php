@@ -136,9 +136,9 @@ class School extends Model
         return $this->hasMany('App\NonInstructional_ES');
 
     }
-    public function carneige_classification()
+    public function carnegie_classification()
     {
-        return $this->hasOne('App\Carneige_classification');
+        return $this->hasOne('App\Carnegie_classification');
 
     }
   

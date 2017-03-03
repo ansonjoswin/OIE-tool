@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Http\Requests\SchoolRequest;
 use App\PeerGroup;
+use App\School_PeerGroup;
 use App\User;
 use App\School;
-use App\School_PeerGroup;
 use Auth;
 use Session;
 use Log;
@@ -17,14 +17,12 @@ use App\Http\Controllers\SchoolsController;
 
 class PeerGroupsController extends Controller
 {
-
     /*
     public function __construct()
     {
         $this->middleware('auth');
     }
     */
-
 
     /*** Display list of Peer Groups ***/
     public function index()
@@ -101,5 +99,6 @@ class PeerGroupsController extends Controller
         Log::info('PeerGroupController.store - End: '.$request['pg_id']);
         return redirect('peergroups');
     }      
+
 
 }

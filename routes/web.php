@@ -67,6 +67,20 @@ Route::resource('peergroups/store', 'PeerGroupsController');  // Saves a Peer Gr
 Route::post('peergroups/delete', ['as'=>'pg_delete_url', 'uses'=>'PeerGroupsController@destroy']);  // Deletes a Peer Group (destory method)
 /*******************/
 
+/*** Peer Group Filter ***/
+Route::resource('pgfilter', 'PeerGroupFilterController');
+Route::get('/pgfilter/ajaxresults', 'PeerGroupFilterController@ajaxresults');
+
+//Route::get('/ajaxresults', function() {
+//    if(Request::ajax()){
+//        $selected_instcat_list = Input::get('selected_instcat_list');
+//        var_dump($selected_instcat_list);
+//        return 'ajaxResults has loaded';
+//    }
+//});
+
+/*******************/
+
 
 Route::resource('applicationdetails', 'ApplicationDetailsController');
 
@@ -83,20 +97,7 @@ Route::resource('completions', 'completionsController');
 Route::resource('uploads','UploadsController');
 
 
-//    Route::delete('/comments/{comment}', 'CommentsController@destroy');
-//    Route::resource('comments', 'CommentsController');
-//    Route::get('comments/{student}/addforstudent', ['as' => 'comments.addforstudent',
-//        'uses' => 'CommentsController@addforstudent']);
-//    Route::get('comments/{planofstudy}/addforplanofstudy', ['as' => 'comments.addforplanofstudy',
-//        'uses' => 'CommentsController@addforplanofstudy']);
-
-//});
-
 Auth::routes();
-
 Route::get('/home', 'HomeController@index');
-
-Auth::routes();
-
 Route::get('/home', 'HomeController@index');
 
