@@ -141,7 +141,7 @@
                                 @endif
                             @endforeach
                         @endif
-                        <button class="btn btn-primary replyBtn">reply</button>
+                        <button class="btn btn-primary replyBtn">Reply</button>
                         <!-- End Nested Comment -->
                         <div class="commentReply" style="display: none;">
                             {!!Form::open(['method'=>'POST','url'=>'replies','class'=>'form-horizontal', 'role'=>'form'])!!}
