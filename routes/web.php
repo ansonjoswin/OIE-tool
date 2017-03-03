@@ -86,8 +86,22 @@ Route::resource('uploads','UploadsController');
 //        'uses' => 'CommentsController@addforplanofstudy']);
 
 // Peer Group Filter routes
-Route::resource('pgfilter', 'PeerGroupFilterController');
 
-Route::get('/test', function () {
-    return view('/test');
+Route::resource('pgfilter', 'PeerGroupFilterController');
+Route::post('/pgfilter/ajaxresults', 'PeerGroupFilterController@ajaxresults');
+
+//Route::get('/ajaxresults', function() {
+//    if(Request::ajax()){
+//        $selected_instcat_list = Input::get('selected_instcat_list');
+//        var_dump($selected_instcat_list);
+//        return 'ajaxResults has loaded';
+//    }
+//});
+
+Route::get('/getRequest',function(){
+    if(Request::ajax()){
+
+        return 'getRequest has loaded';
+    }
 });
+
