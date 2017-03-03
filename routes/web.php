@@ -88,7 +88,7 @@ Route::resource('uploads','UploadsController');
 // Peer Group Filter routes
 
 Route::resource('pgfilter', 'PeerGroupFilterController');
-Route::post('/pgfilter/ajaxresults', 'PeerGroupFilterController@ajaxresults');
+Route::get('/pgfilter/ajaxresults', 'PeerGroupFilterController@ajaxresults');
 
 //Route::get('/ajaxresults', function() {
 //    if(Request::ajax()){
@@ -97,11 +97,3 @@ Route::post('/pgfilter/ajaxresults', 'PeerGroupFilterController@ajaxresults');
 //        return 'ajaxResults has loaded';
 //    }
 //});
-
-Route::get('/getRequest',function(){
-    if(Request::ajax()){
-
-        return 'getRequest has loaded';
-    }
-});
-

@@ -11,7 +11,7 @@
     <meta charset="utf-8">
 
     <title>Select Peer Groups</title>
-    <meta name="description" content="Select List Actions - jQuery Plugin">
+    <meta name="description" content="UNO OIE ACBAT Peer Group Selection by Filter">
 
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.js"></script>
@@ -29,6 +29,7 @@
 <body>
 
 {!! Form::open(array('url' => 'pgfilter', 'id' => 'pgfilterform', 'class' => 'form')) !!}
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="container">
     <p>&nbsp;</p>
     <div class="row style-select">
@@ -42,6 +43,7 @@
                         {{ Form::select('instcat', $instcat_list, $selected_instcat_list, ['id' => 'instcat']) }}
                     @endif
             </div>
+
             <div class="form-group">
                 <label>Institution State</label><br>
                     @if(sizeof($selected_stabbr_list) == 0)
@@ -104,72 +106,35 @@
 
 <script>
     $(document).ready(function($){
-
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        //attempt to populate Available Institutions dynamically on submit (click on "Institution List")
         $('#btnFilter').on('click', function () {
-
-            $.ajax({
-                type: "POST",
-                url: "./pgfilter/ajaxresults",
-                data: {selected_instcat_list:$("#instcat").val(), selected_stabbr_list:$("#stabbr").val()},
-                success: function(data) {
-                    console.log("data", data);
-                }
-            });
             var selected_instcat_list = $("#instcat").val();
             var selected_stabbr_list = $("#stabbr").val();
             console.log("instcat", selected_instcat_list, "stabbr", selected_stabbr_list);
-            $.get("{{ url('/pgfilter/ajaxresults')}}",function(data) {
-                $('#lstBox1').empty();
-                console.log("emptied selected table");
-                $.each(data, function(school_name, School_ID) {
-                    // alert("Hello! I am an alert box!!");
-                    console.log("in foreach loop");
-                    $('#lstBox1').append("<option value='" + school_name +"'>" + School_ID + "</option>");
-                });
-                console.log ("after foreach loop");
-            });
+//            $.ajax({
+//                type: "GET",  //"POST"??
+//                url: "./pgfilter/ajaxresults",
+//                data: {selected_instcat_list:$("#instcat").val(), selected_stabbr_list:$("#stabbr").val()},
+//                success: function(data) {
+//                    console.log("data from ajaxresults", data); //have gotten data here from different methods but then can't populate the table
+//                }
+//            });
 
-//            return false;
+            $.get("{{ url('/pgfilter/ajaxresults')}}",function(data) {
+                $('#lstBox1').empty();  // the table gets emptied but this may also be an issue with pgfilter/show not being used
+                $.each(data, function(key, value) { // key? value? does array passed have labels?
+                    $('#lstBox1').append("<option value='" + key +"'>" + value + "</option>");
+                });
+
+            });
         });
 
-
-
-//        $('#btnFilter').click(function(){
-////            alert($(this).text());
-//            var selected_instcat_list = $("#instcat").val();
-//            var selected_stabbr_list = $("#stabbr").val();
-//            console.log("instcat", selected_instcat_list, "stabbr", selected_stabbr_list);
-//            $.get('ajaxresults',function(data){
-//
-//                console.log("this", this);
-//            });
-//        });
-
-
-
-        {{--$("#btnFilter").on("click", function(e){--}}
-            {{--e.preventDefault();--}}
-            {{--console.log("in btnFilter function");--}}
-            {{--var selected_instcat_list = $("#instcat").val();--}}
-            {{--var selected_stabbr_list = $("#stabbr").val();--}}
-            {{--console.log("instcat", selected_instcat_list, "stabbr", selected_stabbr_list);--}}
-
-            {{--$.get("{{ url('/pgfilter/ajaxresults')}}",--}}
-{{--//                    { option: $(this).val() },--}}
-//                    function(data) {
-//                        $('#lstBox1').empty();
-//                        console.log("emptied selected table");
-//                        $.each(data, function(school_name, School_ID) {
-//                            // alert("Hello! I am an alert box!!");
-//                            console.log("in foreach loop");
-//                            $('#lstBox1').append("<option value='" + school_name +"'>" + School_ID + "</option>");
-//                        });
-//                        console.log ("after foreach loop");
-//                    });
-
-
-//        });
-
+        // script for moving between Available Institutions and Selected Institutions
         $('#btnRight').click(function (e) {
             $('select').moveToListAndDelete('#lstBox1', '#lstBox2');
             e.preventDefault();

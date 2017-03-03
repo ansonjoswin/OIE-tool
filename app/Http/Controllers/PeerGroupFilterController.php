@@ -49,16 +49,7 @@ class PeerGroupFilterController extends Controller
     }
     public function show()
     {
-//        $instcat_list = Instcat::pluck('desc','id')->toArray();
-//        $stabbr_list = Stabbr::pluck('desc','id')->toArray();
-//
-//        $selected_instcat_list = Instcat::pluck('desc','id')->toArray();
-////        dd($selected_instcat_list);
-//        $selected_stabbr_list = Stabbr::pluck('desc','id')->toArray();
-////        $selected_attribute3_list = [];
-//
-//        $results = School::pluck('school_name','School_ID');
-//        $school_ids = $results->toArray();
+
     }
 
 //    public function store(PeerGroupFormRequest $request)
@@ -71,18 +62,19 @@ class PeerGroupFilterController extends Controller
 
     public function ajaxresults(Request $request)
     {
+        // only using instcat for select right now to get the ajax working; will add stabbr and if statements once functional
         $selected_instcat_list = $request->selected_instcat_list;
 //        var_dump($selected_instcat_list);
-        $results = School::where('Inst_Catgry', '=', $selected_instcat_list)->get();
-//        ->pluck('school_name','School_ID');
-//        var_dump($results);
-        $school_ids = $results->pluck('school_name','School_ID')->toArray();
-        return $school_ids;
+        $results = School::where('Inst_Catgry', '=', $selected_instcat_list)->pluck('school_name','School_ID');
+        $school_ids = $results->toArray();
+        return Response::json($school_ids); //this function is being called, but there is no response data in the script
+
+
 
 
 //    public function ajaxresults(Request $request)
 //    {
-//        print_r($request->all());
+
 //        $selected_instcat_list = Input::get('selected_instcat_list');
 //var_dump($selected_instcat_list);
 //        $results = School::where('Inst_Catgry', '=', $selected_instcat_list)->pluck('school_name','School_ID')->get();
@@ -129,11 +121,4 @@ class PeerGroupFilterController extends Controller
 
     }
 
-    public function majorDropDownData()
-    {
-        $program_id = Input::get('option');
-        $program = Program::find($program_id);
-        $majors = $program->majors->toArray();
-        return Response::json(array_pluck($majors, 'name', 'id'));
-    }
 }
