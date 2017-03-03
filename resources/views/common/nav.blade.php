@@ -41,6 +41,9 @@
                         </ul>
                     </li>
                 @endif
+                @if(Auth::user())
+                <li><a href="{{ url('/peergroups') }}">Peer Groups</a></li>
+                @endif
             </ul>
             @endif
 

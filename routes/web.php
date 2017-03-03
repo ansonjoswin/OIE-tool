@@ -60,38 +60,12 @@ Route::resource('instructional_ess', 'Instructional_ESsController');
 Route::resource('noninstructional_ess', 'NonInstructional_ESsController');
 
 
-
-
-
-
-Route::resource('peergroups', 'PeerGroupsController');  // Goes to List of Saved Peer Groups
-Route::resource('school_peergroups/individual/create', 'School_PeerGroupsController@create');  // Goes 
-Route::post('school_peergroups/individual/add', ['as'=>'school_peergroup_indv_add_url', 'uses'=>'School_PeerGroupsController@add_indv']);
-//Route::resource('school_peergroups/individual', 'School_PeerGroupsController');
-
-Route::post('school_peergroups/individual/create', ['as'=>'peergroup_create_url', 'uses'=>'School_PeerGroupsController@create']);
-
-
-// Route::resource('peergroups/indv/index', 'PeerGroupIndvFilterController');
-// Route::post('peergroups/indv/', ['as'=>'pg_index_url', 'uses'=>'PeerGroupsController@index_indv']);
-// Route::get('peergroups/indv/new', 'PeerGroupsController@add_indv');
-// Route::post('peergroups/indv/edit', ['as'=>'pg_edit_url', 'uses'=>'PeerGroupsController@edit_indv']);
-
-
-Route::resource('school_peergroups/individual', 'School_PeerGroupsController@create');
-//Route::get('school_peergroups/create', 'School_PeerGroupsController@create');
-Route::post('school_peergroups/individual', ['as'=>'school_peergroup_create_url', 'uses'=>'School_PeerGroupsController@create']);
-
-Route::post('school_peergroups/individual', ['as'=>'school_peergroup_index_url', 'uses'=>'School_PeerGroupsController@index']);
-//Route::get('school_peergroups/create', ['as'=>'school_peergroupcreate_url', 'uses'=>'School_PeerGroupsController@create']);
-//Route::post('add', ['as'=>'school_peergroupadd_url', 'uses'=>'School_PeerGroupsController@add_indv']);
-
-
-
-
-
-
-
+/*** PEER GROUPS ***/
+Route::resource('peergroups', 'PeerGroupsController');  // Lists Peer Groups (index method)
+Route::get('peergroups/create', 'PeerGroupsController@create');  // Creates a Peer Group (create method)
+Route::resource('peergroups/store', 'PeerGroupsController');  // Saves a Peer Group (store method)
+Route::post('peergroups/delete', ['as'=>'pg_delete_url', 'uses'=>'PeerGroupsController@destroy']);  // Deletes a Peer Group (destory method)
+/*******************/
 
 
 Route::resource('applicationdetails', 'ApplicationDetailsController');

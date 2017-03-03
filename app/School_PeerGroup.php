@@ -1,14 +1,11 @@
 <?php
-
 namespace App;
-
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Log;
-
 
 class School_PeerGroup extends Model
 {
@@ -29,4 +26,5 @@ class School_PeerGroup extends Model
         return $this->hasMany('App\School');
 
     }
+
 }

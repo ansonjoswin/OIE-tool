@@ -7,67 +7,48 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="pull-right">
-                            <!--
-                            <form action="{{ url('school_peergroups/create') }}" method="GET">{{ csrf_field() }}
+                            <form action="{{ url('peergroups/create') }}" method="GET">{{ csrf_field() }}
                                 <button type="submit" id="create-peergroup" class="btn btn-primary"><i class="fa fa-btn fa-file-o"></i>Create</button>
                             </form>
-                            -->
-                                {!! Form::button('<i class="fa fa-btn fa-primary"></i>Create', ['type'=>'post', 'class'=>'btn btn-primary', 'data-toggle'=>'modal', 'data-target'=>'.demo_popup' ]) !!}                             
                         </div>
                         <div><h4>{{ $heading }}</h4></div>
                     </div>   
-
-                     <div class="panel-body">
+                     <div class="panel-body" onload="OnloadFunc();"> 
                         @include('common.flash')
                         @if (count($peergroups) > 0)
-                            <a href="{{url('/peergroups/create')}}" class="btn btn-success">Create PeerGroup</a>
-                            <hr>
-                            <table class="table table-striped table-bordered table-hover">
-                                <thead>
-                                <tr class="bg-info">
-                                    <th> School ID</th>
-                                    <th>School Name</th>
-                                    <th>School City</th>
-                                    <th>School State</th>
-
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach ($peergroups as $peergroups)
-                                    <tr>
-                                        <td>{{ $peergroups->School_Id}}</td>
-                                        <td>{{ $peergroups->School_Name}}</td>
-                                        <td>{{ $peergroups->School_Address}}</td>
-                                        <td>{{ $peergroups->School_City}}</td>
-                                        <td>
-                                            {!! Form::open(['method' => 'DELETE', 'route'=>['peergroups.destroy', $peergroups->PeerGroupID]]) !!}
-                                            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                                            {!! Form::close() !!}
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>     
-
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped ">
+                               <table class="table table-bordered table-striped cds-datatable">
                                     <thead> <!-- Table Headings -->
-                                    <th> </th>
-                                    <th>Institution Name</th>
-                                    <th> </th>
+                                    <th>Peer Group Name</th>
+                                    @if(Auth::user()->can(['manage-users','manage-roles']))
+                                    <th>Created By</th>
+                                    @endif
+                                    <th>Created Date</th>
+                                    <th>Private/Public?</th>
+                                    <th>Action</th>
                                     </thead>
                                     <tbody> <!-- Table Body -->
-                                    {{-- @foreach ($peergroups as $peergroup)
+                                    @foreach ($peergroups as $peergroup)
                                         <tr>
-                                            <td class="table-text"><div>{{ $peergroups->School_Id}}</div></td>
-                                            <td class="table-text"><div>{{ $peergroups->School_Name}}</div></td>
+                                            <td class="table-text"><div>{{ $peergroup->PeerGroupName}}</div></td>
+                                            @if(Auth::user()->can(['manage-users','manage-roles']))
+                                            <td class="table-text"><div>{{ $peergroup->created_by}}</div></td>
+                                            @endif
+                                            <td class="table-text"><div>{{ $peergroup->created_at->format('m/d/Y')}}</div></td>
+                                            <td class="table-text"><div>{{ $peergroup->PriPubFlg}}</div></td>
+                                            <td>
+                                                {!! Form::open(['route'=>'pg_delete_url', 'class'=>'form-horizontal', 'onsubmit'=>'return ConfirmDelete()']) !!}
+                                                {!! Form::hidden('pg_id', $peergroup->PeerGroupID, array('id'=>'pg_id', 'class'=>'btn btn-danger')) !!}
+                                                {!! Form::button('<i class="fa fa-btn fa-trash"></i>', ['type'=>'submit', 'class'=>'btn btn-danger']) !!}                                      
+                                                {!! Form::close() !!}
+                                            </td>                                            
                                         </tr>
-                                    @endforeach --}}
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
                         @else
-                            <div class="panel-body"><h4>No Peer Group Found</h4></div>
+                            <div class="panel-body"><h4>Please create a peer group!</h4></div>
                         @endif
                     </div> 
                     
@@ -78,12 +59,36 @@
 @endsection
 
 @section('footer')
+    <style>
+        .table td { border: 0px !important; }
+        .tooltip-inner { white-space:pre-wrap; max-width: 400px; }
+    </style>
 
+    <script>
+        $(document).ready(function() {
+            $('table.cds-datatable').on( 'draw.dt', function () {
+                $('tr').tooltip({html: true, placement: 'auto' });
+            } );
+
+            $('tr').tooltip({html: true, placement: 'auto' });
+        } );
+
+        function ConfirmDelete() {
+            var x = confirm("Are you sure you want to delete?");
+
+            if (x) {
+                return true;
+            } else {
+                return false;
+            }
+        }        
+
+    </script>
 @endsection
 
 
 
-<div class="modal fade demo_popup" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true">
+<!-- <div class="modal fade demo_popup" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true">
 <div class="modal-dialog">
 <div class="modal-content">
     <div class="modal-header">
@@ -97,9 +102,9 @@
             <tr>
             <td> 
                 <div class="panel-body">   
-                {!! Form::open(array('url'=>'school_peergroups/individual/create', 'class'=>'form')) !!}
-                    <button type="submit" id="create-peergroup" class="btn btn-primary"><i class="fa fa-btn fa-file-o"></i>By Specific Institution</button>
-                {!! Form::close() !!}
+                            <form action="{{ url('school_peergroups') }}" method="GET">{{ csrf_field() }}
+                                <button type="submit" id="create-peergroup" class="btn btn-primary"><i class="fa fa-btn fa-file-o"></i>By Specific Institution</button>
+                            </form>                
                 </div>
              </td>
              <td>
@@ -110,6 +115,6 @@
              </tr>
          </table>
     </div>
-</div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
-</div><!-- /.modal-->
+</div>
+</div>
+</div> -->
