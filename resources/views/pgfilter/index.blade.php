@@ -4,11 +4,6 @@
     @include('common.errors')
     @include('common.flash')
 
-<!doctype html>
-
-<html lang="en">
-<head>
-    <meta charset="utf-8">
 
     <title>Select Peer Groups</title>
     <meta name="description" content="UNO OIE ACBAT Peer Group Selection by Filter">
@@ -116,22 +111,27 @@
             var selected_instcat_list = $("#instcat").val();
             var selected_stabbr_list = $("#stabbr").val();
             console.log("instcat", selected_instcat_list, "stabbr", selected_stabbr_list);
-//            $.ajax({
-//                type: "GET",  //"POST"??
-//                url: "./pgfilter/ajaxresults",
-//                data: {selected_instcat_list:$("#instcat").val(), selected_stabbr_list:$("#stabbr").val()},
-//                success: function(data) {
-//                    console.log("data from ajaxresults", data); //have gotten data here from different methods but then can't populate the table
-//                }
-//            });
-
-            $.get("{{ url('/pgfilter/ajaxresults')}}",function(data) {
-                $('#lstBox1').empty();  // the table gets emptied but this may also be an issue with pgfilter/show not being used
+           $.ajax({
+               type: "GET",  //"POST"??
+               url: "./this",
+               data: {selected_instcat_list:$("#instcat").val(), selected_stabbr_list:$("#stabbr").val()},
+               success: function(data) {
+                $('#lstBox1').empty();
                 $.each(data, function(key, value) { // key? value? does array passed have labels?
-                    $('#lstBox1').append("<option value='" + key +"'>" + value + "</option>");
+                      $('#lstBox1').append("<option value='" + key +"'>" + value + "</option>");
                 });
+                   //console.log("data from ajaxresults: ", data); //have gotten data here from different methods but then can't populate the table
+               }
+           });
 
-            });
+            // $.get("{{ url('this')}}",function(data) {
+            //     // $('#lstBox1').empty();  // the table gets emptied but this may also be an issue with pgfilter/show not being used
+            //     // $.each(data, function(key, value) { // key? value? does array passed have labels?
+            //     //     $('#lstBox1').append("<option value='" + key +"'>" + value + "</option>");
+            //     // });
+            //     console.log(data);
+
+            // });
         });
 
         // script for moving between Available Institutions and Selected Institutions
@@ -155,7 +155,5 @@
     });
 
 </script>
-</body>
-</html>
 
 @endsection

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PeerGroupFormRequest;
 use Illuminate\Auth\Access\Response;
-use Illuminate\Http\Request;
+use Request;
 use Illuminate\Support\Facades\Input;
 use Auth;
 use Session;
@@ -62,12 +62,19 @@ class PeerGroupFilterController extends Controller
 
     public function ajaxresults(Request $request)
     {
-        // only using instcat for select right now to get the ajax working; will add stabbr and if statements once functional
-        $selected_instcat_list = $request->selected_instcat_list;
-//        var_dump($selected_instcat_list);
-        $results = School::where('Inst_Catgry', '=', $selected_instcat_list)->pluck('school_name','School_ID');
-        $school_ids = $results->toArray();
-        return Response::json($school_ids); //this function is being called, but there is no response data in the script
+        if(Request::ajax())
+        {
+            Log::info('This is the request: '.$request.'\n\n\n');
+            // only using instcat for select right now to get the ajax working; will add stabbr and if statements once functional
+            $selected_instcat_list = $request->selected_instcat_list;
+    //        var_dump($selected_instcat_list);
+            $results = School::where('Inst_Catgry', '=', $selected_instcat_list)->pluck('school_name','School_ID');
+            $school_ids = $results->toArray();
+            return $school_ids; //this function is being called, but there is no response data in the script
+        }
+        else{
+            return 'no';
+        }
 
 
 
