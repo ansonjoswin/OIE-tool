@@ -74,7 +74,7 @@ class PeerGroupsController extends Controller
 
         /** Create School_PeerGroup records for new PeerGroup**/
         $pg_id = $pg_object->PeerGroupID;
-        $schoolsIDs = $request['schoolsIDs'];
+        $schoolsIDs = $request['lstBox2'];
         foreach ($schoolsIDs as $school_id) {
             $sch_peergroup = [ ['PeerGroupID'=>$pg_id, 'School_ID'=>$school_id, 'created_by'=>Auth::user()->email, 'created_at'=>date_create() ] ];
             DB::table('school_peergroups')->insert($sch_peergroup);

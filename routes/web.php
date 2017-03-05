@@ -80,24 +80,24 @@ Route::get('/this', function() {
        	if($selected_instcat_list == 0 )
        	{
        		$results = School::where('School_State', $selected_stabbr_list)->pluck('school_name','School_ID');
-			$school_ids = $results->toArray();
-		return $school_ids;
-		}
+			    $school_ids = $results->toArray();
+		      return $school_ids;
+		    }
        	elseif($selected_stabbr_list == 0)
        	{
        		$results = School::where('Inst_Catgry', '=', $selected_instcat_list)->pluck('school_name','School_ID');
-			$school_ids = $results->toArray();
-		return $school_ids;
-	}
-       	else
+          $school_ids = $results->toArray();
+		      return $school_ids;
+	      }
+        else
        	{
-		$results = School::where('Inst_Catgry', '=', $selected_instcat_list)->where('School_State', $selected_stabbr_list)->pluck('school_name','School_ID');
-		$school_ids = $results->toArray();
-		return $school_ids;
-	}
-		// $schoolIds = json_encode(school_ids);
-		// Log::info('school id: '.$school_ids.'\n\n\n');
-		// return $schoolIds;
+		      $results = School::where('Inst_Catgry', '=', $selected_instcat_list)->where('School_State', $selected_stabbr_list)->pluck('school_name','School_ID');
+		      $school_ids = $results->toArray();
+		      return $school_ids;
+	       }
+      		// $schoolIds = json_encode(school_ids);
+      		// Log::info('school id: '.$school_ids.'\n\n\n');
+      		// return $schoolIds;
    }
 });
 
