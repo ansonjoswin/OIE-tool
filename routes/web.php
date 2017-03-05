@@ -77,24 +77,38 @@ Route::get('/this', function() {
    if(Request::ajax()){
        	$selected_instcat_list = Input::get('selected_instcat_list');
        	$selected_stabbr_list = Input::get('selected_stabbr_list');
-       	if($selected_instcat_list == 0 )
+
+        //Both are "All". Return nothing.
+        if($selected_instcat_list == 0 && $selected_stabbr_list == "0")
+        {
+          $results = collect([]);
+          $school_ids = $results->toArray();
+          return $school_ids;
+        }
+
+        //Filter by Category and State
+        if($selected_instcat_list != 0 && $selected_stabbr_list != "0")
+        {
+          $results = School::where('Inst_Catgry', '=', $selected_instcat_list)->where('School_State', '=', $selected_stabbr_list)->pluck('school_name','School_ID');
+          $school_ids = $results->toArray();
+          return $school_ids;
+        }
+
+        //Filter by State
+       	if($selected_instcat_list == 0)
        	{
-       		$results = School::where('School_State', $selected_stabbr_list)->pluck('school_name','School_ID');
+       		$results = School::where('School_State', '=', $selected_stabbr_list)->pluck('school_name','School_ID');
 			    $school_ids = $results->toArray();
 		      return $school_ids;
 		    }
-       	elseif($selected_stabbr_list == 0)
+
+        //Filter by Category
+       	if($selected_stabbr_list == "0")
        	{
        		$results = School::where('Inst_Catgry', '=', $selected_instcat_list)->pluck('school_name','School_ID');
           $school_ids = $results->toArray();
 		      return $school_ids;
 	      }
-        else
-       	{
-		      $results = School::where('Inst_Catgry', '=', $selected_instcat_list)->where('School_State', $selected_stabbr_list)->pluck('school_name','School_ID');
-		      $school_ids = $results->toArray();
-		      return $school_ids;
-	       }
       		// $schoolIds = json_encode(school_ids);
       		// Log::info('school id: '.$school_ids.'\n\n\n');
       		// return $schoolIds;

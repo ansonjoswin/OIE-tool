@@ -4,24 +4,14 @@
     @include('common.errors')
     @include('common.flash')
 
-
-    <title>Select Peer Groups</title>
-    <meta name="description" content="UNO OIE ACBAT Peer Group Selection by Filter">
-
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.js"></script>
     <script src="js/jquery.selectlistactions.js"></script>
 
-    <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/site.css">
 
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-</head>
-
-<body>
 
 {!! Form::open(array('url' => 'pgfilter', 'id' => 'pgfilterform', 'class' => 'form')) !!}
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -228,3 +218,5 @@ Elaine code -->
 </script>
 
 @endsection
+
+@section('footer')
