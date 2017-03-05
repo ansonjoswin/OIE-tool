@@ -27,6 +27,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CngTable::class);
         $this->call(GradTable::class);
         $this->call(AppdetTable::class);
+        $this->call(AdmissionTable::class);
+         $this->call(AdmissionsTable::class);
         //$this->call(CMSeeder::class);
         $this->command->info('User, Role, Permission and School tables seeded!');
 

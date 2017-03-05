@@ -38,7 +38,13 @@ class Kernel extends ConsoleKernel
         
      if(File::isDirectory(storage_path('app\uploads'))){
 
-              $file=storage_path('logs\scheduler\Scheduerlog1.log');
+               $scheduler_dir = '../storage/app/logs/scheduler';
+
+            if (!file_exists($scheduler_dir)) {
+                mkdir($scheduler_dir, 0777, true);
+            }
+
+              $file=storage_path('logs\scheduler\Scheduerlogdefault.log');
 
            // $ab=storage_path('logs\scheduler\Scheduerlog1.log');
               $view_log = new Logger('schedulerlogs');
@@ -51,42 +57,34 @@ class Kernel extends ConsoleKernel
                       //->hourlyAT('09')
                       ->dailyAT('01:00')
                       ->appendOutputTo($file)
-                     // ->emailOutputTo('oie.team2017@gmail.com')   
-                      ->after( function () {
-                        Storage::deletedirectory('uploads');
-                        //$ab=File::get($file);
+                     ->after( function () {
+                        Storage::deletedirectory('uploads');       
+                        DB::Table('map_tables')->truncate();                
                       });
 
-                     //$ab=File::get($file);
+                     
       if(file::exists($file))
       {              
-                   $temp = '';
-                      $handle = fopen($file, "r");
-        if ($handle) {
+              $temp = '';
+              $handle = fopen($file, "r");
+        	  if ($handle) {
                  while (! feof($handle)) {
-                 $line = stripslashes(fgets($handle)); 
-                 //echo $line;
-                 //$t = str_replace("?[32m", "", $line);
-                 //$view_log->addINFO($line);
-                 //$t=preg_replace('/[[32m[39m[37;41m]/','',$line);
-                
-               //  var_dump(substr($temp,1,3));
-              //   if(substr($temp,1,4) === "[32m"){
-$line = substr_replace($line,'',((strpos($line, '[32m'))-1),5);
-$line = substr_replace($line,'',((strpos($line, '[39m'))-1),5);
-$line = substr_replace($line,'',((strpos($line, '[37;41m'))-1),8);
-$line = substr_replace($line,'',((strpos($line, '[39;49m'))-1),8);
-$temp = $temp.$line;
+                    
+                    $line = stripslashes(fgets($handle)); 
+                 
+					$line = substr_replace($line,'',((strpos($line, '[32m'))-1),5);
+					$line = substr_replace($line,'',((strpos($line, '[39m'))-1),5);
+					$line = substr_replace($line,'',((strpos($line, '[37;41m'))-1),8);
+					$line = substr_replace($line,'',((strpos($line, '[39;49m'))-1),8);
+					$temp = $temp.$line;
 
-//var_dump($temp);<br>
-               //}
-                 //var_dump($t);
-                }
+             }
+              
               fclose($handle);
           }
                           
               $view_log->addINFO($temp);
-            }
+       }
         
     }
     }   

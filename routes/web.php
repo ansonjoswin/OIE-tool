@@ -43,6 +43,8 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 Route::get('resetPassword', 'HomeController@resetPassword');
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+Route::resource('failed_jobs', 'Failed_jobsController');
+
 
 Route::post('updatePassword', 'HomeController@updatePassword');
 
