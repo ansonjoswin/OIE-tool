@@ -81,7 +81,7 @@ Route::get('/this', function() {
         //Both are "All". Return nothing.
         if($selected_instcat_list == 0 && $selected_stabbr_list == "0")
         {
-          $results = collect([]);
+          $results = School::pluck('school_name','School_ID');
           $school_ids = $results->toArray();
           return $school_ids;
         }
@@ -109,10 +109,7 @@ Route::get('/this', function() {
           $school_ids = $results->toArray();
 		      return $school_ids;
 	      }
-      		// $schoolIds = json_encode(school_ids);
-      		// Log::info('school id: '.$school_ids.'\n\n\n');
-      		// return $schoolIds;
-   }
+     }
 });
 
 /*******************/
