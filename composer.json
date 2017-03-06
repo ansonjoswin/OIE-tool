@@ -29,8 +29,8 @@
             
         ],
         "psr-4": {
-            "App\\": "app/"
-            
+            "App\\": "app/",
+            "Logscheck\\": "vendor/rap2hpoutre/laravel-log-viewer/src/Rap2hpoutre"
 
         }
     },

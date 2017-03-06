@@ -38,7 +38,7 @@ class Kernel extends ConsoleKernel
         
      if(File::isDirectory(storage_path('app\uploads'))){
 
-               $scheduler_dir = '../storage/app/logs/scheduler';
+               $scheduler_dir = __DIR__ . '/../..\storage\logs\scheduler';
 
             if (!file_exists($scheduler_dir)) {
                 mkdir($scheduler_dir, 0777, true);

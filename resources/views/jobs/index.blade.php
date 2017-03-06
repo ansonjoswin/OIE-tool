@@ -7,7 +7,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"> 
                      <div  class="pull-right">
-                            <form action="{{ url('logs') }}" method="GET">{{ csrf_field() }}
+                            <form action="{{ url('/logs') }}" method="GET">{{ csrf_field() }}
                                 <button type="submit" id="check-logs" class="btn btn-primary"><i class="fa fa-btn fa-file-o"></i>Check logs</button>
                             </form>
                         </div>
