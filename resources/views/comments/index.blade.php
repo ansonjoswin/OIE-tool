@@ -21,6 +21,23 @@
                         <td class="table-text"><div>{{ $comment->text }}</div></td>
                         <td class="table-text"><div>{{ $comment->created_at }}</div></td>
                         <td class="table-text"><div>{{ $comment->user->name }}</div></td>
+                        {{-- <td>
+                            
+                        <!-- End Nested Comment -->
+                        <div class="commentReply" style="display: none;">
+                            {!!Form::open(['method'=>'POST','url'=>'replies','class'=>'form-horizontal', 'role'=>'form'])!!}
+                            <div class="form-group">
+                                {!!Form::label('comment_text','Comment:')!!}
+                                {!!Form::textarea('comment_text', null, ['class'=>'form-control','rows'=>3])!!}
+                                <input type="hidden" name="user_comment_id" value="{{$comment->id}}">
+                            </div>
+                           <div>
+                                {!!Form::submit('Submit',['class'=>'btn btn-primary'])!!}
+                                {!!Form::close()!!}
+                            </div>
+                        </div>
+
+                        </td> --}}
                         <td>
                             @if($comment->id != 1 && $comment->id != 2) <!-- Administrator and Advisor Comment -->
                             <div class="pull-right" style="height: 25px;">

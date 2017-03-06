@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Carnegie_Classification extends Model
 {
     public $table = "carnegie_classification";
@@ -22,9 +23,9 @@ class Carnegie_Classification extends Model
     public static function getTableName() {
         return (new static)->getTable();
     }
-
     public function school() {
         return $this->belongsTo('App\School');
     }
 }
+
 

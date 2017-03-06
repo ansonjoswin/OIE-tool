@@ -26,7 +26,7 @@ Class SchoolTable extends CsvDataSeeder
 
 }
 
-Class CngTable extends CMCsvDataSeeder
+Class CarnegieTable extends CMCsvDataSeeder
 {
     public $table;
 
@@ -41,7 +41,7 @@ Class CngTable extends CMCsvDataSeeder
 
     public function run()
     {
-        $cngtable = new CngTable();
+        $cngtable = new CarnegieTable();
         $cngtable->setTableName($this->table);
         $cngtable->setFileName($this->filename);
         $cngtable->setColumnMapping();
@@ -49,7 +49,7 @@ Class CngTable extends CMCsvDataSeeder
     }
 }
 
-Class GradTable extends OtherCsvDataSeeder
+Class GraduationTable extends OtherCsvDataSeeder
 {
     public $table;
 
@@ -64,7 +64,7 @@ Class GradTable extends OtherCsvDataSeeder
 
     public function run()
     {
-        $gradtable = new GradTable();
+        $gradtable = new GraduationTable();
         $gradtable->setTableName($this->table);
         $gradtable->setFileName($this->filename);
         $gradtable->setColumnMapping();
@@ -72,7 +72,7 @@ Class GradTable extends OtherCsvDataSeeder
     }
 }
 
-Class AppdetTable extends OtherCsvDataSeeder
+Class ApplicationDetailsTable extends OtherCsvDataSeeder
 {
     public $table;
 
@@ -87,7 +87,31 @@ Class AppdetTable extends OtherCsvDataSeeder
 
     public function run()
     {
-        $appdettable = new AppdetTable();
+        $appdettable = new ApplicationDetailsTable();
+        $appdettable->setTableName($this->table);
+        $appdettable->setFileName($this->filename);
+        $appdettable->setColumnMapping();
+        $appdettable->seedFromCSV($this->filename);
+    }
+
+}
+
+Class CompletionsTable extends OtherCsvDataSeeder
+{
+    public $table;
+
+    public $filename;
+
+    public function __construct()
+    {
+        //$this->filename =__DIR__ . '/../..\resources\assets\csv\adm2014.csv';
+        $this->filename = __DIR__ . '/../..\storage\app\uploads\c2014_a.csv';
+        $this->table = 'completions';
+    }
+
+    public function run()
+    {
+        $appdettable = new CompletionsTable();
         $appdettable->setTableName($this->table);
         $appdettable->setFileName($this->filename);
         $appdettable->setColumnMapping();
