@@ -4,9 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Carnegie_Classification extends Model
 {
     public $table = "carnegie_classifications";  //EHLbug: I made this plural to allow it to pull in from a view
+
     protected $fillable=[
         'School_ID',
         'Year',
@@ -27,4 +29,5 @@ class Carnegie_Classification extends Model
         return $this->belongsTo('App\School');
     }
 }
+
 

@@ -15,7 +15,7 @@ class CreateApplicationDetailsTable extends Migration
     {
         Schema::create('applicationdetails', function (Blueprint $table) {
 
-            $table->increments('Application_ID');
+            $table->bigincrements('Application_ID');
             $table->integer('year')->nullable();
             $table->integer('School_ID')->unsigned();
             $table->integer('SecSchGPA')->nullable();

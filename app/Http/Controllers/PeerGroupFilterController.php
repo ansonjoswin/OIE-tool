@@ -23,10 +23,10 @@ class PeerGroupFilterController extends Controller
     {
         $this->middleware('auth');
         $this->user = Auth::user();
-        $this->instcats = Instcat::all();
-        $this->stabbrs = Stabbr::all();
-        $this->results = School::pluck('school_name','School_ID');
-        $this->school_ids = $this->results->toArray();
+        // $this->instcats = Instcat::all();
+        // $this->stabbrs = Stabbr::all();
+        // $this->results = School::pluck('school_name','School_ID');
+        //$this->school_ids = $this->results->toArray();
         $this->new_array = [];
         $this->userpeergroups = PeerGroup::all();
 //                $schools = School::all();  //EHLbug: This crashes everything and causes an http 500 error

@@ -12,7 +12,7 @@ use Log;
 class Comment extends Model
 {
     use SoftDeletes;
-
+use Notifiable;
     /**
      * The attributes that should be mutated to dates.
      *
@@ -43,11 +43,11 @@ class Comment extends Model
     public function type()
     {
         // This neeeds to be implemented for every object that requires a comment
-//        if (strpos($this->commentable_type, 'SkeletalElement') !== false) {
-//            return "SkeletalElement";
-//        } else {
-//            return "Unknown";
-//        }
+     if (strpos($this->commentable_type, 'SkeletalElement') !== false) {
+        return "SkeletalElement";
+   } else {
+      return "Unknown";
+  }
 
     }
 }

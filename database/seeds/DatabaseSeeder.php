@@ -27,12 +27,27 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleUserTableSeeder::class);
         $this->call(UsersRolesPermissions::class);
         $this->call(MappingTableSeeder::class);
+// // Follow naming standards
+//         <<<<<<< HEAD
+// //         $this->call(SchoolTable::class);
+// //         $this->call(CngTable::class);
+// //         $this->call(GradTable::class);
+// //         $this->call(AppdetTable::class);
+// //         $this->call(AdmissionTable::class);
+// //          $this->call(AdmissionsTable::class);
+// //         //$this->call(CMSeeder::class);
+// //         $this->command->info('User, Role, Permission and School tables seeded!');
+// // =======
         $this->call(SchoolTable::class);
         $this->call(CarnegieTable::class);
         $this->call(GraduationTable::class);
         $this->call(ApplicationDetailsTable::class);
-        //$this->call(CMSeeder::class);
+        $this->call(AdmissionTable::class);
+        $this->call(AdmissionsTable::class);
+        $this->call(CompletionsTable::class);
+        $this->call(CMSeeder::class);
         $this->command->info('User, Role, Permission, Data Dictionary, School , Carnegie Classification, Graduation and Application Details tables seeded!');
+
 
         // Seed the Tags table
         //$this->call(TagsTableSeeder::class);

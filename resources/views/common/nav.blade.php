@@ -13,7 +13,7 @@
             <!-- Branding Image -->
             {{--<a class="navbar-brand" href="{{ url('/') }}">Laravel</a>--}}
             <a class="navbar-brand" href="{{ url('/') }}">
-                OIE Analytics Tool
+                <img id="portalLogo" src="{{asset('images/UNO-icon-color.png')}}">OIE Analytics Tool
             </a>
         </div>
 
@@ -29,17 +29,34 @@
                             <i class="fa fa-btn fa-fw fa-cogs"></i>Administration<span class="caret"></span></a>
                         <ul class="dropdown-menu multi level" role="menu">
                             <li><a href="{{ url('/users') }}"><i class="fa fa-btn fa-fw fa-user"></i>Users</a></li>
+
+{{-- Removing roles from admin dropdown
+
+<<<<<<< HEAD
                             <li><a href="{{ url('/roles') }}"><i class="fa fa-btn fa-fw fa-users"></i>Roles</a></li>
+======= --}}
+                            <li><a href="{{ url('/usercomments') }}"><i class="fa fa-btn fa-fw fa-tasks"></i>Manage Comments</a></li>
+                             {{-- <li><a href="{{ url('/usercomments/reply') }}"><i class="fa fa-btn fa-fw fa-users"></i>Discussions Feed</a></li>
+ --}}
 
                           {{-- (for next sprint)  <li><a href="{{ url('/schools') }}"><i class="fa fa-btn fa-fw fa-university"></i>Schools</a></li> --}}
-							<li><a href="{{ url('/uploads') }}"><i class="fa fa-btn fa-fw fa-upload"></i>Uploads</a></li>
-
+							<li><a href="{{ url('/uploads') }}"><i class="fa fa-btn fa-fw fa-upload"></i>Upload Files</a></li>
                             {{--<li><a href="{{ url('/schools') }}"><i class="fa fa-btn fa-fw fa-university"></i>Schools</a></li>--}}
-
+                            <li><a href="{{ url('/jobs') }}"><i class="fa fa-btn fa-fw fa-tasks"></i>Jobs</a></li>
                             {{--<li class="divider"></li>--}}
                             {{--<li><a href="{{ url('/files') }}"><i class="fa fa-btn fa-fw fa-file"></i>Files</a></li>--}}
                         </ul>
                     </li>
+                    {{-- @else
+                    
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <i class="fa fa-btn fa-fw fa-cogs"></i>User Action<span class="caret"></span></a>
+                        <ul class="dropdown-menu multi level" role="menu">
+                            <li><a href="{{ url('/usercomments') }}"><i class="fa fa-btn fa-fw fa-user"></i>Discussions</a></li>
+                            </ul>
+                            </li>--}}
+                    
                 @endif
                 @if(Auth::user())
                 <li><a href="{{ url('/peergroups') }}">Peer Groups</a></li>
@@ -69,8 +86,8 @@
                                         </form>
                             </li>
                             <li><a href="{{ url('/resetPassword') }}"><i class="fa fa-btn fa-fw fa-lock"></i>Change Password</a></li>
-                            <li class="divider"></li>
-                            <li><a href="{{ url('/help') }}"><i class="fa fa-btn fa-fw fa-question-circle"></i>Help</a></li>
+                            <!-- <li class="divider"></li> -->
+                            <!-- <li><a href="{{ url('/help') }}"><i class="fa fa-btn fa-fw fa-question-circle"></i>Help</a></li> -->
                         </ul>
                     </li>
                 @endif
@@ -78,3 +95,12 @@
         </div>
     </div>
 </nav>
+
+<style type="text/css">
+    #portalLogo {
+        width: 50px;
+        height: 50px;
+        float: left;
+        margin-top: -14px;
+    }
+</style>

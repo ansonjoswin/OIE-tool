@@ -95,3 +95,27 @@ Class ApplicationDetailsTable extends OtherCsvDataSeeder
     }
 
 }
+
+Class CompletionsTable extends OtherCsvDataSeeder
+{
+    public $table;
+
+    public $filename;
+
+    public function __construct()
+    {
+        //$this->filename =__DIR__ . '/../..\resources\assets\csv\adm2014.csv';
+        $this->filename = __DIR__ . '/../..\storage\app\uploads\c2014_a.csv';
+        $this->table = 'completions';
+    }
+
+    public function run()
+    {
+        $appdettable = new CompletionsTable();
+        $appdettable->setTableName($this->table);
+        $appdettable->setFileName($this->filename);
+        $appdettable->setColumnMapping();
+        $appdettable->seedFromCSV($this->filename);
+    }
+
+}
