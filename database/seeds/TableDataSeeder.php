@@ -10,7 +10,7 @@ Class SchoolTable extends CsvDataSeeder
     public function __construct()
     {
 
-        $this->filename = __DIR__ . '/../..\storage\app\uploads\hd2014.csv';
+        $this->filename = __DIR__ . '/../..\resources\assets\csv\hd2014.csv';
 
         $this->table = 'schools';
     }
@@ -34,7 +34,7 @@ Class CarnegieTable extends CMCsvDataSeeder
 
     public function __construct()
     {
-        $this->filename = __DIR__ . '/../..\storage\app\uploads\hd2014.csv';
+        $this->filename = __DIR__ . '/../..\resources\assets\csv\hd2014.csv';
      
         $this->table = 'carnegie_classifications';
     }
@@ -57,7 +57,7 @@ Class GraduationTable extends OtherCsvDataSeeder
 
     public function __construct()
     {
-        $this->filename = __DIR__ . '/../..\storage\app\uploads\gr200_14.csv';
+        $this->filename = __DIR__ . '/../..\resources\assets\csv\gr200_14.csv';
         
         $this->table = 'graduations';
     }
@@ -81,13 +81,37 @@ Class ApplicationDetailsTable extends OtherCsvDataSeeder
     public function __construct()
     {
         //$this->filename =__DIR__ . '/../..\resources\assets\csv\adm2014.csv';
-        $this->filename = __DIR__ . '/../..\storage\app\uploads\adm2014.csv';
+        $this->filename = __DIR__ . '/../..\resources\assets\csv\adm2014.csv';
         $this->table = 'applicationdetails';
     }
 
     public function run()
     {
         $appdettable = new ApplicationDetailsTable();
+        $appdettable->setTableName($this->table);
+        $appdettable->setFileName($this->filename);
+        $appdettable->setColumnMapping();
+        $appdettable->seedFromCSV($this->filename);
+    }
+
+}
+
+Class CompletionsTable extends OtherCsvDataSeeder
+{
+    public $table;
+
+    public $filename;
+
+    public function __construct()
+    {
+        //$this->filename =__DIR__ . '/../..\resources\assets\csv\adm2014.csv';
+        $this->filename = __DIR__ . '/../..\storage\app\uploads\c2014_a.csv';
+        $this->table = 'completions';
+    }
+
+    public function run()
+    {
+        $appdettable = new CompletionsTable();
         $appdettable->setTableName($this->table);
         $appdettable->setFileName($this->filename);
         $appdettable->setColumnMapping();

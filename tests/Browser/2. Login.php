@@ -30,7 +30,7 @@ class LoginTest extends DuskTestCase
 				->click('.btn-primary') //email with missing @
 				->type('email','anson12@')
 				->click('.btn-primary') //email with missing .
-				->type('email','anson127@gmail.com')
+				->type('email','anson500@gmail.com')
 				->click('.btn-primary') //valid email
 				->type('password','')
 				->click('.btn-primary') //blank password
