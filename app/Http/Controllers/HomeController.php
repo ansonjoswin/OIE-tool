@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use Auth;
+use App\UserComment;
+use App\ReplyComment;
 
 class HomeController extends Controller
 {
@@ -31,11 +33,31 @@ class HomeController extends Controller
         {
             $user = Auth::user();
             if ($user->hasRole('admin'))
-                return view('home', compact('user'));
-            elseif ($user->hasRole('student'))
-                return view('home', compact('user'));
-            else
-                return view('home', compact('user'));
+            {
+                $comments = UserComment::all();
+                if(ReplyComment::first())
+                {
+                    $replyexists = true;
+                }
+                else{
+                    $replyexists = false;
+                }
+                return view('adminhome', compact('user','comments','replyexists'));
+            }
+
+            // elseif ($user->hasRole('student'))
+            //     return view('adminhome', compact('user'));
+            else{
+                $comments = UserComment::all();
+                if(ReplyComment::first())
+                {
+                    $replyexists = true;
+                }
+                else{
+                    $replyexists = false;
+                }
+                return view('home', compact('user', 'comments', 'replyexists'));
+            }
         }
     }
 
@@ -53,8 +75,8 @@ class HomeController extends Controller
             $user = Auth::user();
             if ($user->hasRole('admin'))
                 return view('carousel', compact('user'));
-            elseif ($user->hasRole('student'))
-                return view('carousel', compact('user'));
+            // elseif ($user->hasRole('student'))
+            //     return view('carousel', compact('user'));
             else
                 return view('home', compact('user'));
         }

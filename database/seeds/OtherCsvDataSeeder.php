@@ -124,7 +124,7 @@ abstract class OtherCsvDataSeeder extends Seeder
         $no_of_columns_to_fill = sizeof($source_array);
         // Retrieve the CSV column header corresponding to
         // the Database column and store in a map
-
+          // $filenam='%ef2014%';
         foreach($mapping as $dbCol) {
             if ($dbCol === 'year') {
                 $row_values[$dbCol] = 2014;
@@ -138,9 +138,9 @@ abstract class OtherCsvDataSeeder extends Seeder
                 } else {
                     if ($no_of_columns_to_fill > 0) {
 
-
                         $csv_Column_name = DB::Table('maps')->where($columns[3], '=', $this->table)
-                            ->where($columns[1], $dbCol)->value($columns[2]);
+                                    ->where($columns[1], $dbCol)->value($columns[2]);
+                          
                         if ($csv_Column_name === Null) {
                             $no_of_columns_to_fill--;
                         } else {

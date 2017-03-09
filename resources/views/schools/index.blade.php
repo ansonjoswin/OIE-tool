@@ -1,36 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Customer</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="pull-right">
+                            <!-- <a href="{{url('/schools/create')}}" class="btn btn-success">Create School</a><hr> -->
+                        </div>
+                        <div><h4>{{ $heading }}</h4></div>
+                    </div>
+                    <div class="panel-body">
+                        @include('common.flash')
+                        @include ('schools.partial')
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
 
-    <a href="{{url('/schools/create')}}" class="btn btn-success">Create School</a>
-    <hr>
-    <table class="table table-striped table-bordered table-hover">
-        <thead>
-        <tr class="bg-info">
-            <th> School ID</th>
-            <th>School Name</th>
-            <th>School City</th>
-            <th>School State</th>
+@section('footer')
+    <style>
+        .table td { border: 0px !important; }
+        .tooltip-inner { white-space:pre-wrap; max-width: 400px; }
+    </style>
 
-        </tr>
-        </thead>
-        <tbody>
-        @foreach ($schools as $school)
-            <tr>
-                <td>{{ $school->School_Id}}</td>
-                <td>{{ $school->School_Name}}</td>
-                <td>{{ $school->School_Address}}</td>
-                <td>{{ $school->School_City}}</td>
-                <td>
-                    {!! Form::open(['method' => 'DELETE', 'route'=>['schools.destroy', $school->School_Id]]) !!}
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                    {!! Form::close() !!}
-                </td>
-            </tr>
-        @endforeach
+    <script>
+        $(document).ready(function() {
+            $('table.cds-datatable').on( 'draw.dt', function () {
+                $('tr').tooltip({html: true, placement: 'auto' });
+            } );
 
-        </tbody>
-
-    </table>
+            $('tr').tooltip({html: true, placement: 'auto' });
+        } );
+    </script>
 @endsection

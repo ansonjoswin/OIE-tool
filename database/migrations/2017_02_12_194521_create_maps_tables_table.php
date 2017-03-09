@@ -6,17 +6,14 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateMapsTablesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    
     public function up()
     {
         Schema::create('map_tables', function (Blueprint $table) {
             $table->increments("id");
-            $table->string('table_name')->unique();
-            $table->string('filename')->unique();
+            $table->string('csv_name')->unique();
+            $table->string('local_filename')->unique();
+			$table->integer('year');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->softDeletes();

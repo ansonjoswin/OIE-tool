@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('QUEUE_DRIVER', 'sync'),
+    'default' => env('QUEUE_DRIVER', 'database-low'),
 
     /*
     |--------------------------------------------------------------------------
@@ -34,10 +34,24 @@ return [
             'driver' => 'sync',
         ],
 
-        'database' => [
+        'database-high' => [
             'driver' => 'database',
             'table' => 'jobs',
-            'queue' => 'default',
+            'queue' => 'database-high',
+            'retry_after' => 90,
+        ],
+
+         'database-medium' => [
+            'driver' => 'database',
+            'table' => 'jobs',
+            'queue' => 'database-medium',
+            'retry_after' => 90,
+        ],
+
+        'database-low' => [
+            'driver' => 'database',
+            'table' => 'jobs',
+            'queue' => 'database-low',
             'retry_after' => 90,
         ],
 

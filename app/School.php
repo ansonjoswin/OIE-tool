@@ -1,14 +1,11 @@
 <?php
-
 namespace App;
-
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Log;
-
 class School extends Model
 {
     protected $fillable=[
@@ -139,11 +136,12 @@ class School extends Model
         return $this->hasMany('App\NonInstructional_ES');
 
     }
-    public function carneige_classification()
+    public function carnegie_classification()
     {
-        return $this->hasOne('App\Carneige_classification');
+        return $this->hasOne('App\Carnegie_classification');
 
     }
+  
 
 }
 

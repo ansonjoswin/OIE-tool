@@ -137,4 +137,6 @@ class UsersController extends Controller
         $user->roles()->sync($roles);
         //$user->roles()->sync([$roles => ['created_by' => Auth::user()->name, 'updated_by' => Auth::user()->name]]);
     }
+
+
 }

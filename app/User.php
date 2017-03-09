@@ -53,4 +53,14 @@ class User extends Authenticatable
     {
         return $this->active;
     }
+
+
+    public function peergroups()
+    {
+        return $this->hasMany('PeerGroup');  //should be 'App\PeerGroup' ?
+}
+    public function comments() {
+        return $this->hasMany('App\User');
+
+    }
 }
