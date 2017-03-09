@@ -61,8 +61,15 @@
                 @if(Auth::user())
                 <li><a href="{{ url('/peergroups') }}">Peer Groups</a></li>
                 @endif
+                @if(Auth::user())
+                <li><a href="{{ url('/userstats') }}">User Statistics</a></li>
+                @endif
+            
             </ul>
             @endif
+
+                
+          
 
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">

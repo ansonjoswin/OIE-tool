@@ -44,8 +44,11 @@
 
                                 <div class="col-md-6">
                                     <select id="affiliation" class="form-control" placeholder="Affiliation" name="affiliation" value="{{ old('affiliation') }}" required autofocus>
-                                    <option value="AffiliationName">Affiliation-1</option>
-                                    <option value="AffiliationName">Affiliation-2</option>
+                                    <option value="AffiliationName">Higher Education</option>
+                                    <option value="AffiliationName">Journalism</option>
+                                    <option value="AffiliationName">Government</option>
+                                    <option value="AffiliationName">Policy Analyst</option>
+                                    <option value="AffiliationName">Accreditation</option>
                                     </select>
 
                                     @if ($errors->has('affiliation'))

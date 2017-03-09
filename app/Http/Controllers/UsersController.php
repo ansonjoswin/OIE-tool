@@ -21,7 +21,13 @@ class UsersController extends Controller
         $this->middleware('role:admin');
         $this->user = Auth::user();
         $this->users = User::all();
-        $this->affiliation_list = ['Affiliation-1' => 'Affiliation-1', 'Affiliation-2' => 'Affiliation-2'];
+        $this->affiliation_list = [
+            'Higher Education' => 'Higher Education',
+            'Journalism' => 'Journalism',
+            'Policy Analyst' => 'Policy Analyst',
+            'Government' => 'Government',
+            'Accreditation' => 'Accreditation'
+            ];
         $this->list_role = Role::pluck('display_name', 'id');
         $this->heading = "Users";
 
@@ -30,6 +36,7 @@ class UsersController extends Controller
     }
     public function index()
     {
+
         Log::info('UsersController.index: ');
         $users = User::all();
         $this->viewData['users'] = $users;
@@ -138,5 +145,23 @@ class UsersController extends Controller
         //$user->roles()->sync([$roles => ['created_by' => Auth::user()->name, 'updated_by' => Auth::user()->name]]);
     }
 
+     public function userstat()
+    {
+
+        $totals = [
+    'higheredu' => User::where(['affiliation' => 'Higher Education'])->count(),
+    'journalism' =>User::where(['affiliation' => 'Journalism'])->count(),
+    'policyanalyst' =>User::where(['affiliation' => 'Policy Analyst'])->count(),
+    'government' =>User::where(['affiliation' => 'Government'])->count(),
+    'acreditation' =>User::where(['affiliation' => 'Accreditation'])->count(),
+
+    // And so on
+];
+        $count=User::where(['affiliation' => 'Higher Education'])->count();
+        
+        return view('users.statistics',compact('totals'));
+    }
+
+  
 
 }

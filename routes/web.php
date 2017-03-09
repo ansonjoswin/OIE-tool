@@ -44,7 +44,7 @@ Route::get('/home', 'HomeController@index');
 Route::get('resetPassword', 'HomeController@resetPassword');
 Route::resource('/logs', 'LogViewerController');
 Route::resource('failed_jobs', 'Failed_jobsController');
-
+Route::get('/userstats', 'UsersController@userstat');
 
 Route::post('updatePassword', 'HomeController@updatePassword');
 
