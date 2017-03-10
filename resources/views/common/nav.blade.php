@@ -61,8 +61,10 @@
                 @if(Auth::user())
                 <li><a href="{{ url('/peergroups') }}">Peer Groups</a></li>
                 @endif
+                @if(Auth::user()->hasRole('admin'))
                 @if(Auth::user())
                 <li><a href="{{ url('/userstats') }}">User Statistics</a></li>
+                @endif
                 @endif
             
             </ul>
