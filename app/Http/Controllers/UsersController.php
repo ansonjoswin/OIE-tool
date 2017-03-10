@@ -158,7 +158,7 @@ class UsersController extends Controller
 
     // And so on
 ];
-        $count=User::where(['affiliation' => 'Higher Education'])->count();
+        //$count=User::where(['affiliation' => 'Higher Education'])->count();
         
         return view('users.statistics',compact('totals'));
    
