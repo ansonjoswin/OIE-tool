@@ -67,6 +67,16 @@ Please pull down the code and add the .env file from another project of yours be
 |MAIL_ENCRYPTION=|tls|
 
 
+## Configure your Queue drivers so that it can send a mail.
+
+| Key | Values |
+|------|--------|
+|BROADCAST_DRIVER=|log|
+|CACHE_DRIVER=|file|
+|SESSION_DRIVER=|file|
+|QUEUE_DRIVER=|database-low|
+
+
 ## Development Tools
 
 ### Laravel PHP Framework
