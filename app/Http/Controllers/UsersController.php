@@ -150,16 +150,16 @@ class UsersController extends Controller
         
 
         $totals = [
-    'higheredu' => User::where(['affiliation' => 'Higher Education'])->count(),
-    'journalism' =>User::where(['affiliation' => 'Journalism'])->count(),
-    'policyanalyst' =>User::where(['affiliation' => 'Policy Analyst'])->count(),
-    'government' =>User::where(['affiliation' => 'Government'])->count(),
-    'acreditation' =>User::where(['affiliation' => 'Accreditation'])->count(),
+    'higheredu'=>User::where(['affiliation' => 'Higher Education', 'active' => '1'])->count(),
+    'journalism' =>User::where(['affiliation' => 'Journalism', 'active' => '1'])->count(),
+    'policyanalyst' =>User::where(['affiliation' => 'Policy Analyst', 'active' => '1'])->count(),
+    'government' =>User::where(['affiliation' => 'Government', 'active' => '1'])->count(),
+    'acreditation' =>User::where(['affiliation' => 'Accreditation', 'active' => '1'])->count(),
 
     // And so on
 ];
         //$count=User::where(['affiliation' => 'Higher Education'])->count();
-        
+        //return($higheredu);
         return view('users.statistics',compact('totals'));
    
 

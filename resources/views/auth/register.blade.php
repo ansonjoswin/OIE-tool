@@ -44,11 +44,11 @@
 
                                 <div class="col-md-6">
                                     <select id="affiliation" class="form-control" placeholder="Affiliation" name="affiliation" value="{{ old('affiliation') }}" required autofocus>
-                                    <option value="AffiliationName">Higher Education</option>
-                                    <option value="AffiliationName">Journalism</option>
-                                    <option value="AffiliationName">Government</option>
-                                    <option value="AffiliationName">Policy Analyst</option>
-                                    <option value="AffiliationName">Accreditation</option>
+                                    <option value="Higher Education">Higher Education</option>
+                                    <option value="Journalism">Journalism</option>
+                                    <option value="Government">Government</option>
+                                    <option value="Policy Analyst">Policy Analyst</option>
+                                    <option value="Accreditation">Accreditation</option>
                                     </select>
 
                                     @if ($errors->has('affiliation'))
