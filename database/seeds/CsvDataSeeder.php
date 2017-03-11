@@ -134,9 +134,9 @@ abstract class CsvDataSeeder extends Seeder
                 $row_values[$dbCol] = 2014;
             } else {
 
-                if ($dbCol === 'School_ID') {
+                if ($dbCol === 'school_id') {
                     $temp1 = DB::Table('schools')->where('Unit_Id', '=',
-                        $source_array['UNITID'])->value('School_ID');
+                        $source_array['UNITID'])->value('school_id');
 
                     $row_values[$dbCol] = $temp1;
                 } else {

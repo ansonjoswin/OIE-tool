@@ -15,7 +15,7 @@ class CreateCarnegieClassificationTable extends Migration
     {
         Schema::create('carnegie_classifications', function (Blueprint $table) {
             //
-            $table->integer('School_ID');
+            $table->integer('school_id');
             $table->integer('Year');
             $table->integer('Cng_2010_Basic')->nullable();
             $table->integer('Cng_2010_UGPgm')->nullable();
@@ -29,7 +29,7 @@ class CreateCarnegieClassificationTable extends Migration
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->softDeletes();
-            $table->foreign('School_ID')->references('School_ID')->on('schools')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('school_id')->references('school_id')->on('schools')->onUpdate('cascade')->onDelete('cascade');
 
         });
 

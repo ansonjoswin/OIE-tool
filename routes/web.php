@@ -1,5 +1,6 @@
 <?php
 use App\School;
+use App\Carnegie_Classification;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,51 +71,107 @@ Route::resource('noninstructional_ess', 'NonInstructional_ESsController');
 Route::resource('peergroups', 'PeerGroupsController');  // Lists Peer Groups (index method)
 Route::get('peergroups/create', 'PeerGroupsController@create');  // Creates a Peer Group (create method)
 Route::resource('peergroups/store', 'PeerGroupsController');  // Saves a Peer Group (store method)
-Route::post('peergroups/delete', ['as'=>'pg_delete_url', 'uses'=>'PeerGroupsController@destroy']);  // Deletes a Peer Group (destory method)
+Route::post('peergroups/delete', ['as'=>'pg_delete_url', 'uses'=>'PeerGroupsController@destroy']);  // Deletes a Peer Group (destroy method)
 /*******************/
+
+/*** School_peergroups ***/
+Route::resource('school_peergroups', 'School_PeerGroupsController'); // Lists Peer Group Schools (index method)
+/*** end School_peergroups***/
 
 /*** Peer Group Filter ***/
 Route::resource('pgfilter', 'PeerGroupFilterController');
-//Route::get('pgfilter/this', 'PeerGroupFilterController@ajaxresults');
-//Route::get('pgfilter', 'HomeController@this');
+/*** end Peer Group filter ***/
 
 Route::get('/this', function() {
 	//Log::info('This is the get route and i');
    if(Request::ajax()){
        	$selected_instcat_list = Input::get('selected_instcat_list');
        	$selected_stabbr_list = Input::get('selected_stabbr_list');
+        $selected_carnegie_list = Input::get('selected_carnegie_list');
 
-        //Both are "All". Return nothing.
-        if($selected_instcat_list == 0 && $selected_stabbr_list == "0")
+        //No filters selected. Return all schools.
+        if($selected_instcat_list == 0 && $selected_stabbr_list == "0" && $selected_carnegie_list == 0)
         {
-          $results = School::pluck('school_name','School_ID');
+          $results = School::pluck('school_name','school_id');
           $school_ids = $results->toArray();
           return $school_ids;
         }
 
-        //Filter by Category and State
-        if($selected_instcat_list != 0 && $selected_stabbr_list != "0")
+        //All filters selected. Filter by Category and Carnegie and State.
+        elseif ($selected_instcat_list != 0 && $selected_stabbr_list != "0" && $selected_carnegie_list != 0)
         {
-          $results = School::where('Inst_Catgry', '=', $selected_instcat_list)->where('School_State', '=', $selected_stabbr_list)->pluck('school_name','School_ID');
+          $results = School::where('Inst_Catgry', '=', $selected_instcat_list)->where('School_State', '=', $selected_stabbr_list)->whereHas('carnegie_classification',
+              function($q) use($selected_carnegie_list)
+                {
+                   $q->where('Cng_2000', '=', $selected_carnegie_list);
+                })->pluck('school_name','school_id');
+            //EHLbug: when schools and cc tables both had PK/FK = School_ID, the child query produced the SQL:
+            //"and exists (select * from `carnegie_classifications` where `schools`.`School_ID` = `carnegie_classifications`.`school_School_ID` and `Cng_2000` = 21))"
+            //Eloquent default is that parent PK = 'id' and child FK = 'parentmodelname_id', so it was appending "school_" to look for the FK in cc table
+            //I have changed the hasOne and belongsTo statements to specify exact column names rather than use defaults
+            //It works!
           $school_ids = $results->toArray();
           return $school_ids;
         }
 
+        //Filter by Category and State.
+        elseif ($selected_instcat_list != 0 && $selected_stabbr_list != "0" && $selected_carnegie_list == 0)
+        {
+            $results = School::where('Inst_Catgry', '=', $selected_instcat_list)->where('School_State', '=', $selected_stabbr_list)->pluck('school_name','school_id');
+            $school_ids = $results->toArray();
+            return $school_ids;
+        }
+
+        //Filter by Category and Carnegie.
+        elseif ($selected_instcat_list != 0 && $selected_stabbr_list == "0" && $selected_carnegie_list != 0)
+        {
+            $results = School::where('Inst_Catgry', '=', $selected_instcat_list)->whereHas('carnegie_classification',
+                function($q) use($selected_carnegie_list)
+                {
+                    $q->where('Cng_2000', '=', $selected_carnegie_list);
+                })->pluck('school_name','school_id');
+            $school_ids = $results->toArray();
+            return $school_ids;
+        }
+
+        //Filter by State and Carnegie.
+        elseif ($selected_instcat_list == 0 && $selected_stabbr_list != "0" && $selected_carnegie_list != 0)
+        {
+            $results = School::where('School_State', '=', $selected_stabbr_list)->whereHas('carnegie_classification',
+                function($q) use($selected_carnegie_list)
+                {
+                    $q->where('Cng_2000', '=', $selected_carnegie_list);
+                })->pluck('school_name','school_id');
+            $school_ids = $results->toArray();
+            return $school_ids;
+        }
+
+        //Filter by Category
+       elseif ($selected_instcat_list != 0 && $selected_stabbr_list == "0" && $selected_carnegie_list == 0)
+       {
+           $results = School::where('Inst_Catgry', '=', $selected_instcat_list)->pluck('school_name','school_id');
+           $school_ids = $results->toArray();
+           return $school_ids;
+       }
         //Filter by State
-       	if($selected_instcat_list == 0)
+       	elseif ($selected_instcat_list == 0 && $selected_stabbr_list != "0" && $selected_carnegie_list == 0)
        	{
-       		$results = School::where('School_State', '=', $selected_stabbr_list)->pluck('school_name','School_ID');
+       		$results = School::where('School_State', '=', $selected_stabbr_list)->pluck('school_name','school_id');
 			    $school_ids = $results->toArray();
 		      return $school_ids;
 		    }
 
-        //Filter by Category
-       	if($selected_stabbr_list == "0")
-       	{
-       		$results = School::where('Inst_Catgry', '=', $selected_instcat_list)->pluck('school_name','School_ID');
-          $school_ids = $results->toArray();
-		      return $school_ids;
-	      }
+       //Filter by Carnegie Classification
+       elseif ($selected_instcat_list == "0" && $selected_stabbr_list == 0 && $selected_carnegie_list != 0)
+       {
+           $results = School::whereHas('carnegie_classification', function($q) use ($selected_carnegie_list)
+           {
+               $q->where('Cng_2000', '=', $selected_carnegie_list);
+           })->get()->pluck('school_name','school_id');
+           $school_ids = $results->toArray();
+           return $school_ids;
+       }
+
      }
 });
 

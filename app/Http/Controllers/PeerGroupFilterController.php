@@ -15,6 +15,7 @@ use App\User;
 use App\School;
 use App\PeerGroup;
 use App\School_PeerGroup;
+use App\Carnegie;
 
 class PeerGroupFilterController extends Controller
 {
@@ -36,16 +37,16 @@ class PeerGroupFilterController extends Controller
     {
         $instcat_list = Instcat::pluck('desc','id')->toArray();
         $stabbr_list = Stabbr::pluck('desc','id')->toArray();
+        $carnegie_list = Carnegie::pluck('desc','id')->toArray();
 
         $selected_instcat_list = Instcat::pluck('desc','id')->toArray();
-//        dd($selected_instcat_list);
         $selected_stabbr_list = Stabbr::pluck('desc','id')->toArray();
-//        $selected_attribute3_list = [];
+        $selected_carnegie_list = Carnegie::pluck('desc','id')->toArray();
 
         $results = School::pluck('school_name','School_ID');
         $school_ids = $results->toArray();
 
-        return view('pgfilter.index', compact('instcats', 'stabbrs', 'results', 'instcat_list', 'stabbr_list', 'selected_instcat_list', 'selected_stabbr_list', 'selected_attribute3_list', 'school_ids'));
+        return view('pgfilter.index', compact('instcats', 'stabbrs', 'results', 'instcat_list', 'stabbr_list', 'carnegie_list', 'selected_instcat_list', 'selected_stabbr_list', 'selected_carnegie_list', 'school_ids'));
     }
     public function show()
     {

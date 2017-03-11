@@ -71,7 +71,7 @@ class School extends Model
     'GeoLongitude',
     'GeoLatitude',
 ];
-    protected $primaryKey = 'School_ID';
+    protected $primaryKey = 'school_id';
     public static function getTableName() {
         return (new static)->getTable();
     }
@@ -138,7 +138,9 @@ class School extends Model
     }
     public function carnegie_classification()
     {
-        return $this->hasOne('App\Carnegie_classification');
+        return $this->hasOne('App\Carnegie_Classification', 'school_id', 'school_id');
+        //EHLbug: syntax should be: return $this->hasOne('App\<child model>', 'foreign_key', 'local_key');
+        //if foreign_key and local_key not specified, Eloquent assumes foreign_key = parent_id and local_key = id
 
     }
   

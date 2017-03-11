@@ -15,7 +15,7 @@
 
 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
     {!! Form::label('email', 'E-Mail Address:', ['class' => 'col-md-4 control-label']) !!}
-    <div class="col-md-6"> 
+    <div class="col-md-6">
         {!! Form::text('email', null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!}
         @if ($errors->has('email'))
             <span class="help-block">
@@ -28,12 +28,12 @@
 
 <div class="form-group{{ $errors->has('affiliation') ? ' has-error' : '' }}">
     {!! Form::label('affiliation', 'Affiliation:', ['class' => 'col-md-4 control-label']) !!}
-    <div class="col-md-6"> 
+    <div class="col-md-6">
 
         @if($CRUD_Action == 'Create' )
-            {!! Form::select('affiliation',[null=>''] + $affiliation_list, null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!} 
+            {!! Form::select('affiliation',[null=>''] + $affiliation_list, null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!}
         @else
-            {!! Form::select('affiliation', $affiliation_list, $user->affiliation, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!} 
+            {!! Form::select('affiliation', $affiliation_list, $user->affiliation, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!}
         @endif
 
 
@@ -63,7 +63,7 @@
 
         @if($CRUD_Action == 'Create' )  <!--New users have no default role-->
             {!! Form::select('rolelist[]', $list_role, null, ['placeholder' => '', 'class' => 'form-control roles cds-select', 'style' => 'width: 50%; margin-top: 10px;', 'required' => 'required']) !!}
-        @elseif($user->getRoleListAttribute()->first() != null) <!--Existing users default to existing role--> 
+        @elseif($user->getRoleListAttribute()->first() != null) <!--Existing users default to existing role-->
             {!! Form::select('rolelist[]', $list_role, $user->getRoleListAttribute()->first(), ['class' => 'form-control roles cds-select', 'style' => 'width: 50%; margin-top: 10px;', 'required' => 'required']) !!}
         @else <!--If user has no role, it is a Registered User-->
             {!! Form::select('rolelist[]', $list_role, $list_role->search('Registered User'), ['class' => 'form-control roles cds-select', 'style' => 'width: 50%; margin-top: 10px;', 'required' => 'required']) !!}

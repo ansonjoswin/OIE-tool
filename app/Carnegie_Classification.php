@@ -10,7 +10,7 @@ class Carnegie_Classification extends Model
     public $table = "carnegie_classifications";  //EHLbug: I made this plural to allow it to pull in from a view
 
     protected $fillable=[
-        'School_ID',
+        'school_id',
         'Year',
         'Cng_2010_Basic',
         'Cng_2010_UGPgm',
@@ -26,7 +26,8 @@ class Carnegie_Classification extends Model
     }
 
     public function school() {
-        return $this->belongsTo('App\School');
+        return $this->belongsTo('App\School', 'school_id', 'school_id');
+        //EHLbug: syntax should be: return $this->belongsTo('App\<parent model>', 'foreign_key', 'other_key');
     }
 }
 

@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 
 use App\Instcat;
 use App\Stabbr;
+use App\Carnegie;
 
 class InstcatSeeder extends Seeder
 {
@@ -93,26 +94,32 @@ class StabbrSeeder extends Seeder
     }
 }
 
+class CarnegieSeeder extends Seeder
+{
+    // Carnegie column (Carnegie Classifications table "Cng_2000") - all options
+    public function run()
+    {
+        DB::table('carnegies')->delete();
+        Carnegie::create([  'id' => '0', 'desc' => 'All', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Carnegie::create([  'id' => '15', 'desc' => 'Doctoral/Research Universities--Extensive', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Carnegie::create([  'id' => '16', 'desc' => 'Doctoral/Research Universities--Intensive', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Carnegie::create([  'id' => '21', 'desc' => 'Masters Colleges and Universities I', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Carnegie::create([  'id' => '22', 'desc' => 'Masters Colleges and Universities II', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Carnegie::create([  'id' => '31', 'desc' => 'Baccalaureate Colleges--Liberal Arts', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Carnegie::create([  'id' => '32', 'desc' => 'Baccalaureate Colleges--General', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Carnegie::create([  'id' => '33', 'desc' => 'Baccalaureate/Associates Colleges', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Carnegie::create([  'id' => '40', 'desc' => 'Associates Colleges', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Carnegie::create([  'id' => '51', 'desc' => 'Theological seminaries and other specialized faith-related institutions', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Carnegie::create([  'id' => '52', 'desc' => 'Medical schools and medical centers', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Carnegie::create([  'id' => '53', 'desc' => 'Other separate health profession schools', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Carnegie::create([  'id' => '54', 'desc' => 'Schools of engineering and technology', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Carnegie::create([  'id' => '55', 'desc' => 'Schools of business and management', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Carnegie::create([  'id' => '56', 'desc' => 'Schools of art, music, and design', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Carnegie::create([  'id' => '57', 'desc' => 'Schools of law', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Carnegie::create([  'id' => '58', 'desc' => 'Teachers colleges', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Carnegie::create([  'id' => '59', 'desc' => 'Other specialized institutions', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Carnegie::create([  'id' => '60', 'desc' => 'Tribal colleges', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Carnegie::create([  'id' => '-3', 'desc' => 'Not available', 'created_at' => date_create(), 'updated_at' => date_create()]);
+    }
+}
 
-//$attribute3_list = [
-//    '0' => 'All',
-//    '17' => 'Doctoral/Research Universities',
-//    '18' => 'Master\'s Colleges and Universities (larger programs)',
-//    '23' => 'Baccalaureate/Associate\'s Colleges'
-//]; // CCBASIC column (Carnegie_Classification table) - sample of the options - may use different attribute
-
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);

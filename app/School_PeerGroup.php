@@ -20,12 +20,23 @@ class School_PeerGroup extends Model
     protected $primaryKey = ['School_ID','PeerGroupID'];
 
     public function peergroup() {
-        return $this->belongsTo('App\PeerGroup');
+        return $this->belongsTo('App\PeerGroup', 'PeerGroupID', 'PeerGroupID');
+    }
+    //EHLbug: syntax should be: return $this->belongsTo('App\<parent model>', 'foreign_key', 'other_key');
+
+    public function schools() {
+        return $this->hasMany('App\School', 'school_id', 'school_id');
+
     }
 
-    public function school() {
-        return $this->hasMany('App\School');
-
-    }
+    /**
+     * Get a List of school ids associated with the current school_peergroup.
+     *
+     * @return array
+     */
+//    public function getSchoolIDAttribute()
+//    {
+//        return $this->schools->pluck('school_id');  //EHLbug: will need to change to 'id' once db team completes new migration
+//    }
 
 }

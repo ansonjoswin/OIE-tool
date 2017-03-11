@@ -28,11 +28,21 @@ class PeerGroup extends Model
     }
 	
     public function user() {
-        return $this->belongsTo('User'); //should be 'App\User'?
+        return $this->belongsTo('User');
     }
 	
-	public function school_peergroup() {
-        return $this->hasMany('App\School_PeerGroup');
+	public function school_peergroups()
+    {
+        return $this->hasMany('App\School_PeerGroup', 'PeerGroupID', 'PeerGroupID');
+    }
 
+    /**
+     * Get a List of school_peergroup ids associated with the current peergroup.
+     *
+     * @return array
+     */
+    public function getSchoolPeerGroupIDAttribute()
+    {
+        return $this->school_peergroups->pluck('schoolpeergroupid');
     }
 }

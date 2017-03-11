@@ -54,11 +54,21 @@ class User extends Authenticatable
         return $this->active;
     }
 
-
     public function peergroups()
     {
-        return $this->hasMany('PeerGroup');  //should be 'App\PeerGroup' ?
-}
+        return $this->hasMany('PeerGroup', 'School_ID', 'School_ID');
+    }
+
+    /**
+     * Get a List of peergroup ids associated with the current user.
+     *
+     * @return array
+     */
+    public function getPeerGroupIDAttribute()
+    {
+        return $this->peergroups->pluck('peergroupid');
+    }
+
     public function comments() {
         return $this->hasMany('App\User');
 
