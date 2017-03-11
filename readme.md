@@ -67,7 +67,7 @@ Please pull down the code and add the .env file from another project of yours be
 |MAIL_ENCRYPTION=|tls|
 
 
-## Configure your Queue drivers so that it can send a mail.
+## Configure your Queue drivers so jobs can be scheduled.
 
 | Key | Values |
 |------|--------|
