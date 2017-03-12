@@ -38,7 +38,7 @@
 >>>>>>> development
                             <li><a href="{{ url('/roles') }}"><i class="fa fa-btn fa-fw fa-users"></i>Roles</a></li>
 ======= --}}
-                            <li><a href="{{ url('/usercomments') }}"><i class="fa fa-btn fa-fw fa-tasks"></i>Manage Comments</a></li>
+                            <li><a href="{{ url('/usercomments') }}"><i class="fa fa-btn fa-fw fa-tasks" id="comments"></i>Manage Comments</a></li>
                              {{-- <li><a href="{{ url('/usercomments/reply') }}"><i class="fa fa-btn fa-fw fa-users"></i>Discussions Feed</a></li>
  --}}
 
