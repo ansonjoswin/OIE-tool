@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html>
-<meta charset="utf-8">
+ <head>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <link rel='stylesheet' href='style.css'>
+  </head>
+    <!-- CSS (Styling) -->
+    <style type="text/css">
+            /* Format X and Y Axis */
+ body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  position: relative;
+  width: 960px;
+}
 
-<!-- Example based on http://bl.ocks.org/mbostock/3887118 -->
-<!-- Tooltip example from http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html -->
-
-<style>
-body {
-  font: 11px sans-serif;
+.axis text {
+  font: 10px sans-serif;
 }
 
 .axis path,
@@ -17,145 +24,203 @@ body {
   shape-rendering: crispEdges;
 }
 
-.dot {
-  stroke: #000;
+.bar {
+  fill: steelblue;
+  fill-opacity: .9;
 }
 
-.tooltip {
+.bar:hover {
+  fill: orange;
+}
+
+label {
   position: absolute;
-  width: 200px;
-  height: 28px;
-  pointer-events: none;
+  top: 10px;
+  right: 10px;
 }
-</style>
-<body>
-<script src="http://d3js.org/d3.v3.min.js"></script>
+    </style>
+    <!-- End CSS (Styling) -->
+ 
+ <body>
+ <div class="container">
+     <h2>D3 Scatterplot </h2>
+     <section id="char"></section>
+  </div>
 
-<script>
-var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+  <!-- Begin D3 Javascript -->
+  <script type="text/javascript">
+  
+ d3.csv('data.csv',function (data) {
+// CSV section
 
-/* 
- * value accessor - returns the value to encode for a given data object.
- * scale - maps value to a visual display encoding, such as a pixel position.
- * map function - maps from data value to display value
- * axis - sets up axis
- */ 
+  var body = d3.select('body')
+  var selectData = [ { "text" : "Annualized Return" },
+                     { "text" : "Annualized Standard Deviation" },
+                     { "text" : "Maximum Drawdown" },
+                   ]
 
-// setup x 
-var xValue = function(d) { return d.Calories;}, // data -> value
-    xScale = d3.scale.linear().range([0, width]), // value -> display
-    xMap = function(d) { return xScale(xValue(d));}, // data -> display
-    xAxis = d3.svg.axis().scale(xScale).orient("bottom");
+  // Select X-axis Variable
+  var span = body.append('span')
+    .text('Resource: ')
+  var yInput = body.append('select')
+      .attr('id','xSelect')
+      .on('change',xChange)
+    .selectAll('option')
+      .data(selectData)
+      .enter()
+    .append('option')
+      .attr('value', function (d) { return d.text })
+      .text(function (d) { return d.text ;})
+  body.append('br')
 
-// setup y
-var yValue = function(d) { return d["Protein (g)"];}, // data -> value
-    yScale = d3.scale.linear().range([height, 0]), // value -> display
-    yMap = function(d) { return yScale(yValue(d));}, // data -> display
-    yAxis = d3.svg.axis().scale(yScale).orient("left");
+  // Select Y-axis Variable
+  var span = body.append('span')
+      .text('Performance:')
+  var yInput = body.append('select')
+      .attr('id','ySelect')
+      .on('change',yChange)
+    .selectAll('option')
+      .data(selectData)
+      .enter()
+    .append('option')
+      .attr('value', function (d) { return d.text })
+      .text(function (d) { return d.text ;})
+  body.append('br')
 
-// setup fill color
-var cValue = function(d) { return d.Manufacturer;},
-    color = d3.scale.category10();
-
-// add the graph canvas to the body of the webpage
-var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-// add the tooltip area to the webpage
-var tooltip = d3.select("body").append("div")
-    .attr("class", "tooltip")
-    .style("opacity", 0);
-
-// load data
-d3.csv("cereal.csv", function(error, data) {
-
-  // change string (from CSV) into number format
-  data.forEach(function(d) {
-    d.Calories = +d.Calories;
-    d["Protein (g)"] = +d["Protein (g)"];
-//    console.log(d);
-  });
-
-  // don't want dots overlapping axis, so add in buffer to data domain
-  xScale.domain([d3.min(data, xValue)-1, d3.max(data, xValue)+1]);
-  yScale.domain([d3.min(data, yValue)-1, d3.max(data, yValue)+1]);
-
-  // x-axis
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis)
-    .append("text")
-      .attr("class", "label")
-      .attr("x", width)
-      .attr("y", -6)
-      .style("text-anchor", "end")
-      .text("Calories");
-
-  // y-axis
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("class", "label")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Protein (g)");
-
-  // draw dots
-  svg.selectAll(".dot")
+  // Variables
+  var body = d3.select('body')
+  var margin = { top: 50, right: 50, bottom: 50, left: 50 }
+  var h = 500 - margin.top - margin.bottom
+  var w = 500 - margin.left - margin.right
+  var formatPercent = d3.format('.2%')
+  // Scales
+  var colorScale = d3.scale.category20()
+  var xScale = d3.scale.linear()
+    .domain([
+      d3.min([0,d3.min(data,function (d) { return d['Annualized Return'] })]),
+      d3.max([0,d3.max(data,function (d) { return d['Annualized Return'] })])
+      ])
+    .range([0,w])
+  var yScale = d3.scale.linear()
+    .domain([
+      d3.min([0,d3.min(data,function (d) { return d['Annualized Return'] })]),
+      d3.max([0,d3.max(data,function (d) { return d['Annualized Return'] })])
+      ])
+    .range([h,0])
+  // SVG
+  var svg = body.append('svg')
+      .attr('height',h + margin.top + margin.bottom)
+      .attr('width',w + margin.left + margin.right)
+    .append('g')
+      .attr('transform','translate(' + margin.left + ',' + margin.top + ')')
+  // X-axis
+  var xAxis = d3.svg.axis()
+    .scale(xScale)
+    .tickFormat(formatPercent)
+    .ticks(5)
+    .orient('bottom')
+  // Y-axis
+  var yAxis = d3.svg.axis()
+    .scale(yScale)
+    .tickFormat(formatPercent)
+    .ticks(5)
+    .orient('left')
+  // Circles
+  var circles = svg.selectAll('circle')
       .data(data)
-    .enter().append("circle")
-      .attr("class", "dot")
-      .attr("r", 3.5)
-      .attr("cx", xMap)
-      .attr("cy", yMap)
-      .style("fill", function(d) { return color(cValue(d));}) 
-      .on("mouseover", function(d) {
-          tooltip.transition()
-               .duration(200)
-               .style("opacity", .9);
-          tooltip.html(d["Cereal Name"] + "<br/> (" + xValue(d) 
-            + ", " + yValue(d) + ")")
-               .style("left", (d3.event.pageX + 5) + "px")
-               .style("top", (d3.event.pageY - 28) + "px");
+      .enter()
+    .append('circle')
+      .attr('cx',function (d) { return xScale(d['Annualized Return']) })
+      .attr('cy',function (d) { return yScale(d['Annualized Return']) })
+      .attr('r','10')
+      .attr('stroke','black')
+      .attr('stroke-width',1)
+      .attr('fill',function (d,i) { return colorScale(i) })
+      .on('mouseover', function () {
+        d3.select(this)
+          .transition()
+          .duration(500)
+          .attr('r',20)
+          .attr('stroke-width',3)
       })
-      .on("mouseout", function(d) {
-          tooltip.transition()
-               .duration(500)
-               .style("opacity", 0);
-      });
+      .on('mouseout', function () {
+        d3.select(this)
+          .transition()
+          .duration(500)
+          .attr('r',10)
+          .attr('stroke-width',1)
+      })
+    .append('title') // Tooltip
+      .text(function (d) { return d.variable +
+                           '\nReturn: ' + formatPercent(d['Annualized Return']) +
+                           '\nStd. Dev.: ' + formatPercent(d['Annualized Standard Deviation']) +
+                           '\nMax Drawdown: ' + formatPercent(d['Maximum Drawdown']) })
+  // X-axis
+  svg.append('g')
+      .attr('class','axis')
+      .attr('id','xAxis')
+      .attr('transform', 'translate(0,' + h + ')')
+      .call(xAxis)
+    .append('text') // X-axis Label
+      .attr('id','xAxisLabel')
+      .attr('y',-10)
+      .attr('x',w)
+      .attr('dy','.71em')
+      .style('text-anchor','end')
+      .text('Annualized Return')
+  // Y-axis
+  svg.append('g')
+      .attr('class','axis')
+      .attr('id','yAxis')
+      .call(yAxis)
+    .append('text') // y-axis Label
+      .attr('id', 'yAxisLabel')
+      .attr('transform','rotate(-90)')
+      .attr('x',0)
+      .attr('y',5)
+      .attr('dy','.71em')
+      .style('text-anchor','end')
+      .text('Annualized Return')
 
-  // draw legend
-  var legend = svg.selectAll(".legend")
-      .data(color.domain())
-    .enter().append("g")
-      .attr("class", "legend")
-      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+  function yChange() {
+    var value = this.value // get the new y value
+    yScale // change the yScale
+      .domain([
+        d3.min([0,d3.min(data,function (d) { return d[value] })]),
+        d3.max([0,d3.max(data,function (d) { return d[value] })])
+        ])
+    yAxis.scale(yScale) // change the yScale
+    d3.select('#yAxis') // redraw the yAxis
+      .transition().duration(1000)
+      .call(yAxis)
+    d3.select('#yAxisLabel') // change the yAxisLabel
+      .text(value)    
+    d3.selectAll('circle') // move the circles
+      .transition().duration(1000)
+      .delay(function (d,i) { return i*100})
+        .attr('cy',function (d) { return yScale(d[value]) })
+  }
 
-  // draw legend colored rectangles
-  legend.append("rect")
-      .attr("x", width - 18)
-      .attr("width", 18)
-      .attr("height", 18)
-      .style("fill", color);
-
-  // draw legend text
-  legend.append("text")
-      .attr("x", width - 24)
-      .attr("y", 9)
-      .attr("dy", ".35em")
-      .style("text-anchor", "end")
-      .text(function(d) { return d;})
+  function xChange() {
+    var value = this.value // get the new x value
+    xScale // change the xScale
+      .domain([
+        d3.min([0,d3.min(data,function (d) { return d[value] })]),
+        d3.max([0,d3.max(data,function (d) { return d[value] })])
+        ])
+    xAxis.scale(xScale) // change the xScale
+    d3.select('#xAxis') // redraw the xAxis
+      .transition().duration(1000)
+      .call(xAxis)
+    d3.select('#xAxisLabel') // change the xAxisLabel
+      .transition().duration(1000)
+      .text(value)
+    d3.selectAll('circle') // move the circles
+      .transition().duration(1000)
+      .delay(function (d,i) { return i*100})
+        .attr('cx',function (d) { return xScale(d[value]) })
+  }
 });
-
-</script>
-</body>
+  </script>
+  </body>
 </html>

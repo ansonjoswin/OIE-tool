@@ -26,6 +26,8 @@ Route::get('laravel-version', function()
     return 'Your Laravel Version is '.$laravel::VERSION;
 });
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
