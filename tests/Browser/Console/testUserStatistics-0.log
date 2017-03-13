@@ -1,0 +1,374 @@
+[
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.woff2?448c34a56d699c29117adc64c43affeb - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359295759
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.woff?fa2772327f55d8198301fdb8bcfc8158 - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359295771
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.ttf?e18bbf611f2a2e43afc071aa2f4e1512 - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359295782
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.woff2?448c34a56d699c29117adc64c43affeb - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359317019
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.woff?fa2772327f55d8198301fdb8bcfc8158 - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359317030
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.ttf?e18bbf611f2a2e43afc071aa2f4e1512 - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359317034
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.woff2?448c34a56d699c29117adc64c43affeb - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359326078
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.woff?fa2772327f55d8198301fdb8bcfc8158 - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359326106
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.ttf?e18bbf611f2a2e43afc071aa2f4e1512 - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359326128
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/public\/css\/all.css - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359327810
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/public\/js\/all.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359327920
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/public\/js\/jquery.iframe-transport.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359328555
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/public\/js\/jquery.knob.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359328568
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/public\/js\/jquery.ui.widget.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359328588
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/public\/js\/jquery.fileupload.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359328602
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/public\/js\/jquery.knob.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359328962
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/public\/js\/jquery.iframe-transport.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359329321
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/public\/js\/jquery.fileupload.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359329686
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/users\/create?_token=2DY72gDOWSk4pWjePOWQL7292KU5DFnMtsmMUf6x&create-user= 261:24 Uncaught TypeError: $(...).select2 is not a function",
+        "source": "javascript",
+        "timestamp": 1489359329692
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.woff2?448c34a56d699c29117adc64c43affeb - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359343130
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.woff?fa2772327f55d8198301fdb8bcfc8158 - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359343131
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.ttf?e18bbf611f2a2e43afc071aa2f4e1512 - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359343137
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.woff2?448c34a56d699c29117adc64c43affeb - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359347250
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.woff?fa2772327f55d8198301fdb8bcfc8158 - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359347258
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.ttf?e18bbf611f2a2e43afc071aa2f4e1512 - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359347260
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.woff2?448c34a56d699c29117adc64c43affeb - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359358245
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.woff?fa2772327f55d8198301fdb8bcfc8158 - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359358247
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.ttf?e18bbf611f2a2e43afc071aa2f4e1512 - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359358273
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/public\/css\/all.css - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359359686
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/public\/js\/all.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359359768
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/public\/js\/jquery.fileupload.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359360655
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/public\/js\/jquery.ui.widget.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359360655
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/public\/js\/jquery.knob.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359360689
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/public\/js\/jquery.iframe-transport.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359360712
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/public\/js\/all.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359360712
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/public\/js\/jquery.ui.widget.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359361121
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/public\/js\/jquery.knob.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359361485
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/public\/js\/jquery.iframe-transport.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359361844
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/public\/js\/jquery.fileupload.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359362225
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/users\/create?_token=2DY72gDOWSk4pWjePOWQL7292KU5DFnMtsmMUf6x&create-user= 261:24 Uncaught TypeError: $(...).select2 is not a function",
+        "source": "javascript",
+        "timestamp": 1489359362231
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.woff2?448c34a56d699c29117adc64c43affeb - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359380262
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.woff?fa2772327f55d8198301fdb8bcfc8158 - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359380262
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.ttf?e18bbf611f2a2e43afc071aa2f4e1512 - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359380262
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.woff2?448c34a56d699c29117adc64c43affeb - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359381170
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.woff?fa2772327f55d8198301fdb8bcfc8158 - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359381180
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.ttf?e18bbf611f2a2e43afc071aa2f4e1512 - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359381185
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.woff2?448c34a56d699c29117adc64c43affeb - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359392202
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.woff?fa2772327f55d8198301fdb8bcfc8158 - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359392206
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.ttf?e18bbf611f2a2e43afc071aa2f4e1512 - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359392210
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/users\/public\/css\/all.css - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359394245
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/users\/public\/js\/all.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359394321
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/users\/public\/js\/jquery.ui.widget.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359394970
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/users\/public\/js\/jquery.knob.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359394987
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/users\/public\/js\/jquery.iframe-transport.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359394996
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/users\/public\/js\/jquery.fileupload.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359395084
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/unoistoie-acbat\/public\/users\/36\/edit 257:24 Uncaught TypeError: $(...).select2 is not a function",
+        "source": "javascript",
+        "timestamp": 1489359395092
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.woff2?448c34a56d699c29117adc64c43affeb - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359399833
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.woff?fa2772327f55d8198301fdb8bcfc8158 - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359399861
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.ttf?e18bbf611f2a2e43afc071aa2f4e1512 - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359399887
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.woff2?448c34a56d699c29117adc64c43affeb - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359400842
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.woff?fa2772327f55d8198301fdb8bcfc8158 - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359400856
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/fonts\/glyphicons-halflings-regular.ttf?e18bbf611f2a2e43afc071aa2f4e1512 - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1489359400864
+    }
+]
