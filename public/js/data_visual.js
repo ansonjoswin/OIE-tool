@@ -3,7 +3,7 @@ jsObject = JSON.parse(test_data);
 jsObject.forEach(function(data) {  
     data.GradRate4yr_BacDgr100 = +data.GradRate4yr_BacDgr100;
     data.GradRate6yr_BacDgr150 = +data.GradRate6yr_BacDgr150;                                
-   // console.log(rawData.GradRate4yr_BacDgr100);
+    //console.log(data.GradRate4yr_BacDgr100);
   });
 
 
@@ -30,7 +30,7 @@ var yAxis = d3.svg.axis().scale(yScale).orient("left");
 var svg = d3.select('#chart')
   .append('svg')
   .attr('width', graphWidth)
-  .attr('height', graphHeight);
+  .attr('height', graphHeight);  
 
 
   // x-axis
@@ -61,10 +61,12 @@ var svg = d3.select('#chart')
 svg.selectAll('circle')
   .data(jsObject)
   .enter()
-  .append('circle')
-  .attr({
-    cx: function(d) {return xScale(d.GradRate4yr_BacDgr100); },  //X
-    cy: function(d) {return yScale(d.GradRate6yr_BacDgr150); },  //Y
-    r: radius,
-    fill: 'steelblue'
-  });
+    .append('circle')
+    .attr({
+      cx: function(d) {return xScale(d.GradRate4yr_BacDgr100); },  //X
+      cy: function(d) {return yScale(d.GradRate6yr_BacDgr150); },  //Y
+      r: radius,
+      fill: 'steelblue'
+    });
+
+ 
