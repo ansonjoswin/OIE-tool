@@ -10,7 +10,7 @@
                 <img src="{{asset('images/StudentLearning.jpg')}}">
                 </div>
                 <div class="panel-body">
-                   
+                 <a href = "Legal Agreements">  
                 </div>
             </div>
         </div>
