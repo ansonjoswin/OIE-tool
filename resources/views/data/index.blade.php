@@ -24,7 +24,7 @@
                         @include('common.flash')
                        
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped cds-datatable">
+                                <table class="table table-bordered table-hover cds-datatable">
                                     <thead> <!-- Table Headings -->
                                     <th style="font-size:12px;">Undergrad HeadCount</th>
                                     <th style="font-size:12px;">Admin Count</th>
