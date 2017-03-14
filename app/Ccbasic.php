@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Carnegie extends Model
+class Ccbasic extends Model
 {
     protected $fillable = [
         'id',

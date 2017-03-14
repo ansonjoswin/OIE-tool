@@ -31,13 +31,14 @@
                     {{--<div class="col-lg-10 col-lg-offset-2">--}}
                     {{--</div>--}}
                 <div class="form-group">
-                    <label>Carnegie Classification 2000</label><br>
-                    @if(sizeof($selected_carnegie_list) == 0)
-                        {{ Form::select('carnegie', $carnegie_list, ['id' => 'carnegie']) }}
+                    <label>Carnegie Classification 2010 Basic</label><br>
+                    @if(sizeof($selected_ccbasic_list) == 0)
+                        {{ Form::select('ccbasic', $ccbasic_list, ['id' => 'ccbasic']) }}
                     @else
-                        {{ Form::select('carnegie', $carnegie_list, $selected_carnegie_list, ['id' => 'carnegie']) }}
+                        {{ Form::select('ccbasic', $ccbasic_list, $selected_ccbasic_list, ['id' => 'ccbasic']) }}
                     @endif
                 </div>
+
                 <div class="form-group">
                    <label>Institution State</label><br>
                     @if(sizeof($selected_stabbr_list) == 0)
@@ -57,7 +58,7 @@
 
 {{ Form::close() }}
 
-<!---Elaine code 
+<!---Elaine code
 <div class="container">
     <p>&nbsp;</p>
     <div class="row style-select">
@@ -122,35 +123,35 @@ Elaine code -->
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="panel-body">  
+                <div class="panel-body">
                     <div class="row">
                         <div class="panel-default col-md-2">
                             <label class="pull-right">Peer Group Name:</label>
                         </div>
                         <div class="panel-default col-md-4">
-                            {!! Form::text('PeerGroupName', null, ['class' => 'col-md-3 form-control pull-left', 'required' => 'required']) !!} 
+                            {!! Form::text('PeerGroupName', null, ['class' => 'col-md-3 form-control pull-left', 'required' => 'required']) !!}
                         </div>
                         <div class="panel-default col-md-2">
                             @if(Auth::user()->can(['manage-users','manage-roles']))
                             <select name="PriPubFlag" id="PriPubFlag" class="col-md-6 form-control">
                                 <option value="private" selected="selected">Private</option>
                                 <option value="public">Public</option>
-                            </select>   
-                            @endif                        
-                        </div>                        
+                            </select>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12 col-lg-offset-2">
-                    <div class="panel-default col-md-3">   
+                    <div class="panel-default col-md-3">
 
-                        {!! Form::button('<i class="fa fa-btn fa-save"></i>Save', ['type' => 'submit', 'class' => 'btn btn-primary']) !!} 
-                    </div>   
-            </div>         
+                        {!! Form::button('<i class="fa fa-btn fa-save"></i>Save', ['type' => 'submit', 'class' => 'btn btn-primary']) !!}
+                    </div>
+            </div>
         </div>
-        {!! Form::close() !!} 
+        {!! Form::close() !!}
     </div>
 <!-- end mathias code -->
 
@@ -169,13 +170,13 @@ Elaine code -->
         $('#btnFilter').on('click', function () {
             var selected_instcat_list = $("#instcat").val();
             var selected_stabbr_list = $("#stabbr").val();
-            var selected_carnegie_list = $("#carnegie").val();
+            var selected_ccbasic_list = $("#ccbasic").val();
             var dyn_cnt = 0;
-            console.log("instcat", selected_instcat_list, "stabbr", selected_stabbr_list, "carnegie", selected_carnegie_list);
+            console.log("instcat", selected_instcat_list, "stabbr", selected_stabbr_list, "ccbasic", selected_ccbasic_list);
            $.ajax({
                type: "GET",
                url: "./this",
-               data: {selected_instcat_list:$("#instcat").val(), selected_stabbr_list:$("#stabbr").val(), selected_carnegie_list:$("#carnegie").val()},
+               data: {selected_instcat_list:$("#instcat").val(), selected_stabbr_list:$("#stabbr").val(), selected_ccbasic_list:$("#ccbasic").val()},
                success: function(data) {
                 $('#lstBox1').empty();
                 $('#dynCounter').empty();

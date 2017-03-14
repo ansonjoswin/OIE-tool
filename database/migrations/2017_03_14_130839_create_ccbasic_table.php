@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCarnegieTable extends Migration
+class CreateCcbasicTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCarnegieTable extends Migration
      */
     public function up()
     {
-        Schema::create('carnegies', function(Blueprint $table)
+        Schema::create('ccbasics', function(Blueprint $table)
         {
             $table->string('id');
             $table->string('desc');
@@ -28,6 +28,6 @@ class CreateCarnegieTable extends Migration
      */
     public function down()
     {
-        Schema::drop('carnegies');
+        Schema::drop('ccbasics');
     }
 }

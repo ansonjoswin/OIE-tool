@@ -80,6 +80,7 @@ Route::resource('school_peergroups', 'School_PeerGroupsController'); // Lists Pe
 
 /*** Peer Group Filter ***/
 Route::resource('pgfilter', 'PeerGroupFilterController');
+Route::get('pgfilter/edit', 'PeerGroupsController@edit');
 /*** end Peer Group filter ***/
 
 Route::get('/this', function() {
@@ -87,10 +88,10 @@ Route::get('/this', function() {
    if(Request::ajax()){
        	$selected_instcat_list = Input::get('selected_instcat_list');
        	$selected_stabbr_list = Input::get('selected_stabbr_list');
-        $selected_carnegie_list = Input::get('selected_carnegie_list');
+        $selected_ccbasic_list = Input::get('selected_ccbasic_list');
 
         //No filters selected. Return all schools.
-        if($selected_instcat_list == 0 && $selected_stabbr_list == "0" && $selected_carnegie_list == 0)
+        if($selected_instcat_list == 0 && $selected_stabbr_list == "0" && $selected_ccbasic_list == -9)
         {
           $results = School::pluck('school_name','school_id');
           $school_ids = $results->toArray();
@@ -98,12 +99,12 @@ Route::get('/this', function() {
         }
 
         //All filters selected. Filter by Category and Carnegie and State.
-        elseif ($selected_instcat_list != 0 && $selected_stabbr_list != "0" && $selected_carnegie_list != 0)
+        elseif ($selected_instcat_list != 0 && $selected_stabbr_list != "0" && $selected_ccbasic_list != -9)
         {
           $results = School::where('Inst_Catgry', '=', $selected_instcat_list)->where('School_State', '=', $selected_stabbr_list)->whereHas('carnegie_classification',
-              function($q) use($selected_carnegie_list)
+              function($q) use($selected_ccbasic_list)
                 {
-                   $q->where('Cng_2000', '=', $selected_carnegie_list);
+                   $q->where('Cng_2010_Basic', '=', $selected_ccbasic_list);
                 })->pluck('school_name','school_id');
             //EHLbug: when schools and cc tables both had PK/FK = School_ID, the child query produced the SQL:
             //"and exists (select * from `carnegie_classifications` where `schools`.`School_ID` = `carnegie_classifications`.`school_School_ID` and `Cng_2000` = 21))"
@@ -115,7 +116,7 @@ Route::get('/this', function() {
         }
 
         //Filter by Category and State.
-        elseif ($selected_instcat_list != 0 && $selected_stabbr_list != "0" && $selected_carnegie_list == 0)
+        elseif ($selected_instcat_list != 0 && $selected_stabbr_list != "0" && $selected_ccbasic_list == -9)
         {
             $results = School::where('Inst_Catgry', '=', $selected_instcat_list)->where('School_State', '=', $selected_stabbr_list)->pluck('school_name','school_id');
             $school_ids = $results->toArray();
@@ -123,38 +124,38 @@ Route::get('/this', function() {
         }
 
         //Filter by Category and Carnegie.
-        elseif ($selected_instcat_list != 0 && $selected_stabbr_list == "0" && $selected_carnegie_list != 0)
+        elseif ($selected_instcat_list != 0 && $selected_stabbr_list == "0" && $selected_ccbasic_list != -9)
         {
             $results = School::where('Inst_Catgry', '=', $selected_instcat_list)->whereHas('carnegie_classification',
-                function($q) use($selected_carnegie_list)
+                function($q) use($selected_ccbasic_list)
                 {
-                    $q->where('Cng_2000', '=', $selected_carnegie_list);
+                    $q->where('Cng_2010_Basic', '=', $selected_ccbasic_list);
                 })->pluck('school_name','school_id');
             $school_ids = $results->toArray();
             return $school_ids;
         }
 
         //Filter by State and Carnegie.
-        elseif ($selected_instcat_list == 0 && $selected_stabbr_list != "0" && $selected_carnegie_list != 0)
+        elseif ($selected_instcat_list == 0 && $selected_stabbr_list != "0" && $selected_ccbasic_list != -9)
         {
             $results = School::where('School_State', '=', $selected_stabbr_list)->whereHas('carnegie_classification',
-                function($q) use($selected_carnegie_list)
+                function($q) use($selected_ccbasic_list)
                 {
-                    $q->where('Cng_2000', '=', $selected_carnegie_list);
+                    $q->where('Cng_2010_Basic', '=', $selected_ccbasic_list);
                 })->pluck('school_name','school_id');
             $school_ids = $results->toArray();
             return $school_ids;
         }
 
         //Filter by Category
-       elseif ($selected_instcat_list != 0 && $selected_stabbr_list == "0" && $selected_carnegie_list == 0)
+       elseif ($selected_instcat_list != 0 && $selected_stabbr_list == "0" && $selected_ccbasic_list == -9)
        {
            $results = School::where('Inst_Catgry', '=', $selected_instcat_list)->pluck('school_name','school_id');
            $school_ids = $results->toArray();
            return $school_ids;
        }
         //Filter by State
-       	elseif ($selected_instcat_list == 0 && $selected_stabbr_list != "0" && $selected_carnegie_list == 0)
+       	elseif ($selected_instcat_list == 0 && $selected_stabbr_list != "0" && $selected_ccbasic_list == -9)
        	{
        		$results = School::where('School_State', '=', $selected_stabbr_list)->pluck('school_name','school_id');
 			    $school_ids = $results->toArray();
@@ -162,11 +163,11 @@ Route::get('/this', function() {
 		    }
 
        //Filter by Carnegie Classification
-       elseif ($selected_instcat_list == "0" && $selected_stabbr_list == 0 && $selected_carnegie_list != 0)
+       elseif ($selected_instcat_list == "0" && $selected_stabbr_list == 0 && $selected_ccbasic_list != -9)
        {
-           $results = School::whereHas('carnegie_classification', function($q) use ($selected_carnegie_list)
+           $results = School::whereHas('carnegie_classification', function($q) use ($selected_ccbasic_list)
            {
-               $q->where('Cng_2000', '=', $selected_carnegie_list);
+               $q->where('Cng_2010_Basic', '=', $selected_ccbasic_list);
            })->get()->pluck('school_name','school_id');
            $school_ids = $results->toArray();
            return $school_ids;

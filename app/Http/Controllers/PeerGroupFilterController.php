@@ -15,7 +15,7 @@ use App\User;
 use App\School;
 use App\PeerGroup;
 use App\School_PeerGroup;
-use App\Carnegie;
+use App\Ccbasic;
 
 class PeerGroupFilterController extends Controller
 {
@@ -37,16 +37,16 @@ class PeerGroupFilterController extends Controller
     {
         $instcat_list = Instcat::pluck('desc','id')->toArray();
         $stabbr_list = Stabbr::pluck('desc','id')->toArray();
-        $carnegie_list = Carnegie::pluck('desc','id')->toArray();
+        $ccbasic_list = Ccbasic::pluck('desc','id')->toArray();
 
         $selected_instcat_list = Instcat::pluck('desc','id')->toArray();
         $selected_stabbr_list = Stabbr::pluck('desc','id')->toArray();
-        $selected_carnegie_list = Carnegie::pluck('desc','id')->toArray();
+        $selected_ccbasic_list = Ccbasic::pluck('desc','id')->toArray();
 
         $results = School::pluck('school_name','School_ID');
         $school_ids = $results->toArray();
 
-        return view('pgfilter.index', compact('instcats', 'stabbrs', 'results', 'instcat_list', 'stabbr_list', 'carnegie_list', 'selected_instcat_list', 'selected_stabbr_list', 'selected_carnegie_list', 'school_ids'));
+        return view('pgfilter.index', compact('instcats', 'stabbrs', 'results', 'instcat_list', 'stabbr_list', 'ccbasic_list', 'selected_instcat_list', 'selected_stabbr_list', 'selected_ccbasic_list', 'school_ids'));
     }
     public function show()
     {
@@ -76,9 +76,6 @@ class PeerGroupFilterController extends Controller
         else{
             return 'no';
         }
-
-
-
 
 //    public function ajaxresults(Request $request)
 //    {
@@ -126,7 +123,53 @@ class PeerGroupFilterController extends Controller
 ////            dd($school_ids);
 //
 //        return Response::json($school_ids->get());
-
     }
+
+    /*** Edit a peer group ***/
+    public function edit(PeerGroup $peergroup)
+    {
+        $instcat_list = Instcat::pluck('desc','id')->toArray();
+        $stabbr_list = Stabbr::pluck('desc','id')->toArray();
+        $ccbasic_list = Ccbasic::pluck('desc','id')->toArray();
+
+        $selected_instcat_list = Instcat::pluck('desc','id')->toArray();
+        $selected_stabbr_list = Stabbr::pluck('desc','id')->toArray();
+        $selected_ccbasic_list = Ccbasic::pluck('desc','id')->toArray();
+
+        $results = School::pluck('school_name','School_ID');
+        $school_ids = $results->toArray();
+
+        $user = Auth::user();
+        $peergroups = PeerGroup::where('User_ID',Auth::user()->id)->get();
+        $pg_id = $peergroup->PeerGroupID;
+        $school_peergroups = DB::table('school_peergroups')->where('PeerGroupID', '=', $pg_id)->get();
+        $object = $peergroup;
+        $list_schoolIDs = $school_peergroups->pluck('School_ID');
+        $list_school = School::select('School_ID', 'School_Name')->whereIn('School_ID', $list_schoolIDs)->get();
+        $this->viewData['User_ID'] = Auth::user()->id;
+        $this->viewData['peergroup'] = $object;
+        $this->viewData['school_peergroup'] = $object;
+        $this->viewData['heading'] = "Edit Peer Group";
+        $this->viewData['list_school'] = $list_school;
+        return view('pgfilter.edit', $this->viewData, compact('instcats', 'stabbrs', 'results', 'instcat_list', 'stabbr_list', 'ccbasic_list', 'selected_instcat_list', 'selected_stabbr_list', 'selected_ccbasic_list', 'school_ids'));
+    }
+
+    /*** Update a peer group ***/
+    public function update(PeerGroup $peergroup, PeerGroupFormRequest $request)
+    {
+
+//        $object = ;
+        $this->populateUpdateFields($request);
+        $peergroupid = $object->PeerGroupID;
+        $list_school = School_PeerGroup::where('PeerGroupID', '=', $peergroupid);
+        Log::info('PeerGroupsController.update - Start: '.$object->PeerGroupID.'|'.$object->PeerGroupName);
+        $object->update($request->all());
+        $this->syncSchools($object, $request->input('schoollist'));
+        Session::flash('flash_message', 'Peer Group successfully updated!');
+
+        Log::info('PeerGroupsController.update - End: '.$object->PeerGroupID.'|'.$object->PeerGroupName);
+        return redirect('peergroups');
+    }
+
 
 }
