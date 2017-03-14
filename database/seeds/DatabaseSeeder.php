@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleUserTableSeeder::class);
         $this->call(UsersRolesPermissions::class);
         $this->call(MappingTableSeeder::class);
+        $this->call(DataTable::class);
 // // Follow naming standards
 //         <<<<<<< HEAD
 // //         $this->call(SchoolTable::class);
