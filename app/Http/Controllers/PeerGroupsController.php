@@ -133,7 +133,7 @@ class PeerGroupsController extends Controller
         $this->viewData['school_peergroup'] = $object;
         $this->viewData['heading'] = "Edit Peer Group";
         $this->viewData['list_school'] = $list_school;
-//        dd($this->viewData);
+//        dd($list_school);
         return view('peergroups.edit', $this->viewData);
 
     }

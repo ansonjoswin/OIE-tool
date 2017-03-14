@@ -38,15 +38,7 @@
         @else
             {!! Form::select('schoollist[]', $list_school->pluck('School_Name'), null, ['class' => 'form-control roles cds-select', 'multiple', 'style' => 'width: 50%; margin-top: 10px;']) !!}
         @endif
-        {{--@if($CRUD_Action == 'Create' )--}}
-        {{--{!! Form::select('schoollist[]', $list_school, null, ['placeholder' => '', 'class' => 'form-control roles cds-select', 'style' => 'width: 50%; margin-top: 10px;', 'required' => 'required']) !!}--}}
-        {{--@elseif($user->getRoleListAttribute()->first() != null) <!--Existing users default to existing role-->--}}
 
-        {{--{!! Form::select('schoollist[]', $list_school->pluck('School_Name'), null, ['class' => 'form-control roles cds-select', 'style' => 'width: 50%; margin-top: 10px;', 'required' => 'required']) !!}--}}
-
-        {{--@else <!--If user has no role, it is a Registered User-->--}}
-            {{--{!! Form::select('schoollist[]', $list_school, $list_role->search('Registered User'), ['class' => 'form-control roles cds-select', 'style' => 'width: 50%; margin-top: 10px;', 'required' => 'required']) !!}--}}
-            {{--@endif--}}
         {{--//EHLbug: (SQL: select * from `school_peergroups` where `school_peergroups`.`peer_group_PeerGroupID` = 4 and `school_peergroups`.`peer_group_PeerGroupID` is not null)--}}
     </div>
 </div>

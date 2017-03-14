@@ -43,10 +43,13 @@ class PeerGroupFilterController extends Controller
         $selected_stabbr_list = Stabbr::pluck('desc','id')->toArray();
         $selected_ccbasic_list = Ccbasic::pluck('desc','id')->toArray();
 
+        $ccbasicyearid = 2014;
+
         $results = School::pluck('school_name','School_ID');
         $school_ids = $results->toArray();
+//        dd($school_ids);
 
-        return view('pgfilter.index', compact('instcats', 'stabbrs', 'results', 'instcat_list', 'stabbr_list', 'ccbasic_list', 'selected_instcat_list', 'selected_stabbr_list', 'selected_ccbasic_list', 'school_ids'));
+        return view('pgfilter.index', compact('instcats', 'stabbrs', 'results', 'instcat_list', 'stabbr_list', 'ccbasic_list', 'selected_instcat_list', 'selected_stabbr_list', 'selected_ccbasic_list', 'school_ids', 'ccbasicyearid'));
     }
     public function show()
     {
@@ -151,6 +154,7 @@ class PeerGroupFilterController extends Controller
         $this->viewData['school_peergroup'] = $object;
         $this->viewData['heading'] = "Edit Peer Group";
         $this->viewData['list_school'] = $list_school;
+//        dd($list_school);
         return view('pgfilter.edit', $this->viewData, compact('instcats', 'stabbrs', 'results', 'instcat_list', 'stabbr_list', 'ccbasic_list', 'selected_instcat_list', 'selected_stabbr_list', 'selected_ccbasic_list', 'school_ids'));
     }
 

@@ -35,8 +35,13 @@
                     @if(sizeof($selected_ccbasic_list) == 0)
                         {{ Form::select('ccbasic', $ccbasic_list, ['id' => 'ccbasic']) }}
                     @else
-                        {{ Form::select('ccbasic', $ccbasic_list, $selected_ccbasic_list, ['id' => 'ccbasic']) }}
+                        {{ Form::select('ccbasic', $ccbasic_list, '-9', ['id' => 'ccbasic']) }}
                     @endif
+                </div>
+
+                <div class="form-group">
+                    <label>Carnegie Classification 2010 Basic</label><br>
+                    <select id="ccbasicyearid" name="ccbasicyearid"></select>
                 </div>
 
                 <div class="form-group">
@@ -161,22 +166,36 @@ Elaine code -->
     var selected_cnt = 0;
 
     $(document).ready(function($){
+
+        //Load Year dropdown.
+        var start = 2000;
+        var end = 2100;
+        var options = "<option value='default'>\-\- Select Carnegie Classification Year \-\-</option>";
+        for(var year = start; year <= end; year++) {
+            options += "<option value=\"" + year + "\">"+ year +"</option>";
+        }
+        document.getElementById("ccbasicyearid").innerHTML = options;
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
         //populate Available Institutions dynamically on submit (click on "Institution List")
         $('#btnFilter').on('click', function () {
             var selected_instcat_list = $("#instcat").val();
             var selected_stabbr_list = $("#stabbr").val();
             var selected_ccbasic_list = $("#ccbasic").val();
+            var ccbasicyearid = $("#ccbasicyearid").val();
+//            var ccbasicyearid = 2014;
             var dyn_cnt = 0;
-            console.log("instcat", selected_instcat_list, "stabbr", selected_stabbr_list, "ccbasic", selected_ccbasic_list);
+            console.log("instcat", selected_instcat_list, "stabbr", selected_stabbr_list, "ccbasic", selected_ccbasic_list, "ccbasicyearid", ccbasicyearid);
            $.ajax({
                type: "GET",
                url: "./this",
-               data: {selected_instcat_list:$("#instcat").val(), selected_stabbr_list:$("#stabbr").val(), selected_ccbasic_list:$("#ccbasic").val()},
+               data: {selected_instcat_list:$("#instcat").val(), selected_stabbr_list:$("#stabbr").val(), selected_ccbasic_list:$("#ccbasic").val(), ccbasicyearid:$("#ccbasicyearid").val()},
+//               why isn't it passing ccbasicyearid to web.php /this function?
                success: function(data) {
                 $('#lstBox1').empty();
                 $('#dynCounter').empty();

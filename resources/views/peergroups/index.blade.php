@@ -31,7 +31,7 @@
                                     <tbody> <!-- Table Body -->
                                     @foreach ($peergroups as $peergroup)
                                         <tr>
-                                            <td class="table-text"><div><a href="{{ url('/pgfilter/'.$peergroup->PeerGroupID.'/edit') }}">{{ $peergroup->PeerGroupName }}</a> </div></td>
+                                            <td class="table-text"><div><a href="{{ url('/peergroups/'.$peergroup->PeerGroupID.'/edit') }}">{{ $peergroup->PeerGroupName }}</a> </div></td>
                                             {{--<td class="table-text"><div>{{ $peergroup->PeerGroupName}}</div></td>--}}
                                             @if(Auth::user()->can(['manage-users','manage-roles']))
                                             <td class="table-text"><div>{{ $peergroup->created_by}}</div></td>
