@@ -168,7 +168,7 @@ Route::get('/this', function() {
            $results = School::whereHas('carnegie_classification', function($q) use ($selected_ccbasic_list)
            {
                $q->where('Cng_2010_Basic', '=', $selected_ccbasic_list);
-           })->get()->pluck('school_name','school_id');
+           })->pluck('school_name','school_id');
            $school_ids = $results->toArray();
            return $school_ids;
        }
