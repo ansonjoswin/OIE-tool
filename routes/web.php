@@ -60,7 +60,11 @@ Route::resource('finances', 'FinancesController');
 Route::resource('private_nprofs', 'Private_NProfsController');
 Route::resource('private_profs', 'Private_ProfsController');
 Route::resource('publicfs', 'PublicFsController');
+
+/**** DATA VISUALIZATION SCATTERPLOT ****/
 Route::resource('/testvisual', 'TestDataController');
+Route::resource('/datavisual', 'DataVisualController');
+/****************************************/
 
 Route::resource('instructional_ess', 'Instructional_ESsController');
 

@@ -1,14 +1,6 @@
 
-
-
- // console.log(test_data);
-
 jsObject = JSON.parse(test_data); 
-jsObject.forEach(function(data) { 
-    // var data = rawData.map;
-   // var data = rawData.map(function(d){
-   //    console.log(d);
-      // return { X: +data.GradRate4yr_BacDgr100, Y: +data.GradRate6yr_BacDgr150 }   
+jsObject.forEach(function(data) {  
     data.GradRate4yr_BacDgr100 = +data.GradRate4yr_BacDgr100;
     data.GradRate6yr_BacDgr150 = +data.GradRate6yr_BacDgr150;                                
    // console.log(rawData.GradRate4yr_BacDgr100);
@@ -23,10 +15,6 @@ var maxExtent = d3.max(
 
 var graphWidth = 500, graphHeight = 500;
 var radius = 5;
-
-// var scale = d3.scale.linear()
-//   .domain([-maxExtent,maxExtent+5])
-//   .range([0, graphWidth]);
 
 var xScale = d3.scale.linear()
   .domain([-maxExtent,maxExtent+5])
