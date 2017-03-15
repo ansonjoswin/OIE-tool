@@ -8,19 +8,17 @@
                     <div class="panel-heading">
                         <div class="pull-right">  
 
-                            {{--@if($user->id != Auth::user()->id && $user->id != 1) // add this to add public peer groups for Admin editing--}}
-                            {{--<form action="{{ url('peergroups/'.$peergroup->id) }}" method="POST" onsubmit="return ConfirmDelete();">--}}
-                                {{--{{ csrf_field() }}{{ method_field('DELETE') }}--}}
-                                {{--<button type="submit" id="delete-peergroup-{{ $peergroup->id}}" class="btn btn-default  btn-danger"><i class="fa fa-btn fa-trash"></i>Delete</button>--}}
-                            {{--</form>                       --}}
-                            {{--@endif--}}
+                            {!! Form::open(['route'=>'pg_delete_url', 'class'=>'form-horizontal', 'onsubmit'=>'return ConfirmDelete()']) !!}
+                            {!! Form::hidden('pg_id', $peergroup->PeerGroupID, array('id'=>'pg_id', 'class'=>'btn btn-danger')) !!}
+                            {!! Form::button('<i class="fa fa-btn fa-trash"></i>', ['type'=>'submit', 'class'=>'btn btn-danger']) !!}
+                            {!! Form::close() !!}
 
                         </div>
                         <div><h4>{{ $heading }}</h4></div>
                     </div>
 
                     <div class="panel-body">
-                        {!! Form::model($peergroup, ['class' => 'form-horizontal', 'method' => 'PATCH', 'action' => ['PeerGroupsController@update', $peergroup->id]]) !!}
+                        {!! Form::model($peergroup, ['class' => 'form-horizontal', 'method' => 'PATCH', 'action' => ['PeerGroupsController@update', $peergroup->PeerGroupID]]) !!}
                         @include('common.errors')
                         @include('common.flash')
 
@@ -35,9 +33,9 @@
 
 @section('footer')
     <script>
-        $(document).ready(function($) {
-            $('select').select2();
-        });
+//        $(document).ready(function($) {
+//            $('select').select2();
+//        });
 
         function validateOnSave() {
             var rc = true;

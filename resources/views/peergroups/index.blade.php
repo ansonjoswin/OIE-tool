@@ -7,8 +7,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="pull-right">
-                            <!-- <form action="{{ url('peergroups/create') }}" method="POST">{{ csrf_field() }} -->
-                            <form action="{{ url('pgfilter') }}" method="GET">{{ csrf_field() }}
+                            {{--<!-- <form action="{{ url('peergroups/create') }}" method="POST">{{ csrf_field() }} -->--}}
+                            <form action="{{ url('peergroups/create') }}" method="GET">{{ csrf_field() }}
                                 <button type="submit" id="create-peergroup" class="btn btn-primary"><i class="fa fa-btn fa-file-o"></i>Create</button>
                             </form>
                         </div>

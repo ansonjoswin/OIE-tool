@@ -84,7 +84,7 @@ Route::get('pgfilter/edit', 'PeerGroupsController@edit');
 /*** end Peer Group filter ***/
 
 Route::get('/this', function() {
-	//Log::info('This is the get route and i');
+	Log::info('This is the get route and i');
    if(Request::ajax()){
 //       return('in ajax request ');
        	$selected_instcat_list = Input::get('selected_instcat_list');
