@@ -1,5 +1,6 @@
 <script src="{{ URL::asset('js/jquery.selectlistactions.js') }}"></script>
 
+
 <link rel="stylesheet" href="{{ URL::asset('css/site.css') }}">
 
 <!--[if lt IE 9]>
@@ -19,27 +20,23 @@
     </div>
 </div>
 
-
+@if(($user->getRoleListAttribute()->first() == 1))
 <div class="form-group{{ $errors->has('PriPubFlg') ? ' has-error' : '' }}">
     {!! Form::label('PriPubFlg', 'Private/Public:', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-
-        @if($CRUD_Action == 'Create' )
-            {!! Form::select('PriPubFlg',[null=>''] + $PriPubFlgList, null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!}
-        @else
-{{--            {{ $peergroup->PriPubFlg }}--}}
-            {{--EHLbug: below code does not bring up correct default - why?--}}
-            {!! Form::select('PriPubFlg', $PriPubFlgList, $peergroup->PriPubFlg, ['class' => 'col-md-6 form-control', 'required' => 'required', 'selected' => 'selected']) !!}
-        @endif
-
-
-        @if ($errors->has('PriPubFlgList'))
-            <span class="help-block">
-                <strong>{{ $errors->first('PriPubFlgList') }}</strong>
-            </span>
-        @endif
+            @if($CRUD_Action == 'Create' )
+                    {!! Form::select('PriPubFlg',[null=>''] + $PriPubFlgList, null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!}
+                @else
+                    {!! Form::select('PriPubFlg', $PriPubFlgList, $peergroup->PriPubFlg, ['class' => 'col-md-6 form-control', 'required' => 'required', 'selected' => 'selected']) !!}
+            @endif
+            @if ($errors->has('PriPubFlgList'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('PriPubFlgList') }}</strong>
+                </span>
+            @endif
     </div>
 </div>
+@endif
 
 {{--{!! Form::open(array('url' => 'peergroups', 'id' => 'peergroupsform', 'class' => 'form')) !!}--}}
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -113,9 +110,11 @@
                 <label>Selected Institutions<label id=SelectedCounter></label></label>
                 {{--({{$optslength}})--}}
                 <select multiple="multiple" name="lstBox2[]" id="lstBox2" class="form-control" required="required">
-                @foreach($list_school as $key => $value)
-                    <option value="{{ $key }}"> {{ $value }} </option>
-                @endforeach
+                    @if($CRUD_Action == 'Update' )
+                        @foreach($list_school as $key => $value)
+                            <option value="{{ $key }}"> {{ $value }} </option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
         </div>

@@ -70,7 +70,6 @@ class PeerGroupsController extends Controller
     {
         return('in show route');
         $object = $peergroups;
-//        var_dump($object);
         Log::info('PeerGroupsController.show: '.$object->id.'|'.$object->name);
         $this->viewData['peergroup'] = $object;
         $this->viewData['heading'] = "View Peer Group: ".$object->name;
@@ -81,43 +80,25 @@ class PeerGroupsController extends Controller
     public function create()  //this is to test functionality
     {
         Log::info('PeerGroupsController.create: ');
-//        $this->viewData['instcat_list'] = Instcat::pluck('desc','id')->toArray();
-//        $this->viewData['stabbr_list'] = Stabbr::pluck('desc','id')->toArray();
-//        $this->viewData['ccbasic_list'] = Ccbasic::pluck('desc','id')->toArray();
-//
-//        $this->viewData['selected_instcat_list'] = Instcat::pluck('desc','id')->toArray();
-//        $this->viewData['selected_stabbr_list'] = Stabbr::pluck('desc','id')->toArray();
-//        $this->viewData['selected_ccbasic_list'] = Ccbasic::pluck('desc','id')->toArray();
-//
-//        $this->viewData['ccbasicyearid'] = 2014;
-//
-//        $results = School::pluck('school_name','School_ID');
-//        $this->viewData['school_ids'] = $results->toArray();
+        $this->viewData['user'] = Auth::user();
         $this->viewData['heading'] = "New Peer Group";
         return view('peergroups.create', $this->viewData);
-
-        //Mathias code:
-        //$schools=School::whereIn('school_id', [3001,3002,3003])->pluck('school_id');
-//        $this->viewData['heading'] = "Peer Groups";
-//        $this->viewData['schools'] = $schools;
-//        return view('peergroups.test_create_peergroup', $this->viewData);
     }
-
 
     /*** Save a new peer group to database ***/
     public function store(Request $request)
     {
-//        return('in store route');
         Log::info('PeerGroupsController.store: ');
 
         /** Create PeerGroup record **/
         $pg_input['PeerGroupName'] = $request['PeerGroupName'];
         $pg_input['User_ID'] = Auth::user()->id;
         $pg_input['created_by'] = Auth::user()->email;
-        if($request['PriPubFlag'] == ''){
-            $pg_input['PriPubFlg'] = 'private';  // Default flag to private
+        if($request['PriPubFlg'] == ''){
+            $pg_input['PriPubFlg'] = 'Private';  // Default flag to private EHLbug: was all lowercase- does that matter?
         }else{
-            $pg_input['PriPubFlg'] = $request['PriPubFlag'];
+//            dd($request['PriPubFlg']);
+            $pg_input['PriPubFlg'] = $request['PriPubFlg'];
         }
         $pg_object = PeerGroup::create($pg_input);
 
@@ -137,8 +118,8 @@ class PeerGroupsController extends Controller
     /*** Edit a peer group ***/
     public function edit(PeerGroup $peergroup)
     {
-        $user = Auth::user();
-        $peergroups = PeerGroup::where('User_ID',Auth::user()->id)->get();
+        $object = $peergroup;
+//        dd($object);
         $pg_id = $peergroup->PeerGroupID;
         $school_peergroups = DB::table('school_peergroups')->where('PeerGroupID', '=', $pg_id)->get();
 
@@ -146,9 +127,10 @@ class PeerGroupsController extends Controller
 
         $list_school = School::whereIn('School_ID', $list_schoolIDs)->pluck('school_name','School_ID')->toArray();
 
+        $this->viewData['user'] = Auth::user();
         $this->viewData['User_ID'] = Auth::user()->id;
-        $this->viewData['peergroup'] = $peergroup;
-        $this->viewData['school_peergroup'] = $peergroup;
+        $this->viewData['peergroup'] = $object;
+        $this->viewData['school_peergroup'] = $object;
         $this->viewData['heading'] = "Edit Peer Group";
         $this->viewData['list_school'] = $list_school;
 
@@ -156,33 +138,47 @@ class PeerGroupsController extends Controller
     }
 
     /*** Update a peer group ***/
-    public function update(PeerGroup $peergroup, PeerGroupFormRequest $request)
+    public function update(PeerGroup $peergroup, Request $request)
     {
-        $object = $peergroup;
-        $pg_input['PeerGroupName'] = $request['PeerGroupName'];
-        $pg_input['User_ID'] = Auth::user()->id;
-        $pg_input['created_by'] = Auth::user()->email;
-        if($request['PriPubFlag'] == ''){
-            $pg_input['PriPubFlg'] = 'private';  // Default flag to private
-        }else{
-            $pg_input['PriPubFlg'] = $request['PriPubFlag'];
-        }
-        $pg_object = PeerGroup::create($pg_input);
-
-        /** Create School_PeerGroup records to update PeerGroup**/
-        $pg_id = $pg_object->PeerGroupID;
-        $schoolsIDs = $request['lstBox2'];
-        foreach ($schoolsIDs as $school_id) {
-            $sch_peergroup = [ ['PeerGroupID'=>$pg_id, 'School_ID'=>$school_id, 'created_by'=>Auth::user()->email, 'created_at'=>date_create() ] ];
-            DB::table('school_peergroups')->insert($sch_peergroup);
-        }
-        $this->populateUpdateFields($request); //update "updated_by" field
-
-        $peergroupid = $request->PeerGroupID;
-        $list_school = School_PeerGroup::where('PeerGroupID', '=', $peergroupid);
+//        return('in update route');
         Log::info('PeerGroupsController.update - Start: '.$request->PeerGroupID.'|'.$request->PeerGroupName);
-        $object->update($request->all());
-//        $this->syncSchools($object, $request->input('schoollist'));
+        $object = $peergroup;
+        /** Update PeerGroup updated_by and updated_at**/
+        $request['PeerGroupName'] = $request['PeerGroupName'];
+        $request['User_ID'] = Auth::user()->id;
+        $request['updated_by'] = Auth::user()->email; //EHLbug: this gets overwritten, becomes 'System' (low priority)
+//        dd($request['updated_by']);
+        if($request['PriPubFlg'] == ''){
+            $request['PriPubFlg'] = 'Private';  // Default flag to private
+        }else{
+            $request['PriPubFlg'] = $request['PriPubFlg'];
+        }
+        $request['pg_ID'] = $request->PeerGroupID;
+//        dd($pg_input);
+        $object->update($request->all()); // this works
+//        dd($object);
+
+        /** Update School_PeerGroup records to update PeerGroup**/
+        $schoolsIDs = $request['lstBox2'];
+        $pg_ID = $object->PeerGroupID;
+        $updated_by = Auth::user()->email;
+        //        dd($object->PeerGroupID);
+        //        dd($request['lstBox2']);
+
+        $old_school_IDs = School_PeerGroup::pluck('School_ID');
+        foreach ($schoolsIDs as $school_id) {
+            // need if statement to determine if old school id not in new school id; if so, delete row
+            // else update or create
+            $school_peergroups = School_PeerGroup::updateOrCreate(
+                //EHLbug: this runs if the schools selected are the same (so it doesn't have an issue with the update part, although the updated_at field does not change),
+                //but it fails if schools are added - error is in date casting, I believe
+                //ErrorException in HasAttributes.php line 818: Illegal offset type
+                ['PeerGroupID' => $pg_ID,
+                'School_ID' => $school_id]
+                ,
+                ['updated_at'=>date_create()]
+            );
+        }
 
         Session::flash('flash_message', 'Peer Group successfully updated!');
         Log::info('PeerGroupsController.update - End: '.$object->PeerGroupID.'|'.$object->PeerGroupName);

@@ -69,8 +69,8 @@ Route::resource('noninstructional_ess', 'NonInstructional_ESsController');
 
 /*** PEER GROUPS ***/
 Route::resource('peergroups', 'PeerGroupsController');  // Lists Peer Groups (index method)
-Route::get('peergroups/create', 'PeerGroupsController@create');  // Creates a Peer Group (create method)
-Route::resource('peergroups/store', 'PeerGroupsController');  // Saves a Peer Group (store method)
+//Route::get('peergroups/create', 'PeerGroupsController@create');  // Creates a Peer Group (create method)
+//Route::resource('peergroups/store', 'PeerGroupsController');  // Saves a Peer Group (store method)
 Route::post('peergroups/delete', ['as'=>'pg_delete_url', 'uses'=>'PeerGroupsController@destroy']);  // Deletes a Peer Group (destroy method)
 /*******************/
 

@@ -33,9 +33,9 @@
 
 @section('footer')
     <script>
-//        $(document).ready(function($) {
-//            $('select').select2();
-//        });
+        $(document).ready(function($) {
+            $('select').select2();
+        });
 
         function validateOnSave() {
             var rc = true;
