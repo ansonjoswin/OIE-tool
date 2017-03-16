@@ -2,6 +2,11 @@
 @extends('layouts.app')
 
 <style>
+
+svg:not(:root) {
+    overflow: visible !important;
+}
+
 .axis path,
 .axis line {
   fill: none;
@@ -104,12 +109,27 @@ article.accordion section h2
     transition: all 1s ease;
 }
 
+.dot {
+  stroke: #000;
+}
+
+.tooltip {
+  position: absolute;
+  width: 200px;
+  height: 28px;
+  pointer-events: none;
+}
+
+.panel-body {
+    font: 11px sans-serif;
+    margin-bottom: 25px;
+}
 </style>
 
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-2">
+            <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div><h4>Data Visualization</h4></div>
@@ -187,5 +207,3 @@ var test_data = <?php echo json_encode($test_data, JSON_HEX_TAG); ?>;
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="../public/js/data_visual.js"></script>
 @endsection
-
-
