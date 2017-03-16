@@ -7,17 +7,17 @@ use App\Graduation;
 use App\PeerGroup;
 use App\School_PeerGroup;
 use DB;
+use Illuminate\Routing\Controller;
+
 
 class DataVisualController extends Controller
 {
     public function index()
     {
-    	$peerGroups = PeerGroup::select('PeerGroupID','PeerGroupName')->where('PriPubFlg','=','public')->get();
+    	$peerGroups = PeerGroup::where('PriPubFlg','=','public')->pluck('PeerGroupName','PeerGroupID')->toArray();
     	$this->viewData['peerGroups'] = $peerGroups;
-    	// $pg_arr = PeerGroup::pluck('PeerGroupName','PeerGroupID')->where('PriPubFlg','=','public')->get();
-    	$pg_arr = DB::table('peergroups')->where('PriPubFlg', 'public')->pluck('PeerGroupName','PeerGroupID');
-    	$this->viewData['pg_arr'] = $pg_arr;
-        $test_data = Graduation::select('school_id','GradRate4yr_BacDgr100','GradRate6yr_BacDgr150')->whereIn('school_id',[2,3,4,5,6,7,8])->get();
+
+        $test_data = '';
         $this->viewData['test_data'] = json_encode($test_data);
     	return view('data.index',$this->viewData);
     }
@@ -25,15 +25,18 @@ class DataVisualController extends Controller
     public function refresh(Request $request)
     {
     	$sel_pgid = $request['sel_pgid'];
-    	// $sel_school_ids = School_PeerGroup::whereIn('PeerGroupID',[$sel_pgid])->pluck('School_ID');
     	$sel_school_ids = DB::table('school_peergroups')->whereIn('PeerGroupID', [$sel_pgid])->pluck('School_ID');
+    	$this->viewData['sel_pgid'] = $sel_pgid;
 
-    	$peerGroups = PeerGroup::select('PeerGroupID','PeerGroupName')->where('PriPubFlg','=','public')->get();
+    	$sel_year = $request['sel_year'];
+    	$this->viewData['sel_year'] = $sel_year;
 
+    	$sel_xaxis = $request['sel_xaxis'];
+    	$this->viewData['sel_xaxis'] = $sel_xaxis;
+
+    	$peerGroups = PeerGroup::where('PriPubFlg','=','public')->pluck('PeerGroupName','PeerGroupID')->toArray();
     	$this->viewData['peerGroups'] = $peerGroups;
-    	$pg_arr = DB::table('peergroups')->where('PriPubFlg', 'public')->pluck('PeerGroupName','PeerGroupID');
 
-    	$this->viewData['pg_arr'] = $pg_arr;
         $test_data = Graduation::select('school_id','GradRate4yr_BacDgr100','GradRate6yr_BacDgr150')
         	->whereIn('school_id',[$sel_school_ids])
         	->get();
