@@ -71,14 +71,15 @@
                 @if(Auth::user())
                 <li><a href="{{ url('/userstats') }}" id="UserStatistics" >User Statistics</a></li>
                 @endif
+				@if(Auth::user())
+                <li><a href="{{ url('https://analytics.google.com/') }}" id="GoogleAnalytics" >Google Analytics</a></li>
+                @endif
                 @endif
             
             </ul>
             @endif
- 
-                
-          
-
+              
+         
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
@@ -110,8 +111,10 @@
                 @endif
             </ul>
         </div>
+
 		
     </div>
+
 </nav>
 
 
