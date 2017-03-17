@@ -46,18 +46,31 @@ label {
      <h2>D3 Scatterplot </h2>
      <section id="char"></section>
   </div>
-
   <!-- Begin D3 Javascript -->
   <script type="text/javascript">
-  
- d3.csv('data.csv',function (data) {
-// CSV section
 
-  var body = d3.select('body')
-  var selectData = [ { "text" : "Annualized Return" },
-                     { "text" : "Annualized Standard Deviation" },
-                     { "text" : "Maximum Drawdown" },
-                   ]
+  var test_data = <?php echo json_encode($test_data, JSON_HEX_TAG); ?>; 
+jsObject = JSON.parse(test_data); 
+console.log   (jsObject);
+jsObject.forEach(function(data) {  
+    data.GradRate4yr_BacDgr100 = +data.GradRate4yr_BacDgr100;
+    data.GradRate6yr_BacDgr150 = +data.GradRate6yr_BacDgr150;
+          
+//document.write(data.GradRate6yr_BacDgr10s0);
+
+});
+
+
+
+
+//document.write(xExtents);
+//document.write(yExtents);
+
+
+  var body = d3.select("body")
+
+
+
 
   // Select X-axis Variable
   var span = body.append('span')
@@ -66,11 +79,11 @@ label {
       .attr('id','xSelect')
       .on('change',xChange)
     .selectAll('option')
-      .data(selectData)
+      .data(jsObject)
       .enter()
     .append('option')
-      .attr('value', function (d) { return d.text })
-      .text(function (d) { return d.text ;})
+      .attr('value', function (d) { return d.GradRate4yr_BacDgr100 })
+      .text(function (d) { return d.GradRate4yr_BacDgr100 })
   body.append('br')
 
   // Select Y-axis Variable
@@ -80,31 +93,31 @@ label {
       .attr('id','ySelect')
       .on('change',yChange)
     .selectAll('option')
-      .data(selectData)
+      .data(jsObject)
       .enter()
     .append('option')
-      .attr('value', function (d) { return d.text })
-      .text(function (d) { return d.text ;})
+      .attr('value', function (d) { return d.GradRate6yr_BacDgr150})
+      .text(function (d) { return d.GradRate6yr_BacDgr150})
   body.append('br')
 
   // Variables
-  var body = d3.select('body')
+  var body = d3.select("body")
   var margin = { top: 50, right: 50, bottom: 50, left: 50 }
   var h = 500 - margin.top - margin.bottom
   var w = 500 - margin.left - margin.right
-  var formatPercent = d3.format('.2%')
+
   // Scales
   var colorScale = d3.scale.category20()
   var xScale = d3.scale.linear()
     .domain([
-      d3.min([0,d3.min(data,function (d) { return d['Annualized Return'] })]),
-      d3.max([0,d3.max(data,function (d) { return d['Annualized Return'] })])
+      d3.min([0,d3.min(jsObject,function (d) { return d.GradRate4yr_BacDgr100 })]),
+      d3.max([0,d3.max(jsObject,function (d) { return d.GradRate4yr_BacDgr100})])
       ])
     .range([0,w])
   var yScale = d3.scale.linear()
     .domain([
-      d3.min([0,d3.min(data,function (d) { return d['Annualized Return'] })]),
-      d3.max([0,d3.max(data,function (d) { return d['Annualized Return'] })])
+      d3.min([0,d3.min(jsObject,function (d) { return d.GradRate6yr_BacDgr150 })]),
+      d3.max([0,d3.max(jsObject,function (d) { return d.GradRate6yr_BacDgr150 })])
       ])
     .range([h,0])
   // SVG
@@ -116,22 +129,18 @@ label {
   // X-axis
   var xAxis = d3.svg.axis()
     .scale(xScale)
-    .tickFormat(formatPercent)
-    .ticks(5)
     .orient('bottom')
   // Y-axis
   var yAxis = d3.svg.axis()
     .scale(yScale)
-    .tickFormat(formatPercent)
-    .ticks(5)
     .orient('left')
   // Circles
   var circles = svg.selectAll('circle')
-      .data(data)
+      .data(jsObject)
       .enter()
     .append('circle')
-      .attr('cx',function (d) { return xScale(d['Annualized Return']) })
-      .attr('cy',function (d) { return yScale(d['Annualized Return']) })
+      .attr('cx',function (d) { return xScale(d.GradRate4yr_BacDgr100) })
+      .attr('cy',function (d) { return yScale(d.GradRate6yr_BacDgr150) })
       .attr('r','10')
       .attr('stroke','black')
       .attr('stroke-width',1)
@@ -151,10 +160,8 @@ label {
           .attr('stroke-width',1)
       })
     .append('title') // Tooltip
-      .text(function (d) { return d.variable +
-                           '\nReturn: ' + formatPercent(d['Annualized Return']) +
-                           '\nStd. Dev.: ' + formatPercent(d['Annualized Standard Deviation']) +
-                           '\nMax Drawdown: ' + formatPercent(d['Maximum Drawdown']) })
+      .text(function (d) { return 'X-axis:'+d.GradRate4yr_BacDgr100 +
+                           '\n Y-axis:' + d.GradRate6yr_BacDgr150})
   // X-axis
   svg.append('g')
       .attr('class','axis')
@@ -167,7 +174,7 @@ label {
       .attr('x',w)
       .attr('dy','.71em')
       .style('text-anchor','end')
-      .text('Annualized Return')
+      .text("Resource")
   // Y-axis
   svg.append('g')
       .attr('class','axis')
@@ -180,15 +187,18 @@ label {
       .attr('y',5)
       .attr('dy','.71em')
       .style('text-anchor','end')
-      .text('Annualized Return')
+      .text("Performance")
 
   function yChange() {
     var value = this.value // get the new y value
+
+
     yScale // change the yScale
       .domain([
-        d3.min([0,d3.min(data,function (d) { return d[value] })]),
-        d3.max([0,d3.max(data,function (d) { return d[value] })])
+        d3.min([0,d3.min(jsObject,function (d) { console.log(d);return d[value] })]),
+        d3.max([0,d3.max(jsObject,function (d) { return d[value] })])
         ])
+
     yAxis.scale(yScale) // change the yScale
     d3.select('#yAxis') // redraw the yAxis
       .transition().duration(1000)
@@ -205,8 +215,8 @@ label {
     var value = this.value // get the new x value
     xScale // change the xScale
       .domain([
-        d3.min([0,d3.min(data,function (d) { return d[value] })]),
-        d3.max([0,d3.max(data,function (d) { return d[value] })])
+        d3.min([0,d3.min(jsObject,function (d) { return d[value] })]),
+        d3.max([0,d3.max(jsObject,function (d) { return d[value] })])
         ])
     xAxis.scale(xScale) // change the xScale
     d3.select('#xAxis') // redraw the xAxis
@@ -220,7 +230,8 @@ label {
       .delay(function (d,i) { return i*100})
         .attr('cx',function (d) { return xScale(d[value]) })
   }
-});
+
+ 
   </script>
   </body>
 </html>
