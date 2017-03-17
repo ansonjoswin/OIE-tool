@@ -1,7 +1,11 @@
 <?php
 
 use Illuminate\Database\Seeder;
+
+
 use App\Tag;
+
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,18 +16,44 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Seed the System Users/Roles/Permissions tables
+        // Seed the attributes tables
+        $this->call(InstcatSeeder::class);
+        $this->call(StabbrSeeder::class);
+
+         //Seed the System Users/Roles/Permissions tables
         $this->call(RolesTableSeeder::class);
         $this->call(PermissionsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(RoleUserTableSeeder::class);
         $this->call(UsersRolesPermissions::class);
+        
+// // Follow naming standards
+//         <<<<<<< HEAD
+// //         $this->call(SchoolTable::class);
+// //         $this->call(CngTable::class);
+// //         $this->call(GradTable::class);
+// //         $this->call(AppdetTable::class);
+// //         $this->call(AdmissionTable::class);
+// //          $this->call(AdmissionsTable::class);
+// //         //$this->call(CMSeeder::class);
+// //         $this->command->info('User, Role, Permission and School tables seeded!');
+// // =======
         $this->call(SchoolTable::class);
-        $this->command->info('User, Role, Permission and School tables seeded!');
+      //  $this->call(CarnegieTable::class);
+      //  $this->call(GraduationTable::class);
+       // $this->call(ApplicationDetailsTable::class);
+       // $this->call(AdmissionTable::class);
+       // $this->call(AdmissionsTable::class);
+     //   $this->call(CompletionsTable::class);
+       $this->call(CMSeeder::class);
+        $this->command->info('User, Role, Permission, Data Dictionary, School , Carnegie Classification, Graduation and Application Details tables seeded!');
+
 
         // Seed the Tags table
-        $this->call(TagsTableSeeder::class);
+        //$this->call(TagsTableSeeder::class);
         $this->command->info('Tags tables seeded!');
+
+
     }
 }
 
@@ -42,3 +72,4 @@ class TagsTableSeeder extends Seeder {
         Tag::create([ 'name' => 'Undergraduate']);
     }
 }
+

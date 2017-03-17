@@ -11,11 +11,115 @@ use Log;
 
 class School extends Model
 {
-    protected $fillable = [
-        'unit_id', 'school_name', 'school_city', 'school_state', 'longitude', 'latitude', 'created_by', 'updated_by', 'created_at', 'updated_at'
-    ];
-    protected $primaryKey = 'school_id';
+    protected $fillable=[
+    //'School_Id',
+    'UNITID',
+    'Name',
+           'Address',
+           'City',
+           'State',
+            'Zip',
+            'FIPS_StateCode',
+            'GeoLocation',
+           'Admin_Name',
+           'Admin_Title',
+            'TelephoneNumber',
+            'EmpID',
+            'OPEID',
+            'OPE_Flag',
+           'SchoolURL',
+           'AdminURL',
+           'FinanceURL',
+           'OnlineAppURL',
+           'NetPriceCalcURL',
+           'VeteransURL',
+           'AthleteGraduationRateURL',
+            'Sector',
+            'InstitutionLevel',
+            'InstitutionControl',
+            'HighestLevelOffering',
+            'UG_Offering',
+            'Grad_Offering',
+            'HighestDegreeOffered',
+            'DegreeGrantingStatus',
+            'HistoricalBlackColg',
+            'Hospital',
+            'GrantMedicalDegree',
+            'TribalColg',
+            'DegreeOfUrbanization',
+            'OpenToPublic',
+            'MergedSchoolUNITID',
+            'Status',
+            'YearOfDeletion_IPEDS',
+            'ClosedDate',
+            'CurrentYr_Active',
+            'PostSecIndicator',
+            'PostSecInstIndicator',
+            'PostSecTitle4InstIndicator',
+            'ReportingMethod',
+           'InstituteNameAlias',
+            'InstituteCategory',
+            'LandGrandInstitution',
+            'InstituteSizeCategory',
+            'CBSA',
+            'CBSA_Type',
+            'CombinedStasticalArea',
+            'NewEnglandCityTownArea',
+            'MultiInst',
+           'MultiInst_Name',
+            'MultiInst_ID',
+            'FipsCountyCode',
+           'CountyName',
+            'CogressionalDistCode',
+            'GeoLongitude',
+            'GeoLatitude',
+			'DataFeedbkReprtByNCES',
+            'DataFeedbkReprtCustmGrp'
+];
+    protected $primaryKey = 'ID';
     public static function getTableName() {
         return (new static)->getTable();
     }
+
+
+    public function student()
+    {
+        return $this->hasMany('App\Student');
+
+    }
+    public function defaultrate()
+    {
+        return $this->hasMany('App\DefaultRate');
+
+    }
+
+    public function school_peergroup()
+    {
+        return $this->hasMany('App\School_PeerGroup');
+
+    }
+    /*public function user()
+    {
+        return $this->hasMany('App\User');
+
+    } */
+
+    public function employee()
+    {
+        return $this->hasMany('App\Employee');
+
+    }
+
+    public function carneige_classification()
+    {
+        return $this->hasOne('App\Carneige_classification');
+
+    }
+
+    public function finance()
+    {
+        return $this->hasOne('App\FInance');
+
+    }
+
 }

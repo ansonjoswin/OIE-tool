@@ -7,7 +7,7 @@
             <div class="pull-left">
                 <a href="{{ URL::route('users.index') }}" class="btn btn-info"><i class="fa fa-btn fa-backward"></i>Back</a>
             </div>
-            @if ($user->id != 1) <!-- Administrator -->
+        @if ($user->id != 1) <!-- Administrator -->
             <div class="pull-right">
                 <form action="{{ url('users/'.$user->id) }}" method="POST" onsubmit="return ConfirmDelete();">{{ csrf_field() }}{{ method_field('DELETE') }}
                     <button style="height: 24px;" type="submit" id="delete-user-{{ $user->id }}" class="btn btn-danger"><i class="fa fa-btn fa-trash"></i>Delete</button>

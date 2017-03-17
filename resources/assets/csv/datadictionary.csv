@@ -1,0 +1,12 @@
+Table_Column,CSV_Column,Table_name,File_Name
+Unit_Id,UNITID,schools,schools
+School_Name,INSTNM,schools,schools
+School_City,CITY,schools,schools
+School_State,STABBR,schools,schools
+longitude,LONGITUD,schools,schools
+latitude,LATITUDE,schools,schools
+created_by,created_by,schools,schools
+updated_by,updated_by,schools,schools
+created_at,created_at,schools,schools
+updated_at,updated_at,schools,schools
+webAddress,webaddress,schools,schools

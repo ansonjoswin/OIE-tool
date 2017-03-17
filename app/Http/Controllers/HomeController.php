@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use Auth;
+use App\UserComment;
+use App\ReplyComment;
 
 class HomeController extends Controller
 {
@@ -26,21 +28,68 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        if (Auth::check())
+        {
+            $user = Auth::user();
+            if ($user->hasRole('admin'))
+            {
+                $comments = UserComment::all();
+                if(ReplyComment::first())
+                {
+                    $replyexists = true;
+                }
+                else{
+                    $replyexists = false;
+                }
+                return view('adminhome', compact('user','comments','replyexists'));
+            }
+
+            // elseif ($user->hasRole('student'))
+            //     return view('adminhome', compact('user'));
+            else{
+                $comments = UserComment::all();
+                if(ReplyComment::first())
+                {
+                    $replyexists = true;
+                }
+                else{
+                    $replyexists = false;
+                }
+                return view('home', compact('user', 'comments', 'replyexists'));
+            }
+        }
     }
 
-     public function resetPassword()
+
+    public function resetPassword()
     {
         $user = User::where('email', Auth::user()->email)->first();
-        return view('auth.passwords.reset',compact('user'));
+        return view('auth.passwords.update',compact('user'));
     }
+	
+	public function uploads()
+	{
+         if (Auth::check())
+        {
+            $user = Auth::user();
+            if ($user->hasRole('admin'))
+                return view('carousel', compact('user'));
+            // elseif ($user->hasRole('student'))
+            //     return view('carousel', compact('user'));
+            else
+                return view('home', compact('user'));
+        }
+    
+        
+	}
 
     public function updatePassword(Request $request)
     {
         $passwordSuccess = 'failed';
         $this->validate($request,[
-                'email' => 'required|email',
-                'password' => 'required|confirmed',
+                'password' => 'required|min:6|different:oldpassword|confirmed',
+                
             ]);
         $user = User::where('email',Auth::user()->email)->first();
         if (Hash::check($request->oldpassword, $user->password))
@@ -48,8 +97,8 @@ class HomeController extends Controller
             $user->password = bcrypt($request->password);
             $user->update();
             $passwordSuccess = 'passed';
-            return view('home',compact('passwordSuccess'));
+            return view('users.RegistrationSuccess',compact('passwordSuccess'));
         }
-        return view('home',compact('passwordSuccess'));
+        return view('users.RegistrationSuccess',compact('passwordSuccess'));
     }
 }
