@@ -3,7 +3,7 @@ jsObject = JSON.parse(test_data);
 jsObject.forEach(function(data) {  
     data.GradRate4yr_BacDgr100 = +data.GradRate4yr_BacDgr100;
     data.GradRate6yr_BacDgr150 = +data.GradRate6yr_BacDgr150;                                
-   // console.log(rawData.GradRate4yr_BacDgr100);
+    //console.log(data.GradRate4yr_BacDgr100);
   });
 
 
@@ -30,8 +30,12 @@ var yAxis = d3.svg.axis().scale(yScale).orient("left");
 var svg = d3.select('#chart')
   .append('svg')
   .attr('width', graphWidth)
-  .attr('height', graphHeight);
+  .attr('height', graphHeight);  
 
+// add the tooltip area to the webpage
+var tooltip = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
 
   // x-axis
   svg.append("g")
@@ -61,10 +65,25 @@ var svg = d3.select('#chart')
 svg.selectAll('circle')
   .data(jsObject)
   .enter()
-  .append('circle')
-  .attr({
-    cx: function(d) {return xScale(d.GradRate4yr_BacDgr100); },  //X
-    cy: function(d) {return yScale(d.GradRate6yr_BacDgr150); },  //Y
-    r: radius,
-    fill: 'steelblue'
-  });
+    .append('circle')
+    .attr({
+      cx: function(d) {return xScale(d.GradRate4yr_BacDgr100); },  //X
+      cy: function(d) {return yScale(d.GradRate6yr_BacDgr150); },  //Y
+      r: radius,
+      fill: 'steelblue'
+    })
+    .on("mouseover", function(d) {
+        tooltip.transition()
+             .duration(200)
+             .style("opacity", .9);
+        tooltip.html("test")
+             .style("left", (d3.event.pageX + 5) + "px")
+             .style("top", (d3.event.pageY - 28) + "px");
+    })
+    .on("mouseout", function(d) {
+        tooltip.transition()
+             .duration(500)
+             .style("opacity", 0);
+    });
+
+ 
