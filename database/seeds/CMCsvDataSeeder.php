@@ -132,7 +132,9 @@ abstract class CMCsvDataSeeder extends Seeder
             } else {
 
                 if ($dbCol === 'School_ID') {
-                    $temp1 = DB::Table('schools')->where('Unit_Id', '=',
+
+                    $temp1 = DB::Table('schools')->where('UNITID', '=',
+
                         $source_array['UNITID'])->value('School_ID');
 
                     $row_values[$dbCol] = $temp1;

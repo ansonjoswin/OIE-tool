@@ -102,6 +102,7 @@ class UsersRolesPermissions extends Seeder
     }
 }
 
+
 // class DataTable extends Seeder
 // {
 //     /**
@@ -208,5 +209,3 @@ class UsersRolesPermissions extends Seeder
 
 //     }
 // }
-
-

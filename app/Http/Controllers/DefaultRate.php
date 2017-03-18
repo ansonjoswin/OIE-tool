@@ -9,22 +9,23 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Log;
 
-class Finance extends Model
+class DefaultRate extends Model
 {
+    //
+    public $table = "defaultrates";
     protected $fillable=[
-        //'Finance_ID',
-        'School_ID',
 
-        'Year',
-        'Pub_TtlSalWage',
-        'PrivProf_TtlSalWage',
-        'PrivNProf_TtlSalWage',
-    ];
-  //  protected $primaryKey = 'Finance_ID';
+            'ID',
+            'OPEID',
+            'DefaultRate1',
+            'DefaultRate2',
+            'DefaultRate3',
 
-    public static function getTableName() {
-        return (new static)->getTable();
-    }
+
+	];
+
+	protected $primaryKey = 'ID';
+	//public $incrementing = false;
 
     public function school() {
         return $this->belongsTo('App\School');

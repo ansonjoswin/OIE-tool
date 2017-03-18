@@ -122,7 +122,7 @@ Elaine code -->
                             <label class="pull-right">Peer Group Name:</label>
                         </div>
                         <div class="panel-default col-md-4">
-                            {!! Form::text('PeerGroupName', null, ['class' => 'col-md-3 form-control pull-left', 'required' => 'required']) !!} 
+                            {!! Form::text('peergroup_name', null, ['class' => 'col-md-3 form-control pull-left', 'required' => 'required']) !!} 
                         </div>
                         <div class="panel-default col-md-2">
                             @if(Auth::user()->can(['manage-users','manage-roles']))

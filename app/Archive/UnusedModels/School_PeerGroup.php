@@ -1,7 +1,5 @@
 <?php
-
 namespace App;
-
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -9,24 +7,25 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Log;
 
-class Finance extends Model
+class School_PeerGroup extends Model
 {
+    public $table = "school_peergroups";
+
     protected $fillable=[
-        //'Finance_ID',
+
         'School_ID',
+        'PeerGroupID',
 
-        'Year',
-        'Pub_TtlSalWage',
-        'PrivProf_TtlSalWage',
-        'PrivNProf_TtlSalWage',
     ];
-  //  protected $primaryKey = 'Finance_ID';
+    protected $primaryKey = ['School_ID','PeerGroupID'];
 
-    public static function getTableName() {
-        return (new static)->getTable();
+    public function peergroup() {
+        return $this->belongsTo('App\PeerGroup');
     }
 
     public function school() {
-        return $this->belongsTo('App\School');
+        return $this->hasMany('App\School');
+
     }
+
 }

@@ -6,6 +6,7 @@ use App\Finance;
 use Illuminate\Http\Request;
 use App\School;
 
+
 use Auth;
 use Session;
 use Log;
@@ -19,7 +20,9 @@ class FinancesController extends Controller
 
     public function index()
     {
-        $admissions=Finance::all();
+
+        $finance=Finance::all();
+
         return view('finances.index',compact('finances'));
     }
 
@@ -38,3 +41,6 @@ class FinancesController extends Controller
 
 
 
+
+=======
+>>>>>>> featuremigrations

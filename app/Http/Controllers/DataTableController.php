@@ -30,7 +30,7 @@ class DataTableController extends Controller
         // $this->user = Auth::user();
         // $this->instcats = Instcat::all();
         // $this->stabbrs = Stabbr::all();
-        // $this->results = School::pluck('school_name','School_ID');
+        // $this->results = School::pluck('name','id');
         //$this->school_ids = $this->results->toArray();
         $this->new_array = [];
         $this->peergroup_list = PeerGroup::all();
@@ -39,7 +39,7 @@ class DataTableController extends Controller
 
     public function index(){
     	$datatables = DataTable::all();
-    	$peergroup_list = PeerGroup::pluck('PeerGroupName','PeerGroupID')->toArray();
+    	$peergroup_list = PeerGroup::pluck('peergroup_name','peergroup_id')->toArray();
     	return view('data.index',compact('datatables','peergroup_list'));
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Http\Requests\SchoolRequest;
 use App\PeerGroup;
-use App\School_PeerGroup;
+//use App\School_PeerGroup;
 use App\User;
 use App\School;
 use Auth;
@@ -28,14 +28,16 @@ class PeerGroupsController extends Controller
     public function index()
     { 
         if(Auth::check()){
+
             //Log::info('PeerGroupsController.index: ');
+
             $userID = Auth::user()->id;
             if(Auth::user()->can(['manage-users','manage-roles'])){
                 $this->viewData['heading'] = "Peer Groups";
                 $peergroup = PeerGroup::all();
             }else{
                 $this->viewData['heading'] = "My Peer Groups";
-                $peergroup = PeerGroup::where('User_ID',Auth::user()->id)->get();
+                $peergroup = PeerGroup::where('user_id',Auth::user()->id)->get();
                 //need to order this by PriPubFlg (public first)
             }
             $this->viewData['peergroups'] = $peergroup;
@@ -44,6 +46,7 @@ class PeerGroupsController extends Controller
             return redirect('/');
         }
     }
+
 
 
     /*** Invoke New Peer Group Form ***/ //Not being used or called
@@ -56,26 +59,24 @@ class PeerGroupsController extends Controller
     //     return view('peergroups.test_create_peergroup', $this->viewData);       
     // }
 
-
-
-
     /*** Save a new peer group to database ***/
     public function store(Request $request)
     {
+
         //Log::info('PeerGroupsController.store: ');
 
         /** Create PeerGroup record **/
                 //dd($request->all());
         
-        $pg_input['PeerGroupName'] = $request['PeerGroupName'];
-        $pg_input['User_ID'] = Auth::user()->id; 
+        $pg_input['peergroup_name'] = $request['peergroup_name'];
+        $pg_input['user_id'] = Auth::user()->id; 
         $pg_input['created_by'] = Auth::user()->email;
-            if($request['PriPubFlag'] == '')
+            if($request['private_public_flag'] == '')
                 {
-                    $pg_input['PriPubFlg'] = 'private';  // Default flag to private
+                    $pg_input['private_public_flag'] = 'private';  // Default flag to private
                 }
             else{
-                     $pg_input['PriPubFlg'] = $request['PriPubFlag'];
+                     $pg_input['private_public_flag'] = $request['private_public_flag'];
                 }
     //Insert PeerGroup record in peergroups table
         $pg_object = PeerGroup::create($pg_input);
@@ -83,7 +84,6 @@ class PeerGroupsController extends Controller
     //Create pivot table with attach function
         $pg_object->school()->attach($request->input('lstBox2'));
 
-               
         Session::flash('flash_message', 'Peer Group successfully created!');
         Log::info('PeerGroupController.store - End: '.$pg_object->id.'|'.$pg_object->name);
         return redirect('peergroups');
@@ -93,6 +93,7 @@ class PeerGroupsController extends Controller
     /*** Delete a peer group from database ***/
     public function destroy(Request $request)
     {
+
         //Log::info('PeerGroupsController.destroy: '.$request['pg_id']);
 
     /*****************Delete PeerGroup record ********************/
@@ -100,8 +101,8 @@ class PeerGroupsController extends Controller
     //First delete the pivot relationship
         PeerGroup::find($request['pg_id'])->school()->detach();
     //delete records using cascade delete property
-        PeerGroup::where('PeerGroupID','=',$request['pg_id'])->delete();
-        
+        PeerGroup::where('peergroup_id','=',$request['pg_id'])->delete();     
+
         Session::flash('flash_message', 'Peer Group successfully deleted!');
         Log::info('PeerGroupController.store - End: '.$request['pg_id']);
         return redirect('peergroups');

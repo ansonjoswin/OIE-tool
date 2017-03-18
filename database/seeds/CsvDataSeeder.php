@@ -122,7 +122,6 @@ abstract class CsvDataSeeder extends Seeder
         return $source_array;
     }
     public function fillMapArray($source_array, $mapping) {
-
         $row_values = [];
         $columns = Schema::getColumnListing('maps');
         $no_of_columns_to_fill = sizeof($source_array);
@@ -130,18 +129,7 @@ abstract class CsvDataSeeder extends Seeder
         // the Database column and store in a map
 
         foreach($mapping as $dbCol) {
-            if ($dbCol === 'year') {
-                $row_values[$dbCol] = 2014;
-            } else {
-
-                if ($dbCol === 'School_ID') {
-                    $temp1 = DB::Table('schools')->where('Unit_Id', '=',
-                        $source_array['UNITID'])->value('School_ID');
-
-                    $row_values[$dbCol] = $temp1;
-                } else {
-                    if ($no_of_columns_to_fill > 0) {
-
+                      if ($no_of_columns_to_fill > 0) {
 
                         $csv_Column_name = DB::Table('maps')->where($columns[3], '=', $this->table)
                             ->where($columns[1], $dbCol)->value($columns[2]);
@@ -151,9 +139,8 @@ abstract class CsvDataSeeder extends Seeder
                             $row_values[$dbCol] = $source_array[$csv_Column_name];
                             $no_of_columns_to_fill--;
                         }
-                    }
-                }
-            }
+                    }            
+            
         }
         //var_dump($row_values);
         return $row_values;
@@ -178,9 +165,7 @@ abstract class CsvDataSeeder extends Seeder
                    DB::table($this->table)->insert($row); 
                 }
             }
-                // }
-            // }
-            // DB::table($this->table)->insert($seedData);
+                
         } catch (\Exception $e) {
             Log::error("CSV insert failed: " . $e->getMessage() . " - CSV " . $this->filename);
             return FALSE;

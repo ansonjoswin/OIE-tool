@@ -31,15 +31,15 @@
                                     <tbody> <!-- Table Body -->
                                     @foreach ($peergroups as $peergroup)
                                         <tr>
-                                            <td class="table-text"><div>{{ $peergroup->PeerGroupName}}</div></td>
+                                            <td class="table-text"><div>{{ $peergroup->peergroup_name}}</div></td>
                                             @if(Auth::user()->can(['manage-users','manage-roles']))
                                             <td class="table-text"><div>{{ $peergroup->created_by}}</div></td>
                                             @endif
                                             <td class="table-text"><div>{{ $peergroup->created_at->format('m/d/Y')}}</div></td>
-                                            <td class="table-text"><div>{{ $peergroup->PriPubFlg}}</div></td>
+                                            <td class="table-text"><div>{{ $peergroup->private_public_flag}}</div></td>
                                             <td>
                                                 {!! Form::open(['route'=>'pg_delete_url', 'class'=>'form-horizontal', 'onsubmit'=>'return ConfirmDelete()']) !!}
-                                                {!! Form::hidden('pg_id', $peergroup->PeerGroupID, array('id'=>'pg_id', 'class'=>'btn btn-danger')) !!}
+                                                {!! Form::hidden('pg_id', $peergroup->peergroup_id, array('id'=>'pg_id', 'class'=>'btn btn-danger')) !!}
                                                 {!! Form::button('<i class="fa fa-btn fa-trash"></i>', ['type'=>'submit', 'class'=>'btn btn-danger']) !!}                                      
                                                 {!! Form::close() !!}
                                             </td>                                            

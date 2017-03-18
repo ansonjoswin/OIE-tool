@@ -11,9 +11,9 @@
                                             <tbody> <!-- Table Body -->                                
                                             @foreach ($schools as $school)
                                                     <tr>
-                                                        <td class="table-text">{{ $school->School_Id }}</td>
-                                                        <td class="table-text">{{ $school->Unit_Id }}</td>
-                                                        <td class="table-text">{{ $school->School_Name }}</td>
+                                                        <td class="table-text">{{ $school->id }}</td>
+                                                        <td class="table-text">{{ $school->unitid }}</td>
+                                                        <td class="table-text">{{ $school->name }}</td>
                                                     </tr>        
                                             @endforeach  
                                             </tbody>

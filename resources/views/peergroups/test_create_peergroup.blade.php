@@ -8,7 +8,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                           <div><h4>test Peer Group</h4></div>
-                          {!! Form::text('PeerGroupName', null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!} 
+                          {!! Form::text('peergroup_name', null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!} 
                     </div>
                     <div class="panel-body">                           
                         {{-- {!! Form::select('schoolsIDs[]', $schools, null, ['class' => 'col-md-2 form-control cds-select', 'required'=>'required', 'multiple']) !!} 

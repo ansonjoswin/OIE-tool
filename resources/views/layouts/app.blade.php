@@ -97,15 +97,11 @@
 <script src="../public/js/jquery.knob.js"></script>
 <script src="../public/js/jquery.iframe-transport.js"></script>
 <script src="../public/js/jquery.fileupload.js"></script>
+
 <!-- Scripts -->
 @yield('scripts')
 
 {{-- <script type="text/javascript">
-
-    //###########################################################################
-    //####                Change Password Validation              ####
-    //###########################################################################
-
 
     //###########################################################################
     //####                Terms and Conditions Validation              ####
@@ -139,16 +135,6 @@
                 });
 
 </script> --}}
-{{-- //Footer
-@yield('footer');
-
-<script src="../public/js/all.js"></script>
-<script src="../public/js/jquery.ui.widget.js"></script>
-<script src="../public/js/jquery.knob.js"></script>
-<script src="../public/js/jquery.iframe-transport.js"></script>
-<script src="../public/js/jquery.fileupload.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script> --}}
-
 
 </body>
 </html>
