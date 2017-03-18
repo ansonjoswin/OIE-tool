@@ -15,16 +15,17 @@ class DefaultRate extends Model
     public $table = "defaultrates";
     protected $fillable=[
 
-            'ID',
-            'OPEID',
-            'DefaultRate1',
-            'DefaultRate2',
-            'DefaultRate3',
+            'id',
+            'opeid',
+            'year',
+            'default_rate1',
+            'default_rate2',
+            'default_rate3',
 
 
 	];
 
-	protected $primaryKey = 'ID';
+	protected $primaryKey = 'id';
 	//public $incrementing = false;
 
     public function school() {
