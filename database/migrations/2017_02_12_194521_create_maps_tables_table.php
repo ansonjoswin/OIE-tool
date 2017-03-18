@@ -14,8 +14,8 @@ class CreateMapsTablesTable extends Migration
             $table->string('csv_name')->unique();
             $table->string('local_filename')->unique();
 			$table->integer('year');
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
             $table->softDeletes();
         });
 
