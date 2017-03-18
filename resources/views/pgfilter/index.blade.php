@@ -126,7 +126,7 @@ Elaine code -->
                         </div>
                         <div class="panel-default col-md-2">
                             @if(Auth::user()->can(['manage-users','manage-roles']))
-                            <select name="PriPubFlag" id="PriPubFlag" class="col-md-6 form-control">
+                            <select name="private_public_flag" id="private_public_flag" class="col-md-6 form-control">
                                 <option value="private" selected="selected">Private</option>
                                 <option value="public">Public</option>
                             </select>   

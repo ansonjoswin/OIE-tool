@@ -103,6 +103,7 @@ Route::resource('pgfilter', 'PeerGroupFilterController');
 Route::get('/this', function() {
   //Log::info('This is the get route and i');
    if(Request::ajax()){
+ 
         $selected_instcat_list = Input::get('selected_instcat_list');
         $selected_stabbr_list = Input::get('selected_stabbr_list');
 

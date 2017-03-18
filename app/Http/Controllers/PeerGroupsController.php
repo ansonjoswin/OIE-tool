@@ -71,13 +71,16 @@ class PeerGroupsController extends Controller
         $pg_input['peergroup_name'] = $request['peergroup_name'];
         $pg_input['user_id'] = Auth::user()->id; 
         $pg_input['created_by'] = Auth::user()->email;
-            if($request['private_public_flag'] == '')
+        //dd($request['PriPubFlag']);
+            if($request['private_public_flag'])
                 {
-                    $pg_input['private_public_flag'] = 'private';  // Default flag to private
+                    $pg_input['private_public_flag'] = $request['private_public_flag'];
+                      
+                   
                 }
             else{
-                     $pg_input['private_public_flag'] = $request['private_public_flag'];
-                }
+                     $pg_input['private_public_flag'] = 'private';  // Default flag to private
+                  }  
     //Insert PeerGroup record in peergroups table
         $pg_object = PeerGroup::create($pg_input);
 
