@@ -20,7 +20,7 @@
                             <table class="table table-bordered table-striped cds-datatable">
                                 <thead> <!-- Table Headings -->
                                 {{--<th>User</th><th>Email</th><th>Status</th><th class="no-sort">Actions</th>--}}
-                                <th>Email</th><th>Status</th><th>Role</th><th>Created Date</th><th>Actions</th>
+                                <th>Email</th><th>Status</th><th>Role</th><th>Affiliation</th><th>Actions</th>
                                 </thead>
                                 <tbody> <!-- Table Body -->
 
@@ -44,7 +44,7 @@
                                                 Registered User
                                             @endif
                                         </div></td>
-                                        <td class="table-text"><div>{{ $user->created_at->format('m/d/Y') }}</div></td>
+                                        <td class="table-text"><div>{{ $user->affiliation }}</div></td>
                                         <td>
                                             @if($user->id != Auth::user()->id && $user->id != 1) <!-- Administrator User -->
                                                 <div class="pull-right" style="height: 25px;">
