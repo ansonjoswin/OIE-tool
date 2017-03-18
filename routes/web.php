@@ -57,6 +57,15 @@ Route::get('/userstats', 'UsersController@userstat');
 /*******************/
 
 
+/**** DATA VISUALIZATION SCATTERPLOT ****/
+Route::resource('/testvisual', 'TestDataController');
+Route::resource('/datavisual', 'DataVisualController');
+Route::post('/datarefresh', 'DataVisualController@refresh');
+/****************************************/
+
+
+
+
 /***User Table route***/
 Route::resource('users', 'UsersController');
 /*******************/
@@ -153,6 +162,7 @@ Route::get('/this', function() {
 // Route::resource('applicationdetails', 'ApplicationDetailsController
 // Route::resource('map_tables','Map_TablesController');
 // Route::resource('schools', 'SchoolsController');
+// Route::resource('instructional_ess', 'Instructional_ESsController');
 /*******************/
 
 

@@ -40,6 +40,6 @@ class DataTableController extends Controller
     public function index(){
     	$datatables = DataTable::all();
     	$peergroup_list = PeerGroup::pluck('peergroup_name','peergroup_id')->toArray();
-    	return view('data.index',compact('datatables','peergroup_list'));
+    	return view('data.tableindex',compact('datatables','peergroup_list'));
     }
 }
