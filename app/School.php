@@ -106,9 +106,9 @@ class School extends Model
         return $this->hasMany('App\Completion');
 
     }
-    public function school_peergroup()
+    public function peergroup()
     {
-        return $this->hasMany('App\School_PeerGroup');
+        return $this->belongsToMany('App\PeerGroup');
 
     }
     public function user()

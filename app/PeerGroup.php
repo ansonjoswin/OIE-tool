@@ -31,8 +31,8 @@ class PeerGroup extends Model
         return $this->belongsTo('User'); //should be 'App\User'?
     }
 	
-	public function school_peergroup() {
-        return $this->hasMany('App\School_PeerGroup');
+	public function school() {
+        return $this->belongsToMany('App\School',"peergroup_school","peergroup_id","school_id");
 
     }
 }

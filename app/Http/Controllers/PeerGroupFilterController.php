@@ -42,9 +42,9 @@ class PeerGroupFilterController extends Controller
         $selected_stabbr_list = Stabbr::pluck('desc','id')->toArray();
 //        $selected_attribute3_list = [];
 
-        $results = School::pluck('school_name','School_ID');
+        $results = School::pluck('School_Name','School_Id');
         $school_ids = $results->toArray();
-
+        //return($school_ids);
         return view('pgfilter.index', compact('instcats', 'stabbrs', 'results', 'instcat_list', 'stabbr_list', 'selected_instcat_list', 'selected_stabbr_list', 'selected_attribute3_list', 'school_ids'));
     }
     public function show()
@@ -68,7 +68,7 @@ class PeerGroupFilterController extends Controller
             // only using instcat for select right now to get the ajax working; will add stabbr and if statements once functional
             $selected_instcat_list = $request->selected_instcat_list;
     //        var_dump($selected_instcat_list);
-            $results = School::where('Inst_Catgry', '=', $selected_instcat_list)->pluck('school_name','School_ID');
+            $results = School::where('Inst_Catgry', '=', $selected_instcat_list)->pluck('School_Name','School_Id');
             $school_ids = $results->toArray();
             return $school_ids; //this function is being called, but there is no response data in the script
         }
