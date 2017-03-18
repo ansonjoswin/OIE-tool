@@ -58,13 +58,15 @@ class DataVisualController extends Controller
     {
         //If logged in, user can see public and private peergroups
         if (Auth::user() != null) {
-            $peerGroups = PeerGroup::where('PriPubFlg','=','public')
+            $peerGroups = PeerGroup::where('private_public_flag','=','public')
                 ->orWhere('user_id', '=', Auth::user()->id)
-                ->pluck('PeerGroupName','PeerGroupID')->toArray();
+                ->pluck('PeerGroup_Name','PeerGroup_ID')->toArray();
+                echo '{"status":"success"}';
         //If not logged in, user can only see public peergroups
         }else{
-            $peerGroups = PeerGroup::where('PriPubFlg','=','public')
-                ->pluck('PeerGroupName','PeerGroupID')->toArray();
+            $peerGroups = PeerGroup::where('private_public_flag','=','public')
+                ->pluck('PeerGroup_Name','PeerGroup_ID')->toArray();
+                echo '{"status":"error"}';
         }
         return $peerGroups;        
     }
@@ -112,7 +114,7 @@ class DataVisualController extends Controller
         //Get list of schools based on selected peerGroup
         $sel_pgid = $request['sel_pgid'];
         $sel_school_ids = DB::table('peergroup_school')
-            ->whereIn('PeerGroupID', [$sel_pgid])
+            ->whereIn('PeerGroup_ID', [$sel_pgid])
             ->pluck('school_id');
         $this->viewData['sel_pgid'] = $sel_pgid;
 /*******************************This table is not available in the final migration**************/
