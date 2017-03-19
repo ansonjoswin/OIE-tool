@@ -51,27 +51,9 @@ label {
 
   var test_data = <?php echo json_encode($test_data, JSON_HEX_TAG); ?>; 
 jsObject = JSON.parse(test_data); 
-console.log   (jsObject);
-jsObject.forEach(function(data) {  
-    data.GradRate4yr_BacDgr100 = +data.GradRate4yr_BacDgr100;
-    data.GradRate6yr_BacDgr150 = +data.GradRate6yr_BacDgr150;
-          
-//document.write(data.GradRate6yr_BacDgr10s0);
-
-});
-
-
-
-
-//document.write(xExtents);
-//document.write(yExtents);
-
 
   var body = d3.select("body")
-
-
-
-
+console.log(d3.keys(jsObject[0]))
   // Select X-axis Variable
   var span = body.append('span')
     .text('Resource: ')
@@ -79,11 +61,11 @@ jsObject.forEach(function(data) {
       .attr('id','xSelect')
       .on('change',xChange)
     .selectAll('option')
-      .data(jsObject)
+      .data(d3.keys(jsObject[0]))
       .enter()
     .append('option')
-      .attr('value', function (d) { return d.GradRate4yr_BacDgr100 })
-      .text(function (d) { return d.GradRate4yr_BacDgr100 })
+      .attr('value',function (d) { return d})
+      .text(function (d) { return d})
   body.append('br')
 
   // Select Y-axis Variable
@@ -93,11 +75,11 @@ jsObject.forEach(function(data) {
       .attr('id','ySelect')
       .on('change',yChange)
     .selectAll('option')
-      .data(jsObject)
+      .data(d3.keys(jsObject[0]))
       .enter()
     .append('option')
-      .attr('value', function (d) { return d.GradRate6yr_BacDgr150})
-      .text(function (d) { return d.GradRate6yr_BacDgr150})
+      .attr('value',function (d) { return d})
+      .text(function (d) { return d})
   body.append('br')
 
   // Variables
@@ -195,7 +177,7 @@ jsObject.forEach(function(data) {
 
     yScale // change the yScale
       .domain([
-        d3.min([0,d3.min(jsObject,function (d) { console.log(d);return d[value] })]),
+        d3.min([0,d3.min(jsObject,function (d) { return d[value] })]),
         d3.max([0,d3.max(jsObject,function (d) { return d[value] })])
         ])
 
