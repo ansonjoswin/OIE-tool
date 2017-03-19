@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Database\Seeder;
 use App\School;
-//use App\Carnegie_Classification;
+use App\Carnegie_Classification;
 
 abstract class CMCsvDataSeeder extends Seeder
 {
@@ -131,9 +131,9 @@ abstract class CMCsvDataSeeder extends Seeder
                 $row_values[$dbCol] = 2014;
             } else {
 
-                if ($dbCol === 'School_ID') {
-                    $temp1 = DB::Table('schools')->where('Unit_Id', '=',
-                        $source_array['UNITID'])->value('School_ID');
+                if ($dbCol === 'school_id') {
+                    $temp1 = DB::Table('schools')->where('unitid', '=',
+                        $source_array['UNITID'])->value('id');
 
                     $row_values[$dbCol] = $temp1;
                 } else {
@@ -155,14 +155,32 @@ abstract class CMCsvDataSeeder extends Seeder
         //var_dump($row_values);
         return $row_values;
     }
-    public function insert( array $seedData )
+    public function insert(array $seedData)
     {
         try {
-            
-            foreach ($seedData as $row) {
-                if($row)
-                {
-                   DB::table($this->table)->insert($row); 
+
+            $TableData = array();
+            $CsvData = array();
+            $TableData = DB::table($this->table)->pluck('unitid');
+            $iterator = new RecursiveIteratorIterator(new RecursiveArrayIterator($seedData));
+            foreach ($iterator as $key => $value) {
+                if ($key == 'unitid') {
+                    $CsvData[] = $value;
+                }
+            }
+            $valueOfSeedData=0;
+            for ($i = 0; $i < count($CsvData); $i++) {
+                $check = false;
+                for ($j = 0; $j < count($TableData); $j++) {
+                    if ($TableData[$j] == $CsvData[$i]) {
+                        DB::table($this->table)->where('unitid', $TableData[$j])->update($seedData[$valueOfSeedData]);
+                        $valueOfSeedData++;
+                        $check=true;
+                    }
+                }
+                if ($check == false) {
+                    DB::table($this->table)->insert($seedData[$valueOfSeedData]);
+                    $valueOfSeedData++;
                 }
             }
         } catch (\Exception $e) {
@@ -171,4 +189,5 @@ abstract class CMCsvDataSeeder extends Seeder
         }
         return TRUE;
     }
+
 }

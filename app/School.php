@@ -1,99 +1,93 @@
 <?php
+
 namespace App;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Log;
+
 class School extends Model
 {
     protected $fillable=[
     //'School_Id',
-    'Unit_Id',
-    'School_Name',
-    'School_Address',
-    'School_City',
-    'School_State',
-    'School_Zip',
-    'School_St_FIPS',
-    'School_GeoLoc',
-    'Admin_Name',
-    'Admin_Title',
-    'School_TelNum',
-    'EmpID',
-    'OPE_ID',
-    'OPE_Flag',
-    'SchoolURL',
-    'AdmissionURL',
-    'FinanceURL',
-    'OnlineAppURL',
-    'NetPrice_CalcURL',
-    'VetURL',
-    'AuthURL',
-    'School_Sector',
-    'School_Level',
-    'School_Control',
-    'HL_Offering',
-    'UG_Offering',
-    'Grad_Offering',
-    'HD_Offered',
-    'Deg_GrantStat',
-    'Hist_BlkColg',
-    'Hospital',
-    'Inst_MedicalDeg',
-    'TribalClg',
-    'Deg_Urban',
-    'OpenPublic',
-    'MergedSchool_UNITID',
-    'School_Status',
-    'IPEDS_DeleteYr',
-    'School_ClosedDt',
-    'CurrentYr_Active',
-    'PostSec_Indicator',
-    'PostSec_InstIndicator',
-    'PostSec_4InstIndicator',
-    'Rpt_Method',
-    'Inst_NameAlias',
-    'Inst_Category',
-    'Land_GrandInst',
-    'Inst_SizeCategory',
-    'CBSA',
-    'CBSA_Type',
-    'Combined_StatArea',
-    'NewEng_CityTown',
-    'MultiInst',
-    'MultiInst_Name',
-    'MultiInst_ID',
-    'Fips_CtyCode',
-    'School_Country',
-    'Cogressional_DistCode',
-    'GeoLongitude',
-    'GeoLatitude',
+    'id',
+'unitid',
+'name',
+'address',
+'city',
+'state',
+'zip',
+'fips_state_code',
+'geo_location',
+'admin_name',
+'admin_title',
+'telephone_number',
+'emp_id',
+'opeid',
+'ope_flag',
+'school_url',
+'admission_url',
+'finance_url',
+'online_app_url',
+'netprice_calcurl',
+'veterans_url',
+'athlete_graduationrate_url',
+'sector',
+'institution_level',
+'institution_control',
+'highestlevel_offering',
+'ug_offering',
+'grad_offering',
+'highestdegree_offered',
+'degreegranting_status',
+'historical_blackCollege',
+'hospital',
+'grant_medicaldegree',
+'tribal_college',
+'degree_urbanization',
+'open_public',
+'mergedschool_unitid',
+'status',
+'year_deletion_ipeds',
+'closed_date',
+'current_year_active',
+'postsec_indicator',
+'postsec_inst_indicator',
+'postsectitle_instindicator',
+'reporting_method',
+'institutename_alias',
+'institute_category',
+'landgrand_institution',
+'institute_sizecategory',
+'cbsa',
+'cbsa_type',
+'combinedstasticalarea',
+'newengland_citytownarea',
+'multi_inst',
+'multi_inst_name',
+'multi_inst_id',
+'fips_countycode',
+'county_name',
+'cogressional_distcode',
+'geo_longitude',
+'geo_latitude',
+'datafeedback_report_nces',
+'datafeedback_report_Group',
+
+
 ];
-    protected $primaryKey = 'School_ID';
+    protected $primaryKey = 'id';
     public static function getTableName() {
         return (new static)->getTable();
     }
 
-    public function ug_unduplicatedheadcount()
-    {
-        return $this->hasMany('App\UG_UnduplicatedHeadCount');
 
-    }
-    public function ug_credithour()
+    public function student()
     {
-        return $this->hasMany('App\UG_CreditHour');
-
-    }
-    public function admission()
-    {
-        return $this->hasMany('App\Admission');
-
-    }
-    public function applicationdetail()
-    {
-        return $this->hasMany('App\ApplicationDetail');
+        return $this->hasMany('App\Student');
 
     }
     public function defaultrate()
@@ -101,47 +95,34 @@ class School extends Model
         return $this->hasMany('App\DefaultRate');
 
     }
-    public function completion()
-    {
-        return $this->hasMany('App\Completion');
 
-    }
     public function school_peergroup()
     {
         return $this->hasMany('App\School_PeerGroup');
 
     }
-    public function user()
+    /*public function user()
     {
         return $this->hasMany('App\User');
 
-    }
-    public function graduation()
-    {
-        return $this->hasMany('App\Graduation');
+    } */
 
-    }
     public function employee()
     {
         return $this->hasMany('App\Employee');
 
     }
-    public function instructional_es()
+
+    public function carneige_classification()
     {
-        return $this->hasMany('App\Instruction_ES');
+        return $this->hasOne('App\Carneige_classification');
 
     }
-    public function noninstructional_es()
+
+    public function finance()
     {
-        return $this->hasMany('App\NonInstructional_ES');
+        return $this->hasOne('App\FInance');
 
     }
-    public function carnegie_classification()
-    {
-        return $this->hasOne('App\Carnegie_classification');
-
-    }
-  
 
 }
-

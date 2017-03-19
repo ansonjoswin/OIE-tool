@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Defaultrate;
 use App\School;
-
 use Auth;
 use Session;
 use Log;
@@ -22,12 +21,12 @@ class DefaultRatesController extends Controller
     }
 
     public function index()
-    { 
+    {
          $defaultrates=DefaultRate::all();
         return view('defaultrates.index',compact('defaultrates'));
     }
-   
-	
-   
+
+
+
 
 }

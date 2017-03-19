@@ -15,28 +15,19 @@ class DefaultRate extends Model
     public $table = "defaultrates";
     protected $fillable=[
 
-            'School_ID',
-            'State_Desc',
+            'id',
+            'opeid',
             'year',
-            'Program_Length',
-            'Sch_Type',
-            'EthnicCode',
-            'CongDis',
-            'Region',
-            'AvgOrGrtTh30',
-            'RateType',
-            'Cohort_Year',
-            'NumBorDeft',
-            'NumBorRpy',
-            'DefRate',
-            'Prate',
-            'School_State',
-			
+            'default_rate1',
+            'default_rate2',
+            'default_rate3',
+
+
 	];
 
-	protected $primaryKey = 'OPE_ID';
-	public $incrementing = false;
-	
+	protected $primaryKey = 'id';
+	//public $incrementing = false;
+
     public function school() {
         return $this->belongsTo('App\School');
     }

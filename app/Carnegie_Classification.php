@@ -4,23 +4,21 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-
 class Carnegie_Classification extends Model
 {
-    public $table = "carnegie_classifications";  //EHLbug: I made this plural to allow it to pull in from a view
-
+    public $table = "carnegie_classification";
     protected $fillable=[
-        'School_ID',
-        'Year',
-        'Cng_2010_Basic',
-        'Cng_2010_UGPgm',
-        'Cng_2010_GradPgm',
-        'Cng_2010_UGPrf',
-        'Cng_2010_EnrollPrf',
-        'Cng_2010_SizeSetting',
-        'Cng_2000'
+        'school_id',
+        'year',
+        'carnegie_basic',
+        'carnegie_ug_program',
+        'carnegie_grad_program',
+        'carnegie_ug_profile',
+        'carnegie_enroll_profile',
+        'carnegie_size_setting',
+        'carnegie_classification2000'
         ];
-    //protected $primaryKey = 'Application_ID';
+    protected $primaryKey = 'school_id';
     public static function getTableName() {
         return (new static)->getTable();
     }
@@ -29,5 +27,3 @@ class Carnegie_Classification extends Model
         return $this->belongsTo('App\School');
     }
 }
-
-

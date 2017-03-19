@@ -12,58 +12,67 @@ use Log;
 class Employee extends Model
 {
     //
-	
+
 	protected $fillable=[
-	
-	            
-            'School_ID',
-            'year',
-            'Occup_FullTime_and_PartTime',
-            'FullTime_or_PartTime_status',
-            'Occup_Catgry',
-            'PrevCode_Occup',
-            'Emp_Ttl',
-            'Emp_Ttl_M',
-            'Emp_Ttl_W',
-            'Emp_Amer-Ind_or_Alaska_Ttl',
-            'Emp_Amer-Ind_or_Alaska_M',
-            'Emp_Amer-Ind_or_Alaska_W',
-            'Emp_Asian_Ttl',
-            'Emp_Asian_M',
-            'Emp_Asian_W',
-            'Emp_Blk_or_Afro_American_Ttl',
-            'Emp_Blk_or_Afro_American_M',
-            'Emp_Blk_or_Afro_American_W',
-            'Emp_Hispo_or_Latino_Ttl',
-            'Emp_Hispo_or_Latino_M',
-            'Emp_Hispo_or_Latino',
-            'Emp_Haw_or_Pacific_Ttl',
-            'Emp_Haw_or_Pacific_M',
-            'Emp_Haw_or_Pacific_W',
-            'Emp_White_Ttl',
-            'Emp_White_M',
-            'Emp_White_W',
-            'Emp_Two_or_more_race_Ttl',
-            'Emp_Two_or_more_race_M',
-            'Emp_Two_or_more_race_W',
-            'Emp_Race_unknown_Ttl',
-            'Emp_Race_unknown_Ttl_M',
-            'Emp_Race_unknown_Ttl_W',
-            'Emp_Nonresident_Alien_Ttl',
-            'Emp_Nonresident_Alien_Ttl_M',
-            'Emp_Nonresident_Alien_Ttl_W',
-			
+
+
+		'school_id',
+'year',
+'admin_profstaff_management',
+'admin_profstaff_business',
+'admin_profstaff_comp',
+'admin_profstaff_comunityservice',
+'admin_profstaff_healthcare',
+'admin_profstaff_ofcadmin',
+'non_instn_acad_staff_research',
+'non_instn_acad_staff_pub_service',
+'non_instn_acad_staff_library',
+'instruction_staff',
+'non_admin_service_staff_service',
+'non_admin_service_staff_sales',
+'non_admin_service_staff_resource',
+'non_admin_service_staff_prod',
+'inst_salary_academic_rank',
+'inst_salary_salaryoutlaytotal',
+'non_inst_acad_staff_salary_research_outlay',
+'non_inst_acad_staff_salary_pubservice_outlay',
+'non_inst_acad_staff_salary_other_outlay',
+'admin_profstaff_salary_mgmt_outlay',
+'admin_profstaff_salary_business_outlay',
+'admin_profstaff_salary_compeng_outlay',
+'admin_profstaff_salary_community_outlay',
+'admin_profstaff_salary_technical_outlay',
+'nonadmin_servicestaffsalary_outlay',
+'nonadmin_servicestaffsalary_salaryoutlay',
+'admin_profstaff_salary_ofcadmin_noutlay',
+'nonadmin_servicestaffsalary_construction_outlay',
+'nonadmin_servicestaffsalary_production_outlay',
+'instructors_per_thousand_student',
+'admin_professional_staff',
+'admin_professionalstaff _perthousandstudent',
+'noninstruction_academicstaff',
+'noninstruction_academicstaff_perthousandstudent',
+'nonadmin_trade_servicestaff',
+'nonadmin_tradeservicestaff_perthousandstudent',
+'all_instructors_staff',
+'instructor_salarypermillion',
+'adminprofessionalstaff_salarypermillion',
+'noninstruction_academicstaff_salarypermillion',
+'nonadmin_tradeservicestaff_salarypermillion',
+
+
+
 			];
 
-    protected $primaryKey = 'E_ID';
+    protected $primaryKey = 'school_id';
     public static function getTableName() {
         return (new static)->getTable();
     }
-			
+
 			public function schools(){
 				return $this->belongsTo('App\School');
 			}
-       
 
-	
+
+
 }

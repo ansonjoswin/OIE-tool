@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Employee;
-
+use App\School;
 use Auth;
 use Session;
 use Log;
