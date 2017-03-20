@@ -127,9 +127,10 @@ abstract class CMCsvDataSeeder extends Seeder
         // the Database column and store in a map
 
         foreach($mapping as $dbCol) {
-            if ($dbCol === 'Year') {
+            if ($dbCol === 'year') {
                 $row_values[$dbCol] = 2014;
             } else {
+
                 if ($dbCol === 'school_id') {
                     $temp1 = DB::Table('schools')->where('unitid', '=',
                         $source_array['UNITID'])->value('id');

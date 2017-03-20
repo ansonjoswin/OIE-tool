@@ -64,7 +64,9 @@ Route::resource('/datavisual', 'DataVisualController');
 Route::post('/datarefresh', 'DataVisualController@refresh');
 /****************************************/
 
-
+/**Export to csv****/
+Route::get('/getExport', 'ExporttoExcelController@getExport');
+/****************************************/
 
 
 /***User Table route***/

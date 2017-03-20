@@ -1,29 +1,24 @@
 @extends('layouts.app')
 
 <style>
-
 svg:not(:root) {
     overflow: visible !important;
 }
-
 .axis path,
 .axis line {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
 }
-
 .dot {
   stroke: #000;
 }
-
 .tooltip {
   position: absolute;
   width: 200px;
   height: 28px;
   pointer-events: none;
 }
-
 .panel-body {
     font: 11px sans-serif;
     margin-bottom: 25px;

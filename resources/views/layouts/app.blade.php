@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 <!--     <link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/9dcbecd42ad/integration/bootstrap/3/dataTables.bootstrap.css"> -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Styles -->
     @yield('styles')
 
@@ -59,29 +58,23 @@
     ul.pagination { margin: 0px !important; }
     ul.pagination li { margin: 0px !important; padding: 0px !important }
     div.dataTables_length select { padding: 5px !important; padding-right: 15px !important; }
-
     /* required fields have a red border */
     .errorClass { border:  1px solid red; }
-
     /* remove panel bottom margin */
     .panel { margin-bottom: 0px !important;  }
     button.btn { margin-right: 1px;}
-
     /* menu bar */
     .dropdown-submenu { position: relative; }
     .dropdown-submenu>.dropdown-menu { top: 0; left: 100%; margin-top: -6px; margin-left: -1px;
         -webkit-border-radius: 0 6px 6px 6px; -moz-border-radius: 0 6px 6px; border-radius: 0 6px 6px 6px; }
-
     .dropdown-submenu:hover>.dropdown-menu { display: block; }
     .dropdown-submenu>a:after { display: block; content: " "; float: right; width: 0; height: 0;
         border-color: transparent; border-style: solid; border-width: 5px 0 5px 5px; border-left-color: #ccc;
         margin-top: 5px; margin-right: -10px; }
-
     .dropdown-submenu:hover>a:after { border-left-color: #fff; }
     .dropdown-submenu.pull-left { float: none; }
     .dropdown-submenu.pull-left>.dropdown-menu { left: -100%; margin-left: 10px;
         -webkit-border-radius: 6px 0 6px 6px; -moz-border-radius: 6px 0 6px 6px; border-radius: 6px 0 6px 6px; }
-
 </style>
 
 <!--Update the value of "agree" input when clicking the Agree/Disagree button-->
@@ -91,6 +84,7 @@
 
 <!-- Footer -->
 @yield('footer');
+
 
 <script src="{{ URL::asset('js/all.js') }}"></script>
 <script src="{{ URL::asset('js/jquery.ui.widget.js') }}"></script>
@@ -102,12 +96,12 @@
 @yield('scripts')
 
 {{-- <script type="text/javascript">
-
+    //###########################################################################
+    //####                Change Password Validation              ####
+    //###########################################################################
     //###########################################################################
     //####                Terms and Conditions Validation              ####
     //###########################################################################
-
-
     $('button[name="registerBtn"]').on('click', function(e){
         var $form=$(this).closest('form');
         e.preventDefault();
@@ -120,7 +114,6 @@
 </script> --}}
 
 {{-- <script type="text/javascript">
-
  $(document).ready(function() {
     $('#myTab  a').click(function(e) {
                   e.preventDefault();
@@ -133,10 +126,16 @@
                 var selectedTab = localStorage.getItem('selectedTab');
                 $('#myTab a[href="' + selectedTab + '"]').tab('show');
                 });
-
 </script> --}}
+{{-- //Footer
+@yield('footer');
+<script src="../public/js/all.js"></script>
+<script src="../public/js/jquery.ui.widget.js"></script>
+<script src="../public/js/jquery.knob.js"></script>
+<script src="../public/js/jquery.iframe-transport.js"></script>
+<script src="../public/js/jquery.fileupload.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script> --}}
+
 
 </body>
 </html>
-
-

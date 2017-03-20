@@ -29,7 +29,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersRolesPermissions::class);
 
         $this->call(MappingTableSeeder::class);
-
         $this->call(SchoolTable::class);
         $this->call(CarnegieTable::class);
         $this->call(StudentTable::class);
@@ -40,9 +39,7 @@ class DatabaseSeeder extends Seeder
         $this->command->info('All tables seeded!');
 
         $this->command->info('Tags tables seeded!');
-
-
-    }
+   }
 }
 
 // class TagsTableSeeder extends Seeder {
