@@ -104,12 +104,12 @@ class School extends Model
 
     }
 
-    public function carneige_classification()
+    /*Each school has Carnegie Classifications for each year*/
+    public function carnegie_classifications()
     {
-        return $this->hasOne('App\Carneige_classification', 'id', 'school_id');
-        //EHLbug: syntax should be: return $this->hasOne('App\<child model>', 'foreign_key', 'local_key');
+        return $this->hasMany('App\Carnegie_Classification');
+        //EHLbug: syntax should be: return $this->hasMany('App\<child model>', 'foreign_key', 'local_key');
         //if foreign_key and local_key not specified, Eloquent assumes foreign_key = parent_id and local_key = id
-
 
     }
 

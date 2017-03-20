@@ -10,37 +10,36 @@
 <![endif]-->
 
 
-<div class="form-group{{ $errors->has('PeerGroupName') ? ' has-error' : '' }}">
-    {!! Form::label('PeerGroupName', 'Peer Group Name:', ['class' => 'col-md-4 control-label']) !!}
+<div class="form-group{{ $errors->has('peergroup_name') ? ' has-error' : '' }}">
+    {!! Form::label('peergroup_name', 'Peer Group Name:', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::text('PeerGroupName', null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!}
-        @if ($errors->has('PeerGroupName'))
+        {!! Form::text('peergroup_name', null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!}
+        @if ($errors->has('peergroup_name'))
             <span class="help-block">
-                <strong>{{ $errors->first('PeerGroupName') }}</strong>
+                <strong>{{ $errors->first('peergroup_name') }}</strong>
             </span>
         @endif
     </div>
 </div>
 
 @if(($user->getRoleListAttribute()->first() == 1))
-<div class="form-group{{ $errors->has('PriPubFlg') ? ' has-error' : '' }}">
-    {!! Form::label('PriPubFlg', 'Private/Public:', ['class' => 'col-md-4 control-label']) !!}
+<div class="form-group{{ $errors->has('private_public_flag') ? ' has-error' : '' }}">
+    {!! Form::label('private_public_flag', 'Private/Public:', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
             @if($CRUD_Action == 'Create' )
-                    {!! Form::select('PriPubFlg',[null=>''] + $PriPubFlgList, null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!}
+                    {!! Form::select('private_public_flag',[null=>''] + $PriPubFlgList, null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!}
                 @else
-                    {!! Form::select('PriPubFlg', $PriPubFlgList, $peergroup->PriPubFlg, ['class' => 'col-md-6 form-control', 'required' => 'required', 'selected' => 'selected']) !!}
+                    {!! Form::select('private_public_flag', $PriPubFlgList, $peergroup->private_public_flag, ['class' => 'col-md-6 form-control', 'required' => 'required', 'selected' => 'selected']) !!}
             @endif
-            @if ($errors->has('PriPubFlgList'))
+            @if ($errors->has('private_public_flag'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('PriPubFlgList') }}</strong>
+                    <strong>{{ $errors->first('private_public_flag') }}</strong>
                 </span>
             @endif
     </div>
 </div>
 @endif
 
-{{--{!! Form::open(array('url' => 'peergroups', 'id' => 'peergroupsform', 'class' => 'form')) !!}--}}
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="container">
     <p>&nbsp;</p>
@@ -54,9 +53,6 @@
                     {{ Form::select('instcat', $instcat_list, $selected_instcat_list, ['id' => 'instcat']) }}
                 @endif
             </div>
-            {{--<div class="col-md-12">--}}
-            {{--<div class="col-lg-10 col-lg-offset-2">--}}
-            {{--</div>--}}
             <div class="form-group">
                 <label>Carnegie Classification 2010 Basic</label><br>
                 @if(sizeof($selected_ccbasic_list) == 0)
@@ -67,7 +63,7 @@
             </div>
 
             <div class="form-group">
-                <label>Carnegie Classification 2010 Basic</label><br>
+                <label>Carnegie Classification 2010 Basic Year</label><br>
                 <select id="ccbasicyearid" name="ccbasicyearid"></select>
             </div>
 
@@ -87,10 +83,8 @@
 </div>
 </div>
 <hr/>
-{{--{{ Form::close() }}--}}
 
 <div class="container">
-{{--    {!! Form::open(['url'=>'/peergroups/store', 'class'=>'form-horizontal']) !!}--}}
     <div class="row">
         <div class="col-md-7">
             <div class="subject-info-box-1">
@@ -110,7 +104,6 @@
             </div>
             <div class="subject-info-box-2">
                 <label>Selected Institutions<label id=SelectedCounter></label></label>
-                {{--({{$optslength}})--}}
                 <select multiple="multiple" name="lstBox2[]" id="lstBox2" class="form-control" required="required">
                     @if($CRUD_Action == 'Update' )
                         @foreach($list_school as $key => $value)
@@ -129,7 +122,6 @@
             </div>
         </div>
     </div>
-{{--    {!! Form::close() !!}--}}
 </div>
 
 <script>
@@ -138,7 +130,7 @@
     $(document).ready(function($){
 
         //Load Year dropdown.
-        var start = 2000;
+        var start = 2012;
         var end = 2020;
         var options = "<option value='default'>\-\- Select Carnegie Classification Year \-\-</option>";
         for(var year = start; year <= end; year++) {
@@ -166,7 +158,6 @@
                 url: "/unoistoie-acbat/public/this",
                 //EHLbug: how do I call the URL implicitly?
                 data: {selected_instcat_list:$("#instcat").val(), selected_stabbr_list:$("#stabbr").val(), selected_ccbasic_list:$("#ccbasic").val(), ccbasicyearid:$("#ccbasicyearid").val()},
-//               why isn't it passing ccbasicyearid to web.php /this function?
                 success: function(data) {
                     $('#lstBox1').empty();
                     $('#dynCounter').empty();
@@ -201,29 +192,4 @@
 
     });
 
-
-
 </script>
-
-
-
-
-
-{{--<div class="form-group">--}}
-    {{--<label class="col-md-4 control-label">Institutions: ({{ count($list_school) }})</label>--}}
-    {{--<div class="col-md-6">--}}
-        {{--@if($CRUD_Action == 'Create' )--}}
-            {{--{!! Form::select('schoollist[]', $list_school->pluck('School_Name'), null, ['class' => 'form-control roles cds-select', 'multiple', 'style' => 'width: 50%; margin-top: 10px;', 'required' => 'required']) !!}--}}
-        {{--@else--}}
-            {{--{!! Form::select('schoollist[]', $list_school->pluck('School_Name'), null, ['class' => 'form-control roles cds-select', 'multiple', 'style' => 'width: 50%; margin-top: 10px;']) !!}--}}
-        {{--@endif--}}
-
-        {{--//EHLbug: (SQL: select * from `school_peergroups` where `school_peergroups`.`peer_group_PeerGroupID` = 4 and `school_peergroups`.`peer_group_PeerGroupID` is not null)--}}
-    {{--</div>--}}
-{{--</div>--}}
-
-{{--<div class="form-group">--}}
-    {{--<div class="col-md-6 col-md-offset-4">--}}
-        {{--{!! Form::button('<i class="fa fa-btn fa-save"></i>Save', ['type' => 'submit', 'class' => 'btn btn-primary']) !!}--}}
-    {{--</div>--}}
-{{--</div>--}}

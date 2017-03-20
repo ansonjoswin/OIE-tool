@@ -33,15 +33,8 @@ class PeerGroup extends Model
     }
 	
 	public function school() {
-        return $this->belongsToMany('App\School',"peergroup_school","peergroup_id","school_id");
+        return $this->belongsToMany('App\School','peergroup_school','peergroup_id','school_id');
     }
-	
-    /****We do not use school_peergroups******/
-// 	public function school_peergroups()
-//     {
-//         return $this->hasMany('App\School_PeerGroup', 'PeerGroupID', 'PeerGroupID');
-//     }
-
 
     /**
      * Get a List of school_peergroup ids associated with the current peergroup.

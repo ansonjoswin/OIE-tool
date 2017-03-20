@@ -56,7 +56,7 @@ class User extends Authenticatable
 
     public function peergroups()
     {
-        return $this->hasMany('PeerGroup', 'School_ID', 'School_ID');
+        return $this->hasMany('App\PeerGroup', 'school_id', 'school_id');
     }
 
     /**

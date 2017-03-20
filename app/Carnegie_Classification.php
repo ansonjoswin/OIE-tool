@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Carnegie_Classification extends Model
 {
-    public $table = "carnegie_classification";
+    public $table = "carnegie_classifications";
     protected $fillable=[
         'school_id',
         'year',
@@ -24,7 +24,7 @@ class Carnegie_Classification extends Model
     }
 
     public function school() {
-        return $this->belongsTo('App\School', 'school_id', 'school_id');
+        return $this->belongsTo('App\School', 'id', 'school_id');
         //EHLbug: syntax should be: return $this->belongsTo('App\<parent model>', 'foreign_key', 'other_key');
     }
 }

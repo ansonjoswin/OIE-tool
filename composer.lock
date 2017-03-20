@@ -1066,8 +1066,6 @@
                 "storage"
             ],
             "time": "2017-03-18 16:02:30"
-<<<<<<< HEAD
-=======
         },
         {
             "name": "maatwebsite/excel",
@@ -1135,7 +1133,6 @@
                 "laravel"
             ],
             "time": "2017-01-20 16:16:51"
-
         },
         {
             "name": "monolog/monolog",
@@ -3383,7 +3380,6 @@
         },
         {
             "name": "phpunit/phpunit",
-<<<<<<< HEAD
             "version": "5.7.17",
             "source": {
                 "type": "git",
@@ -3394,7 +3390,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/68752b665d3875f9a38a357e3ecb35c79f8673bf",
                 "reference": "68752b665d3875f9a38a357e3ecb35c79f8673bf",
-
                 "shasum": ""
             },
             "require": {
@@ -3463,9 +3458,7 @@
                 "testing",
                 "xunit"
             ],
-<<<<<<< HEAD
             "time": "2017-03-19 16:52:12"
-
         },
         {
             "name": "phpunit/phpunit-mock-objects",

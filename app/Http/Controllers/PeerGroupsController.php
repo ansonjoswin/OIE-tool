@@ -7,7 +7,6 @@ use App\Http\Requests;
 use App\Http\Requests\SchoolRequest;
 use App\Http\Requests\PeerGroupFormRequest;
 use App\PeerGroup;
-//use App\School_PeerGroup;
 use App\User;
 use App\School;
 use App\Instcat;
@@ -35,13 +34,9 @@ class PeerGroupsController extends Controller
         $this->viewData['selected_instcat_list'] = Instcat::pluck('desc','id')->toArray();
         $this->viewData['selected_stabbr_list'] = Stabbr::pluck('desc','id')->toArray();
         $this->viewData['selected_ccbasic_list'] = Ccbasic::pluck('desc','id')->toArray();
-
-        $this->viewData['ccbasicyearid'] = 2014;
-
+        $this->viewData['ccbasicyearid'] = [2014];
         $results = School::pluck('name','id');
-//        dd($results);
         $this->viewData['school_ids'] = $results->toArray();
-//        dd($this->viewData['school_ids']);
     }
 
     /*** Display list of Peer Groups ***/
@@ -52,10 +47,13 @@ class PeerGroupsController extends Controller
             //Log::info('PeerGroupsController.index: ');
 
             $userID = Auth::user()->id;
-            if(Auth::user()->can(['manage-users','manage-roles'])){
+            if(Auth::user()->can(['manage-users','manage-roles']))
+            {
                 $this->viewData['heading'] = "Peer Groups";
                 $peergroup = PeerGroup::all();
-            }else{
+            }
+            else
+                {
                 $this->viewData['heading'] = "My Peer Groups";
                 $peergroup = PeerGroup::where('user_id',Auth::user()->id)->get();
                 //need to order this by PriPubFlg (public first)
@@ -98,19 +96,17 @@ class PeerGroupsController extends Controller
 
                 //dd($request->all());
         
-        $pg_input['peergroup_name'] = $request['PeerGroupName'];
+        $pg_input['peergroup_name'] = $request['peergroup_name'];
         $pg_input['user_id'] = Auth::user()->id; 
         $pg_input['created_by'] = Auth::user()->email;
-        //dd($request['PriPubFlag']);
-            if($request['PriPubFlg'])
+            if($request['private_public_flag'])
                 {
-                    $pg_input['private_public_flag'] = $request['PriPubFlg'];
-                      
-                   
+                    $pg_input['private_public_flag'] = $request['private_public_flag'];
                 }
-            else{
-                     $pg_input['private_public_flag'] = 'private';  // Default flag to private
-                  }  
+            else
+                {
+                    $pg_input['private_public_flag'] = 'Private';  // Default flag to private
+                }
     //Insert PeerGroup record in peergroups table
 
         $pg_object = PeerGroup::create($pg_input);
@@ -127,20 +123,13 @@ class PeerGroupsController extends Controller
     public function edit(PeerGroup $peergroup)
     {
         $object = $peergroup;
-//        dd($object);
-
-        $pg_id = $peergroup->PeerGroupID;
+        $peergroup_id = $peergroup->peergroup_id;
 
         /****Use Pivot table for this*****/
-        // $school_peergroups = DB::table('school_peergroups')->where('peergroup_id', '=', $pg_id)->get();
-
-        // $list_schoolIDs = $school_peergroups->pluck('School_ID');
-        $list_schoolIDs=0;
-
-        $list_school = School::whereIn('id', $list_schoolIDs)->pluck('name','id')->toArray();
+        $list_school = PeerGroup::find($peergroup_id)->school->pluck('name','id')->toArray();
 
         $this->viewData['user'] = Auth::user();
-        $this->viewData['User_ID'] = Auth::user()->id;
+        $this->viewData['user_id'] = Auth::user()->id;
         $this->viewData['peergroup'] = $object;
         $this->viewData['school_peergroup'] = $object;
         $this->viewData['heading'] = "Edit Peer Group";
@@ -152,57 +141,24 @@ class PeerGroupsController extends Controller
     /*** Update a peer group ***/
     public function update(PeerGroup $peergroup, Request $request)
     {
-//        return('in update route');
-        Log::info('PeerGroupsController.update - Start: '.$request->PeerGroupID.'|'.$request->peergroup_name);
         $object = $peergroup;
+        Log::info('PeerGroupsController.update - Start: '.$object->peergroup_id.'|'.$object->peergroup_name);
         /** Update PeerGroup updated_by and updated_at**/
-        $request['peergroup_name'] = $request['peergroup_name'];
-        $request['user_id'] = Auth::user()->id;
-        $request['updated_by'] = Auth::user()->email; //EHLbug: this gets overwritten, becomes 'System' (low priority)
-//        dd($request['updated_by']);
-        if($request['private_public_flag'] == ''){
-            $request['private_public_flag'] = 'Private';  // Default flag to private
-        }else{
-            $request['private_public_flag'] = $request['PriPubFlg'];
+        $object['updated_by'] = Auth::user()->email;
+        if($request['private_public_flag'])
+        {
+            $object['private_public_flag'] = $request['private_public_flag'];
         }
-        $request['pg_ID'] = $request->peergroup_id;
-//        dd($pg_input);
-        $object->update($request->all()); // this works
-//        dd($object);
+        /** Update the PeerGroup **/
+        $object->update($request->all());
 
-        /** Update School_PeerGroup records to update PeerGroup**/
+        /** Update peergroup_school records to update PeerGroup**/
         $schoolsIDs = $request['lstBox2'];
-        $pg_ID = $object->PeerGroupID;
-        $updated_by = Auth::user()->email;
-        //        dd($object->PeerGroupID);
-        //        dd($request['lstBox2']);
+        $peergroup->school()->sync($schoolsIDs);
 
-
-
-// *****Cant use school_peergroup , use pivot table*****/
-
-
-
-        // $old_school_IDs = School_PeerGroup::pluck('School_ID');
-        // foreach ($schoolsIDs as $school_id) {
-        //     // need if statement to determine if old school id not in new school id; if so, delete row
-        //     // else update or create
-        //     $school_peergroups = School_PeerGroup::updateOrCreate(
-        //         //EHLbug: this runs if the schools selected are the same (so it doesn't have an issue with the update part, although the updated_at field does not change),
-        //         //but it fails if schools are added - error is in date casting, I believe
-        //         //ErrorException in HasAttributes.php line 818: Illegal offset type
-        //         ['PeerGroupID' => $pg_ID,
-        //         'School_ID' => $school_id]
-        //         ,
-        //         ['updated_at'=>date_create()]
-        //     );
-        // }
-
-        // Session::flash('flash_message', 'Peer Group successfully updated!');
-        // Log::info('PeerGroupsController.update - End: '.$object->PeerGroupID.'|'.$object->PeerGroupName);
-        // return redirect('peergroups');
-
-        //}
+         Session::flash('flash_message', 'Peer Group successfully updated!');
+         Log::info('PeerGroupsController.update - End: '.$object->peergroup_id.'|'.$object->PeerGroupName);
+         return redirect('peergroups');
 }
 
 
@@ -223,28 +179,5 @@ class PeerGroupsController extends Controller
         Log::info('PeerGroupController.store - End: '.$request['pg_id']);
         return redirect('peergroups');
     }
-
-//    private function syncSchool_PeerGroups(PeerGroup $peerGroup, array $schoollist)
-//    {
-//        Log::info('PeerGroupsController.syncSchools: Start: '.$peerGroup->PeerGroupID);
-//        $peerGroup->perms()->sync($schoollist);
-//    }
-//
-//    public function perms()
-//    {
-//        return $this->belongsToMany(Config::get('peergroupconfig.school_peergroup'), Config::get('peergroupconfig.school_peergroup_peergroup_table'), Config::get('peergroupconfig.peergroup_foreign_key'), Config::get('peergroupconfig.school_peergroup_foreign_key'));
-//    }
-
-    /**
-     * Sync up the list of schools for the given peer group record.
-     *
-     * @param  User  $peergroup
-     * @param  array  $school_peergroups (id)
-     */
-//    private function syncSchools(PeerGroup $peergroup, array $school_peergrouplist)
-//    {
-//        Log::info('School_PeerGroupsController.syncSchools: Start: '.$peergroup->peergroupID);
-//        $peergroup->perms()->sync($school_peergrouplist);
-//    }
 
 }

@@ -102,24 +102,7 @@ Route::resource('jobs','JobsController');
 Route::resource('failed_jobs', 'Failed_jobsController');
 /*******************/
 
-/*** Peer Group Filter ***/
-Route::resource('pgfilter', 'PeerGroupFilterController');
-// Route::get('/this', function() {
-  //Log::info('This is the get route and i');
-   // if(Request::ajax()){
- 
-   //      $selected_instcat_list = Input::get('selected_instcat_list');
-   //      $selected_stabbr_list = Input::get('selected_stabbr_list');
-
-// /*** School_peergroups ***/
-// Route::resource('school_peergroups', 'School_PeerGroupsController'); // Lists Peer Group Schools (index method)
-// /*** end School_peergroups***/
-
-/*** Peer Group Filter ***/
-Route::resource('pgfilter', 'PeerGroupFilterController');
-Route::get('pgfilter/edit', 'PeerGroupsController@edit');
-/*** end Peer Group filter ***/
-
+/**AJAX for Institution filter (Peer Group create/edit) - called from peergroups/partial**/
 Route::get('/this', function() {
 	Log::info('This is the get route and i');
    if(Request::ajax()){
@@ -145,16 +128,11 @@ Route::get('/this', function() {
 
           $results = School::where('institute_category', '=', $selected_instcat_list)->where('state', '=', $selected_stabbr_list)->pluck('name','id');
 
-          $results = School::where('institute_category', '=', $selected_instcat_list)->where('state', '=', $selected_stabbr_list)->whereHas('carnegie_classification',
-              function($q) use($selected_ccbasic_list)
+          $results = School::where('institute_category', '=', $selected_instcat_list)->where('state', '=', $selected_stabbr_list)->whereHas('carnegie_classifications',
+              function($q) use($selected_ccbasic_list, $ccbasicyearid)
                 {
                    $q->where('carnegie_basic', '=', $selected_ccbasic_list)->where('year', '=', $ccbasicyearid);
                 })->pluck('name','id');
-            //EHLbug: when schools and cc tables both had PK/FK = School_ID, the child query produced the SQL:
-            //"and exists (select * from `carnegie_classifications` where `schools`.`School_ID` = `carnegie_classifications`.`school_School_ID` and `Cng_2000` = 21))"
-            //Eloquent default is that parent PK = 'id' and child FK = 'parentmodelname_id', so it was appending "school_" to look for the FK in cc table
-            //I have changed the hasOne and belongsTo statements to specify exact column names rather than use defaults
-            //It works!
 
           $school_ids = $results->toArray();
           return $school_ids;
@@ -163,7 +141,7 @@ Route::get('/this', function() {
         //Filter by Category and State.
         elseif ($selected_instcat_list != 0 && $selected_stabbr_list != "0" && $selected_ccbasic_list == -9)
         {
-            $results = School::where('institute_category', '=', $selected_instcat_list)->where('state', '=', $selected_stabbr_list)->pluck('name','school_id');
+            $results = School::where('institute_category', '=', $selected_instcat_list)->where('state', '=', $selected_stabbr_list)->pluck('name','id');
             $school_ids = $results->toArray();
             return $school_ids;
         }
@@ -171,11 +149,11 @@ Route::get('/this', function() {
         //Filter by Category and Carnegie.
         elseif ($selected_instcat_list != 0 && $selected_stabbr_list == "0" && $selected_ccbasic_list != -9)
         {
-            $results = School::where('institute_category', '=', $selected_instcat_list)->whereHas('carnegie_classification',
-                function($q) use($selected_ccbasic_list)
+            $results = School::where('institute_category', '=', $selected_instcat_list)->whereHas('carnegie_classifications',
+                function($q) use($selected_ccbasic_list, $ccbasicyearid)
                 {
                     $q->where('carnegie_basic', '=', $selected_ccbasic_list)->where('year', '=', $ccbasicyearid);
-                })->pluck('name','school_id');
+                })->pluck('name','id');
             $school_ids = $results->toArray();
             return $school_ids;
         }
@@ -183,8 +161,8 @@ Route::get('/this', function() {
         //Filter by State and Carnegie.
         elseif ($selected_instcat_list == 0 && $selected_stabbr_list != "0" && $selected_ccbasic_list != -9)
         {
-            $results = School::where('state', '=', $selected_stabbr_list)->whereHas('carnegie_classification',
-                function($q) use($selected_ccbasic_list)
+            $results = School::where('state', '=', $selected_stabbr_list)->whereHas('carnegie_classifications',
+                function($q) use($selected_ccbasic_list, $ccbasicyearid)
                 {
                     $q->where('carnegie_basic', '=', $selected_ccbasic_list)->where('year', '=', $ccbasicyearid);
                 })->pluck('name','id');
@@ -200,33 +178,17 @@ Route::get('/this', function() {
            return $school_ids;
        }
         //Filter by State
-
-        if($selected_instcat_list == 0)
+        elseif($selected_instcat_list == 0 && $selected_stabbr_list != "0" && $selected_ccbasic_list == -9)
         {
           $results = School::where('state', '=', $selected_stabbr_list)->pluck('name','id');
           $school_ids = $results->toArray();
           return $school_ids;
         }
 
-        //Filter by Category
-        if($selected_stabbr_list == "0")
-        {
-          $results = School::where('institute_category', '=', $selected_instcat_list)->pluck('name','id');
-          $school_ids = $results->toArray();
-          return $school_ids;
-        }
-
-       	elseif ($selected_instcat_list == 0 && $selected_stabbr_list != "0" && $selected_ccbasic_list == -9)
-       	{
-       		$results = School::where('state', '=', $selected_stabbr_list)->pluck('name','id');
-			    $school_ids = $results->toArray();
-		      return $school_ids;
-		    }
-
        //Filter by Carnegie Classification
        elseif ($selected_instcat_list == "0" && $selected_stabbr_list == 0 && $selected_ccbasic_list != -9)
        {
-           $results = School::whereHas('carnegie_classification', function($q) use ($selected_ccbasic_list)
+           $results = School::whereHas('carnegie_classifications', function($q) use($selected_ccbasic_list, $ccbasicyearid)
            {
                $q->where('carnegie_basic', '=', $selected_ccbasic_list)->where('year', '=', $ccbasicyearid);
            })->pluck('name','id');
