@@ -23,3 +23,21 @@ class FinancesController extends Controller
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
+>>>>>>> featuremigrations
+>>>>>>> feature-merge-migration-sprint3

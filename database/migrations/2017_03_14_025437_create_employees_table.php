@@ -48,7 +48,7 @@ class CreateEmployeesTable extends Migration
             $table->float('nonadmin_servicestaffsalary_production_outlay')->nullable();
             $table->float('instructors_per_thousand_student')->nullable();
             $table->float('admin_professional_staff')->nullable();
-            $table->float('admin_professionalstaff _perthousandstudent')->nullable();
+            $table->float('admin_professionalstaff_perthousandstudent')->nullable();
             $table->float('noninstruction_academicstaff')->nullable();
             $table->float('noninstruction_academicstaff_perthousandstudent')->nullable();
             $table->float('nonadmin_trade_servicestaff')->nullable();

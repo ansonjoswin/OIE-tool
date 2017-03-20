@@ -16,23 +16,23 @@ class PeerGroup extends Model
     public $table = "peergroups";
     protected $fillable=[
 
-			'PeerGroupName',
-			'PriPubFlg',
-			'User_ID',
+			'peergroup_name',
+			'private_public_flag',
+			'user_id',
             'created_by',
     ];
 
-    protected $primaryKey = 'PeerGroupID';
+    protected $primaryKey = 'peergroup_id';
     public static function getTableName() {
         return (new static)->getTable();
     }
 	
     public function user() {
-        return $this->belongsTo('User'); //should be 'App\User'?
+        return $this->belongsTo('App\User');
     }
 	
-	public function school_peergroup() {
-        return $this->hasMany('App\School_PeerGroup');
+	public function school() {
+        return $this->belongsToMany('App\School',"peergroup_school","peergroup_id","school_id");
 
     }
 }

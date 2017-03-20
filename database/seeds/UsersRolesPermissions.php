@@ -102,3 +102,110 @@ class UsersRolesPermissions extends Seeder
     }
 }
 
+
+// class DataTable extends Seeder
+// {
+//     /**
+//      * Run the database seeds.
+//      *
+//      * @return void
+//      */
+//     public function run()
+//     {
+//         DB::table('datatable')->delete();
+//           // $datatable = new DataTable(); 
+//           //   $datatable ->ug_headcount = '1';
+//           //   $datatable ->admin_count = '1';
+//           //   $datatable ->inst_count = '1';
+//           //   $datatable ->admin_sal = '1';
+//           //   $datatable ->inst_sal = '1';
+//           //   $datatable ->admin_stu = '1';
+//           //   $datatable ->inst_stu = '1';
+//           //   $datatable ->grad_rate4 = '1';
+//           //   $datatable ->grad_rate6 = '1';
+//           //   $datatable ->deg_stu= '1';
+//           //   $datatable ->avg_sch_stu = '1';
+//           //   $datatable ->loan_rate = '1';
+
+//             // ]); 
+//         DataTable::create([  
+//             'ug_headcount' => '2',
+//             'admin_count' => '2',
+//             'inst_count' => '2',
+//             'admin_sal' => '2',
+//             'inst_sal' => '2',
+//             'admin_stu' => '2',
+//             'inst_stu' => '2',
+//             'grad_rate4' => '2',
+//             'grad_rate6' => '2',
+//             'deg_stu' => '2',
+//             'avg_sch_stu' => '2',
+//             'loan_rate' => '2',
+
+//             ]); 
+
+// // DataTable::create([  
+// //             'ug_headcount' => '3',
+// //             'admin_count' => '3',
+// //             'inst_count' => '3',
+// //             'admin_sal' => '3',
+// //             'inst_sal' => '3',
+// //             'admin_stu' => '3',
+// //             'inst_stu' => '3',
+// //             'grad_rate4' => '3',
+// //             'grad_rate6' => '3',
+// //             'deg_stu' => '3',
+// //             'avg_sch_stu' => '3',
+// //             'loan_rate' => '3',
+
+// //             ]); 
+// // DataTable::create([  
+// //             'ug_headcount' => '4',
+// //             'admin_count' => '4',
+// //             'inst_count' => '4',
+// //             'admin_sal' => '4',
+// //             'inst_sal' => '4',
+// //             'admin_stu' => '4',
+// //             'inst_stu' => '4',
+// //             'grad_rate4' => '4',
+// //             'grad_rate6' => '4',
+// //             'deg_stu' => '4',
+// //             'avg_sch_stu' => '4',
+// //             'loan_rate' => '4',
+
+// //             ]);
+// // DataTable::create([  
+// //             'ug_headcount' => '5',
+// //             'admin_count' => '5',
+// //             'inst_count' => '5',
+// //             'admin_sal' => '5',
+// //             'inst_sal' => '5',
+// //             'admin_stu' => '5',
+// //             'inst_stu' => '5',
+// //             'grad_rate4' => '5',
+// //             'grad_rate6' => '5',
+// //             'deg_stu' => '5',
+// //             'avg_sch_stu' => '5',
+// //             'loan_rate' => '5',
+
+// //             ]);
+// // DataTable::create([  
+// //             'ug_headcount' => '6',
+// //             'admin_count' => '6',
+// //             'inst_count' => '6',
+// //             'admin_sal' => '6',
+// //             'inst_sal' => '6',
+// //             'admin_stu' => '6',
+// //             'inst_stu' => '6',
+// //             'grad_rate4' => '6',
+// //             'grad_rate6' => '6',
+// //             'deg_stu' => '6',
+// //             'avg_sch_stu' => '6',
+// //             'loan_rate' => '6',
+
+//             // ]);
+
+
+
+//     }
+// }

@@ -23,7 +23,7 @@ class SchoolRequest extends Request
     public function rules()
     {
         return [
-            'school_name' => 'required|min:3',
+            'name' => 'required|min:3',
         ];
     }
 }

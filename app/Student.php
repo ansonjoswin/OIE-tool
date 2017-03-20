@@ -12,6 +12,7 @@ use Log;
 
 class Student extends Model
 {
+
     use HasCompositePrimaryKey;
     protected $fillable=[
         //'Admission_ID',
@@ -45,8 +46,10 @@ class Student extends Model
 
     ];
 
+
     protected $primaryKey = ['school_id', 'year'];
     //protected $primaryKey = 'school_id';
+
     public static function getTableName() {
         return (new static)->getTable();
     }

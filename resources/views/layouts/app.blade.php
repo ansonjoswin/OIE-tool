@@ -97,15 +97,11 @@
 <script src="../public/js/jquery.knob.js"></script>
 <script src="../public/js/jquery.iframe-transport.js"></script>
 <script src="../public/js/jquery.fileupload.js"></script>
+
 <!-- Scripts -->
 @yield('scripts')
 
 {{-- <script type="text/javascript">
-
-    //###########################################################################
-    //####                Change Password Validation              ####
-    //###########################################################################
-
 
     //###########################################################################
     //####                Terms and Conditions Validation              ####
@@ -123,18 +119,22 @@
     });
 </script> --}}
 
+{{-- <script type="text/javascript">
 
+ $(document).ready(function() {
+    $('#myTab  a').click(function(e) {
+                  e.preventDefault();
+                  $(this).tab('show');
+                });
+                $("ul.nav-tabs#myTab > li > a").on("shown.bs.tab", function(e) {
+                  var id = $(e.target).attr("href");
+                  localStorage.setItem('selectedTab', id)
+                });
+                var selectedTab = localStorage.getItem('selectedTab');
+                $('#myTab a[href="' + selectedTab + '"]').tab('show');
+                });
 
-
-{{-- //Footer
-@yield('footer');
-
-<script src="../public/js/all.js"></script>
-<script src="../public/js/jquery.ui.widget.js"></script>
-<script src="../public/js/jquery.knob.js"></script>
-<script src="../public/js/jquery.iframe-transport.js"></script>
-<script src="../public/js/jquery.fileupload.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script> --}}
+</script> --}}
 
 </body>
 </html>

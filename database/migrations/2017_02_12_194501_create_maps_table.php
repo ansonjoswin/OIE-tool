@@ -19,8 +19,8 @@ class CreateMapsTable extends Migration
             $table->string('csv_header')->nullable();
             $table->string('table_name')->nullable();
             $table->string('filename')->nullable();
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
             $table->softDeletes();
             $table->foreign('table_name')->references('table_name')->on('map_tables');
             $table->foreign('filename')->references('filename')->on('map_tables');

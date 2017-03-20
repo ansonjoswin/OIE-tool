@@ -16,14 +16,13 @@ class CreateSchoolPeerGroupTable extends Migration
 
             $table->increments('SchoolPeerGroupID');
             //$table->primary(array('PeerGroupID','School_Id'));
-            $table->integer('School_ID')->unsigned();
+            $table->integer('school_id')->unsigned();
             $table->integer('PeerGroupID')->unsigned();
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamps();
             $table->softDeletes();
-            $table->foreign('School_ID')->references('School_Id')->on('schools')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('school_id')->references('id')->on('schools')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('PeerGroupID')->references('PeerGroupID')->on('peergroups')->onUpdate('cascade')->onDelete('cascade');
 
         });

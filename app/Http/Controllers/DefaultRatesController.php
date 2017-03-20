@@ -25,8 +25,4 @@ class DefaultRatesController extends Controller
          $defaultrates=DefaultRate::all();
         return view('defaultrates.index',compact('defaultrates'));
     }
-
-
-
-
 }

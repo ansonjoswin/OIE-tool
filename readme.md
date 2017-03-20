@@ -66,7 +66,6 @@ Please pull down the code and add the .env file from another project of yours be
 |MAIL_PASSWORD=|your password|
 |MAIL_ENCRYPTION=|tls|
 
-
 ## Configure your Queue drivers so jobs can be scheduled.
 
 | Key | Values |
@@ -75,7 +74,6 @@ Please pull down the code and add the .env file from another project of yours be
 |CACHE_DRIVER=|file|
 |SESSION_DRIVER=|file|
 |QUEUE_DRIVER=|database-low|
-
 
 ## Development Tools
 
@@ -93,6 +91,7 @@ Please pull down the code and add the .env file from another project of yours be
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects. Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+
 
 ## Contributing
 
@@ -118,11 +117,6 @@ This website is open-sourced software licensed under the [MIT license](http://op
     Yodiz - Issue and Project Management
 
     Laravel Dusk - Testing
-
-    GitHub - Version Control
-
-    PHP 7.0.4 , HTML 5, CSS, JScript , D3.JS - Web Development
-
 
 ## Our Team
 <!--Kavya-->

@@ -39,8 +39,8 @@
                                     <tbody> <!-- Table Body -->                                
                                     @foreach ($schools as $school)
                                             <tr>
-                                                <td class="table-text">{{ $school->Unit_Id }}</td>
-                                                <td class="table-text">{{ $school->School_Name }}</td>
+                                                <td class="table-text">{{ $school->unitid }}</td>
+                                                <td class="table-text">{{ $school->name }}</td>
                                                 <td class="table-text">
                                                 {!! Form::button('<i class="fa fa-btn fa-trash"></i>', ['type'=>'submit', 'class'=>'btn btn-danger']) !!}
                                                 </td>

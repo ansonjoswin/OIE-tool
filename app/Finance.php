@@ -20,6 +20,7 @@ class Finance extends Model
         'private_nonprofit_total_salary_wage',
     ];
     protected $primaryKey = 'school_id';
+
     public static function getTableName() {
         return (new static)->getTable();
     }

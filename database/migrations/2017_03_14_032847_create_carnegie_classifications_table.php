@@ -16,7 +16,9 @@ class CreateCarnegieClassificationsTable extends Migration
         Schema::create('carnegie_classifications', function (Blueprint $table) {
             $table->integer('school_id');
             $table->integer('year')->index();
+
             $table->bigInteger('unitid')->unique();
+
             $table->float('carnegie_basic')->nullable();
             $table->float('carnegie_ug_program')->nullable();
             $table->float('carnegie_grad_program')->nullable();

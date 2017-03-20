@@ -76,9 +76,8 @@ class School extends Model
 'geo_latitude',
 'datafeedback_report_nces',
 'datafeedback_report_Group',
-
-
 ];
+
     protected $primaryKey = 'id';
     public static function getTableName() {
         return (new static)->getTable();
@@ -90,22 +89,27 @@ class School extends Model
         return $this->hasMany('App\Student');
 
     }
-    public function defaultrate()
+
+    
+    public function peergroup()
     {
-        return $this->hasMany('App\DefaultRate');
-
-    }
-
-    public function school_peergroup()
-    {
-        return $this->hasMany('App\School_PeerGroup');
-
+        return $this->belongsToMany('App\PeerGroup');
     }
     /*public function user()
     {
         return $this->hasMany('App\User');
 
     } */
+
+    
+  
+    /*public function user()
+    {
+        return $this->hasMany('App\User');
+
+    } */
+
+
 
     public function employee()
     {
@@ -124,5 +128,4 @@ class School extends Model
         return $this->hasOne('App\FInance');
 
     }
-
 }
