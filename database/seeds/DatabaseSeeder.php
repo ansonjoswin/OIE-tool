@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SchoolTable::class);
         //$this->call(CMSeeder::class);
         $this->command->info('User, Role, Permission, Schools tables seeded!');
-        // $this->call(CarnegieTable::class);
+        $this->call(CarnegieTable::class);
         // $this->call(GraduationTable::class);
         // $this->call(ApplicationDetailsTable::class);
         // $this->call(AdmissionTable::class);

@@ -34,12 +34,19 @@ class DataTableController extends Controller
         //$this->school_ids = $this->results->toArray();
         $this->new_array = [];
         $this->peergroup_list = PeerGroup::all();
+
 //                $schools = School::all();  //EHLbug: This crashes everything and causes an http 500 error
     }
 
     public function index(){
     	$datatables = DataTable::all();
     	$peergroup_list = PeerGroup::pluck('peergroup_name','peergroup_id')->toArray();
-    	return view('data.tableindex',compact('datatables','peergroup_list'));
+       $peergroup_school=PeerGroup::find(13);
+       //dd($peergroup_school->school->pluck('name'));
+
+         
+
+                return view('data.tableindex',compact('datatables','peergroup_list','peergroup_school'));
+        
     }
 }

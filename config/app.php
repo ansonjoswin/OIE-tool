@@ -165,6 +165,7 @@ return [
         Zizaco\Entrust\EntrustServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -232,7 +233,8 @@ return [
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'Form' => Collective\Html\FormFacade::class,
       'Html' => Collective\Html\HtmlFacade::class,
-        'Input' => Illuminate\Support\Facades\Input::class
+        'Input' => Illuminate\Support\Facades\Input::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class
 
     ],
 
