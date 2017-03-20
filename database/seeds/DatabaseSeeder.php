@@ -19,6 +19,9 @@ class DatabaseSeeder extends Seeder
         // Seed the attributes tables
         $this->call(InstcatSeeder::class);
         $this->call(StabbrSeeder::class);
+        $this->call(CcbasicSeeder::class);
+
+         //Seed the System Users/Roles/Permissions tables
         $this->call(RolesTableSeeder::class);
         $this->call(PermissionsTableSeeder::class);
         $this->call(UsersTableSeeder::class);

@@ -129,7 +129,22 @@ abstract class CsvDataSeeder extends Seeder
         // the Database column and store in a map
 
         foreach($mapping as $dbCol) {
+
                       if ($no_of_columns_to_fill > 0) {
+// =======
+//             if ($dbCol === 'year') {
+//                 $row_values[$dbCol] = 2014;
+//             } else {
+
+//                 if ($dbCol === 'school_id') {
+//                     $temp1 = DB::Table('schools')->where('Unit_Id', '=',
+//                         $source_array['UNITID'])->value('school_id');
+
+//                     $row_values[$dbCol] = $temp1;
+//                 } else {
+//                     if ($no_of_columns_to_fill > 0) {
+
+// >>>>>>> feature-peergroup-edit-and-carnegie
 
                         $csv_Column_name = DB::Table('maps')->where($columns[3], '=', $this->table)
                             ->where($columns[1], $dbCol)->value($columns[2]);

@@ -140,8 +140,10 @@ abstract class OtherCsvDataSeeder extends Seeder
             } else {
 
                 if ($dbCol === 'school_id') {
+
                     $temp1 = DB::Table('schools')->where('unitid', '=',
                         $source_array['UNITID'])->value('school_id');
+
                     $row_values[$dbCol] = $temp1;
                 } else {
                     if ($no_of_columns_to_fill > 0) {

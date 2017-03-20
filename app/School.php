@@ -77,12 +77,10 @@ class School extends Model
 'datafeedback_report_nces',
 'datafeedback_report_Group',
 ];
-
     protected $primaryKey = 'id';
     public static function getTableName() {
         return (new static)->getTable();
     }
-
 
     public function student()
     {
@@ -90,7 +88,6 @@ class School extends Model
 
     }
 
-    
     public function peergroup()
     {
         return $this->belongsToMany('App\PeerGroup');
@@ -101,16 +98,6 @@ class School extends Model
 
     } */
 
-    
-  
-    /*public function user()
-    {
-        return $this->hasMany('App\User');
-
-    } */
-
-
-
     public function employee()
     {
         return $this->hasMany('App\Employee');
@@ -119,13 +106,16 @@ class School extends Model
 
     public function carneige_classification()
     {
-        return $this->hasOne('App\Carneige_classification');
+        return $this->hasOne('App\Carneige_classification', 'id', 'school_id');
+        //EHLbug: syntax should be: return $this->hasOne('App\<child model>', 'foreign_key', 'local_key');
+        //if foreign_key and local_key not specified, Eloquent assumes foreign_key = parent_id and local_key = id
+
 
     }
 
     public function finance()
     {
-        return $this->hasOne('App\FInance');
+        return $this->hasOne('App\Finance');
 
     }
 }

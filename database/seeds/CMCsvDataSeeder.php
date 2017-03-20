@@ -130,12 +130,9 @@ abstract class CMCsvDataSeeder extends Seeder
             if ($dbCol === 'Year') {
                 $row_values[$dbCol] = 2014;
             } else {
-
-
                 if ($dbCol === 'school_id') {
                     $temp1 = DB::Table('schools')->where('unitid', '=',
                         $source_array['UNITID'])->value('id');
-
                     $row_values[$dbCol] = $temp1;
                 } else {
                     if ($no_of_columns_to_fill > 0) {

@@ -13,7 +13,9 @@
             alert("Nothing to move");
         }
 
-        $(destinationList).append($(opts).clone());
+        // $(destinationList).append($(opts).clone());
+        $optslength = opts.length;
+        console.log(sourceList);
     };
 
     //Moves all items from sourceList to destinationList

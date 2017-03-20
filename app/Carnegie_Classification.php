@@ -24,6 +24,7 @@ class Carnegie_Classification extends Model
     }
 
     public function school() {
-        return $this->belongsTo('App\School');
+        return $this->belongsTo('App\School', 'school_id', 'school_id');
+        //EHLbug: syntax should be: return $this->belongsTo('App\<parent model>', 'foreign_key', 'other_key');
     }
 }

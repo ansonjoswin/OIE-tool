@@ -15,7 +15,7 @@ class CreateSchoolsTable extends Migration
     {
         Schema::create('schools', function (Blueprint $table) {
             // School Table Attributes
-            $table->bigIncrements('School_Id');
+            $table->bigIncrements('school_id');
             $table->bigInteger('Unit_Id')->unique();
             $table->string('School_Name')->nullable();
             $table->string('School_Address')->nullable();

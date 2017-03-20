@@ -7,8 +7,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="pull-right">
-                            <!-- <form action="{{ url('peergroups/create') }}" method="POST">{{ csrf_field() }} -->
-                            <form action="{{ url('pgfilter') }}" method="GET">{{ csrf_field() }}
+                            {{--<!-- <form action="{{ url('peergroups/create') }}" method="POST">{{ csrf_field() }} -->--}}
+                            <form action="{{ url('peergroups/create') }}" method="GET">{{ csrf_field() }}
                                 <button type="submit" id="create-peergroup" class="btn btn-primary"><i class="fa fa-btn fa-file-o"></i>Create</button>
                             </form>
                         </div>
@@ -31,7 +31,9 @@
                                     <tbody> <!-- Table Body -->
                                     @foreach ($peergroups as $peergroup)
                                         <tr>
-                                            <td class="table-text"><div>{{ $peergroup->peergroup_name}}</div></td>
+                                            <td class="table-text"><div><a href="{{ url('/peergroups/'.$peergroup->peergroup_id.'/edit') }}">{{ $peergroup->peergroup_name }}</a> </div></td>
+                                            {{--<td class="table-text"><div>{{ $peergroup->PeerGroupName}}</div></td>--}}
+
                                             @if(Auth::user()->can(['manage-users','manage-roles']))
                                             <td class="table-text"><div>{{ $peergroup->created_by}}</div></td>
                                             @endif

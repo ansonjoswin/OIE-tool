@@ -27,7 +27,7 @@
         body { font-family: 'Lato'; }
         .fa-btn { margin-right: 6px; }
     </style>
-    <link href="../public/css/all.css" rel="stylesheet">
+    <link href="{{ URL::asset('css/all.css') }}" rel="stylesheet">
     <link href="{{ url(mix('css/app.css')) }}" rel="stylesheet"> 
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <script>
@@ -92,11 +92,11 @@
 <!-- Footer -->
 @yield('footer');
 
-<script src="../public/js/all.js"></script>
-<script src="../public/js/jquery.ui.widget.js"></script>
-<script src="../public/js/jquery.knob.js"></script>
-<script src="../public/js/jquery.iframe-transport.js"></script>
-<script src="../public/js/jquery.fileupload.js"></script>
+<script src="{{ URL::asset('js/all.js') }}"></script>
+<script src="{{ URL::asset('js/jquery.ui.widget.js') }}"></script>
+<script src="{{ URL::asset('js/jquery.knob.js') }}"></script>
+<script src="{{ URL::asset('js/jquery.iframe-transport.js') }}"></script>
+<script src="{{ URL::asset('js/jquery.fileupload.js') }}"></script>
 
 <!-- Scripts -->
 @yield('scripts')

@@ -87,6 +87,7 @@ class UsersController extends Controller
 
     {
         $object = $user;
+//        dd($user->id);
         Log::info('UsersController.update - Start: '.$object->id.'|'.$object->name);
 //        $this->authorize($object);
 
