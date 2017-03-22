@@ -119,7 +119,21 @@
         <div class="col-md-7">
             <div class="pull-right">
 
-            {!! Form::button('<i class="fa fa-btn fa-save"></i>Save', ['type' => 'submit', 'class' => 'btn btn-primary']) !!}
+            {!! Form::button('<i class="fa fa-btn fa-save"></i>Save', ['type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'submit_btn', 'onClick'=>'selectAll()', 'data-toggle'=>'modal', 'data-target'=>'#loadingModal']) !!}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="loadingModal" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">        
+                        <strong><br/>Saving...<br/><br/></strong>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -213,6 +227,13 @@
 
     });
 
+
+    function selectAll() { 
+        selectBox = document.getElementById("lstBox2");
+        for (var i = 0; i < selectBox.options.length; i++) { 
+             selectBox.options[i].selected = true; 
+        } 
+    }
 
 
 </script>

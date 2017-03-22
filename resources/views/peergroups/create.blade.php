@@ -8,7 +8,7 @@
                     <div class="panel-heading"> {{ $heading }}</div>
 
                     <div class="panel-body">
-                        {!! Form::open(['url' => 'peergroups', 'class' => 'form-horizontal']) !!}
+                        {!! Form::open(['url' => 'peergroups', 'class' => 'form-horizontal' ]) !!}
                         @include('common.errors')
                         @include('common.flash')
 
@@ -48,6 +48,9 @@
                 rc = false;
             }
             return rc;
-        }        
+        }  
+
+
+
     </script>
 @endsection
