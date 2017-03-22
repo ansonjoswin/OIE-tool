@@ -5,6 +5,7 @@
 
 <link rel="stylesheet" href="{{ URL::asset('css/site.css') }}">
 
+
 <!--[if lt IE 9]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
@@ -91,7 +92,7 @@
                 <label>Available Institutions <label id="dynCounter">({{count($school_ids)}})</label> </label>
                 <select multiple class="form-control" id="lstBox1">
                     @foreach($school_ids as $key => $value)
-                        <option value="{{ $key }}"> {{ $value }} </option>
+                        <option value="{{ $key }}">{{ $value }} </option>
                     @endforeach
                 </select>
             </div>
@@ -150,25 +151,45 @@
             var selected_stabbr_list = $("#stabbr").val();
             var selected_ccbasic_list = $("#ccbasic").val();
             var ccbasicyearid = $("#ccbasicyearid").val();
-//            var ccbasicyearid = 2014;
-            var dyn_cnt = 0;
-            console.log("instcat", selected_instcat_list, "stabbr", selected_stabbr_list, "ccbasic", selected_ccbasic_list, "ccbasicyearid", ccbasicyearid);
-            $.ajax({
-                type: "GET",
-                url: "/unoistoie-acbat/public/this",
-                //EHLbug: how do I call the URL implicitly?
-                data: {selected_instcat_list:$("#instcat").val(), selected_stabbr_list:$("#stabbr").val(), selected_ccbasic_list:$("#ccbasic").val(), ccbasicyearid:$("#ccbasicyearid").val()},
-                success: function(data) {
-                    $('#lstBox1').empty();
-                    $('#dynCounter').empty();
-                    $.each(data, function(key, value) {
-                        $('#lstBox1').append("<option value='" + key +"'>" + value + "</option>");
-                        dyn_cnt++;
-                    });
-                    $('#dynCounter').text("("+dyn_cnt+")");
-                }
-            });
+
+            // If Carnegie is selected without having selected a Carnegie Year, notify the user
+            if (selected_ccbasic_list != -9 && ccbasicyearid == 'default'){
+                alert("Please select a Carnegie Classification Year.");
+            }else{
+                //var ccbasicyearid = 2014;
+                var dyn_cnt = 0;
+                console.log("instcat", selected_instcat_list, "stabbr", selected_stabbr_list, "ccbasic", selected_ccbasic_list, "ccbasicyearid", ccbasicyearid);
+                $.ajax({
+                    type: "GET",
+                    url: "/unoistoie-acbat/public/this",
+                    //EHLbug: how do I call the URL implicitly?
+                    data: {selected_instcat_list:$("#instcat").val(), selected_stabbr_list:$("#stabbr").val(), selected_ccbasic_list:$("#ccbasic").val(), ccbasicyearid:$("#ccbasicyearid").val()},
+                    success: function(data) {
+                        $('#lstBox1').empty();
+                        $('#dynCounter').empty();
+                        $.each(data, function(key, value) {
+                            $('#lstBox1').append("<option value='" + key +"'>" + value + "</option>");
+                            dyn_cnt++;
+                        });
+                        $('#dynCounter').text("("+dyn_cnt+")");
+                    }
+                });
+            }
+
         });
+
+        // When Carnegie is selected, the Carnegie Year is defaulted
+        var previous;
+        $("#ccbasic").on('focus', function () {
+            previous = this.value;
+        }).change(function() {
+            //alert("Prev:" + previous+ " New: "+this.value+ " year: " + $("#ccbasicyearid").val() );
+            if(this.value != -9 && $("#ccbasicyearid").val() == 'default') {
+                //alert("you need to set year!!!");
+                $("#ccbasicyearid").prop("selectedIndex", 1);
+            }
+            previous = this.value;   // Update previous value to new value
+        });        
 
         // script for moving between Available Institutions and Selected Institutions
         $('#btnRight').click(function (e) {
@@ -191,5 +212,7 @@
         });
 
     });
+
+
 
 </script>

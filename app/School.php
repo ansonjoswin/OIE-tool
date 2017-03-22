@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Log;
 
+use App\Scopes\SchoolNameScope;
+
 class School extends Model
 {
     protected $fillable=[
@@ -118,4 +120,17 @@ class School extends Model
         return $this->hasOne('App\Finance');
 
     }
+
+
+    /**
+     * Scope a query to only include popular users.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSortByName($query)
+    {
+        return $query->orderBy('name');
+    }      
+
 }
