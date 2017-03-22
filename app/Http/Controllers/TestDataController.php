@@ -9,11 +9,11 @@ class TestDataController extends Controller
 {
     public function index()
     {
-        $test_data = Graduation::select('school_id','GradRate4yr_BacDgr100','GradRate6yr_BacDgr150')->whereIn('school_id',[2,3,4,5,6])->get(); 
+        $test_data = Graduation::select('stEnrl','year','Graduation_ID')->get();
         
- /*       $test1 = json_decode($test_data);
-        //var_dump($test1);    
-        $init = $test1[0];
+ /*       $test1 = json_decode($test_data);*/
+       // var_dump($test_data);    
+    /*    $init = $test1[0];
         $finalKeys = array();
         $i =0;
         	# code...
@@ -34,6 +34,8 @@ class TestDataController extends Controller
     	//return view('data.test');
     	//return view('data.test_mpd');
     }
+
+    
 
 
 }

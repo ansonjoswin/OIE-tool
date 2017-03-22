@@ -1,18 +1,10 @@
-<!DOCTYPE html>
-<html>
- <head>
+@extends('layouts.app')
+
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <link rel='stylesheet' href='style.css'>
-  </head>
+ <html>   <link rel='stylesheet' href='style.css'> </html>
     <!-- CSS (Styling) -->
     <style type="text/css">
             /* Format X and Y Axis */
- body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  position: relative;
-  width: 960px;
-}
-
 .axis text {
   font: 10px sans-serif;
 }
@@ -41,20 +33,30 @@ label {
     </style>
     <!-- End CSS (Styling) -->
  
- <body>
- <div class="container">
-     <h2>D3 Scatterplot </h2>
-     <section id="char"></section>
-  </div>
-  <!-- Begin D3 Javascript -->
-  <script type="text/javascript">
 
+   @section('content')
+ <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div><h4>Data Visualization</h4></div>
+                    </div>                   
+
+                    <div class="panel-body">
+                        <div id="chart">
+<script>
+ 
   var test_data = <?php echo json_encode($test_data, JSON_HEX_TAG); ?>; 
+ // console.log(test_data)
 jsObject = JSON.parse(test_data); 
 
-  var body = d3.select("body")
+  
+  var body = d3.select("#chart")
 console.log(d3.keys(jsObject[0]))
   // Select X-axis Variable
+  
+
   var span = body.append('span')
     .text('Resource: ')
   var yInput = body.append('select')
@@ -83,7 +85,7 @@ console.log(d3.keys(jsObject[0]))
   body.append('br')
 
   // Variables
-  var body = d3.select("body")
+  var body = d3.select("#chart")
   var margin = { top: 50, right: 50, bottom: 50, left: 50 }
   var h = 500 - margin.top - margin.bottom
   var w = 500 - margin.left - margin.right
@@ -92,14 +94,14 @@ console.log(d3.keys(jsObject[0]))
   var colorScale = d3.scale.category20()
   var xScale = d3.scale.linear()
     .domain([
-      d3.min([0,d3.min(jsObject,function (d) { return d.GradRate4yr_BacDgr100 })]),
-      d3.max([0,d3.max(jsObject,function (d) { return d.GradRate4yr_BacDgr100})])
+      d3.min([0,d3.min(jsObject,function (d) { return d.stEnrl })]),
+      d3.max([0,d3.max(jsObject,function (d) { return d.stEnrl})])
       ])
     .range([0,w])
   var yScale = d3.scale.linear()
     .domain([
-      d3.min([0,d3.min(jsObject,function (d) { return d.GradRate6yr_BacDgr150 })]),
-      d3.max([0,d3.max(jsObject,function (d) { return d.GradRate6yr_BacDgr150 })])
+      d3.min([0,d3.min(jsObject,function (d) { return d.stEnrl })]),
+      d3.max([0,d3.max(jsObject,function (d) { return d.stEnrl })])
       ])
     .range([h,0])
   // SVG
@@ -121,29 +123,27 @@ console.log(d3.keys(jsObject[0]))
       .data(jsObject)
       .enter()
     .append('circle')
-      .attr('cx',function (d) { return xScale(d.GradRate4yr_BacDgr100) })
-      .attr('cy',function (d) { return yScale(d.GradRate6yr_BacDgr150) })
-      .attr('r','10')
+      .attr('cx',function (d) { return xScale(d.stEnrl) })
+      .attr('cy',function (d) { return yScale(d.stEnrl) })
+      .attr('r','3')
       .attr('stroke','black')
       .attr('stroke-width',1)
       .attr('fill',function (d,i) { return colorScale(i) })
       .on('mouseover', function () {
         d3.select(this)
           .transition()
-          .duration(500)
-          .attr('r',20)
+          .attr('r',3)
           .attr('stroke-width',3)
       })
       .on('mouseout', function () {
         d3.select(this)
           .transition()
-          .duration(500)
-          .attr('r',10)
+          .attr('r',3)
           .attr('stroke-width',1)
       })
     .append('title') // Tooltip
-      .text(function (d) { return 'X-axis:'+d.GradRate4yr_BacDgr100 +
-                           '\n Y-axis:' + d.GradRate6yr_BacDgr150})
+      .text(function (d) { return 'X-axis:'+d.stEnrl +
+                           '\n Y-axis:' + d.stEnrl})
   // X-axis
   svg.append('g')
       .attr('class','axis')
@@ -183,14 +183,13 @@ console.log(d3.keys(jsObject[0]))
 
     yAxis.scale(yScale) // change the yScale
     d3.select('#yAxis') // redraw the yAxis
-      .transition().duration(1000)
+      .transition().duration(5)
       .call(yAxis)
     d3.select('#yAxisLabel') // change the yAxisLabel
       .text(value)    
     d3.selectAll('circle') // move the circles
-      .transition().duration(1000)
-      .delay(function (d,i) { return i*100})
-        .attr('cy',function (d) { return yScale(d[value]) })
+      .transition().duration(5)
+           .attr('cy',function (d) { return yScale(d[value]) })
   }
 
   function xChange() {
@@ -202,18 +201,23 @@ console.log(d3.keys(jsObject[0]))
         ])
     xAxis.scale(xScale) // change the xScale
     d3.select('#xAxis') // redraw the xAxis
-      .transition().duration(1000)
+      .transition().duration(5)
       .call(xAxis)
     d3.select('#xAxisLabel') // change the xAxisLabel
-      .transition().duration(1000)
+      .transition().duration(5)
       .text(value)
     d3.selectAll('circle') // move the circles
-      .transition().duration(1000)
-      .delay(function (d,i) { return i*100})
+      .transition().duration(5)
         .attr('cx',function (d) { return xScale(d[value]) })
   }
 
  
   </script>
-  </body>
-</html>
+</div>
+                    </div>         
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
