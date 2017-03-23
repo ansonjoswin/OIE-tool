@@ -104,7 +104,15 @@
                 <input type='button' id='btnAllLeft' value='<<' class="btn btn-default" />
             </div>
             <div class="subject-info-box-2">
-                <label>Selected Institutions<label id=SelectedCounter></label></label>
+                <label>Selected Institutions
+                    <label id="selCounter">
+                        @if(isset($list_school))
+                            ({{count($list_school)}})
+                        @else
+                            (0)
+                        @endif
+                    </label>
+                </label>
                 <select multiple="multiple" name="lstBox2[]" id="lstBox2" class="form-control" required="required">
                     @if($CRUD_Action == 'Update' )
                         @foreach($list_school as $key => $value)
@@ -140,7 +148,7 @@
 </div>
 
 <script>
-    var selected_cnt = 0;
+    var sel_cnt = 0;
 
     $(document).ready(function($){
 
@@ -209,24 +217,35 @@
         $('#btnRight').click(function (e) {
             $('select').moveToListAndDelete('#lstBox1', '#lstBox2');
             e.preventDefault();
-//            $optslength = $optslength;
+            updateSelCount();
         });
         $('#btnAllRight').click(function (e) {
             $('select').moveAllToListAndDelete('#lstBox1', '#lstBox2');
             e.preventDefault();
+            updateSelCount();
         });
         $('#btnLeft').click(function (e) {
             $('select').moveToListAndDelete('#lstBox2', '#lstBox1');
             e.preventDefault();
+            updateSelCount();
         });
         $('#btnAllLeft').click(function (e) {
             $('select').moveAllToListAndDelete('#lstBox2', '#lstBox1');
             e.preventDefault();
-
+            updateSelCount();
         });
 
     });
 
+    //Update the list counters
+    function updateSelCount(){
+        //Update the counter on the Available Institutions list
+        dyn_cnt = $('#lstBox1 option').size(); 
+        $('#dynCounter').text("("+dyn_cnt+")");        
+        //Update the counter on the Selected Institutions list
+        sel_cnt = $('#lstBox2 option').size(); 
+        $('#selCounter').text("("+sel_cnt+")");
+    }
 
     function selectAll() { 
         selectBox = document.getElementById("lstBox2");
