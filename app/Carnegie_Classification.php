@@ -1,0 +1,30 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Carnegie_Classification extends Model
+{
+    public $table = "carnegie_classifications";
+    protected $fillable=[
+        'school_id',
+        'year',
+        'carnegie_basic',
+        'carnegie_ug_program',
+        'carnegie_grad_program',
+        'carnegie_ug_profile',
+        'carnegie_enroll_profile',
+        'carnegie_size_setting',
+        'carnegie_classification2000'
+        ];
+    protected $primaryKey = 'school_id';
+    public static function getTableName() {
+        return (new static)->getTable();
+    }
+
+    public function schools() {
+        return $this->belongsTo('App\School', 'id', 'school_id');
+        //EHLbug: syntax should be: return $this->belongsTo('App\<parent model>', 'foreign_key', 'other_key');
+    }
+}

@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -13,7 +11,6 @@ use Session;
 use Input;
 use DB;
 use Log;
-
 class UsersController extends Controller
 {
     public function __construct()
@@ -22,81 +19,97 @@ class UsersController extends Controller
 //        $this->middleware('administrator');
 //        $this->middleware('role:admin|root');
         $this->middleware('role:admin');
-
         $this->user = Auth::user();
         $this->users = User::all();
+        $this->affiliation_list = [
+            'Higher Education' => 'Higher Education',
+            'Journalism' => 'Journalism',
+            'Policy Analyst' => 'Policy Analyst',
+            'Government' => 'Government',
+            'Accreditation' => 'Accreditation'
+            ];
         $this->list_role = Role::pluck('display_name', 'id');
         $this->heading = "Users";
 
-        $this->viewData = [ 'user' => $this->user, 'users' => $this->users, 'list_role' => $this->list_role, 'heading' => $this->heading ];
-    }
+        $this->viewData = [ 'user' => $this->user, 'users' => $this->users, 'list_role' => $this->list_role, 'heading' => $this->heading, 'affiliation_list'=>$this->affiliation_list ];
 
+    }
     public function index()
     {
+
         Log::info('UsersController.index: ');
         $users = User::all();
         $this->viewData['users'] = $users;
-
         return view('users.index', $this->viewData);
     }
-
     public function show(User $users)
     {
         $object = $users;
         Log::info('UsersController.show: '.$object->id.'|'.$object->name);
         $this->viewData['user'] = $object;
         $this->viewData['heading'] = "View User: ".$object->name;
-
         return view('users.show', $this->viewData);
     }
-
     public function create()
     {
         Log::info('UsersController.create: ');
         $this->viewData['heading'] = "New User";
-
         return view('users.create', $this->viewData);
     }
-
     public function store(UserRequest $request)
     {
         Log::info('UsersController.store - Start: ');
         $input = $request->all();
         $this->populateCreateFields($input);
+        $input['name'] = 'User';  
         $input['password'] = bcrypt($request['password']);
         $input['active'] = $request['active'] == '' ? false : true;
-
         $object = User::create($input);
         $this->syncRoles($object, $request->input('rolelist'));
         Session::flash('flash_message', 'User successfully added!');
         Log::info('UsersController.store - End: '.$object->id.'|'.$object->name);
-        return redirect()->back();
+        return redirect()->action('UsersController@index');
     }
 
-    public function edit(User $users)
+
+
+    public function edit(User $user)
     {
-        $object = $users;
+        $object = $user;
         Log::info('UsersController.edit: '.$object->id.'|'.$object->name);
         $this->viewData['user'] = $object;
-        $this->viewData['heading'] = "Edit User: ".$object->name;
 
+        $this->viewData['heading'] = "Edit User";
         return view('users.edit', $this->viewData);
     }
 
-    public function update(User $users, UserRequest $request)
+    public function update(User $user, UserRequest $request)
+
     {
-        $object = $users;
+        $object = $user;
+//        dd($user->id);
         Log::info('UsersController.update - Start: '.$object->id.'|'.$object->name);
 //        $this->authorize($object);
+
         $this->populateUpdateFields($request);
         $request['active'] = $request['active'] == '' ? false : true;
 
-        $object->update($request->all());
-        $this->syncRoles($object, $request->input('rolelist'));
-        Session::flash('flash_message', 'User successfully updated!');
+
+        if($user->id == Auth::user()->id && ($request['active'] != $user->active)   ) {
+            Session::flash('flash_alert', 'You cannot update your own status.');
+        }elseif ($user->id == Auth::user()->id && ($request->input('rolelist') != $user->rolelist->toArray())) { 
+            Session::flash('flash_alert', 'You cannot update your own role.');
+        }else{
+            $object->update($request->all());
+            $this->syncRoles($object, $request->input('rolelist')); 
+            Session::flash('flash_message', 'User successfully updated!');
+        }
+
         Log::info('UsersController.update - End: '.$object->id.'|'.$object->name);
         return redirect('users');
     }
+
+
 
     /**
      * Destroy the given user.
@@ -105,19 +118,20 @@ class UsersController extends Controller
      * @param  User  $user
      * @return Response
      */
-    public function destroy(Request $request, User $users)
+    public function destroy(Request $request, User $user)
     {
-        $object = $users;
+        $object = $user;
         Log::info('UsersController.destroy: Start: '.$object->id.'|'.$object->name);
-        if ($this->authorize('destroy', $object))
-        {
+
+        //if ($this->authorize('destroy', $object))
+        //{
             Log::info('Authorization successful');
             $object->delete();
-        }
+        //}
+        Session::flash('flash_message', 'User successfully deleted!');
         Log::info('UsersController.destroy: End: ');
         return redirect('/users');
     }
-
     /**
      * Sync up the list of roles for the given user record.
      *
@@ -129,7 +143,28 @@ class UsersController extends Controller
         Log::info('UsersController.syncRoles: Start: '.$user->name);
         // ToDo: At somepoint need to update the timestamps and created_by/updated_by fields on the pivot table
         $user->roles()->sync($roles);
-//        $user->roles()->sync([$roles => ['created_by' => Auth::user()->name, 'updated_by' => Auth::user()->name]]);
+        //$user->roles()->sync([$roles => ['created_by' => Auth::user()->name, 'updated_by' => Auth::user()->name]]);
     }
+
+
+     public function userstat()
+    {
+        
+
+        $totals = [
+    'higheredu'=>User::where(['affiliation' => 'Higher Education', 'active' => '1'])->count(),
+    'journalism' =>User::where(['affiliation' => 'Journalism', 'active' => '1'])->count(),
+    'policyanalyst' =>User::where(['affiliation' => 'Policy Analyst', 'active' => '1'])->count(),
+    'government' =>User::where(['affiliation' => 'Government', 'active' => '1'])->count(),
+    'acreditation' =>User::where(['affiliation' => 'Accreditation', 'active' => '1'])->count(),
+
+    // And so on
+];
+        //$count=User::where(['affiliation' => 'Higher Education'])->count();
+        //return($higheredu);
+        return view('users.statistics',compact('totals'));
+   
+
+  }
 
 }

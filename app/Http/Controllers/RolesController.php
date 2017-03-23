@@ -64,13 +64,12 @@ class RolesController extends Controller
         $this->syncPermissions($object, $request->input('permissionlist'));
         Session::flash('flash_message', 'Role successfully added!');
         Log::info('RolesController.store - End: '.$object->id.'|'.$object->name);
-
-        return redirect()->back();
+        return redirect()->action('RolesController@index');
     }
 
-    public function edit(Role $roles)
+    public function edit(Role $role)
     {
-        $object = $roles;
+        $object = $role;
         Log::info('RolesController.edit: '.$object->id.'|'.$object->name);
         $this->viewData['role'] = $object;
         $this->viewData['heading'] = "Edit Role: ".$object->display_name;
@@ -78,9 +77,9 @@ class RolesController extends Controller
         return view('roles.edit', $this->viewData);
     }
 
-    public function update(Role $roles, RoleRequest $request)
+    public function update(Role $role, RoleRequest $request)
     {
-        $object = $roles;
+        $object = $role;
         Log::info('RolesController.update - Start: '.$object->id.'|'.$object->name);
         $this->populateUpdateFields($request);
 
@@ -98,15 +97,16 @@ class RolesController extends Controller
      * @param  Role  $role
      * @return Response
      */
-    public function destroy(Request $request, Role $roles)
+    public function destroy(Request $request, Role $role)
     {
-        $object = $roles;
+        $object = $role;
         Log::info('RolesController.destroy: Start: '.$object->id.'|'.$object->name);
-        if ($this->authorize('destroy', $object))
-        {
+        //if ($this->authorize())
+        //{
             Log::info('Authorization successful');
             $object->delete();
-        }
+        //}
+        Session::flash('flash_message', 'Role successfully deleted!');
         Log::info('RolesController.destroy: End: ');
         return redirect('/roles');
     }

@@ -52,6 +52,13 @@ $(document).ready(function(){
             "orderable": false
         }]
     });
+
+    $('.replyBtn').click(function(){
+
+        $(this).siblings('.commentReply').toggle();
+    });
+
+   
 });
 
 //# sourceMappingURL=all.js.map
