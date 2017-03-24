@@ -95,24 +95,26 @@
 <!-- Scripts -->
 @yield('scripts')
 
-{{-- <script type="text/javascript">
+<script type="text/javascript">
+
+        
     //###########################################################################
     //####                Change Password Validation              ####
     //###########################################################################
     //###########################################################################
     //####                Terms and Conditions Validation              ####
     //###########################################################################
-    $('button[name="registerBtn"]').on('click', function(e){
-        var $form=$(this).closest('form');
-        e.preventDefault();
-        $('#termscond').modal({ backdrop: 'static', keyboard: false })
-                .one('click', '#agreeBtn', function() {
-                    $form.trigger('submit'); // submit the form
-                });
+    // $('button[name="registerBtn"]').on('click', function(e){
+    //     var $form=$(this).closest('form');
+    //     e.preventDefault();
+    //     $('#termscond').modal({ backdrop: 'static', keyboard: false })
+    //             .one('click', '#agreeBtn', function() {
+    //                 $form.trigger('submit'); // submit the form
+    //             });
         // .one() is NOT a typo of .on()
-    });
-</script> --}}
-
+    // });
+</script> 
+ 
 {{-- <script type="text/javascript">
  $(document).ready(function() {
     $('#myTab  a').click(function(e) {

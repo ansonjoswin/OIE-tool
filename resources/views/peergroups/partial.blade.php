@@ -127,6 +127,7 @@
         <div class="col-md-7">
             <div class="pull-right">
 
+
             {!! Form::button('<i class="fa fa-btn fa-save"></i>Save', ['type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'submit_btn', 'onClick'=>'selectAll()', 'data-toggle'=>'modal', 'data-target'=>'#loadingModal']) !!}
             </div>
         </div>
@@ -142,6 +143,7 @@
                         <strong><br/>Saving...<br/><br/></strong>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
