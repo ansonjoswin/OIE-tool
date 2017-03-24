@@ -95,49 +95,5 @@
 <!-- Scripts -->
 @yield('scripts')
 
-<script type="text/javascript">
-
-        
-    //###########################################################################
-    //####                Change Password Validation              ####
-    //###########################################################################
-    //###########################################################################
-    //####                Terms and Conditions Validation              ####
-    //###########################################################################
-    // $('button[name="registerBtn"]').on('click', function(e){
-    //     var $form=$(this).closest('form');
-    //     e.preventDefault();
-    //     $('#termscond').modal({ backdrop: 'static', keyboard: false })
-    //             .one('click', '#agreeBtn', function() {
-    //                 $form.trigger('submit'); // submit the form
-    //             });
-        // .one() is NOT a typo of .on()
-    // });
-</script> 
- 
-{{-- <script type="text/javascript">
- $(document).ready(function() {
-    $('#myTab  a').click(function(e) {
-                  e.preventDefault();
-                  $(this).tab('show');
-                });
-                $("ul.nav-tabs#myTab > li > a").on("shown.bs.tab", function(e) {
-                  var id = $(e.target).attr("href");
-                  localStorage.setItem('selectedTab', id)
-                });
-                var selectedTab = localStorage.getItem('selectedTab');
-                $('#myTab a[href="' + selectedTab + '"]').tab('show');
-                });
-</script> --}}
-{{-- //Footer
-@yield('footer');
-<script src="../public/js/all.js"></script>
-<script src="../public/js/jquery.ui.widget.js"></script>
-<script src="../public/js/jquery.knob.js"></script>
-<script src="../public/js/jquery.iframe-transport.js"></script>
-<script src="../public/js/jquery.fileupload.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script> --}}
-
-
 </body>
 </html>
