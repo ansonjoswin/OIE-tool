@@ -14,7 +14,7 @@
                         <strong><div style="color:#b32d00;text-align: center;">{!! Session::has('inactive') ? Session::get("inactive") : '' !!}</div></strong>
                         <br/>
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <label for="email" class="col-md-4 control-label" id = "email">E-Mail Address</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" placeholder="E-Mail" name="email" value="{{ old('email') }}" required autofocus>
@@ -55,13 +55,13 @@
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" name="login">
                                 <i class="fa fa-btn fa-sign-in"></i>
                                     Login
 
                                 </button>
 
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
+                                <a class="btn btn-link" id="forgotpassword" href="{{ url('/password/reset') }}">
                                     Forgot Your Password?
                                 </a>
                             </div>

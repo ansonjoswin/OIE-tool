@@ -52,24 +52,6 @@
     </div>
 </div>
 
-<!-- Comments Form -->
-                {{-- <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-            <div class="panel-heading" style="text-align: center;"><h4>Discussions</h4></div>
-                
-                 <div class="panel-body">
-                                        <form role="form">
-                        <div class="form-group">
-                            <textarea class="form-control" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
-
-                <hr> --}}
-
-       
-
         <div class="col-md-8 col-md-offset-2" style="padding-top: 60px">
             <div class="panel panel-default">
             <div class="panel-heading" style="text-align: center;"><h4>Discussions</h4></div>
@@ -146,19 +128,6 @@
                         <br>
                         
                         <button class="btn btn-primary replyBtn">Reply</button>
-                        {{-- <form action="{{ url('usercomments/'.$comment->id) }}" method="POST" onsubmit="return ConfirmDelete();">{{ csrf_field() }}{{ method_field('DELETE') }}
-                        <button type="submit" id="delete" class="btn btn-default btn-danger" ><i class="fa fa-btn fa-trash"></i></button>
-                        </form>
-                        </span> --}}
-                                                    
-                                                    
-                       {{--  <button class="btn btn-primary replyBtn" style="display: inline;">Delete</button>
-
-                        {!! Form::open(['method' => 'DELETE', 'onSubmit'=> 'if(!confirm("\n\nAre you sure you want to delete the reply?")){return false;}', 'style'=>'padding-left:20px;' , 'url'=>['replies', $reply->id]])!!}
-                                             {!! Form::submit('Delete', ['class' => 'btn btn-danger', 'style'=>'padding: 2px 8px 2px 8px', 'style'=>'display: inline']) !!}
-                                            {!! Form::close() !!} --}}
-                         
-
                         
                         <!-- End Nested Comment -->
                         <div class="commentReply" style="display: none;">

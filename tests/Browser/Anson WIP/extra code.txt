@@ -1,20 +1,4 @@
-<?php
-
-namespace Tests\Browser;
-
-use Tests\DuskTestCase;
-use Laravel\Dusk\Browser;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-
-class ExampleTest extends DuskTestCase
-{
-    /**
-     * A basic browser test example.
-     *
-     * @return void
-     */
-  	//correct email and password
-	public function testBasicLogin()
+/*	public function testBasicLogin()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/unoistoie-acbat/public/login')
@@ -37,28 +21,6 @@ class ExampleTest extends DuskTestCase
 				->assertDontSee('Home')->pause(2000);
         });
 	}
-	
-	//successful register
-	
-	public function testUserRegister()
-	{
-		$this->browse(function (Browser $browser) {
-            $browser->visit('/unoistoie-acbat/public/')
-				->assertSee('Administrative')
-				->click('#register')
-				->assertSee('Register')
-				->type('email','version24@gmail.com')
-				->select('.Affiliation','Affiliation-1')
-				->type('password','123456')
-				->type('password_confirmation','123456')
-				->click('#agree')
-				->click('#registerBtn')
-				->assertSee('Home')
-				->visit('/unoistoie-acbat/public/home');	
-        });
-	}
-	
-	
 	
 	public function testUserChangePassword()
 	{
@@ -84,7 +46,7 @@ class ExampleTest extends DuskTestCase
         });
 	}
 	
-	/*public function testBasicLogin()
+	public function testBasicLogin()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/unoistoie-acbat/public/login')
@@ -94,7 +56,7 @@ class ExampleTest extends DuskTestCase
 			    ->assertSee('Home');
         });
     }
-}*/
+}
 
 public function testUserResetPassword1()
 	{
@@ -124,4 +86,4 @@ public function testUserResetPassword2()
 			->assertDontSee('Home')->pause(2000);		
         });
 	}
-}
+}/*

@@ -166,7 +166,7 @@
 
 @endsection
 
-@section('footer')
+
 
 
 <style>
@@ -195,4 +195,3 @@
     span.icon-prev { margin-left: -30px !important }
     span.icon-next { margin-right: -30px !important }
 </style>
-@endsection

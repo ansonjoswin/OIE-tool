@@ -1,17 +1,3 @@
-{{--
-<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-    {!! Form::label('name', 'Name:', ['class' => 'col-md-4 control-label']) !!}
-    <div class="col-md-6">
-        {!! Form::text('name', null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!}
-        @if ($errors->has('name'))
-            <span class="help-block">
-                <strong>{{ $errors->first('name') }}</strong>
-            </span>
-        @endif
-    </div>
-</div>
---}}
-
 
 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
     {!! Form::label('email', 'E-Mail Address:', ['class' => 'col-md-4 control-label']) !!}
@@ -48,7 +34,7 @@
 
 <div class="form-group">
     <div class="col-md-6 col-md-offset-4">
-        <div class="checkbox">
+        <div class="checkbox" id = "Active">
             <label>
                 {{ Form::hidden('active', false) }}{{ Form::checkbox('active', true, old('active')) }} Active
             </label>
@@ -57,20 +43,23 @@
 </div>
 
 
-<div class="form-group">
-    <label class="col-md-4 control-label">Roles</label>
-    <div class="col-md-6">
+
+<div class="form-group" id = "roles" name="roles">
+    <label class="col-md-4 control-label" id = "roles" name="roles">Roles</label>
+    <div class="col-md-6" id = "roles" name="roles">
+
+
 
         @if($CRUD_Action == 'Create' )  <!--New users have no default role-->
             {!! Form::select('rolelist[]', $list_role, null, ['placeholder' => '', 'class' => 'form-control roles cds-select', 'style' => 'width: 50%; margin-top: 10px;', 'required' => 'required']) !!}
         @elseif($user->getRoleListAttribute()->first() != null) <!--Existing users default to existing role-->
             {!! Form::select('rolelist[]', $list_role, $user->getRoleListAttribute()->first(), ['class' => 'form-control roles cds-select', 'style' => 'width: 50%; margin-top: 10px;', 'required' => 'required']) !!}
         @else <!--If user has no role, it is a Registered User-->
-            {!! Form::select('rolelist[]', $list_role, $list_role->search('Registered User'), ['class' => 'form-control roles cds-select', 'style' => 'width: 50%; margin-top: 10px;', 'required' => 'required']) !!}
+            {!! Form::select('rolelist[]', $list_role, $list_role->search('Registered User'), ['class' => 'form-control roles cds-select', 'style' => 'width: 50%; margin-top: 10px;', 'required' => 'required','id' => 'roles']) !!}
         @endif
+		
     </div>
 </div>
-
 
 @if($CRUD_Action == 'Create' )
 

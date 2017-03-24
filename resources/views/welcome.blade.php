@@ -9,11 +9,10 @@
                 <div style="text-align: center;">
                 <img src="{{asset('images/StudentLearning.jpg')}}">
                 </div>
-                <div class="panel-body">
-                   
-                </div>
-            </div>
         </div>
     </div>
 </div>
+</div>
+@endsection
+@section('footer')
 @endsection

@@ -4,8 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "hash": "3d0a781d17c13254d69f025f94c60fa6",
     "content-hash": "bc6ef3d80195affe64ca5d392aec56d9",
+=======
+
+    "hash": "f11898b4962eeb96c029dd5f864aa61a",
+    "content-hash": "94e1225dcf84ff96dec9c4e0a7c3bd48",
+
+>>>>>>> feature-terms
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -106,7 +113,9 @@
                 "docblock",
                 "parser"
             ],
+
             "time": "2017-02-24 16:22:25"
+
         },
         {
             "name": "doctrine/cache",
@@ -802,7 +811,9 @@
                 "testing",
                 "webdriver"
             ],
+
             "time": "2017-03-03 14:36:19"
+
         },
         {
             "name": "laravel/framework",
@@ -931,7 +942,13 @@
                 "framework",
                 "laravel"
             ],
+<<<<<<< HEAD
             "time": "2017-03-21 19:34:41"
+=======
+
+            "time": "2017-03-02 14:41:40"
+
+>>>>>>> feature-terms
         },
         {
             "name": "laravel/tinker",
@@ -1420,7 +1437,9 @@
                 "parser",
                 "php"
             ],
+
             "time": "2017-03-05 18:23:57"
+
         },
         {
             "name": "paragonie/random_compat",
@@ -1468,6 +1487,7 @@
                 "pseudorandom",
                 "random"
             ],
+<<<<<<< HEAD
             "time": "2017-03-13 16:27:32"
         },
         {
@@ -1526,6 +1546,11 @@
                 "xlsx"
             ],
             "time": "2015-05-01 07:00:55"
+=======
+
+            "time": "2017-03-03 20:43:42"
+
+>>>>>>> feature-terms
         },
         {
             "name": "psr/log",
@@ -1645,7 +1670,13 @@
                 "interactive",
                 "shell"
             ],
+<<<<<<< HEAD
             "time": "2017-03-19 21:40:44"
+=======
+
+            "time": "2017-03-01 00:13:29"
+
+>>>>>>> feature-terms
         },
         {
             "name": "ramsey/uuid",
@@ -1727,7 +1758,12 @@
                 "identifier",
                 "uuid"
             ],
+<<<<<<< HEAD
             "time": "2017-03-18 15:38:09"
+=======
+            "time": "2016-11-22 19:21:44"
+
+>>>>>>> feature-terms
         },
         {
             "name": "rap2hpoutre/laravel-log-viewer",
@@ -1775,7 +1811,12 @@
                 "logging",
                 "lumen"
             ],
+<<<<<<< HEAD
             "time": "2017-03-13 07:50:58"
+=======
+            "time": "2016-12-15 16:14:38"
+
+>>>>>>> feature-terms
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3046,7 +3087,9 @@
                 "test double",
                 "testing"
             ],
+
             "time": "2017-02-28 12:52:32"
+
         },
         {
             "name": "myclabs/deep-copy",
@@ -3297,7 +3340,9 @@
                 "spy",
                 "stub"
             ],
+
             "time": "2017-03-02 20:05:34"
+
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -3360,7 +3405,9 @@
                 "testing",
                 "xunit"
             ],
+
             "time": "2017-03-01 09:12:17"
+
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -3497,7 +3544,9 @@
             "keywords": [
                 "timer"
             ],
+
             "time": "2017-02-26 11:10:40"
+
         },
         {
             "name": "phpunit/php-token-stream",
@@ -3546,6 +3595,7 @@
             "keywords": [
                 "tokenizer"
             ],
+
             "time": "2017-02-27 10:12:30"
         },
         {
@@ -3558,8 +3608,14 @@
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/68752b665d3875f9a38a357e3ecb35c79f8673bf",
                 "reference": "68752b665d3875f9a38a357e3ecb35c79f8673bf",
+=======
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b99112aecc01f62acf3d81a3f59646700a1849e5",
+                "reference": "b99112aecc01f62acf3d81a3f59646700a1849e5",
+
+>>>>>>> feature-terms
                 "shasum": ""
             },
             "require": {
@@ -3628,7 +3684,13 @@
                 "testing",
                 "xunit"
             ],
+<<<<<<< HEAD
             "time": "2017-03-19 16:52:12"
+=======
+
+            "time": "2017-03-02 15:22:43"
+
+>>>>>>> feature-terms
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3732,7 +3794,9 @@
             ],
             "description": "Looks up which function or method a line of code belongs to",
             "homepage": "https://github.com/sebastianbergmann/code-unit-reverse-lookup/",
+
             "time": "2017-03-04 06:30:41"
+
         },
         {
             "name": "sebastian/comparator",

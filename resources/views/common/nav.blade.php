@@ -44,20 +44,28 @@
                         </li>                 
                     @endif
                     
+                    @if(Auth::user())
+                        <li>
+                            <a href="{{ url('/peergroups') }}">Peer Groups</a>
+                        </li>
+                    @endif
+                    
                         @if(Auth::user())
+                        @if(Auth::user()->hasRole('admin'))
                             <li>
-                                <a href="{{ url('/peergroups') }}">Peer Groups</a>
+                                <a href="{{ url('/userstats') }}">User Statistics</a>
                             </li>
                         @endif
+                         @endif
                         @if(Auth::user()->hasRole('admin'))
-                            @if(Auth::user())
-                                <li>
-                                    <a href="{{ url('/userstats') }}">User Statistics</a>
-                                </li>
-                            @endif
+                            <li>
+                                <a href="{{ url('https://analytics.google.com/') }}" id="GoogleAnalytics" >Google Analytics</a>
+                            </li>
                         @endif
-                    </ul>
-                @endif
+                    @endif
+        </ul>
+   
+
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
@@ -83,6 +91,7 @@
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                                 {{ csrf_field() }}
                                         </form>
+
                                     </li>
                                     <li>
                                         <a href="{{ url('/resetPassword') }}"><i class="fa fa-btn fa-fw fa-lock"></i>Change Password</a>
@@ -103,3 +112,4 @@
             margin-top: -14px;
         }
     </style>
+

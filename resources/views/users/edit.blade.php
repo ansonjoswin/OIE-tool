@@ -11,7 +11,7 @@
                             @if($user->id != Auth::user()->id && $user->id != 1)
                             <form action="{{ url('users/'.$user->id) }}" method="POST" onsubmit="return ConfirmDelete();">
                                 {{ csrf_field() }}{{ method_field('DELETE') }}
-                                <button type="submit" id="delete-user-{{ $user->id}}" class="btn btn-default  btn-danger"><i class="fa fa-btn fa-trash"></i>Delete</button>
+                                <button type="submit" id="delete-user-{{ $user->id}}" class="btn btn-default  btn-danger" name = 'delete'><i class="fa fa-btn fa-trash"></i>Delete</button>
                             </form>                       
                             @endif
 
