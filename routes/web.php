@@ -28,7 +28,7 @@ Route::get('laravel-version', function()
 });
 
 
-
+Route::resource('new','ParametersController');
 /*
 |--------------------------------------------------------------------------
 | Application Routes
