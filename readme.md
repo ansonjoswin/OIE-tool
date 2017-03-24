@@ -1,4 +1,4 @@
-#OIE Analytics - Capstone Spring 2017 Sec 003
+###OIE Analytics - Capstone Spring 2017 Sec 003
 
 ### Live Demo
 
@@ -13,7 +13,7 @@
 ## GitHub Ignore
 Github ignores certain files and folders for security reasons, they include :
 
-#Folders that will not be copied:
+# Folders that will not be copied:
 
 |Folders|
 |-------------|
@@ -24,7 +24,7 @@ Github ignores certain files and folders for security reasons, they include :
 |vendor|
 |.idea|
 
-#Files that will not be copied:
+# Files that will not be copied:
 
 |Files|
 |-------------|
@@ -35,7 +35,7 @@ Github ignores certain files and folders for security reasons, they include :
 
 Please pull down the code and add the .env file from another project of yours because github doesnt upload the .env files, find the required CSV files for file upload under /resources/assets/csv folder.
 
-##Configure your .env file so it can access the application.
+## Configure your .env file so it can access the application.
 
 | Key | Values |
 |-----|--------|
@@ -43,9 +43,9 @@ Please pull down the code and add the .env file from another project of yours be
 |APP_KEY=|generated automatically , or you can generate it with php artisan key:generate|
 |APP_DEBUG=|true|
 |APP_LOG_LEVEL=|debug|	
-|APP_URL=|http://localhost|
+|APP_URL=|http://localhost/|
 
-##Configure your .env file so it can access the database.
+## Configure your .env file so it can access the database.
 
 | Key | Values |
 |-----|--------|
@@ -54,7 +54,7 @@ Please pull down the code and add the .env file from another project of yours be
 |DB_PORT=|3306|
 |DB_DATABASE=|oie|	
 |DB_USERNAME=|Username|
-|DB_PASSWORD=
+|DB_PASSWORD=|******|
 
 ## Configure your mail drivers so that it can send a mail.
 
