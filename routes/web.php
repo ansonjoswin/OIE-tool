@@ -27,6 +27,8 @@ Route::get('laravel-version', function()
     return 'Your Laravel Version is '.$laravel::VERSION;
 });
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -61,7 +63,7 @@ Route::get('/userstats', 'UsersController@userstat');
 /**** DATA VISUALIZATION SCATTERPLOT ****/
 Route::resource('/testvisual', 'TestDataController');
 Route::resource('/datavisual', 'DataVisualController');
-Route::post('/datarefresh', 'DataVisualController@refresh');
+Route::post('/datarefresh', 'TestDataController@refresh');
 /****************************************/
 
 /**Export to csv****/

@@ -4,7 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "bc6ef3d80195affe64ca5d392aec56d9",
+
+    "content-hash": "94e1225dcf84ff96dec9c4e0a7c3bd48",
+
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -601,7 +603,11 @@
                 "selenium",
                 "webdriver"
             ],
+<<<<<<< HEAD
             "time": "2017-03-22T10:56:03+00:00"
+=======
+            "time": "2017-01-13T15:48:08+00:00"
+>>>>>>> feature-d3page-sprint3
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -689,6 +695,7 @@
                 }
             ],
             "time": "2015-04-20T18:58:01+00:00"
+<<<<<<< HEAD
         },
         {
             "name": "jeremeamia/SuperClosure",
@@ -747,6 +754,8 @@
                 "tokenizer"
             ],
             "time": "2016-12-07T09:37:55+00:00"
+=======
+>>>>>>> feature-d3page-sprint3
         },
         {
             "name": "laravel/dusk",
@@ -930,7 +939,11 @@
                 "framework",
                 "laravel"
             ],
+<<<<<<< HEAD
             "time": "2017-03-21T19:34:41+00:00"
+=======
+            "time": "2017-03-02T14:41:40+00:00"
+>>>>>>> feature-d3page-sprint3
         },
         {
             "name": "laravel/tinker",
@@ -1125,6 +1138,7 @@
                 "sftp",
                 "storage"
             ],
+<<<<<<< HEAD
             "time": "2017-03-22T15:43:14+00:00"
         },
         {
@@ -1194,6 +1208,9 @@
                 "laravel"
             ],
             "time": "2017-03-23T20:30:30+00:00"
+=======
+            "time": "2017-02-09T11:33:58+00:00"
+>>>>>>> feature-d3page-sprint3
         },
         {
             "name": "monolog/monolog",
@@ -1271,7 +1288,11 @@
                 "logging",
                 "psr-3"
             ],
+<<<<<<< HEAD
             "time": "2017-03-13T07:08:03+00:00"
+=======
+            "time": "2016-11-26T00:15:39+00:00"
+>>>>>>> feature-d3page-sprint3
         },
         {
             "name": "mtdowling/cron-expression",
@@ -1467,6 +1488,7 @@
                 "pseudorandom",
                 "random"
             ],
+<<<<<<< HEAD
             "time": "2017-03-13T16:27:32+00:00"
         },
         {
@@ -1525,6 +1547,9 @@
                 "xlsx"
             ],
             "time": "2015-05-01T07:00:55+00:00"
+=======
+            "time": "2017-03-03T20:43:42+00:00"
+>>>>>>> feature-d3page-sprint3
         },
         {
             "name": "psr/log",
@@ -1644,7 +1669,11 @@
                 "interactive",
                 "shell"
             ],
+<<<<<<< HEAD
             "time": "2017-03-19T21:40:44+00:00"
+=======
+            "time": "2017-03-01T00:13:29+00:00"
+>>>>>>> feature-d3page-sprint3
         },
         {
             "name": "ramsey/uuid",
@@ -1726,7 +1755,11 @@
                 "identifier",
                 "uuid"
             ],
+<<<<<<< HEAD
             "time": "2017-03-18T15:38:09+00:00"
+=======
+            "time": "2016-11-22T19:21:44+00:00"
+>>>>>>> feature-d3page-sprint3
         },
         {
             "name": "rap2hpoutre/laravel-log-viewer",
@@ -1774,7 +1807,11 @@
                 "logging",
                 "lumen"
             ],
+<<<<<<< HEAD
             "time": "2017-03-13T07:50:58+00:00"
+=======
+            "time": "2016-12-15T16:14:38+00:00"
+>>>>>>> feature-d3page-sprint3
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2305,6 +2342,7 @@
                 "shim"
             ],
             "time": "2016-11-14T01:06:16+00:00"
+<<<<<<< HEAD
         },
         {
             "name": "symfony/polyfill-php56",
@@ -2413,6 +2451,8 @@
                 "shim"
             ],
             "time": "2016-11-14T01:06:16+00:00"
+=======
+>>>>>>> feature-d3page-sprint3
         },
         {
             "name": "symfony/process",
@@ -3627,7 +3667,11 @@
                 "testing",
                 "xunit"
             ],
+<<<<<<< HEAD
             "time": "2017-03-19T16:52:12+00:00"
+=======
+            "time": "2017-03-02T15:22:43+00:00"
+>>>>>>> feature-d3page-sprint3
         },
         {
             "name": "phpunit/phpunit-mock-objects",

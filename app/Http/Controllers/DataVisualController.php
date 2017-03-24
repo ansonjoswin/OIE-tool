@@ -117,7 +117,11 @@ class DataVisualController extends Controller
             ->whereIn('PeerGroup_ID', [$sel_pgid])
             ->pluck('school_id');
         $this->viewData['sel_pgid'] = $sel_pgid;
+
 /*******************************This table is not available in the final migration**************/
+
+        var_dump($sel_school_ids);
+
         //Get scatterplot data based on list of schools
         // $test_data = Graduation::select('school_id','GradRate4yr_BacDgr100','GradRate6yr_BacDgr150')
         // 	->whereIn('school_id',[$sel_school_ids])
