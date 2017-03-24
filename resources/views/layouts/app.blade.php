@@ -81,17 +81,22 @@
     .dropdown-submenu.pull-left { float: none; }
     .dropdown-submenu.pull-left>.dropdown-menu { left: -100%; margin-left: 10px;
         -webkit-border-radius: 6px 0 6px 6px; -moz-border-radius: 6px 0 6px 6px; border-radius: 6px 0 6px 6px; }
+/*.footer1 {
 
-    .footer {
-
-        bottom: -150px;
         width: 100%;
         height: 60px;
         background-color: #fff;
         overflow: hidden;
-
-
+    }*/
+    .footer {
+        position: relative;
+        bottom:-220px;
+        width: 100%;
+        height: 60px;
+        background-color: #fff;
+        overflow: hidden;
     }
+   
 </style>
 
 <!--Update the value of "agree" input when clicking the Agree/Disagree button-->
@@ -100,6 +105,7 @@
 
 
 <!-- Footer -->
+{{-- @yield('footer'); --}}
 @yield('footer');
 
 
@@ -111,55 +117,16 @@
 <!-- Scripts -->
 @yield('scripts')
 
-{{-- <script type="text/javascript">
-
-    //###########################################################################
-    //####                Change Password Validation              ####
-    //###########################################################################
-
-
-    //###########################################################################
-    //####                Terms and Conditions Validation              ####
-    //###########################################################################
-
-
-    $('button[name="registerBtn"]').on('click', function(e){
-        var $form=$(this).closest('form');
-        e.preventDefault();
-        $('#termscond').modal({ backdrop: 'static', keyboard: false })
-                .one('click', '#agreeBtn', function() {
-                    $form.trigger('submit'); // submit the form
-                });
-        // .one() is NOT a typo of .on()
-    });
-</script> --}}
-
-
-
-
-{{-- //Footer
-@yield('footer');
-
-<script src="../public/js/all.js"></script>
-<script src="../public/js/jquery.ui.widget.js"></script>
-<script src="../public/js/jquery.knob.js"></script>
-<script src="../public/js/jquery.iframe-transport.js"></script>
-<script src="../public/js/jquery.fileupload.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script> --}}
 <footer class="footer">
     <div class="container">
-        <div class="form-group">
-            <div class="col-md-6 col-xs-offset-4">
-                <div class="checkbox">
-                    <label>
-                        <a
+       
+                    <label >
+                        <a style="padding-left: 500px" 
                                 data-toggle="modal" data-target=".demo-popup1" target="_blank"
                                 rel="nofollow" href=""> Legal Disclaimer &copy; 2017</a>
                     </label>
                 </div>
-            </div>
-        </div>
-    </div>
+     
     <div class="modal fade demo-popup1" tabindex="-1" role="dialog"
          aria-labelledby="myLargeModalLabel-1" aria-hidden="true">
         <div class="modal-dialog">
