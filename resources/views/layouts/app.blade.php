@@ -72,9 +72,9 @@
 
     .footer {
         position: relative;
-        bottom:-400px;
+        bottom:-490px;
         width: 100%;
-        height: 60px;
+        height: 40px;
         background-color: #fff;
         overflow: hidden;
     }
