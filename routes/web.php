@@ -66,7 +66,7 @@ Route::resource('publicfs', 'PublicFsController');
 /**** DATA VISUALIZATION SCATTERPLOT ****/
 Route::resource('/testvisual', 'TestDataController');
 Route::resource('/datavisual', 'DataVisualController');
-Route::post('/datarefresh', 'DataVisualController@refresh');
+Route::post('/datarefresh', 'TestDataController@refresh');
 /****************************************/
 
 Route::resource('instructional_ess', 'Instructional_ESsController');

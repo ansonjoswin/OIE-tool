@@ -42,7 +42,45 @@ label {
                     <div class="panel-heading">
                         <div><h4>Data Visualization</h4></div>
                     </div>                   
-
+                                       <div class="panel-body">
+                        {!! Form::open(['url'=>'/datarefresh', 'class'=>'form-horizontal']) !!}
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="panel-body">
+                                    <div class="col-md-4">
+                                    @if(isset($sel_pgid))
+                                        {!! Form::select('sel_pgid', [''=>'Select Peer Group'] + $peerGroups, $sel_pgid, ['class'=>'form-control', 'required'=>'required']) !!}
+                                    @else
+                                        {!! Form::select('sel_pgid', [''=>'Select Peer Group'] + $peerGroups, null, ['class'=>'form-control', 'required'=>'required']) !!}
+                                    @endif
+                                    </div>
+                                    <div class="col-md-2">
+                                    @if(isset($sel_year))
+                                        {!! Form::select('sel_year', [''=>'Select Year', '2012'=>'2012','2013'=>'2013','2014'=>'2014'], $sel_year, ['class'=>'form-control', 'required'=>'required']) !!}
+                                    @else
+                                        {!! Form::select('sel_year', [''=>'Select Year', '2012'=>'2012','2013'=>'2013','2014'=>'2014'], null, ['class'=>'form-control', 'required'=>'required']) !!}
+                                    @endif
+                                    </div>
+                                     <div class="col-md-2">
+                                    @if(isset($sel_xaxis))
+                                        {!! Form::select('sel_xaxis', $xaxis_options, $sel_xaxis, ['class'=>'form-control']) !!}
+                                    @else
+                                        {!! Form::select('sel_xaxis', $xaxis_options, null, ['class'=>'form-control']) !!}
+                                    @endif                                    
+                                    </div>
+                                    <div class="col-md-2">
+                                    @if(isset($sel_yaxis))
+                                        {!! Form::select('sel_yaxis', $yaxis_options, $sel_yaxis, ['class'=>'form-control']) !!}
+                                    @else
+                                        {!! Form::select('sel_yaxis', $yaxis_options, null, ['class'=>'form-control']) !!}
+                                    @endif                                    
+                                    </div>     
+                                    <div class="col-md-2">
+                                    {!! Form::button('<i class="fa fa-btn"></i>Refresh', ['type' => 'submit', 'class' => 'btn btn-primary']) !!} 
+                                    </div> 
+                                </div>                    
+                            </div>
+                        </div>
                     <div class="panel-body">
                         <div id="chart">
 <script>
@@ -56,34 +94,6 @@ jsObject = JSON.parse(test_data);
 console.log(d3.keys(jsObject[0]))
   // Select X-axis Variable
   
-
-  var span = body.append('span')
-    .text('Resource: ')
-  var yInput = body.append('select')
-      .attr('id','xSelect')
-      .on('change',xChange)
-    .selectAll('option')
-      .data(d3.keys(jsObject[0]))
-      .enter()
-    .append('option')
-      .attr('value',function (d) { return d})
-      .text(function (d) { return d})
-  body.append('br')
-
-  // Select Y-axis Variable
-  var span = body.append('span')
-      .text('Performance:')
-  var yInput = body.append('select')
-      .attr('id','ySelect')
-      .on('change',yChange)
-    .selectAll('option')
-      .data(d3.keys(jsObject[0]))
-      .enter()
-    .append('option')
-      .attr('value',function (d) { return d})
-      .text(function (d) { return d})
-  body.append('br')
-
   // Variables
   var body = d3.select("#chart")
   var margin = { top: 50, right: 50, bottom: 50, left: 50 }

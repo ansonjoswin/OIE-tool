@@ -115,7 +115,7 @@ class DataVisualController extends Controller
             ->whereIn('PeerGroupID', [$sel_pgid])
             ->pluck('School_ID');
         $this->viewData['sel_pgid'] = $sel_pgid;
-
+        var_dump($sel_school_ids);
         //Get scatterplot data based on list of schools
         $test_data = Graduation::select('school_id','GradRate4yr_BacDgr100','GradRate6yr_BacDgr150')
         	->whereIn('school_id',[$sel_school_ids])
