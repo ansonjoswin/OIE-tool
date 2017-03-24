@@ -33,20 +33,49 @@ class DataTableController extends Controller
         // $this->results = School::pluck('name','id');
         //$this->school_ids = $this->results->toArray();
         $this->new_array = [];
-        $this->peergroup_list = PeerGroup::all();
+        $this->viewData['peergroup_list'] = PeerGroup::pluck('peergroup_id','peergroup_name')->toArray();
+        $this->viewData['selected_peergroup_list'] = PeerGroup::pluck('peergroup_id','peergroup_name')->toArray();
 
 //                $schools = School::all();  //EHLbug: This crashes everything and causes an http 500 error
     }
 
     public function index(){
-    	$datatables = DataTable::all();
-    	$peergroup_list = PeerGroup::pluck('peergroup_name','peergroup_id')->toArray();
-       $peergroup_school=PeerGroup::find(13);
-       //dd($peergroup_school->school->pluck('name'));
-
-         
-
-                return view('data.tableindex',compact('datatables','peergroup_list','peergroup_school'));
         
-    }
+        $filtervalues = DataTable::all();
+        $displayTable = false;
+    	$peergroup_list = PeerGroup::pluck('peergroup_name','peergroup_id');
+        $peergroup_school=PeerGroup::all();
+        //$peergroup_school=PeerGroup::find(1);
+        //$peergroup_school_list=$peergroup_school->school()->pluck('name','school_id');
+        //$selected_peergroup_list = PeerGroup::all();
+        // $selected_peergroup_list->school()->pluck('school_id');
+
+        //dd($peergroup_school);
+       
+        //     echo('School name:');
+        //     echo($peergroup_school->school()->pluck('school_id'));
+        //     //dd($peergroup_school->school()->pluck('name'));  
+
+        return view('data.tableindex',compact('datatables','peergroup_list','peergroup_school','filtervalues','displayTable'));
+        
+    }  
+
+     public function datadisplay(Request $request)
+     {
+        $filtervalues = [];
+        $displayTable = true;
+        $peergroup_list = PeerGroup::pluck('peergroup_name','peergroup_id');
+        $peergroup_school=PeerGroup::all();
+        $selected_peergroup = PeerGroup::where('peergroup_id', $request['peergroup_id'])->first();
+        //dd($selected_peergroup);
+        $selected_school_list = $selected_peergroup->school()->pluck('name','school_id');
+        //dd($peergroup_list);
+        
+        foreach ($selected_school_list as $school_list_id => $school_list_name) {
+            array_push($filtervalues, DataTable::where('school_id', $school_list_id)->first());
+        }
+
+        //dd($filtervalues[0]);
+        return view('data.tableindex',compact('datatables','peergroup_list','peergroup_school','filtervalues','displayTable'));
+     }
 }

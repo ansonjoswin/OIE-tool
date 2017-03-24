@@ -4,10 +4,10 @@
     </IfModule>
 
     RewriteEngine On
-    php_value upload_max_filesize 10M
-    php_value post_max_size 20M
+    php_value upload_max_filesize 20M
+    php_value post_max_size 30M
 
-    php_value memory_limit 40M
+    php_value memory_limit 100M
 
 
     # Redirect Trailing Slashes If Not A Folder...

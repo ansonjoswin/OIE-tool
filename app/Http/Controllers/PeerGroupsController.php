@@ -115,7 +115,7 @@ class PeerGroupsController extends Controller
         $pg_object->school()->attach($request->input('lstBox2'));
 
         Session::flash('flash_message', 'Peer Group successfully created!');
-        Log::info('PeerGroupController.store - End: '.$pg_object->id.'|'.$pg_object->name);
+        Log::info('PeerGroupsController.store - End: '.$pg_object->id.'|'.$pg_object->name);
         return redirect('peergroups');
     }    
 
@@ -159,6 +159,33 @@ class PeerGroupsController extends Controller
          Session::flash('flash_message', 'Peer Group successfully updated!');
          Log::info('PeerGroupsController.update - End: '.$object->peergroup_id.'|'.$object->PeerGroupName);
          return redirect('peergroups');
+}
+
+public function createnew(Request $request)
+{
+       $pg_input['peergroup_name'] = $request['peergroup_name'];
+        $pg_input['user_id'] = Auth::user()->id; 
+        $pg_input['created_by'] = Auth::user()->email;
+            if($request['private_public_flag'])
+                {
+                    $pg_input['private_public_flag'] = $request['private_public_flag'];
+                }
+            else
+                {
+                    $pg_input['private_public_flag'] = 'Private';  // Default flag to private
+                }
+    //Insert PeerGroup record in peergroups table
+
+        $pg_object = PeerGroup::create($pg_input);
+
+    //Create pivot table with attach function
+        $pg_object->school()->attach($request->input('lstBox2'));
+
+        Session::flash('flash_message', 'Peer Group successfully created!');
+        Log::info('PeerGroupsController.store - End: '.$pg_object->id.'|'.$pg_object->name);
+        return redirect('peergroups');
+
+
 }
 
 

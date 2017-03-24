@@ -127,5 +127,7 @@ class DataVisualController extends Controller
 
         //Call view
     	return view('data.index',$this->viewData);
-    }    
+    }  
+
+      
 }

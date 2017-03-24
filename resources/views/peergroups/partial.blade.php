@@ -120,6 +120,9 @@
             <div class="pull-right">
 
             {!! Form::button('<i class="fa fa-btn fa-save"></i>Save', ['type' => 'submit', 'class' => 'btn btn-primary']) !!}
+        {{-- @if($CRUD_Action == 'Update' )
+            <a class="btn btn-primary" href="{{action('PeerGroupsController@createnew')}}">Save as New</a>
+            @endif --}}
             </div>
         </div>
     </div>

@@ -82,7 +82,6 @@ Route::post('peergroups/delete', ['as'=>'pg_delete_url', 'uses'=>'PeerGroupsCont
 /*******************/
 
 
-
 /****Comments Functionality Routes****/
 Route::resource('usercomments', 'UserCommentsController');
 Route::resource('replies', 'CommentRepliesController');
@@ -90,7 +89,21 @@ Route::resource('replies', 'CommentRepliesController');
 
 
 /**Summary Table Route**/
+Route::post('datadisplay', 'DataTableController@datadisplay');
 Route::resource('datatable', 'DataTableController');
+Route::get('/data',function() {
+  //Log::info('This is the get route and i');
+   if(Request::ajax()){
+      return('in ajax request ');
+        // $selected_peergroup_list = Input::get('selected_instcat_list');
+
+
+        //   $results = $selected_peergroup_list->school()->pluck('school_id','name');
+        //   $school_ids = $results->toArray();
+        //   return $school_ids;
+        }
+});
+        
 /*******************/
 
 
