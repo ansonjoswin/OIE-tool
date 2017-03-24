@@ -1,4 +1,4 @@
-###OIE Analytics - Capstone Spring 2017 Sec 003
+# OIE Analytics - Capstone Spring 2017 Sec 003
 
 ### Live Demo
 
@@ -13,7 +13,7 @@
 ## GitHub Ignore
 Github ignores certain files and folders for security reasons, they include :
 
-# Folders that will not be copied:
+### Folders that will not be copied:
 
 |Folders|
 |-------------|
@@ -24,7 +24,7 @@ Github ignores certain files and folders for security reasons, they include :
 |vendor|
 |.idea|
 
-# Files that will not be copied:
+### Files that will not be copied:
 
 |Files|
 |-------------|
@@ -125,10 +125,10 @@ This website is open-sourced software licensed under the [MIT license](http://op
 <!--Tulasi--><a href="https://github.com/Tulasikandula"><img src="https://cloud.githubusercontent.com/assets/22160054/23142086/b5ee30b2-f77f-11e6-8da6-e39cda29ffe8.jpg" width="200px" height="200px"></img> </a>
 <!--Apoorva--><a href="https://github.com/aneeloji"><img src="https://cloud.githubusercontent.com/assets/22160054/23142072/a7ac362a-f77f-11e6-82bf-f84729cc5b52.jpg" width="200px" height="200px"></img></a>
  <!--Mathias--><a href="https://github.com/mpdemink"><img src="https://cloud.githubusercontent.com/assets/22160054/23142136/fe049602-f77f-11e6-882c-b78edef73309.jpg" width="200px" height="200px"></img></a>
- <!--Elaine--><a href="https://github.com/elocke2017"><img src="https://cloud.githubusercontent.com/assets/22160054/23142096/c30b6904-f77f-11e6-801f-787bfedc7fb8.JPG" width="200px" height="200px"></img> </a>     
+ <!--Elaine--><a href="https://github.com/elocke2017"><img src="https://cloud.githubusercontent.com/assets/22160054/24314117/04301fdc-10ae-11e7-97e1-f3a40bdd0207.JPG" width="200px" height="200px"></img> </a>     
 <!--Pavithra--><a href="https://github.com/pavithrauno"><img src="https://cloud.githubusercontent.com/assets/22160054/23142562/3dabb536-f782-11e6-984c-34526443a08c.jpg" width="200px" height="200px"></img> </a>
 <!--Manjiri--><a href="https://github.com/manjiri93"><img src="https://cloud.githubusercontent.com/assets/22160054/23142118/e0ee5ce2-f77f-11e6-8dfc-7afbd771e503.jpg" width="200px" height="200px"></img></a>
-<!--Nikitha--><a href="https://github.com/nanumula"><img src="https://cloud.githubusercontent.com/assets/22160054/23142144/0a6c9106-f780-11e6-898b-0c03b9187912.jpg" width="200px" height="200px"></img> </a>
+<!--Nikitha--><a href="https://github.com/nanumula"><img src="https://cloud.githubusercontent.com/assets/22160054/24314106/f264d1e4-10ad-11e7-83eb-d6e0d8a7f463.jpg" width="200px" height="200px"></img> </a>
 <!--Anusha--><a href="https://github.com/amathur24"><img src="https://cloud.githubusercontent.com/assets/22160054/23143629/fcc76e24-f787-11e6-93e3-0dc86412e949.jpg" width="200px" height="200px"></img> </a>
 <!--Anson--><a href="https://github.com/ansonjoswin"><img src="https://cloud.githubusercontent.com/assets/22160054/23142061/988cbda4-f77f-11e6-8597-f898f3b18b7c.jpg" width="200px" height="200px"></img></a>
 <!--Hrishi--><a href="https://github.com/hshanbhogue"><img src="https://cloud.githubusercontent.com/assets/22160054/23142109/d27ac9fc-f77f-11e6-9ba2-be7b71a5a8c8.jpg" width="200px" height="200px"></img></a>
