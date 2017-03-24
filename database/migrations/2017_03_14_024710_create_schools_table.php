@@ -80,7 +80,8 @@ class CreateSchoolsTable extends Migration
             $table->integer('datafeedback_report_Group')->nullable();
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
-			$table->timestamps();
+			$table->timestamp('created_at')->useCurrent();
+			$table->timestamp('updated_at')->useCurrent();
             $table->softDeletes();
         });
     }

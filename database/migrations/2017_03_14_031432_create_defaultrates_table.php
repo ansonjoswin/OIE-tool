@@ -15,10 +15,8 @@ class CreateDefaultratesTable extends Migration
     {
         Schema::create('defaultrates', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('opeid');
-
+            $table->integer('opeid')->index();
             $table->integer('year')->index();
-
             $table->float('default_rate1')->nullable();
             $table->float('default_rate2')->nullable();
             $table->float('default_rate3')->nullable();

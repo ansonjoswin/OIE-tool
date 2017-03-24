@@ -1,7 +1,7 @@
 <?php
 
 
-Class SchoolTable extends OtherCsvDataSeeder
+Class SchoolTable extends CsvDataSeeder
 {
     public $table;
 
@@ -10,10 +10,14 @@ Class SchoolTable extends OtherCsvDataSeeder
     public function __construct()
     {
 
-       // $getfilename= DB::Table('map_tables')->where('local_filename', '=', 'schools')->value('csv_name');
-        //$path= '/../..\storage\app\uploads';
-       // $this->filename = __DIR__ . $path . DIRECTORY_SEPARATOR . $getfilename;
-        $this->filename = __DIR__ . '/../..\resources\assets\csv\hd2014.csv';
+       //$getfilename= DB::Table('map_tables')->where('local_filename', '=', 'schools')->value('csv_name');
+
+		//$path= '/../..\resources\assets\csv';
+
+		//$this->filename = __DIR__ . $path . DIRECTORY_SEPARATOR . $getfilename;
+
+		$this->filename =__DIR__ . '/../..\resources\assets\csv\schools_2014.csv';
+
         $this->table = 'schools';
     }
 
@@ -26,7 +30,6 @@ Class SchoolTable extends OtherCsvDataSeeder
         $schooltable->seedFromCSV($this->filename);
     }
 
-
 }
 
 Class CarnegieTable extends CMCsvDataSeeder
@@ -38,10 +41,15 @@ Class CarnegieTable extends CMCsvDataSeeder
     public function __construct()
     {
 
-        //$getfilename= DB::Table('map_tables')->where('local_filename', '=', 'schools')->value('csv_name');
-       // $path= '/../..\storage\app\uploads';
-        //$this->filename = __DIR__ . $path . DIRECTORY_SEPARATOR . $getfilename;
-        $this->filename = __DIR__ . '/../..\resources\assets\csv\hd2014.csv';
+		$this->filename =__DIR__ . '/../..\resources\assets\csv\carneige_2014.csv';
+         //$getfilename= DB::Table('map_tables')->where('local_filename', '=', 'fallenrollment')->value('csv_name');
+
+		//$path= '/../..\resources\assets\csv';
+
+		//$this->filename = __DIR__ . $path . DIRECTORY_SEPARATOR . $getfilename;
+
+
+
         $this->table = 'carnegie_classifications';
     }
 
@@ -55,28 +63,67 @@ Class CarnegieTable extends CMCsvDataSeeder
     }
 }
 
+
+
 Class StudentTable extends OtherCsvDataSeeder
 {
     public $table;
 
     public $filename;
 
+
+
     public function __construct()
     {
+        $this->filename =__DIR__ . '/../..\resources\assets\csv\student_2014.csv';
 
-        $getfilename= DB::Table('map_tables')->where('local_filename', '=', 'students')->value('csv_name');
-        $path= '/../..\storage\app\uploads';
-        $this->filename = __DIR__ . $path . DIRECTORY_SEPARATOR . $getfilename;
-        $this->table = 'students';
+		/*$getfilename= DB::Table('map_tables')->where('local_filename', '=', 'admissions')->value('csv_name');
+
+		$path= '/../..\resources\assets\csv';
+
+		$this->filename = __DIR__ . $path . DIRECTORY_SEPARATOR . $getfilename;*/
+
+         $this->table = 'students';
     }
 
     public function run()
     {
-        $gradtable = new StudentTable();
-        $gradtable->setTableName($this->table);
-        $gradtable->setFileName($this->filename);
-        $gradtable->setColumnMapping();
-        $gradtable->seedFromCSV($this->filename);
+        $studenttable = new StudentTable();
+        $studenttable->setTableName($this->table);
+        $studenttable->setFileName($this->filename);
+        $studenttable->setColumnMapping();
+        $studenttable->seedFromCSV($this->filename);
+    }
+}
+
+Class FinanceTable extends OtherCsvDataSeeder
+{
+    public $table;
+
+    public $filename;
+
+
+
+    public function __construct()
+    {
+        $this->filename =__DIR__ . '/../..\resources\assets\csv\finance_2014.csv';
+
+		//$getfilename= DB::Table('map_tables')->where('local_filename', '=', 'admissions')->value('csv_name');
+
+		/*$path= '/../..\resources\assets\csv';
+
+		$this->filename = __DIR__ . $path . DIRECTORY_SEPARATOR . $getfilename;*/
+
+         $this->table = 'finances';
+    }
+
+    public function run()
+    {
+        $financetable = new FinanceTable();
+        $financetable->setTableName($this->table);
+        $financetable->setFileName($this->filename);
+        $financetable->setColumnMapping();
+        $financetable->seedFromCSV($this->filename);
     }
 }
 
@@ -88,72 +135,23 @@ Class EmployeeTable extends OtherCsvDataSeeder
 
     public function __construct()
     {
+        $this->filename =__DIR__ . '/../..\resources\assets\csv\employee_2014.csv';
 
-        $getfilename= DB::Table('map_tables')->where('local_filename', '=', 'employees')->value('csv_name');
-        $path= '/../..\storage\app\uploads';
-        $this->filename = __DIR__ . $path . DIRECTORY_SEPARATOR . $getfilename;
-        $this->table = 'employees';
+		//$getfilename= DB::Table('map_tables')->where('local_filename', '=', 'admissions')->value('csv_name');
+
+		/*$path= '/../..\resources\assets\csv';
+
+		$this->filename = __DIR__ . $path . DIRECTORY_SEPARATOR . $getfilename;*/
+
+         $this->table = 'employees';
     }
 
     public function run()
     {
-        $gradtable = new EmployeeTable();
-        $gradtable->setTableName($this->table);
-        $gradtable->setFileName($this->filename);
-        $gradtable->setColumnMapping();
-        $gradtable->seedFromCSV($this->filename);
+        $financetable = new EmployeeTable();
+        $financetable->setTableName($this->table);
+        $financetable->setFileName($this->filename);
+        $financetable->setColumnMapping();
+        $financetable->seedFromCSV($this->filename);
     }
-
-}
-
-Class DefaultRateTable extends OtherCsvDataSeeder
-{
-    public $table;
-
-    public $filename;
-
-    public function __construct()
-    {
-
-        $getfilename= DB::Table('map_tables')->where('local_filename', '=', 'defaultrates')->value('csv_name');
-        $path= '/../..\storage\app\uploads';
-        $this->filename = __DIR__ . $path . DIRECTORY_SEPARATOR . $getfilename;
-        $this->table = 'defaultrates';
-    }
-
-    public function run()
-    {
-        $gradtable = new DefaultRateTable();
-        $gradtable->setTableName($this->table);
-        $gradtable->setFileName($this->filename);
-        $gradtable->setColumnMapping();
-        $gradtable->seedFromCSV($this->filename);
-    }
-
-}
-
-Class FinanceTable extends OtherCsvDataSeeder
-{
-    public $table;
-
-    public $filename;
-
-    public function __construct()
-    {
-
-        $getfilename= DB::Table('map_tables')->where('local_filename', '=', 'finances')->value('csv_name');
-        $path= '/../..\storage\app\uploads';
-        $this->filename = __DIR__ . $path . DIRECTORY_SEPARATOR . $getfilename;
-        $this->table = 'finances';
-    }
-
-    public function run()
-    {
-        $gradtable = new FinanceTable();
-        $gradtable->setTableName($this->table);
-        $gradtable->setFileName($this->filename);
-        $gradtable->setColumnMapping();
-        $gradtable->seedFromCSV($this->filename);
-    }
-
 }

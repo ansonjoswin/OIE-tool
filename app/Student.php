@@ -16,6 +16,7 @@ class Student extends Model
     use HasCompositePrimaryKey;
     protected $fillable=[
         //'Admission_ID',
+        'id',
         'school_id',
      'year',
     'total_studentcount_1',
@@ -47,7 +48,7 @@ class Student extends Model
     ];
 
 
-    protected $primaryKey = ['school_id', 'year'];
+    protected $primaryKey = 'id';
     //protected $primaryKey = 'school_id';
 
     public static function getTableName() {

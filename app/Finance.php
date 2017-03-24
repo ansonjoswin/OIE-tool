@@ -13,13 +13,14 @@ class Finance extends Model
 {
     protected $fillable=[
         //'Finance_ID',
+        'id',
         'school_id',
         'year',
         'public_total_salary_wage',
         'privateprofit_total_salary_wage',
         'private_nonprofit_total_salary_wage',
     ];
-    protected $primaryKey = 'school_id';
+    protected $primaryKey = 'id';
 
     public static function getTableName() {
         return (new static)->getTable();

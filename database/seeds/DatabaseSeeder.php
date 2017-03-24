@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 use App\Tag;
 
 
-
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -19,7 +18,6 @@ class DatabaseSeeder extends Seeder
         // Seed the attributes tables
         $this->call(InstcatSeeder::class);
         $this->call(StabbrSeeder::class);
-        $this->call(CcbasicSeeder::class);
 
          //Seed the System Users/Roles/Permissions tables
         $this->call(RolesTableSeeder::class);
@@ -27,34 +25,34 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(RoleUserTableSeeder::class);
         $this->call(UsersRolesPermissions::class);
-
-        $this->call(MappingTableSeeder::class);
-        $this->call(SchoolTable::class);
+		    $this->call(SchoolTable::class);
         $this->call(CarnegieTable::class);
         $this->call(StudentTable::class);
+		    $this->call(FinanceTable::class);
         $this->call(EmployeeTable::class);
-        $this->call(DefaultRateTable::class);
-        $this->call(FinanceTable::class);
+        $this->command->info('Tables seeded!');
 
-        $this->command->info('All tables seeded!');
 
+        // Seed the Tags table
+        //$this->call(TagsTableSeeder::class);
         $this->command->info('Tags tables seeded!');
-   }
+
+
+    }
 }
 
-// class TagsTableSeeder extends Seeder {
+class TagsTableSeeder extends Seeder {
 
-//     public function run()
-//     {
-//         DB::table('tags')->delete();
-//         Tag::create([ 'name' => 'Athlete']);
-//         Tag::create([ 'name' => 'First Generation']);
-//         Tag::create([ 'name' => 'Graduate']);
-//         Tag::create([ 'name' => 'International']);
-//         Tag::create([ 'name' => 'Military & Veteran']);
-//         Tag::create([ 'name' => 'Retention Risk']);
-//         Tag::create([ 'name' => 'Scotts Scholar']);
-//         Tag::create([ 'name' => 'Undergraduate']);
-//     }
-// }
-
+    public function run()
+    {
+        DB::table('tags')->delete();
+        Tag::create([ 'name' => 'Athlete']);
+        Tag::create([ 'name' => 'First Generation']);
+        Tag::create([ 'name' => 'Graduate']);
+        Tag::create([ 'name' => 'International']);
+        Tag::create([ 'name' => 'Military & Veteran']);
+        Tag::create([ 'name' => 'Retention Risk']);
+        Tag::create([ 'name' => 'Scotts Scholar']);
+        Tag::create([ 'name' => 'Undergraduate']);
+    }
+}

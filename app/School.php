@@ -84,13 +84,13 @@ class School extends Model
         return (new static)->getTable();
     }
 
-    public function student()
+    public function students()
     {
         return $this->hasMany('App\Student');
 
     }
 
-    public function peergroup()
+    public function peergroups()
     {
         return $this->belongsToMany('App\PeerGroup');
     }
@@ -100,7 +100,7 @@ class School extends Model
 
     } */
 
-    public function employee()
+    public function employees()
     {
         return $this->hasMany('App\Employee');
 
@@ -131,6 +131,6 @@ class School extends Model
     public function scopeSortByName($query)
     {
         return $query->orderBy('name');
-    }      
+    }
 
 }

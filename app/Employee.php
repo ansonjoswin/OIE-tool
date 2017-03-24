@@ -14,6 +14,7 @@ class Employee extends Model
     //
 
 	protected $fillable=[
+			'id',
 			'school_id',
 			'year',
 			'admin_profstaff_management',
@@ -59,12 +60,12 @@ class Employee extends Model
 			'nonadmin_tradeservicestaff_salarypermillion',
 			];
 
-    protected $primaryKey = 'school_id';
+    protected $primaryKey = 'id';
     public static function getTableName() {
         return (new static)->getTable();
     }
 
-			public function schools(){
+			public function school(){
 				return $this->belongsTo('App\School');
 			}
 }

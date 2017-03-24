@@ -8,6 +8,7 @@ class Carnegie_Classification extends Model
 {
     public $table = "carnegie_classifications";
     protected $fillable=[
+        'id',
         'school_id',
         'year',
         'carnegie_basic',
@@ -18,13 +19,13 @@ class Carnegie_Classification extends Model
         'carnegie_size_setting',
         'carnegie_classification2000'
         ];
-    protected $primaryKey = 'school_id';
+    protected $primaryKey = 'id';
     public static function getTableName() {
         return (new static)->getTable();
     }
 
     public function school() {
-        return $this->belongsTo('App\School', 'id', 'school_id');
+        return $this->belongsTo('App\School');
         //EHLbug: syntax should be: return $this->belongsTo('App\<parent model>', 'foreign_key', 'other_key');
     }
 }
