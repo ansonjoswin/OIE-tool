@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\PeerGroup;
+use App\Graduation;
 use App\School;
+use App\PeerGroup;
 use App\Student;
 use DB;
 use Illuminate\Routing\Controller;
@@ -30,6 +31,13 @@ class TestDataController extends Controller
             'cohort_status13'=>'cohort_status13'
         ]);
         $this->yaxis_options = $yaxis_options;
+
+        //Defines performance drop down list
+        $yaxis_options = collect([''=>'stEnrl', 
+            'year'=>'year',
+            'Graduation_ID'=>'Graduation_ID'
+        ]);
+        $this->yaxis_options = $yaxis_options;
     }
 
 
@@ -41,12 +49,10 @@ class TestDataController extends Controller
             $peerGroups = PeerGroup::where('private_public_flag','=','public')
                 ->orWhere('user_id', '=', Auth::user()->id)
                 ->pluck('PeerGroup_Name','PeerGroup_ID')->toArray();
-                echo("status:success");
         //If not logged in, user can only see public peergroups
         }else{
             $peerGroups = PeerGroup::where('private_public_flag','=','public')
                 ->pluck('PeerGroup_Name','PeerGroup_ID')->toArray();
-                echo ("status:success");
         }
         return $peerGroups;        
     }
@@ -64,6 +70,9 @@ class TestDataController extends Controller
         //Get scatterplot data (empty on first load)
         $test_data = '';
         $this->viewData['test_data'] = json_encode($test_data);
+
+        $school_data = '';
+        $this->viewData['school_data'] = json_encode($school_data);
 
         //Call view
         return view('data.test',$this->viewData);
