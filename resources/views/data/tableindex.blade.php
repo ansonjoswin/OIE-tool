@@ -161,6 +161,38 @@
                                         <th style="font-size:10px;">
                                         Loan Default Rate
                                         </th>
+                                        <th style="font-size:10px;">
+                                        Loan Default Rate
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Loan Default Rate
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Loan Default Rate
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Loan Default Rate
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Loan Default Rate
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Loan Default Rate
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Loan Default Rate
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Loan Default Rate
+                                        </th><th style="font-size:10px;">
+                                        Loan Default Rate
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Loan Default Rate
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Loan Default Rate
+                                        </th>
                                     </thead>
                                     <tbody> <!-- Table Body -->
                                         @foreach($filtervalues as $datatable)
@@ -202,6 +234,45 @@
                                                      {{ $datatable['avg_sch_stu'] }} 
                                                  </td>
                                                  <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
                                                     {{ $datatable['loan_rate'] }} 
                                                  </td>
                                             </tr>
