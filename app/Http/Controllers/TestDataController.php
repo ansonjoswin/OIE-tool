@@ -18,13 +18,15 @@ class TestDataController extends Controller
  public function __construct()
     {
         //Defines resource drop down list
-        $xaxis_options = collect([''=>'cohort_status8',
+        $xaxis_options = collect([''=>'',
+            'cohort_status8'=>'cohort_status8',
             'cohort_status13'=>'cohort_status13'
         ]);
         $this->xaxis_options = $xaxis_options;
 
         //Defines performance drop down list
-        $yaxis_options = collect([''=>'cohort_status8',
+        $yaxis_options = collect([''=>'',
+            'cohort_status8'=>'cohort_status8',
             'cohort_status13'=>'cohort_status13'
         ]);
         $this->yaxis_options = $yaxis_options;
@@ -111,14 +113,14 @@ class TestDataController extends Controller
 */
 
 
-            //dd($selected_peergroup);
+            //dd($test_data);
    /*     $selected_school_list = $selected_parameter->school()->pluck('name','school_id');
         //Get scatterplot data based on list of schools
       /*   $test_data = Student::find($sel_school_ids)->school()->pluck('school_id','cohort_status8','cohort_status13')->toArray();
 
        */
 
-      //  dd($selected_parameter);
+    
 
 
         $this->viewData['test_data'] = json_encode($test_data);
