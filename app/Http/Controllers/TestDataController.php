@@ -32,12 +32,6 @@ class TestDataController extends Controller
         ]);
         $this->yaxis_options = $yaxis_options;
 
-        //Defines performance drop down list
-        $yaxis_options = collect([''=>'stEnrl', 
-            'year'=>'year',
-            'Graduation_ID'=>'Graduation_ID'
-        ]);
-        $this->yaxis_options = $yaxis_options;
     }
 
 
@@ -71,9 +65,7 @@ class TestDataController extends Controller
         $test_data = '';
         $this->viewData['test_data'] = json_encode($test_data);
 
-        $school_data = '';
-        $this->viewData['school_data'] = json_encode($school_data);
-
+  
         //Call view
         return view('data.test',$this->viewData);
     }

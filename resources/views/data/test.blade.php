@@ -95,7 +95,7 @@ label {
   var test_data = <?php echo json_encode($test_data, JSON_HEX_TAG); ?>; 
  var sel_xaxis = <?php echo json_encode($sel_xaxis, JSON_HEX_TAG); ?>; 
   var sel_yaxis = <?php echo json_encode($sel_yaxis, JSON_HEX_TAG); ?>; 
-  console.log(sel_xaxis);
+ 
 jsObject = JSON.parse(test_data); 
 
   
@@ -175,7 +175,7 @@ console.log(jsObject)
       .attr('x',w)
       .attr('dy','.71em')
       .style('text-anchor','end')
-      .text("Resource")
+      .text(sel_xaxis)
   // Y-axis
   svg.append('g')
       .attr('class','axis')
@@ -188,7 +188,7 @@ console.log(jsObject)
       .attr('y',5)
       .attr('dy','.71em')
       .style('text-anchor','end')
-      .text("Performance")
+      .text(sel_yaxis)
 
   function yChange() {
     var value = this.value // get the new y value
@@ -234,28 +234,13 @@ console.log(jsObject)
   </script>
 </div>
 
-<div class="col-sm-5 typeahead-section">
-  <input type="text" class="form-control" id="schoolPredictor" placeholder="Search school name" autocomplete="off">
-</div>
+
                     </div>         
                 </div>
             </div>
         </div>
     </div>
 
-    <script type="text/javascript">
-    $(document).ready(function() {
- 
-      var schoolNames = <?php echo json_encode($school_data, JSON_HEX_TAG); ?>; 
-      schoolNames = JSON.parse(schoolNames); 
 
-      console.log(schoolNames)
-      var schoolNames = ['UNO', 'A Corua', 'Lugo', 'Ourense'];
-      
-      $('#schoolPredictor').typeahead({
-        source: schoolNames
-      });
-    });
-    </script>
 @endsection
 
