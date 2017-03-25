@@ -86,12 +86,14 @@ label {
 <script>
  
   var test_data = <?php echo json_encode($test_data, JSON_HEX_TAG); ?>; 
+  var xaxis=<?php echo $test_data; ?>; 
+  console.log(xaxis);
  // console.log(test_data)
 jsObject = JSON.parse(test_data); 
 
   
   var body = d3.select("#chart")
-console.log(d3.keys(jsObject[0]))
+console.log(jsObject)
   // Select X-axis Variable
   
   // Variables
@@ -104,14 +106,14 @@ console.log(d3.keys(jsObject[0]))
   var colorScale = d3.scale.category20()
   var xScale = d3.scale.linear()
     .domain([
-      d3.min([0,d3.min(jsObject,function (d) { return d.stEnrl })]),
-      d3.max([0,d3.max(jsObject,function (d) { return d.stEnrl})])
+      d3.min([0,d3.min(jsObject,function (d) { return d.cohort_status8 })]),
+      d3.max([0,d3.max(jsObject,function (d) { return d.cohort_status8})])
       ])
     .range([0,w])
   var yScale = d3.scale.linear()
     .domain([
-      d3.min([0,d3.min(jsObject,function (d) { return d.stEnrl })]),
-      d3.max([0,d3.max(jsObject,function (d) { return d.stEnrl })])
+      d3.min([0,d3.min(jsObject,function (d) { return d.cohort_status13 })]),
+      d3.max([0,d3.max(jsObject,function (d) { return d.cohort_status13 })])
       ])
     .range([h,0])
   // SVG
@@ -133,8 +135,8 @@ console.log(d3.keys(jsObject[0]))
       .data(jsObject)
       .enter()
     .append('circle')
-      .attr('cx',function (d) { return xScale(d.stEnrl) })
-      .attr('cy',function (d) { return yScale(d.stEnrl) })
+      .attr('cx',function (d) { return xScale(d.cohort_status8) })
+      .attr('cy',function (d) { return yScale(d.cohort_status13) })
       .attr('r','3')
       .attr('stroke','black')
       .attr('stroke-width',1)
