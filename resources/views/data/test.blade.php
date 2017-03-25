@@ -30,6 +30,13 @@ label {
   top: 10px;
   right: 10px;
 }
+
+#chart {
+  float: left;
+}
+.typeahead-section {
+  margin-top: 40px;
+}
     </style>
     <!-- End CSS (Styling) -->
  
@@ -226,10 +233,29 @@ console.log(jsObject)
  
   </script>
 </div>
+
+<div class="col-sm-5 typeahead-section">
+  <input type="text" class="form-control" id="schoolPredictor" placeholder="Search school name" autocomplete="off">
+</div>
                     </div>         
                 </div>
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+ 
+      var schoolNames = <?php echo json_encode($school_data, JSON_HEX_TAG); ?>; 
+      schoolNames = JSON.parse(schoolNames); 
+
+      console.log(schoolNames)
+      var schoolNames = ['UNO', 'A Corua', 'Lugo', 'Ourense'];
+      
+      $('#schoolPredictor').typeahead({
+        source: schoolNames
+      });
+    });
+    </script>
 @endsection
 
