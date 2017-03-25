@@ -1,9 +1,8 @@
 <?php
 use Illuminate\Database\Seeder;
 use App\School;
-use App\Student;
-use App\Carnegie_Classification;
-abstract class OtherCsvDataSeeder extends Seeder
+use App\DefaultRate;
+abstract class DefaultDataSeeder extends Seeder
 {
     public $table;
     public $filename;
@@ -29,8 +28,8 @@ abstract class OtherCsvDataSeeder extends Seeder
         // and store them in the array
         $columns = Schema::getColumnListing($this->table);
         $i = 0;
-        while ($i < (sizeof($columns))) {
-            array_push($this->mapping, $columns[$i]);
+        while ($i < (sizeof($columns)-1)) {
+            array_push($this->mapping, $columns[$i+1]);
             $i++;
         }
 		//dd($columns);
@@ -102,6 +101,7 @@ abstract class OtherCsvDataSeeder extends Seeder
                 if ( !$row )
                     continue;
                 $data[$row_count] = $row;
+                //dd($row);
                 // Chunk size reached, insert
                 if ( ++$row_count == $this->insert_chunk_size )
                 {
@@ -112,6 +112,7 @@ abstract class OtherCsvDataSeeder extends Seeder
                     // clear the data array explicitly to
                     // avoid duplicate inserts
                     $data = array();
+
                 }
             }
         }
@@ -151,7 +152,7 @@ abstract class OtherCsvDataSeeder extends Seeder
 		
 		while ($no_of_columns_to_fill > 0) {
 			foreach($mapping as $dbCol) {
-				//dd($mapping);
+				//dd($source_array);
            //dd($dbCol);  -- dbCol is table columns and Column[1] is just the columns csv has. taking out cav column name for that corresponding now noe dbcol
 		   //name and csv column name is same .. so we need to check for each dbCol if CSV header column is thr -- insert
 		   // loop
@@ -167,20 +168,33 @@ abstract class OtherCsvDataSeeder extends Seeder
 				             
 					} 
 					else{
-							
-							if ($dbCol === 'school_id') {
-								$temp1 = DB::Table('schools')->where('unitid', '=',$source_array['UNITID'])->value('id');
-								$row_values[$dbCol] = $temp1;
+
+                        if ($dbCol === 'opeid') {
+
+                            $temp2=$source_array['OPEID'];
+
+                            //$temp3=str_pad($temp2,6,0,STR_PAD_RIGHT);
+                            //$temp3=LOWER($temp2);
+
+                            $temp1 = DB::Table('schools')->where('opeid', 'like',"$temp2%")->value('opeid');
+
+                            //if ( $temp1 !== Null)
+                            //{
+                                $row_values[$dbCol] = $temp1;
+                            //}
+
+                            //dd($temp1);
+								
 							} 
 							else{
 											
-									if ($csv_Column_name === $dbCol){						
+									if ($csv_Column_name === $dbCol){
 									$row_values[$dbCol] = $source_array[$csv_Column_name];
 									$no_of_columns_to_fill--;
-									}	
+									}
 									else{
 									$no_of_columns_to_fill--;
-									} 
+									}
 								}
 						}
 			
@@ -197,6 +211,7 @@ abstract class OtherCsvDataSeeder extends Seeder
     {
         try {
             DB::table($this->table)->insert($seedData);
+            DB::table($this->table)->where('opeid', '=', 0)->delete();
         } catch (\Exception $e) {
             Log::error("CSV insert failed: " . $e->getMessage() . " - CSV " . $this->filename);
             return FALSE;

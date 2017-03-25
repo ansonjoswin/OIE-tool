@@ -29,7 +29,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CarnegieTable::class);
         $this->call(StudentTable::class);
 		$this->call(FinanceTable::class);
-       $this->call(CMSeeder::class);
+		$this->call(DefaultRateTable::class);
+       //$this->call(CMSeeder::class);
         $this->command->info('User, Role, Permission, Data Dictionary, School , Carnegie Classification, Graduation and Application Details tables seeded!');
 
 

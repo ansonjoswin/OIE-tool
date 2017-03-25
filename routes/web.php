@@ -12,6 +12,8 @@ use App\Carnegie_Classification;
 |
 */
 
+Route::resource('new','ParametersController');
+
 Route::get('/', function () {
     return view('welcome');
 });

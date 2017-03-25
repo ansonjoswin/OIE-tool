@@ -12,7 +12,7 @@ abstract class CMCsvDataSeeder extends Seeder
     public $offset_rows = 1;
     // Array to store Database column names
     public $mapping = [];
-		// Array to store column names in CSV  --Anusha	
+		// Array to store column names in CSV  
 	public $Csv_header_array = [];
     public function setTableName($tablename)
     {
@@ -43,7 +43,7 @@ abstract class CMCsvDataSeeder extends Seeder
     }
     public function seedFromCSV($filename, $deliminator = ',')
     {
-		//Added by Anusha, it helps to distinguish where the line ends,  referred - http://php.net/manual/pl/function.fgetcsv.php
+		// it helps to distinguish where the line ends,  referred - http://php.net/manual/pl/function.fgetcsv.php
 		ini_set('auto_detect_line_endings',TRUE); 
         $handle = $this->openCSV($filename);
         // CSV doesn't exist or couldn't be read from.
@@ -71,10 +71,10 @@ abstract class CMCsvDataSeeder extends Seeder
                 $offset--;
                 continue 2;
             }
-			//Added by Anusha, it helps to distinguish where the line ends,  referred - http://php.net/manual/pl/function.fgetcsv.php
+			// it helps to distinguish where the line ends,  referred - http://php.net/manual/pl/function.fgetcsv.php
 			ini_set('auto_detect_line_endings',FALSE);
 					
-			//added by Anusha
+			//
 			$Csv_header_array = $this->Csv_header_array ?: [];
             // No mapping specified - grab the first CSV row and use it
             if ( !$mapping )
@@ -131,7 +131,7 @@ abstract class CMCsvDataSeeder extends Seeder
 
         $row_values = [];
         //$columns = Schema::getColumnListing('maps');
-		//added by Anusha		
+		//		
 		$Csv_header_array = $this->Csv_header_array ?: [];
         $no_of_columns_to_fill = sizeof($source_array);
         // Retrieve the CSV column header corresponding to

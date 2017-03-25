@@ -24,7 +24,8 @@ class CreateDefaultratesTable extends Migration
             $table->float('default_rate3')->nullable();
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
             $table->softDeletes();
             $table->foreign('opeid')->references('opeid')->on('schools')->onUpdate('cascade')->onDelete('cascade');
             //$table->foreign('School_State')->references('School_State')->on('School')->onUpdate('cascade')->onDelete('cascade');

@@ -128,5 +128,37 @@ Class FinanceTable extends OtherCsvDataSeeder
 }
 
 
+Class DefaultRateTable extends DefaultDataSeeder
+{
+    public $table;
+
+    public $filename;
+	
+	
+
+    public function __construct()
+    {
+        $this->filename =__DIR__ . '/../..\resources\assets\csv\defaultrate_final.csv';
+
+		//$getfilename= DB::Table('map_tables')->where('local_filename', '=', 'admissions')->value('csv_name');
+
+		/*$path= '/../..\resources\assets\csv';
+		
+		$this->filename = __DIR__ . $path . DIRECTORY_SEPARATOR . $getfilename;*/
+        
+         $this->table = 'defaultrates';
+    }
+
+    public function run()
+    {
+        $defaultratetable = new DefaultRateTable();
+        $defaultratetable->setTableName($this->table);
+        $defaultratetable->setFileName($this->filename);
+        $defaultratetable->setColumnMapping();
+        $defaultratetable->seedFromCSV($this->filename);
+    }
+}
+
+
 
 

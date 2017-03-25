@@ -12,7 +12,7 @@ abstract class CsvDataSeeder extends Seeder
 
     // Array to store Database column names
     public $mapping = [];
-	// Array to store column names in CSV  --Anusha	
+	// Array to store column names in CSV  	
 	public $Csv_header_array = [];
 	
     public function setTableName($tablename)
@@ -50,7 +50,7 @@ abstract class CsvDataSeeder extends Seeder
 	
     public function seedFromCSV($filename, $deliminator = ',')
     {
-		//Added by Anusha, it helps to distinguish where the line ends,  referred - http://php.net/manual/pl/function.fgetcsv.php
+		// it helps to distinguish where the line ends,  referred - http://php.net/manual/pl/function.fgetcsv.php
 		ini_set('auto_detect_line_endings',TRUE); 
         $handle = $this->openCSV($filename);
         // CSV doesn't exist or couldn't be read from.
@@ -60,7 +60,7 @@ abstract class CsvDataSeeder extends Seeder
         $row_count = 0;
         $data = [];
         // Array to store CSV Header column names
-        //$Csv_header_array = []; -- commented by Anusha
+        //$Csv_header_array = []; 
 
         $mapping = $this->mapping ?: [];
 		
@@ -82,10 +82,10 @@ abstract class CsvDataSeeder extends Seeder
                 $offset--;			
                 continue 2;				
             } 
-			//Added by Anusha, it helps to distinguish where the line ends,  referred - http://php.net/manual/pl/function.fgetcsv.php
+			// it helps to distinguish where the line ends,  referred - http://php.net/manual/pl/function.fgetcsv.php
 			ini_set('auto_detect_line_endings',FALSE);
 					
-			//added by Anusha
+			//
 			$Csv_header_array = $this->Csv_header_array ?: [];
 			
             // No mapping specified - grab the first CSV row and use it
@@ -148,7 +148,7 @@ abstract class CsvDataSeeder extends Seeder
   public function fillMapArray($source_array, $mapping) {
 
         $row_values = [];
-		//added by Anusha		
+		//
 		$Csv_header_array = $this->Csv_header_array ?: [];
         $no_of_columns_to_fill = sizeof($source_array);
 		
@@ -156,7 +156,7 @@ abstract class CsvDataSeeder extends Seeder
         // the Database column and store in a map
 
       //dd($mapping);
-	  // added by Anusha
+	  // Logic to compare CSV headername with db column name
 	    while ($no_of_columns_to_fill > 0) {
 			foreach($mapping as $dbCol) {
            //dd($dbCol);
@@ -182,24 +182,37 @@ abstract class CsvDataSeeder extends Seeder
     }
     public function insert( array $seedData )
     {
-        try { 
-            
-            foreach ($seedData as $row) {
-                if($row)
-                {
-                   DB::table($this->table)->insert($row); 
+         try {
+            $TableData = array();
+            $CsvData = array();
+            $TableData = DB::table($this->table)->pluck('unitid');
+            $iterator = new RecursiveIteratorIterator(new RecursiveArrayIterator($seedData));
+            foreach ($iterator as $key => $value) {
+                if ($key == 'unitid') {
+                    $CsvData[] = $value;
                 }
             }
-                // }
-            // }
-            // DB::table($this->table)->insert($seedData);
+            $valueOfSeedData=0;
+            for ($i = 0; $i < count($CsvData); $i++) {
+                $check = false;
+                for ($j = 0; $j < count($TableData); $j++) {
+                    if ($TableData[$j] == $CsvData[$i]) {
+                        DB::table($this->table)->where('unitid', $TableData[$j])->update($seedData[$valueOfSeedData]);
+                        $valueOfSeedData++;
+                        $check=true;
+                    }
+                }
+                if ($check == false) {
+                    DB::table($this->table)->insert($seedData[$valueOfSeedData]);
+                    $valueOfSeedData++;
+                }
+            }
         } catch (\Exception $e) {
             Log::error("CSV insert failed: " . $e->getMessage() . " - CSV " . $this->filename);
             return FALSE;
         }
         return TRUE;
     }
-
-
 }
+
 
