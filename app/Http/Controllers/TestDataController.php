@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Graduation;
 use App\PeerGroup;
-//use App\School_PeerGroup;
+use App\School;
+use App\Student;
 use DB;
 use Illuminate\Routing\Controller;
 use Auth;
@@ -18,16 +18,14 @@ class TestDataController extends Controller
  public function __construct()
     {
         //Defines resource drop down list
-        $xaxis_options = collect([''=>'stEnrl', 
-            'year'=>'year',
-            'Graduation_ID'=>'Graduation_ID'
+        $xaxis_options = collect([''=>'cohort_status8',
+            'cohort_status13'=>'cohort_status13'
         ]);
         $this->xaxis_options = $xaxis_options;
 
         //Defines performance drop down list
-        $yaxis_options = collect([''=>'stEnrl', 
-            'year'=>'year',
-            'Graduation_ID'=>'Graduation_ID'
+        $yaxis_options = collect([''=>'cohort_status8',
+            'cohort_status13'=>'cohort_status13'
         ]);
         $this->yaxis_options = $yaxis_options;
     }
@@ -71,7 +69,10 @@ class TestDataController extends Controller
 
 
     public function refresh(Request $request)
+
     {
+
+          $filtervalues = [];
         //Get list of available peerGroups
         $this->viewData['peerGroups'] = $this->getPeerGroups();
 
@@ -93,19 +94,32 @@ class TestDataController extends Controller
 
         //Get list of schools based on selected peerGroup
         $sel_pgid = $request['sel_pgid'];
-        $sel_school_ids = DB::table('peergroup_school')
-            ->whereIn('PeerGroup_ID', [$sel_pgid])
-            ->pluck('school_id');
+        $sel_school_ids = PeerGroup::find($sel_pgid)->school()->pluck('school_id')->toArray();
+
+      
         $this->viewData['sel_pgid'] = $sel_pgid;
 
 /*******************************This table is not available in the final migration**************/
 
-        dd($sel_school_ids);
+        $test_data = Student::whereIn('school_id',$sel_school_ids)->get();
 
+
+    /*   foreach ($selected_parameter as $student  => $school_id ) {
+            array_push($filtervalues, Student::where('school_id', $school_id->first()));
+         }
+
+*/
+
+
+            //dd($selected_peergroup);
+   /*     $selected_school_list = $selected_parameter->school()->pluck('name','school_id');
         //Get scatterplot data based on list of schools
-        // $test_data = Graduation::select('school_id','GradRate4yr_BacDgr100','GradRate6yr_BacDgr150')
-        //  ->whereIn('school_id',[$sel_school_ids])
-        //  ->get();
+      /*   $test_data = Student::find($sel_school_ids)->school()->pluck('school_id','cohort_status8','cohort_status13')->toArray();
+
+       */
+
+      //  dd($selected_parameter);
+
 
         $this->viewData['test_data'] = json_encode($test_data);
 

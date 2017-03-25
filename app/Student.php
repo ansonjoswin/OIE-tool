@@ -13,7 +13,7 @@ use Log;
 class Student extends Model
 {
 
-    use HasCompositePrimaryKey;
+    
     protected $fillable=[
         //'Admission_ID',
         'id',
