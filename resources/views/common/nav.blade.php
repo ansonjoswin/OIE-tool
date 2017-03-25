@@ -32,7 +32,7 @@
                                     <a href="{{ url('/users') }}"><i class="fa fa-btn fa-fw fa-user"></i>Users</a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('/usercomments') }}"><i class="fa fa-btn fa-fw fa-tasks"></i>Manage Comments</a>
+                                    <a href="{{ url('/usercomments') }}"><i class="fa fa-btn fa-fw fa-comments"></i>Manage Comments</a>
                                 </li>
                                 <li>
                                     <a href="{{ url('/uploads') }}"><i class="fa fa-btn fa-fw fa-upload"></i>Upload Files</a>
@@ -40,6 +40,9 @@
                                 <li>
                                 <a href="{{ url('/jobs') }}"><i class="fa fa-btn fa-fw fa-tasks"></i>Jobs</a>
                                 </li>
+<!--                                 <li>
+                                <a href="{{ url('/purgedata') }}"><i class="fa fa-btn fa-fw fa-exclamation-triangle"></i>Purge Data</a>
+                                </li> -->
                             </ul>
                         </li>                 
                     @endif

@@ -66,6 +66,11 @@ Route::resource('/datavisual', 'DataVisualController');
 Route::post('/datarefresh', 'TestDataController@refresh');
 /****************************************/
 
+/*** Purge Data ***/
+Route::resource('purgedata', 'PurgeDataController');
+/*******************/
+
+
 /**Export to csv****/
 Route::get('/getExport', 'ExporttoExcelController@getExport');
 /****************************************/
