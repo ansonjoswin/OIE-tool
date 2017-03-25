@@ -87,11 +87,11 @@
 
 
 <script src="{{ URL::asset('js/all.js') }}"></script>
+<script src="{{ URL::asset('js/bootstrap-typeahead.min.js') }}"></script>
 <script src="{{ URL::asset('js/jquery.ui.widget.js') }}"></script>
 <script src="{{ URL::asset('js/jquery.knob.js') }}"></script>
 <script src="{{ URL::asset('js/jquery.iframe-transport.js') }}"></script>
 <script src="{{ URL::asset('js/jquery.fileupload.js') }}"></script>
-
 
 <!-- Scripts -->
 @yield('scripts')

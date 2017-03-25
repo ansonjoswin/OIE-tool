@@ -61,12 +61,10 @@ class DataVisualController extends Controller
             $peerGroups = PeerGroup::where('private_public_flag','=','public')
                 ->orWhere('user_id', '=', Auth::user()->id)
                 ->pluck('PeerGroup_Name','PeerGroup_ID')->toArray();
-                echo("status:success");
         //If not logged in, user can only see public peergroups
         }else{
             $peerGroups = PeerGroup::where('private_public_flag','=','public')
                 ->pluck('PeerGroup_Name','PeerGroup_ID')->toArray();
-                echo ("status:success");
         }
         return $peerGroups;        
     }

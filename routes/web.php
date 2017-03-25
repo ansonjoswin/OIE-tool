@@ -72,7 +72,7 @@ Route::resource('purgedata', 'PurgeDataController');
 
 
 /**Export to csv****/
-Route::get('/getExport', 'ExporttoExcelController@getExport');
+Route::get('/getExport', 'DataTableController@getExport');
 /****************************************/
 
 
