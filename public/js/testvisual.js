@@ -65,8 +65,8 @@ console.log(jsObject)
           .attr('stroke-width',1)
       })
     .append('title') // Tooltip
-      .text(function (d) { return 'X-axis:'+d[sel_xaxis] +
-                           '\n Y-axis:' + d[sel_yaxis]})
+      .text(function (d) { return sel_xaxis+': '+d[sel_xaxis] +
+                           '\n '+sel_yaxis+': ' + d[sel_yaxis]})
   // X-axis
   svg.append('g')
       .attr('class','axis')
