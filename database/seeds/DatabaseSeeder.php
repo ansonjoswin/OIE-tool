@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StudentTable::class);
 		    $this->call(FinanceTable::class);
         $this->call(EmployeeTable::class);
+        $this->call(DataTable::class);
         $this->command->info('Tables seeded!');
 
 
