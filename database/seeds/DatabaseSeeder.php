@@ -57,3 +57,4 @@ class TagsTableSeeder extends Seeder {
         Tag::create([ 'name' => 'Undergraduate']);
     }
 }
+
