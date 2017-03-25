@@ -94,25 +94,48 @@ class StabbrSeeder extends Seeder
 }
 
 
-//$attribute3_list = [
-//    '0' => 'All',
-//    '17' => 'Doctoral/Research Universities',
-//    '18' => 'Master\'s Colleges and Universities (larger programs)',
-//    '23' => 'Baccalaureate/Associate\'s Colleges'
-//]; // CCBASIC column (Carnegie_Classification table) - sample of the options - may use different attribute
-
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
-//Stabbr::create([  'id' => '', 'desc' => '', 'created_at' => date_create(), 'updated_at' => date_create()]);
+// This ccbasic table is needed to populate the drop down list in the PeerGroups webpage.
+class CcbasicSeeder extends Seeder
+{
+    // Ccbasic column (Carnegie Classifications table "Cng_2010_Basic") - all options
+    public function run()
+    {
+        DB::table('ccbasics')->delete();
+        Ccbasic::create([  'id' => '-9', 'desc' => 'All', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '1', 'desc' => 'Associate\'s--Public Rural-serving Small', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '2', 'desc' => 'Associate\'s--Public Rural-serving Medium', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '3', 'desc' => 'Associate\'s--Public Rural-serving Large', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '4', 'desc' => 'Associate\'s--Public Suburban-serving Single Campus', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '5', 'desc' => 'Associate\'s--Public Suburban-serving Multicampus', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '6', 'desc' => 'Associate\'s--Public Urban-serving Single Campus', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '7', 'desc' => 'Associate\'s--Public Urban-serving Multicampus', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '8', 'desc' => 'Associate\'s--Public Special Use', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '9', 'desc' => 'Associate\'s--Private Not-for-profit', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '10', 'desc' => 'Associate\'s--Private For-profit', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '11', 'desc' => 'Associate\'s--Public 2-year colleges under 4-year universities', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '12', 'desc' => 'Associate\'s--Public 4-year Primarily Associate\'s', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '13', 'desc' => 'Associate\'s--Private Not-for-profit 4-year Primarily Associate\'s', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '14', 'desc' => 'Associate\'s--Private For-profit 4-year Primarily Associate\'s', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '15', 'desc' => 'Research Universities (very high research activity)', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '16', 'desc' => 'Research Universities (high research activity)', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '17', 'desc' => 'Doctoral/Research Universities', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '18', 'desc' => 'Master\'s Colleges and Universities (larger programs)', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '19', 'desc' => 'Master\'s Colleges and Universities (medium programs)', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '20', 'desc' => 'Master\'s Colleges and Universities (smaller programs)', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '21', 'desc' => 'Baccalaureate Colleges--Arts & Sciences', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '22', 'desc' => 'Baccalaureate Colleges--Diverse Fields', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '23', 'desc' => 'Baccalaureate/Associate\'s Colleges', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '24', 'desc' => 'Theological seminaries, Bible colleges, and other faith-related institutions', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '25', 'desc' => 'Medical schools and medical centers', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '26', 'desc' => 'Other health professions schools', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '27', 'desc' => 'Schools of engineering', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '28', 'desc' => 'Other technology-related schools', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '29', 'desc' => 'Schools of business and management', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '30', 'desc' => 'Schools of art, music, and design', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '31', 'desc' => 'Schools of law', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '32', 'desc' => 'Other special-focus institutions', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '33', 'desc' => 'Tribal Colleges', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '0', 'desc' => 'Not classified', 'created_at' => date_create(), 'updated_at' => date_create()]);
+        Ccbasic::create([  'id' => '-3', 'desc' => 'Not applicable, not in Carnegie universe (not accredited or nondegree-granting)', 'created_at' => date_create(), 'updated_at' => date_create()]);
+    }
+}

@@ -20,6 +20,7 @@
                                 	<select id="fileyearid" name="fileyear" class="form-control"></select>
                                	</div>
                             	<div class="form-group col-xs-4">
+                                    <!--If this list of files ever changes, the list also needs to change in the PurgeData page also! -->
 	                                <select id="fileTypeId" name="filetype" class="form-control">
 	                                   <option value="default">-- Select File Type --</option>
 	                                   <option value="schools">Schools</option>

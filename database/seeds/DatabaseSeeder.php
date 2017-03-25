@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         // Seed the attributes tables
         $this->call(InstcatSeeder::class);
         $this->call(StabbrSeeder::class);
+        $this->call(CcbasicSeeder::class);
 
          //Seed the System Users/Roles/Permissions tables
         $this->call(RolesTableSeeder::class);
@@ -30,6 +31,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StudentTable::class);
 		    $this->call(FinanceTable::class);
         $this->call(EmployeeTable::class);
+        $this->call(DataTable::class);
         $this->command->info('Tables seeded!');
 
 
@@ -56,3 +58,4 @@ class TagsTableSeeder extends Seeder {
         Tag::create([ 'name' => 'Undergraduate']);
     }
 }
+

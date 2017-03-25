@@ -24,6 +24,8 @@ class ExporttoExcelController extends Controller
     }
 
     public function getExport(){
+
+        //dd($request);
     	$export = DataTable::all();
                
     	Excel::create("UNO's Summary Data Table", function($excel) use($export){
