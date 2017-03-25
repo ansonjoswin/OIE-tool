@@ -30,6 +30,13 @@ label {
   top: 10px;
   right: 10px;
 }
+
+#chart {
+  float: left;
+}
+.typeahead-section {
+  margin-top: 40px;
+}
     </style>
     <!-- End CSS (Styling) -->
  
@@ -86,9 +93,9 @@ label {
 <script>
  
   var test_data = <?php echo json_encode($test_data, JSON_HEX_TAG); ?>; 
-  var xaxis=<?php echo $test_data; ?>; 
-  console.log(xaxis);
- // console.log(test_data)
+ var sel_xaxis = <?php echo json_encode($sel_xaxis, JSON_HEX_TAG); ?>; 
+  var sel_yaxis = <?php echo json_encode($sel_yaxis, JSON_HEX_TAG); ?>; 
+ 
 jsObject = JSON.parse(test_data); 
 
   
@@ -106,14 +113,14 @@ console.log(jsObject)
   var colorScale = d3.scale.category20()
   var xScale = d3.scale.linear()
     .domain([
-      d3.min([0,d3.min(jsObject,function (d) { return d.cohort_status8 })]),
-      d3.max([0,d3.max(jsObject,function (d) { return d.cohort_status8})])
+      d3.min([0,d3.min(jsObject,function (d) { return d[sel_xaxis] })]),
+      d3.max([0,d3.max(jsObject,function (d) { return d[sel_xaxis]})])
       ])
     .range([0,w])
   var yScale = d3.scale.linear()
     .domain([
-      d3.min([0,d3.min(jsObject,function (d) { return d.cohort_status13 })]),
-      d3.max([0,d3.max(jsObject,function (d) { return d.cohort_status13 })])
+      d3.min([0,d3.min(jsObject,function (d) { return d[sel_yaxis] })]),
+      d3.max([0,d3.max(jsObject,function (d) { return d[sel_yaxis]  })])
       ])
     .range([h,0])
   // SVG
@@ -135,8 +142,8 @@ console.log(jsObject)
       .data(jsObject)
       .enter()
     .append('circle')
-      .attr('cx',function (d) { return xScale(d.cohort_status8) })
-      .attr('cy',function (d) { return yScale(d.cohort_status13) })
+      .attr('cx',function (d) { return xScale(d[sel_xaxis] ) })
+      .attr('cy',function (d) { return yScale(d[sel_yaxis] ) })
       .attr('r','3')
       .attr('stroke','black')
       .attr('stroke-width',1)
@@ -154,8 +161,8 @@ console.log(jsObject)
           .attr('stroke-width',1)
       })
     .append('title') // Tooltip
-      .text(function (d) { return 'X-axis:'+d.stEnrl +
-                           '\n Y-axis:' + d.stEnrl})
+      .text(function (d) { return 'X-axis:'+d[sel_xaxis] +
+                           '\n Y-axis:' + d[sel_yaxis]})
   // X-axis
   svg.append('g')
       .attr('class','axis')
@@ -168,7 +175,7 @@ console.log(jsObject)
       .attr('x',w)
       .attr('dy','.71em')
       .style('text-anchor','end')
-      .text("Resource")
+      .text(sel_xaxis)
   // Y-axis
   svg.append('g')
       .attr('class','axis')
@@ -181,7 +188,7 @@ console.log(jsObject)
       .attr('y',5)
       .attr('dy','.71em')
       .style('text-anchor','end')
-      .text("Performance")
+      .text(sel_yaxis)
 
   function yChange() {
     var value = this.value // get the new y value
@@ -226,10 +233,14 @@ console.log(jsObject)
  
   </script>
 </div>
+
+
                     </div>         
                 </div>
             </div>
         </div>
     </div>
+
+
 @endsection
 
