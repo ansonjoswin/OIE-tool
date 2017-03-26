@@ -77,6 +77,7 @@ class TestDataController extends Controller
         
         $sel_pgid = PeerGroup::where('PeerGroup_Name','=',$sel_pg)
                    ->pluck('PeerGroup_ID');
+        
         $sel_school_ids = PeerGroup::find($sel_pgid)->school()->pluck('school_id')->toArray();
 
           $this->viewData['sel_pgid'] = $sel_pgid;

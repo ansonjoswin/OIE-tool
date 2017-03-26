@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Graduation;
 use App\PeerGroup;
+use App\DataTable;
 //use App\School_PeerGroup;
 use DB;
 use Illuminate\Routing\Controller;
@@ -47,10 +48,12 @@ class DataVisualController extends Controller
             'grad_cert_1000'=>'Graduate Certificates per Thousand Graduate Students',
             'bach_grad_rate_4'=>'Bachelor Degree 4-Yr Graduation Rate', 
             'bach_grad_rate_6'=>'Bachelor Degree 6-Yr Graduation Rate', 
-            'assoc_grad_rate_4'=>'Associate Degree and Certificate 3-Yr Graduation Rate',
-            'default_rate'=>'Default Rate' 
+            'assoc_grad_rate_4'=>'Associate Degree and Certificate 3-Yr Graduation Rate'
+            // ,'default_rate'=>'Default Rate' 
         ]);
         $this->yaxis_options = $yaxis_options;
+
+        $this->viewData['avail_years'] = DataTable::distinct()->pluck('year')->toArray();
     }
 
 
