@@ -7,6 +7,7 @@ use App\Graduation;
 use App\School;
 use App\PeerGroup;
 use App\Student;
+use App\DataTable;
 use DB;
 use Illuminate\Routing\Controller;
 use Auth;
@@ -32,6 +33,8 @@ class TestDataController extends Controller
         ]);
         $this->yaxis_options = $yaxis_options;
 
+        //Get list of available years that have been loaded into data tables
+        $this->viewData['avail_years'] = DataTable::distinct()->pluck('year')->toArray();
     }
 
 
