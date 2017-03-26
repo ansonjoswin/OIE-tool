@@ -1,5 +1,4 @@
-
- console.log(test_data);
+console.log(test_data);
 jsObject = JSON.parse(test_data); 
 
   
@@ -9,7 +8,7 @@ console.log(jsObject)
   
   // Variables
   var body = d3.select("#chart")
-  var margin = { top: 50, right: 50, bottom: 50, left: 50 }
+  var margin = { top: 50, right: 50, bottom: 50, left: 65 }
   var h = 500 - margin.top - margin.bottom
   var w = 500 - margin.left - margin.right
 
@@ -64,6 +63,37 @@ console.log(jsObject)
           .attr('r',3)
           .attr('stroke-width',1)
       })
+      .on("click", function(d,i) {
+        xPos = d3.select(this).attr("cx"),
+        yPos = d3.select(this).attr("cy");
+        xPath = d[sel_xaxis];
+        yPath = d[sel_yaxis];
+        svg.selectAll(".crossPath").remove();
+        svg.selectAll(".crossCircle").remove();
+        svg.append("svg:line")
+          .attr('class', 'crossPath')
+          .attr("x1", 0).attr("y1", yPos)
+          .attr("x2", w).attr("y2", yPos)
+          .style("stroke", "red")
+          .style("stroke-width", 1);
+        svg.append("svg:line")
+          .attr('class', 'crossPath')
+          .attr("x1", xPos).attr("y1", 0)
+          .attr("x2", xPos).attr("y2", h)
+          .style("stroke", "red")
+          .style("stroke-width", 1);
+        svg.append('circle')
+          .attr('class', 'crossCircle')
+          .attr('cx',function (d) { return xPos })
+          .attr('cy',function (d) { return yPos })
+          .attr('r','3')
+          .attr('stroke','red')
+          .attr('stroke-width',1)
+          .attr('fill', 'red')
+          .append('title') // Tooltip
+            .text(function (d) { return sel_xaxis+': '+xPath +
+                                 '\n '+sel_yaxis+': ' + yPath})
+     })
     .append('title') // Tooltip
       .text(function (d) { return sel_xaxis+': '+d[sel_xaxis] +
                            '\n '+sel_yaxis+': ' + d[sel_yaxis]})
@@ -75,10 +105,10 @@ console.log(jsObject)
       .call(xAxis)
     .append('text') // X-axis Label
       .attr('id','xAxisLabel')
-      .attr('y',-10)
+      .attr('y',30)
       .attr('x',w)
       .attr('dy','.71em')
-      .style('text-anchor','end')
+      .style({"text-anchor": "end", "font-size": "18px"})
       .text(sel_xaxis)
   // Y-axis
   svg.append('g')
@@ -89,9 +119,9 @@ console.log(jsObject)
       .attr('id', 'yAxisLabel')
       .attr('transform','rotate(-90)')
       .attr('x',0)
-      .attr('y',5)
+      .attr('y',-65)
       .attr('dy','.71em')
-      .style('text-anchor','end')
+      .style({"text-anchor": "end", "font-size": "18px"})
       .text(sel_yaxis)
 
   function yChange() {
