@@ -35,46 +35,54 @@
 @endif
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<div class="container">
+<div class="">
     <p>&nbsp;</p>
     <div class="row style-select">
         <div class="col-md-12">
             <div class="form-group">
-                <label>Institution Category</label><br>
-                @if(sizeof($selected_instcat_list) == 0)
-                    {{ Form::select('instcat', $instcat_list, ['id' => 'instcat']) }}
-                @else
-                    {{ Form::select('instcat', $instcat_list, $selected_instcat_list, ['id' => 'instcat']) }}
-                @endif
+                <label class="col-md-4 control-label">Institution Category</label>
+                <div class="col-md-6">
+                    @if(sizeof($selected_instcat_list) == 0)
+                        {{ Form::select('instcat', $instcat_list, ['class' => 'col-md-6 form-control'], ['id' => 'instcat']) }}
+                    @else
+                        {{ Form::select('instcat', $instcat_list, $selected_instcat_list, ['id' => 'instcat'], ['class' => 'col-md-6 form-control']) }}
+                    @endif
+                </div>
             </div>
             <div class="form-group">
-                <label>Carnegie Classification 2010 Basic</label><br>
-                @if(sizeof($selected_ccbasic_list) == 0)
-                    {{ Form::select('ccbasic', $ccbasic_list, ['id' => 'ccbasic']) }}
-                @else
-                    {{ Form::select('ccbasic', $ccbasic_list, '-9', ['id' => 'ccbasic']) }}
-                @endif
+                <label class="col-md-4 control-label">Carnegie Classification 2010 Basic</label>
+                <div class="col-md-6">
+                    @if(sizeof($selected_ccbasic_list) == 0)
+                        {{ Form::select('ccbasic', $ccbasic_list, ['id' => 'ccbasic'], ['class' => 'col-md-6 form-control']) }}
+                    @else
+                        {{ Form::select('ccbasic', $ccbasic_list, '-9', ['id' => 'ccbasic'], ['class' => 'col-md-6 form-control']) }}
+                    @endif
+                </div>
             </div>
 
             <div class="form-group">
-                <label>Carnegie Classification 2010 Basic Year</label><br>
+                <label class="col-md-4 control-label">Carnegie Classification 2010 Basic Year</label>
+                <div class="col-md-6">
                 <!-- <select id="ccbasicyearid" name="ccbasicyearid"></select> -->
-                @if(sizeof($selected_ccbasic_list) == 0)
-                    {{ Form::select('ccbasicyearid', array(null=>'All') + $ccbasicyearid, ['id' => 'ccbasicyearid']) }}
-                @else
-                    {{ Form::select('ccbasicyearid', array(null=>'All') + $ccbasicyearid, null, ['id' => 'ccbasicyearid']) }}
-                @endif
+                    @if(sizeof($selected_ccbasic_list) == 0)
+                        {{ Form::select('ccbasicyearid', array(null=>'All') + $ccbasicyearid, ['id' => 'ccbasicyearid']) }}
+                    @else
+                        {{ Form::select('ccbasicyearid', array(null=>'All') + $ccbasicyearid, null, ['id' => 'ccbasicyearid']) }}
+                    @endif
+                </div>
             </div>
 
             <div class="form-group">
-                <label>Institution State</label><br>
-                @if(sizeof($selected_stabbr_list) == 0)
-                    {{ Form::select('stabbr', $stabbr_list, ['id' => 'stabbr']) }}
-                @else
-                    {{ Form::select('stabbr', $stabbr_list, $selected_stabbr_list, ['id' => 'stabbr']) }}
-                @endif
+                <label class="col-md-4 control-label">Institution State</label>
+                <div class="col-md-6">
+                    @if(sizeof($selected_stabbr_list) == 0)
+                        {{ Form::select('stabbr', $stabbr_list, ['id' => 'stabbr']) }}
+                    @else
+                        {{ Form::select('stabbr', $stabbr_list, $selected_stabbr_list, ['id' => 'stabbr']) }}
+                    @endif
+                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group text-center">
                 <input type="button" id="btnFilter" value="View Institutions" class="btn btn-default" />
             </div>
         </div>
@@ -83,9 +91,9 @@
 </div>
 <hr/>
 
-<div class="container">
+<div>
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-10 col-md-offset-1">
             <div class="subject-info-box-1">
                 <label>Available Institutions <label id="dynCounter">({{count($school_ids)}})</label> </label>
                 <select multiple class="form-control" id="lstBox1">
@@ -122,8 +130,8 @@
         </div>
     </div><br>
     <div class="row">
-        <div class="col-md-7">
-            <div class="pull-right">
+        <div class="col-md-12">
+            <div class="text-center">
             {!! Form::button('<i class="fa fa-btn fa-save"></i>Save', ['type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'submit_btn', 'onClick'=>'selectAll()', 'data-toggle'=>'modal', 'data-target'=>'#loadingModal']) !!}
             <br/><br/>
             </div>

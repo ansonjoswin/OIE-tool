@@ -108,7 +108,7 @@ console.log(jsObject)
       .attr('y',30)
       .attr('x',w)
       .attr('dy','.71em')
-      .style({"text-anchor": "end", "font-size": "18px"})
+      .style({"text-anchor": "end", "font-size": "16px", "font-family": "inherit"})
       .text(sel_xaxis)
   // Y-axis
   svg.append('g')
@@ -121,7 +121,7 @@ console.log(jsObject)
       .attr('x',0)
       .attr('y',-65)
       .attr('dy','.71em')
-      .style({"text-anchor": "end", "font-size": "18px"})
+      .style({"text-anchor": "end", "font-size": "16px", "font-family": "inherit"})
       .text(sel_yaxis)
 
   function yChange() {

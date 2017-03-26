@@ -23,6 +23,9 @@
     <style>
         body { font-family: 'Lato'; }
         .fa-btn { margin-right: 6px; }
+        .footer-section {
+            margin-top: 10px;
+        }
     </style>
     <link href="{{ URL::asset('css/all.css') }}" rel="stylesheet">
     <link href="{{ url(mix('css/app.css')) }}" rel="stylesheet"> 
@@ -97,11 +100,10 @@
 @yield('scripts')
 
 <footer class="footer">
-    <div class="container">
+    <div class="container text-center">
        
-                    <label >
-                        <a style="padding-left: 500px" 
-                                data-toggle="modal" data-target=".demo-popup1" target="_blank"
+                    <label class="footer-section">
+                        <a data-toggle="modal" data-target=".demo-popup1" target="_blank"
                                 rel="nofollow" href=""> Legal Disclaimer &copy; 2017</a>
                     </label>
                 </div>
