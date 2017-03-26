@@ -121,9 +121,9 @@
 <br/>
 
 
-<div class="container">
+<div>
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-10 col-md-offset-1">
             <div class="subject-info-box-1">
                 <label>Available Institutions <label id="dynCounter">({{count($school_ids)}})</label> </label>
                 <select multiple class="form-control" id="lstBox1">
