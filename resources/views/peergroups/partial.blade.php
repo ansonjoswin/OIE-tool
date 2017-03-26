@@ -1,14 +1,7 @@
 
 <script src="{{ URL::asset('js/jquery.selectlistactions.js') }}"></script>
 
-
-
 <link rel="stylesheet" href="{{ URL::asset('css/site.css') }}">
-
-
-<!--[if lt IE 9]>
-<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
 
 
 <div class="form-group{{ $errors->has('peergroup_name') ? ' has-error' : '' }}">
@@ -65,7 +58,12 @@
 
             <div class="form-group">
                 <label>Carnegie Classification 2010 Basic Year</label><br>
-                <select id="ccbasicyearid" name="ccbasicyearid"></select>
+                <!-- <select id="ccbasicyearid" name="ccbasicyearid"></select> -->
+                @if(sizeof($selected_ccbasic_list) == 0)
+                    {{ Form::select('ccbasicyearid', array(null=>'All') + $ccbasicyearid, ['id' => 'ccbasicyearid']) }}
+                @else
+                    {{ Form::select('ccbasicyearid', array(null=>'All') + $ccbasicyearid, null, ['id' => 'ccbasicyearid']) }}
+                @endif
             </div>
 
             <div class="form-group">
@@ -126,9 +124,8 @@
     <div class="row">
         <div class="col-md-7">
             <div class="pull-right">
-
-
             {!! Form::button('<i class="fa fa-btn fa-save"></i>Save', ['type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'submit_btn', 'onClick'=>'selectAll()', 'data-toggle'=>'modal', 'data-target'=>'#loadingModal']) !!}
+            <br/><br/>
             </div>
         </div>
     </div>
@@ -154,22 +151,13 @@
 
     $(document).ready(function($){
 
-        //Load Year dropdown.
-        var start = 2012;
-        var end = 2020;
-        var options = "<option value='default'>\-\- Select Carnegie Classification Year \-\-</option>";
-        for(var year = start; year <= end; year++) {
-            options += "<option value=\"" + year + "\">"+ year +"</option>";
-        }
-        document.getElementById("ccbasicyearid").innerHTML = options;
-
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
 
-        //populate Available Institutions dynamically on submit (click on "Institution List")
+        // Populate Available Institutions dynamically on submit (click on "Institution List")
         $('#btnFilter').on('click', function () {
             var selected_instcat_list = $("#instcat").val();
             var selected_stabbr_list = $("#stabbr").val();
@@ -177,10 +165,9 @@
             var ccbasicyearid = $("#ccbasicyearid").val();
 
             // If Carnegie is selected without having selected a Carnegie Year, notify the user
-            if (selected_ccbasic_list != -9 && ccbasicyearid == 'default'){
+            if (selected_ccbasic_list != -9 && ccbasicyearid == ''){
                 alert("Please select a Carnegie Classification Year.");
             }else{
-                //var ccbasicyearid = 2014;
                 var dyn_cnt = 0;
                 console.log("instcat", selected_instcat_list, "stabbr", selected_stabbr_list, "ccbasic", selected_ccbasic_list, "ccbasicyearid", ccbasicyearid);
                 $.ajax({
@@ -207,15 +194,13 @@
         $("#ccbasic").on('focus', function () {
             previous = this.value;
         }).change(function() {
-            //alert("Prev:" + previous+ " New: "+this.value+ " year: " + $("#ccbasicyearid").val() );
-            if(this.value != -9 && $("#ccbasicyearid").val() == 'default') {
-                //alert("you need to set year!!!");
+            if(this.value != -9 && $("#ccbasicyearid").val() == '') {
                 $("#ccbasicyearid").prop("selectedIndex", 1);
             }
             previous = this.value;   // Update previous value to new value
         });        
 
-        // script for moving between Available Institutions and Selected Institutions
+        // Script for moving between Available Institutions and Selected Institutions
         $('#btnRight').click(function (e) {
             $('select').moveToListAndDelete('#lstBox1', '#lstBox2');
             e.preventDefault();
@@ -239,16 +224,16 @@
 
     });
 
-    //Update the list counters
+    // Update the list counters
     function updateSelCount(){
-        //Update the counter on the Available Institutions list
         dyn_cnt = $('#lstBox1 option').size(); 
         $('#dynCounter').text("("+dyn_cnt+")");        
-        //Update the counter on the Selected Institutions list
+
         sel_cnt = $('#lstBox2 option').size(); 
         $('#selCounter').text("("+sel_cnt+")");
     }
 
+    //Selects all options in the "selected institutions" list so the user doesnt have to.
     function selectAll() { 
         selectBox = document.getElementById("lstBox2");
         for (var i = 0; i < selectBox.options.length; i++) { 
