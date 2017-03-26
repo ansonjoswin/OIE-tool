@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 
 use App\Instcat;
 use App\Stabbr;
+use App\Ccbasic;
 
 class InstcatSeeder extends Seeder
 {
