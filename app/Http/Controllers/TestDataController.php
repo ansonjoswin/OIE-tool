@@ -54,18 +54,37 @@ class TestDataController extends Controller
 
     public function index()
     {
+
+        $sel_pg = 'test';
         //Get list of available peerGroups
         $this->viewData['peerGroups'] = $this->getPeerGroups();
+
+        //Get list of available years
+        $sel_year = 2014;
+        $this->viewData['sel_year'] = $sel_year;
 
         //Get list of available resource and performance drop down options
         $this->viewData['xaxis_options'] = $this->xaxis_options;
         $this->viewData['yaxis_options'] = $this->yaxis_options;
 
-        //Get scatterplot data (empty on first load)
-        $test_data = '';
+                //Get selected resource parameter
+        $sel_xaxis = 'cohort_status8';
+        $this->viewData['sel_xaxis'] = $sel_xaxis;
+
+        //Get selected performance parameter
+        $sel_yaxis = 'cohort_status13';
+        $this->viewData['sel_yaxis'] = $sel_yaxis;  
+        
+        $sel_pgid = PeerGroup::where('PeerGroup_Name','=',$sel_pg)
+                   ->pluck('PeerGroup_ID');
+        $sel_school_ids = PeerGroup::find($sel_pgid)->school()->pluck('school_id')->toArray();
+
+          $this->viewData['sel_pgid'] = $sel_pgid;
+        $test_data = Student::whereIn('school_id',$sel_school_ids)->get();
+
+
         $this->viewData['test_data'] = json_encode($test_data);
 
-  
         //Call view
         return view('data.test',$this->viewData);
     }
@@ -75,7 +94,7 @@ class TestDataController extends Controller
 
     {
 
-          $filtervalues = [];
+       
         //Get list of available peerGroups
         $this->viewData['peerGroups'] = $this->getPeerGroups();
 
