@@ -5,19 +5,40 @@
 
 
 <div class="form-group{{ $errors->has('peergroup_name') ? ' has-error' : '' }}">
-    {!! Form::label('peergroup_name', 'Peer Group Name:', ['class' => 'col-md-4 control-label']) !!}
-    <div class="col-md-6">
-        {!! Form::text('peergroup_name', null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!}
-        @if ($errors->has('peergroup_name'))
-            <span class="help-block">
-                <strong>{{ $errors->first('peergroup_name') }}</strong>
-            </span>
-        @endif
+    
+    <div class="col-md-12">
+        <div class=" row">
+            <div class="col-md-1">
+                {!! Form::label('peergroup_name', 'Name:', ['class'=>'col-md-4 control-label', 'data-toggle'=>'tooltip','title'=>'Peer Group Name']) !!}
+            </div>
+            <div class="col-md-6">
+                {!! Form::text('peergroup_name', null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!}
+                @if ($errors->has('peergroup_name'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('peergroup_name') }}</strong>
+                    </span>
+                @endif
+            </div>
+            <div class="col-md-3">
+                @if(($user->getRoleListAttribute()->first() == 1))
+                    @if($CRUD_Action == 'Create' )
+                            {!! Form::select('private_public_flag', $PriPubFlgList, null, ['class'=>'col-md-6 form-control', 'required'=>'required']) !!}
+                        @else
+                            {!! Form::select('private_public_flag', $PriPubFlgList, $peergroup->private_public_flag, ['class'=>'col-md-6 form-control', 'required'=>'required', 'selected'=>'selected']) !!}
+                    @endif
+                    @if ($errors->has('private_public_flag'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('private_public_flag') }}</strong>
+                        </span>
+                    @endif   
+                @endif
+            </div>   
+        </div>  
     </div>
 </div>
 
-@if(($user->getRoleListAttribute()->first() == 1))
-<div class="form-group{{ $errors->has('private_public_flag') ? ' has-error' : '' }}">
+<!-- @if(($user->getRoleListAttribute()->first() == 1)) -->
+<!-- <div class="form-group{{ $errors->has('private_public_flag') ? ' has-error' : '' }}">
     {!! Form::label('private_public_flag', 'Private/Public:', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
             @if($CRUD_Action == 'Create' )
@@ -31,57 +52,74 @@
                 </span>
             @endif
     </div>
-</div>
-@endif
+</div> -->
+<!-- @endif -->
+
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<div class="container">
+<div class="container" style="border-top: 0px; padding-top: 0px; ">
     <p>&nbsp;</p>
-    <div class="row style-select">
-        <div class="col-md-12">
-            <div class="form-group">
-                <label>Institution Category</label><br>
+    <div class="row style-select" style="border-top: 0px; padding-top: 0px">
+        <div class="col-md-8">
+            <div class=" row">
+                <div class="col-md-3" align="right">
+                    {{ Form::label('instcat_lbl', 'Institution Category: ') }}
+                </div>
+                <div class="col-md-5" align="right">
                 @if(sizeof($selected_instcat_list) == 0)
-                    {{ Form::select('instcat', $instcat_list, ['id' => 'instcat']) }}
+                    {{ Form::select('instcat', $instcat_list, ['id' => 'instcat', 'class'=>'col-md-12']) }}
                 @else
-                    {{ Form::select('instcat', $instcat_list, $selected_instcat_list, ['id' => 'instcat']) }}
+                    {{ Form::select('instcat', $instcat_list, $selected_instcat_list, ['id' => 'instcat', 'class'=>'col-md-12']) }}
                 @endif
+                </div>
             </div>
-            <div class="form-group">
-                <label>Carnegie Classification 2010 Basic</label><br>
+            <div class="row">
+                <div class="col-md-3" align="right">
+                    {{ Form::label('cc_lbl', 'Carnegie Classification: ', ['data-toggle'=>'tooltip','title'=>'Carnegie Classification 2010 Basic']) }}
+                </div>
+                <div class="col-md-5">
                 @if(sizeof($selected_ccbasic_list) == 0)
-                    {{ Form::select('ccbasic', $ccbasic_list, ['id' => 'ccbasic']) }}
+                    {{ Form::select('ccbasic', $ccbasic_list, ['id'=>'ccbasic', 'class'=>'col-md-12']) }}
                 @else
-                    {{ Form::select('ccbasic', $ccbasic_list, '-9', ['id' => 'ccbasic']) }}
+                    {{ Form::select('ccbasic', $ccbasic_list, '-9', ['id'=>'ccbasic', 'class'=>'col-md-12']) }}
                 @endif
+                </div>            
             </div>
-
-            <div class="form-group">
-                <label>Carnegie Classification 2010 Basic Year</label><br>
-                <!-- <select id="ccbasicyearid" name="ccbasicyearid"></select> -->
+            <div class="row">
+                <div class="col-md-3" align="right">
+                    {{ Form::label('yr_lbl', 'Carnegie Year: ', ['data-toggle'=>'tooltip','title'=>'Carnegie Classification 2010 Basic Year']) }}
+                </div>
+                <div class="col-md-5">
                 @if(sizeof($selected_ccbasic_list) == 0)
-                    {{ Form::select('ccbasicyearid', array(null=>'All') + $ccbasicyearid, ['id' => 'ccbasicyearid']) }}
+                    {{ Form::select('ccbasicyearid', array(null=>'All') + $ccbasicyearid, ['id'=>'ccbasicyearid', 'class'=>'col-md-4']) }}
                 @else
-                    {{ Form::select('ccbasicyearid', array(null=>'All') + $ccbasicyearid, null, ['id' => 'ccbasicyearid']) }}
+                    {{ Form::select('ccbasicyearid', array(null=>'All') + $ccbasicyearid, null, ['id'=>'ccbasicyearid', 'class'=>'col-md-4']) }}
                 @endif
+                </div>
             </div>
-
-            <div class="form-group">
-                <label>Institution State</label><br>
+            <div class="row">
+                <div class="col-md-3" align="right">
+                    {{ Form::label('stabbr_lbl', 'Institution State: ') }}
+                </div>
+                <div class="col-md-5">
                 @if(sizeof($selected_stabbr_list) == 0)
-                    {{ Form::select('stabbr', $stabbr_list, ['id' => 'stabbr']) }}
+                    {{ Form::select('stabbr', $stabbr_list, ['id'=>'stabbr', 'class'=>'col-md-6']) }}
                 @else
-                    {{ Form::select('stabbr', $stabbr_list, $selected_stabbr_list, ['id' => 'stabbr']) }}
+                    {{ Form::select('stabbr', $stabbr_list, $selected_stabbr_list, ['id'=>'stabbr', 'class'=>'col-md-6']) }}
                 @endif
+                </div>
             </div>
-            <div class="form-group">
-                <input type="button" id="btnFilter" value="View Institutions" class="btn btn-default" />
+            <div class="row">
+                <div class="col-md-8" align="center">
+                {{ Form::button('<i class="fa fa-btn fa-sm fa-filter"></i>Filter', array('class'=>'btn btn-sm btn-gray', 'id'=>'btnFilter')) }}
+                </div>
             </div>
         </div>
     </div>
 </div>
 </div>
-<hr/>
+<br/>
+
 
 <div class="container">
     <div class="row">
@@ -124,7 +162,7 @@
     <div class="row">
         <div class="col-md-7">
             <div class="pull-right">
-            {!! Form::button('<i class="fa fa-btn fa-save"></i>Save', ['type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'submit_btn', 'onClick'=>'selectAll()', 'data-toggle'=>'modal', 'data-target'=>'#loadingModal']) !!}
+            {!! Form::button('<i class="fa fa-btn fa-lg fa-save"></i>Save', ['type'=>'submit', 'class'=>'btn btn-primary btn-lg', 'id'=>'submit_btn', 'onClick'=>'selectAll()', 'data-toggle'=>'modal', 'data-target'=>'#loadingModal']) !!}
             <br/><br/>
             </div>
         </div>
@@ -146,10 +184,14 @@
     </div>
 </div>
 
+
+
 <script>
     var sel_cnt = 0;
 
     $(document).ready(function($){
+
+          $('cc_lbl').tooltip();
 
         $.ajaxSetup({
             headers: {

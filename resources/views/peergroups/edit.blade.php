@@ -9,7 +9,7 @@
                         <div class="pull-right">  
 
                             {!! Form::open(['route'=>'pg_delete_url', 'class'=>'form-horizontal', 'onsubmit'=>'return ConfirmDelete()']) !!}
-                            {!! Form::hidden('peergroup_id', $peergroup->peergroup_id, array('id'=>'peergroup_id', 'class'=>'btn btn-danger')) !!}
+                            {!! Form::hidden('pg_id', $peergroup->peergroup_id, array('id'=>'pg_id', 'class'=>'btn btn-danger')) !!}
                             {!! Form::button('<i class="fa fa-btn fa-trash"></i>', ['type'=>'submit', 'class'=>'btn btn-danger']) !!}
                             {!! Form::close() !!}
 

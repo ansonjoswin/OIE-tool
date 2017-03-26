@@ -7,14 +7,13 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"> {{ $heading }}</div>
 
-                    <div class="panel-body">
+                    <div class="panel-body" style="padding-bottom: 0px;">
                         {!! Form::open(['url' => 'peergroups', 'class' => 'form-horizontal' ]) !!}
                         @include('common.errors')
                         @include('common.flash')
 
                         @include ('peergroups.partial', ['CRUD_Action' => 'Create'])
                         {!! Form::close() !!}
-
                     </div>
                 </div>
             </div>
