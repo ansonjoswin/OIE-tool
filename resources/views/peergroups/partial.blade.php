@@ -65,11 +65,11 @@
                 <div class="col-md-3" align="right">
                     {{ Form::label('instcat_lbl', 'Institution Category: ') }}
                 </div>
-                <div class="col-md-5" align="right">
+                <div class="col-md-7" align="right">
                 @if(sizeof($selected_instcat_list) == 0)
-                    {{ Form::select('instcat', $instcat_list, ['id' => 'instcat', 'class'=>'col-md-12']) }}
+                    {{ Form::select('instcat', $instcat_list, ['id' => 'instcat', 'class'=>'col-md-12 form-control']) }}
                 @else
-                    {{ Form::select('instcat', $instcat_list, $selected_instcat_list, ['id' => 'instcat', 'class'=>'col-md-12']) }}
+                    {{ Form::select('instcat', $instcat_list, $selected_instcat_list, ['id' => 'instcat', 'class'=>'col-md-12 form-control']) }}
                 @endif
                 </div>
             </div>
@@ -77,11 +77,11 @@
                 <div class="col-md-3" align="right">
                     {{ Form::label('cc_lbl', 'Carnegie Classification: ', ['data-toggle'=>'tooltip','title'=>'Carnegie Classification 2010 Basic']) }}
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-7">
                 @if(sizeof($selected_ccbasic_list) == 0)
-                    {{ Form::select('ccbasic', $ccbasic_list, ['id'=>'ccbasic', 'class'=>'col-md-12']) }}
+                    {{ Form::select('ccbasic', $ccbasic_list, ['id'=>'ccbasic', 'class'=>'col-md-12 form-control']) }}
                 @else
-                    {{ Form::select('ccbasic', $ccbasic_list, '-9', ['id'=>'ccbasic', 'class'=>'col-md-12']) }}
+                    {{ Form::select('ccbasic', $ccbasic_list, '-9', ['id'=>'ccbasic', 'class'=>'col-md-12 form-control']) }}
                 @endif
                 </div>            
             </div>
@@ -89,11 +89,11 @@
                 <div class="col-md-3" align="right">
                     {{ Form::label('yr_lbl', 'Carnegie Year: ', ['data-toggle'=>'tooltip','title'=>'Carnegie Classification 2010 Basic Year']) }}
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-2">
                 @if(sizeof($selected_ccbasic_list) == 0)
-                    {{ Form::select('ccbasicyearid', array(null=>'All') + $ccbasicyearid, ['id'=>'ccbasicyearid', 'class'=>'col-md-4']) }}
+                    {{ Form::select('ccbasicyearid', array(null=>'All') + $ccbasicyearid, ['id'=>'ccbasicyearid', 'class'=>'col-md-4 form-control']) }}
                 @else
-                    {{ Form::select('ccbasicyearid', array(null=>'All') + $ccbasicyearid, null, ['id'=>'ccbasicyearid', 'class'=>'col-md-4']) }}
+                    {{ Form::select('ccbasicyearid', array(null=>'All') + $ccbasicyearid, null, ['id'=>'ccbasicyearid', 'class'=>'col-md-4 form-control']) }}
                 @endif
                 </div>
             </div>
@@ -101,17 +101,17 @@
                 <div class="col-md-3" align="right">
                     {{ Form::label('stabbr_lbl', 'Institution State: ') }}
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-3">
                 @if(sizeof($selected_stabbr_list) == 0)
-                    {{ Form::select('stabbr', $stabbr_list, ['id'=>'stabbr', 'class'=>'col-md-6']) }}
+                    {{ Form::select('stabbr', $stabbr_list, ['id'=>'stabbr', 'class'=>'col-md-6 form-control']) }}
                 @else
-                    {{ Form::select('stabbr', $stabbr_list, $selected_stabbr_list, ['id'=>'stabbr', 'class'=>'col-md-6']) }}
+                    {{ Form::select('stabbr', $stabbr_list, $selected_stabbr_list, ['id'=>'stabbr', 'class'=>'col-md-6 form-control']) }}
                 @endif
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="padding-top: 2px;">
                 <div class="col-md-8" align="center">
-                {{ Form::button('<i class="fa fa-btn fa-sm fa-filter"></i>Filter', array('class'=>'btn btn-sm btn-gray', 'id'=>'btnFilter')) }}
+                {{ Form::button('<i class="fa fa-btn fa-filter"></i>Filter', array('class'=>'btn btn-primary', 'id'=>'btnFilter')) }}
                 </div>
             </div>
         </div>
@@ -160,11 +160,11 @@
         </div>
     </div><br>
     <div class="row">
-        <div class="col-md-7">
-            <div class="pull-right">
-            {!! Form::button('<i class="fa fa-btn fa-lg fa-save"></i>Save', ['type'=>'submit', 'class'=>'btn btn-primary btn-lg', 'id'=>'submit_btn', 'onClick'=>'selectAll()', 'data-toggle'=>'modal', 'data-target'=>'#loadingModal']) !!}
+        <div class="col-md-6 col-md-offset-3" align="center">
+          
+            {!! Form::button('<i class="fa fa-btn fa-save"></i>Save', ['type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'submit_btn', 'onClick'=>'selectAll()', 'data-toggle'=>'modal', 'data-target'=>'#loadingModal']) !!}
             <br/><br/>
-            </div>
+        
         </div>
     </div>
 </div>
