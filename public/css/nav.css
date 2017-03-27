@@ -1,0 +1,129 @@
+#header {
+    padding: 6px 0 24px 0;
+    height: auto;
+    background-color: #0e0e0e;
+}
+
+#logohead {
+    width: 98%;
+    max-width: 960px;
+    padding: 0 10px;
+    margin: 0 auto;
+}
+
+div.subsite-logos {
+    display: table;
+    height: 100%;
+    vertical-align: middle;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.main-header .subsite-logos .home-logo {
+    margin: 0 10px 0 0;
+    float: left;
+    width: 82px;
+    max-width: 82px;
+}
+
+.subsite-logos div {
+    display: table-cell;
+    height: 100%;
+    width: 100%;
+    vertical-align: middle;
+    border-collapse: collapse;
+}
+.subsite-logos .department {
+    float: left;
+    margin: 0 0 0 1px;
+    display: block;
+    font-family: 'sans-serif';
+    text-transform: uppercase;
+    font-size: 2em;
+    letter-spacing: -1.5px;
+    word-spacing: 2px;
+    width: 85%;
+    color: #A2A2A2;
+    text-decoration:none
+}
+
+
+.navbar {
+    width: auto;
+    font-size: 18px;
+    background-color: #2e2e2e;
+    font-family: 'sans-serif';
+    -webkit-font-smoothing: antialiased;
+    border-bottom: 4px solid #E6233F;
+}
+
+li.navBtn {
+    float: right;
+}
+
+.nav.navbar-nav li a {
+    color: #e7e7e7;
+}
+
+.navbar li.navBtn a {
+    padding-right: 0;
+    padding-left: 2px;
+    padding-bottom: 10px;
+    font-family: 'sans-serif';
+    font-size: 1em;
+    color: #e7e7e7;
+    text-shadow: none;
+}
+
+ul.nav li.navBtn a:hover {
+    color: #FFF;
+    background: transparent;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #454545;
+}
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: #454545;
+    border-color: #3097D1;
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    text-decoration: none;
+    color: #e7e7e7;
+    background-color: #454545;
+}
+
+.navbar-nav > li > .dropdown-menu {
+    margin-top: 0;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    background-color: #2e2e2e;
+}
+li.navBtn span {
+    padding: 4px 6px;
+    background: #3B3B3B;
+    border: 1px solid #454545;
+    font-size: .85em;
+    color: #E7E7E7;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+.subsite-logos .college {
+    float: left;
+    margin: 8px 0 0 2px;
+    display: block;
+    font-family: 'sans-serif';
+    text-transform: uppercase;
+    font-size: 1em;
+    width: 85%;
+    line-height: .3em;
+    color: #FFF;
+    text-decoration:none
+}
+.home-logo img {
+    height: auto;
+    width: auto;
+    max-width: 100%;
+}

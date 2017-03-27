@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
             <div class="panel-heading" style="text-align: center;">Welcome {{$user->name}} !</div>
-                
+
                  <div class="panel-body">
                     <!-- Carousel
                     ================================================== -->
@@ -28,7 +28,7 @@
                                 {{--<a href="http://www.nacada.ksu.edu" target="_blank">--}}
                                 <a href="http://www.unomaha.edu/college-of-information-science-and-technology/academics/advising.php" target="_blank">
                                     <img src="{{ asset('images/StudentFaculty.jpg') }}" class="img-responsive">
-                                    {{-- {{ HTML::image('/images/StudentFaculty.jpg', '', array('class' => ' img-responsive')) }} --}}                           
+                                    {{-- {{ HTML::image('/images/StudentFaculty.jpg', '', array('class' => ' img-responsive')) }} --}}
                                 </a>
                             </div>
                             <div class="item" style="text-align: center;">
@@ -59,7 +59,7 @@
                 {{-- <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
             <div class="panel-heading" style="text-align: center;"><h4>Discussions</h4></div>
-                
+
                  <div class="panel-body">
                                         <form role="form">
                         <div class="form-group">
@@ -71,7 +71,7 @@
 
                 <hr> --}}
 
-       
+
 
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -98,20 +98,20 @@
                 </div>
             </div>
             </div>
-            
+
 
            <!-- Posted Comments -->
 
 
                 @if(count($comments) > 0)
-          
-               
+
+
                     @foreach($comments as $comment)
-                   
-                    
+
+
                         @if($comment->is_active)
                             <div class="col-md-8 col-md-offset-2 well" style="margin-top: 20px;">
-                   
+
                      <!-- Comment -->
                         <a class="pull-left">
                              <img class="media-object" src=" {{ asset('images/usericon.png') }}" width='30px' height = '30px' class="img-responsive">
@@ -122,7 +122,7 @@
                             </h5>
                             <p style="padding-left: 5px;"> {{$comment->comment_text}}</p>
                         </div>
-                        
+
                         <!-- Nested Comment -->
                         @if($replyexists)
                             @foreach($comment->replies as $reply)
@@ -158,11 +158,11 @@
                         @endif
                 </div>
 
-    
+
                    @endforeach
-       
+
                     @endif
-                                  
+
 
 @endsection
 
