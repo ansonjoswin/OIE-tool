@@ -15,7 +15,7 @@
                         <div><h4>{{ $heading }}</h4></div>
                     </div>
                     <div class="panel-body">
-                        {!! Form::model($peergroup, ['class' => 'form-horizontal', 'method' => 'PATCH', 'action' => ['PeerGroupsController@update', $peergroup->peergroup_id]]) !!}
+                        {!! Form::model($peergroup, ['class'=>'form-horizontal', 'id'=>'pg_form', 'method'=>'PATCH', 'action'=>['PeerGroupsController@update', $peergroup->peergroup_id]]) !!}
                         @include('common.errors')
                         @include('common.flash')
 

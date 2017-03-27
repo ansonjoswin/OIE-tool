@@ -36,8 +36,8 @@ class PeerGroupsController extends Controller
         $this->viewData['selected_stabbr_list'] = Stabbr::pluck('desc','id')->toArray();
         $this->viewData['selected_ccbasic_list'] = Ccbasic::pluck('desc','id')->toArray();
         $this->viewData['ccbasicyearid'] = DataTable::distinct()->pluck('year')->toArray();
-        $results = School::sortByName()->pluck('name','id');
-        $this->viewData['school_ids'] = $results->toArray();
+        // $results = School::sortByName()->pluck('name','id');
+        // $this->viewData['school_ids'] = $results->toArray();
     }
 
     /*** Display list of Peer Groups ***/

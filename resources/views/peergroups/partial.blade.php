@@ -111,7 +111,7 @@
             </div>
             <div class="row" style="padding-top: 2px;">
                 <div class="col-md-8" align="center">
-                {{ Form::button('<i class="fa fa-btn fa-filter"></i>Filter', array('class'=>'btn btn-primary', 'id'=>'btnFilter')) }}
+                {{ Form::button('<i class="fa fa-btn fa-filter"></i>Filter', array('class'=>'btn btn-primary', 'id'=>'btnFilter', 'disabled'=>'disabled')) }}
                 </div>
             </div>
         </div>
@@ -125,11 +125,21 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="subject-info-box-1">
-                <label>Available Institutions <label id="dynCounter">({{count($school_ids)}})</label> </label>
+                <label>Available Institutions 
+                    <label id="dynCounter">
+                        @if(isset($school_ids)) 
+                            ({{count($school_ids)}}) 
+                        @else  
+                            (0) 
+                        @endif
+                    </label> 
+                </label>
                 <select multiple class="form-control" id="lstBox1">
+                    @if(isset($school_ids))
                     @foreach($school_ids as $key => $value)
                         <option value="{{ $key }}">{{ $value }} </option>
                     @endforeach
+                    @endif
                 </select>
             </div>
             <div class="subject-info-arrows text-center">
@@ -161,8 +171,18 @@
     </div><br>
     <div class="row">
         <div class="col-md-6 col-md-offset-3" align="center">
-          
-            {!! Form::button('<i class="fa fa-btn fa-save"></i>Save', ['type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'submit_btn', 'onClick'=>'selectAll()', 'data-toggle'=>'modal', 'data-target'=>'#loadingModal']) !!}
+            <!-- {{ Form::button('Cancel', ['class'=>'btn btn-close']) }} -->
+            <button type="button" class="btn btn-close" onclick="window.location='{{ URL::route('peergroups.index') }}'">Cancel</button>
+            @if($CRUD_Action == 'Create')
+                <?php 
+                $attr = ['type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'submit_btn', 'onClick'=>'selectAll()', 'data-toggle'=>'modal', 'data-target'=>'#loadingModal', 'disabled'=>'disabled']
+                ?>
+            @else
+                <?php 
+                $attr = ['type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'submit_btn', 'onClick'=>'selectAll()', 'data-toggle'=>'modal', 'data-target'=>'#loadingModal']
+                ?>                
+            @endif
+            {!! Form::button('<i class="fa fa-btn fa-save"></i>Save', $attr) !!}
             <br/><br/>
         
         </div>
@@ -187,11 +207,9 @@
 
 
 <script>
-    var sel_cnt = 0;
+    
 
     $(document).ready(function($){
-
-          $('cc_lbl').tooltip();
 
         $.ajaxSetup({
             headers: {
@@ -231,6 +249,28 @@
 
         });
 
+        // Enable filter button when a filter is selected
+        $("#instcat").on('change', function () {
+            toggleFilterBtn();
+        }); 
+        $("#ccbasic").on('change', function () {
+            toggleFilterBtn();
+        }); 
+        $("#ccbasicyearid").on('change', function () {
+            toggleFilterBtn();
+        }); 
+        $("#stabbr").on('change', function () {
+            toggleFilterBtn();
+        });                    
+        // Helper function to enable/disable filter button
+        function toggleFilterBtn(){
+            if( $("#instcat").val() == 0 && $("#ccbasic").val() == -9 && $("#ccbasicyearid").val() == 0 && $("#stabbr").val() == 0){
+                $("#btnFilter").attr("disabled", true);  //Disable the filter button
+            }else{
+                $("#btnFilter").removeAttr("disabled");  //Enable the filter button
+            }            
+        }
+
         // When Carnegie is selected, the Carnegie Year is defaulted
         var previous;
         $("#ccbasic").on('focus', function () {
@@ -242,31 +282,50 @@
             previous = this.value;   // Update previous value to new value
         });        
 
-        // Script for moving between Available Institutions and Selected Institutions
+        // Moving between Available Institutions and Selected Institutions
+        var maxSchoolSize = 2000;
         $('#btnRight').click(function (e) {
-            $('select').moveToListAndDelete('#lstBox1', '#lstBox2');
-            e.preventDefault();
-            updateSelCount();
+            var sel_sch_size = $("#lstBox1 :selected").length + $("#lstBox2 option").size();
+            if(sel_sch_size > maxSchoolSize){
+                alert("Maximum number of schools is " + maxSchoolSize+ ".")
+            }else{
+                $('select').moveToListAndDelete('#lstBox1', '#lstBox2');
+                e.preventDefault();
+                updateSelCount();  
+                $("#submit_btn").removeAttr("disabled");  //Enable the save button                
+            }
+
         });
-        $('#btnAllRight').click(function (e) {
-            $('select').moveAllToListAndDelete('#lstBox1', '#lstBox2');
-            e.preventDefault();
-            updateSelCount();
+        $('#btnAllRight').click(function (e) {     
+            var sel_sch_size = $("#lstBox1 option").size() + $("#lstBox2 option").size();
+            if(sel_sch_size > maxSchoolSize){
+                alert("Maximum number of schools is " + maxSchoolSize+ ".")
+            }else{             
+                $('select').moveAllToListAndDelete('#lstBox1', '#lstBox2');
+                e.preventDefault();
+                updateSelCount();
+                $("#submit_btn").removeAttr("disabled");  //Enable the save button
+            }
         });
         $('#btnLeft').click(function (e) {
             $('select').moveToListAndDelete('#lstBox2', '#lstBox1');
             e.preventDefault();
             updateSelCount();
+            if($("#lstBox2 option").size() == 0){
+                $("#submit_btn").attr("disabled", true);  //Disable the filter button
+            }
         });
         $('#btnAllLeft').click(function (e) {
             $('select').moveAllToListAndDelete('#lstBox2', '#lstBox1');
             e.preventDefault();
             updateSelCount();
+            $("#submit_btn").attr("disabled", true);  //Disable the filter button
         });
 
     });
 
     // Update the list counters
+    var sel_cnt = 0;
     function updateSelCount(){
         dyn_cnt = $('#lstBox1 option').size(); 
         $('#dynCounter').text("("+dyn_cnt+")");        
@@ -283,5 +342,6 @@
         } 
     }
 
+  
 
 </script>

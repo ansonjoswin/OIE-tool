@@ -8,7 +8,7 @@
                     <div class="panel-heading"> {{ $heading }}</div>
 
                     <div class="panel-body" style="padding-bottom: 0px;">
-                        {!! Form::open(['url' => 'peergroups', 'class' => 'form-horizontal' ]) !!}
+                        {!! Form::open(['url'=>'peergroups', 'class'=>'form-horizontal', 'id'=>'pg_form']) !!}
                         @include('common.errors')
                         @include('common.flash')
 
