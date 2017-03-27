@@ -15,27 +15,39 @@ class CreateDatatable extends Migration
     {
         Schema::create('datatable', function(Blueprint $table)
         {
-            $table->string('id');
+            $table->bigIncrements('id');
             $table->integer('school_id')->index();
+            $table->integer('year')->index();
             $table->string('school_name');
-            $table->integer('ug_headcount')->nullable();
-            $table->integer('admin_count')->nullable();
-            $table->integer('inst_count')->nullable();
-            $table->float('admin_sal')->nullable();
-            $table->float('inst_sal')->nullable();
-            $table->integer('admin_stu')->nullable();
-            $table->integer('inst_stu')->nullable();
-            $table->double('grad_rate4')->nullable();
-            $table->double('grad_rate6')->nullable();
-            $table->integer('deg_stu')->nullable();
-            $table->float('avg_sch_stu')->nullable();
-            $table->float('loan_rate')->nullable();
+            $table->integer('instruction_staff')->nullable();
+            $table->integer('instructors_per_thousand_student')->nullable();
+            $table->integer('admin_professional_staff')->nullable();
+            $table->integer('admin_professionalstaff_perthousandstudent')->nullable();
+            $table->integer('noninstruction_academicstaff')->nullable();
+            $table->integer('noninstruction_academicstaff_perthousandstudent')->nullable();
+            $table->integer('nonadmin_trade_servicestaff')->nullable();
+            $table->integer('nonadmin_tradeservicestaff_perthousandstudent')->nullable();
+            $table->string('all_instructors_staff')->nullable();
+            $table->integer('ug_student_perthousandstudent')->nullable();
+            $table->string('instructor_salarypermillion')->nullable();
+            $table->string('adminprofessionalstaff_salarypermillion')->nullable();
+            $table->string('noninstruction_academicstaff_salarypermillion')->nullable();
+            $table->string('nonadmin_tradeservicestaff_salarypermillion')->nullable();
+            $table->double('ug_average_sch_studentperay')->nullable();
+            $table->double('grad_average_sch_studentperay')->nullable();
+            $table->integer('ug_degrees_perthousand_ugstudent')->nullable();
+            $table->integer('ug_certi_perthousand_ugstudent')->nullable();
+            $table->integer('graddegree_perhundredgradstudent')->nullable();
+            $table->integer('grad_certi_perhundred_gradstudent')->nullable();
+            $table->string('bachelordegree_4yeargradrate')->nullable();
+            $table->string('bachelordegree_6yeargradrate')->nullable();
+            $table->integer('associatedegree_certi3yeargradrate')->nullable();
+            $table->string('loan_default_rate')->nullable();
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
-            $table->foreign('school_id')->references('id')->on('schools')->onUpdate('cascade')->onDelete('cascade');  
-            });
-        }
-
+            $table->foreign('school_id')->references('id')->on('schools')->onUpdate('cascade')->onDelete('cascade');
+        });
+    }
     /**
      * Reverse the migrations.
      *
@@ -43,6 +55,6 @@ class CreateDatatable extends Migration
      */
     public function down()
     {
-         Schema::drop('datatable');
+        Schema::drop('datatable');
     }
 }

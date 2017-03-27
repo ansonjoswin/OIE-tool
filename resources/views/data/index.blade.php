@@ -48,9 +48,9 @@ svg:not(:root) {
                                     </div>
                                     <div class="col-md-2">
                                     @if(isset($sel_year))
-                                        {!! Form::select('sel_year', [''=>'Select Year', '2012'=>'2012','2013'=>'2013','2014'=>'2014'], $sel_year, ['class'=>'form-control', 'required'=>'required']) !!}
+                                        {!! Form::select('sel_year', array(null=>'Select Year') + $avail_years, $sel_year, ['class'=>'form-control', 'required'=>'required']) !!}
                                     @else
-                                        {!! Form::select('sel_year', [''=>'Select Year', '2012'=>'2012','2013'=>'2013','2014'=>'2014'], null, ['class'=>'form-control', 'required'=>'required']) !!}
+                                        {!! Form::select('sel_year', array(null=>'Select Year') + $avail_years, null, ['class'=>'form-control', 'required'=>'required']) !!}
                                     @endif
                                     </div>
                                     <div class="col-md-2">

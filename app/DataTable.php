@@ -9,19 +9,42 @@ class DataTable extends Model
     //
     public $table = "datatable";
     protected $fillable=[
-    		'ug_headcount',
-            'admin_count',
-            'inst_count' ,
-            'admin_sal',
-            'inst_sal' ,
-            'admin_stu' ,
-            'inst_stu' ,
-            'grad_rate4' ,
-            'grad_rate6',
-            'deg_stu' ,
-            'avg_sch_stu' ,
-            'loan_rate'
-            ];
+    		'id',
+            'school_id',
+            'year' ,
+            'school_name',
+            'instruction_staff' ,
+            'instructors_per_thousand_student' ,
+            'admin_professional_staff' ,
+            'admin_professionalstaff_perthousandstudent' ,
+            'noninstruction_academicstaff',
+            'noninstruction_academicstaff_perthousandstudent' ,
+            'nonadmin_trade_servicestaff' ,
+            'nonadmin_tradeservicestaff_perthousandstudent',
+            'all_instructors_staff',
+            'ug_student_perthousandstudent',
+            'instructor_salarypermillion',
+            'adminprofessionalstaff_salarypermillion',
+            'noninstruction_academicstaff_salarypermillion',
+            'nonadmin_tradeservicestaff_salarypermillion',
+            'ug_average_sch_studentperay',
+            'grad_average_sch_studentperay',
+            'ug_degrees_perthousand_ugstudent',
+            'ug_certi_perthousand_ugstudent',
+            'graddegree_perhundredgradstudent',
+            'grad_certi_perhundred_gradstudent',
+            'bachelordegree_4yeargradrate',
+            'bachelordegree_6yeargradrate',
+            'associatedegree_certi3yeargradrate'
 
-            
+            ];
+    protected $primaryKey = 'id';
+    public static function getTableName() {
+        return (new static)->getTable();
+    }
+
+    public function school(){
+        return $this->belongsTo('App\DataTable');
+    }
 }
+

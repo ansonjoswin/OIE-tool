@@ -12,6 +12,7 @@ use App\School;
 use App\Instcat;
 use App\Stabbr;
 use App\Ccbasic;
+use App\DataTable;
 use Auth;
 use Session;
 use Log;
@@ -34,9 +35,9 @@ class PeerGroupsController extends Controller
         $this->viewData['selected_instcat_list'] = Instcat::pluck('desc','id')->toArray();
         $this->viewData['selected_stabbr_list'] = Stabbr::pluck('desc','id')->toArray();
         $this->viewData['selected_ccbasic_list'] = Ccbasic::pluck('desc','id')->toArray();
-        $this->viewData['ccbasicyearid'] = [2014];
-        $results = School::sortByName()->pluck('name','id');
-        $this->viewData['school_ids'] = $results->toArray();
+        $this->viewData['ccbasicyearid'] = DataTable::distinct()->pluck('year')->toArray();
+        // $results = School::sortByName()->pluck('name','id');
+        // $this->viewData['school_ids'] = $results->toArray();
     }
 
     /*** Display list of Peer Groups ***/
