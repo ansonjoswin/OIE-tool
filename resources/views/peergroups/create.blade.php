@@ -3,18 +3,17 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading"> {{ $heading }}</div>
 
-                    <div class="panel-body">
-                        {!! Form::open(['url' => 'peergroups', 'class' => 'form-horizontal' ]) !!}
+                    <div class="panel-body" style="padding-bottom: 0px;">
+                        {!! Form::open(['url'=>'peergroups', 'class'=>'form-horizontal', 'id'=>'pg_form']) !!}
                         @include('common.errors')
                         @include('common.flash')
 
                         @include ('peergroups.partial', ['CRUD_Action' => 'Create'])
                         {!! Form::close() !!}
-
                     </div>
                 </div>
             </div>

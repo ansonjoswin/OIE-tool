@@ -2,9 +2,6 @@
  
  @section('content')
 
-{{--  <script src="{{ URL::asset('js/jquery.selectlistactions.js') }}"></script>
-<link rel="stylesheet" href="{{ URL::asset('css/site.css') }}"> --}}
-
  <style type="text/css">
  /* The switch - the box around the slider */
         .switchround {
@@ -78,7 +75,7 @@
 
 <meta name="csrf-token" content="{{ csrf_token() }}"> 
  <div class="container">
-    {!! Form::open(['method' => 'POST','id'=>'instcat','url'=>['datadisplay']]) !!}
+    {!! Form::open(['method' => 'POST','id'=>'peergroup','url'=>['datadisplay']]) !!}
         <div class="form-group pull-right">
             <label>PeerGroup Category</label><br>
             <select name="peergroup_id" onchange="this.form.submit()">
@@ -91,7 +88,16 @@
         </div>
     {!! Form::close() !!}
 </div>
-
+ {{-- <div class="container">
+    {!! Form::open(['method' => 'POST','id'=>'export','url'=>['getexport']]) !!}
+        <div class="form-group pull-right">
+            <label>Export to Excel</label><br>
+            <input type="hidden" name="peergroup_id" onchange="this.form.submit()">
+            <a href="{{ URL::to('getExport') }}" class="btn " style="color:black">
+                        <span style="margin: 5px 5px 0px 0px;" class="glyphicon glyphicon-save" ></span>Export Data Table</a>
+        </div>
+    {!! Form::close() !!}
+</div> --}}
 
 @if($displayTable)
 <div class="container" style="padding-top:70px;">
@@ -109,7 +115,7 @@
             <div id="dataToggle1" class="tab-pane fade in active">
                 <div class="panel panel-default">
                     <div class="panel-heading" > 
-                        <a href="{{ URL::to('getExport') }}" class="btn " style="color:black">
+                     <a href="{{ URL::to('getExport') }}" class="btn " style="color:black">
                         <span style="margin: 5px 5px 0px 0px;" class="glyphicon glyphicon-save" ></span>Export Data Table</a>
                     </div>
                     <div class="panel-body">
@@ -155,11 +161,42 @@
                                         <th style="font-size:10px;">
                                         Loan Default Rate
                                         </th>
+                                        <th style="font-size:10px;">
+                                        Loan Default Rate
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Loan Default Rate
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Loan Default Rate
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Loan Default Rate
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Loan Default Rate
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Loan Default Rate
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Loan Default Rate
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Loan Default Rate
+                                        </th><th style="font-size:10px;">
+                                        Loan Default Rate
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Loan Default Rate
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Loan Default Rate
+                                        </th>
                                     </thead>
                                     <tbody> <!-- Table Body -->
                                         @foreach($filtervalues as $datatable)
                                             <tr>
-
                                                 <td class="table-text" style="font-size:10px;">
                                                     {{$datatable['school_name']}}
                                                 </td>
@@ -199,6 +236,45 @@
                                                  <td class="table-text" style="font-size:10px;">
                                                     {{ $datatable['loan_rate'] }} 
                                                  </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
+                                                     <td class="table-text" style="font-size:10px;">
+                                                    {{ $datatable['loan_rate'] }} 
+                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -208,7 +284,100 @@
                     </div>
                 </div>
             <div id="dataToggle2" class="tab-pane fade">
-                HI
+            <div class="panel panel-default">
+            <div class="panel-body">
+              @include('common.flash')
+                <div class="table-responsive">
+                    <table class="table table-condensed cds-datatable" id="table1">
+                      <thead> <!-- Table Headings -->
+                      <th style="font-size:10px;">
+                                        School Name
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Undergrad HeadCount
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Admin Count
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Instructor Count
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Admin Salary per Million
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Instructor Salary per Million
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Admins per Thousand Students
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Instructors per Thousand Students
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Graduation Rate (4 year)
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Graduation Rate (6 year)
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Degrees per Thousand Students</th>
+                                        <th style="font-size:10px;">
+                                        Average SCH per Student per AY
+                                        </th>
+                                        <th style="font-size:10px;">
+                                        Loan Default Rate
+                                        </th>
+                        </thead>
+                        <tbody>
+                           @foreach($filtervalues as $datatable)
+                                            <tr>
+
+                                                <td class="table-text" style="font-size:10px;"></td>
+                                                <td class="table-text" style="font-size:10px;">
+                                                    
+                                                </td>
+                                                 <td class="table-text" style="font-size:10px;">
+                                                    
+                                                 </td>
+                                                 <td class="table-text" style="font-size:10px;">
+                                                    
+                                                 </td>
+                                                 <td class="table-text" style="font-size:10px;">
+                                                    
+                                                 </td>
+                                                 <td class="table-text" style="font-size:10px;">
+                                                     
+                                                 </td>
+                                                 <td class="table-text" style="font-size:10px;">
+                                                     
+                                                 </td>
+                                                 <td class="table-text" style="font-size:10px;">
+                                                    
+                                                 </td>
+                                                 <td class="table-text" style="font-size:10px;">
+                                                      
+                                                 </td>
+                                                 <td class="table-text" style="font-size:10px;">
+                                                  
+                                                 </td>
+                                                 <td class="table-text" style="font-size:10px;">
+                                                   
+                                                 </td>
+                                                 <td class="table-text" style="font-size:10px;">
+                                                      
+                                                 </td>
+                                                 <td class="table-text" style="font-size:10px;">
+                                                    
+                                                 </td>
+                                            </tr>
+                                        @endforeach 
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+            </div>
             </div>
             </div>
         </div>

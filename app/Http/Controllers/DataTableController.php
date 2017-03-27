@@ -11,6 +11,7 @@ use App\User;
 use App\School;
 use App\PeerGroup;
 use App\School_PeerGroup;
+use Excel;
 
 
 use App\Http\Requests\SchoolRequest;
@@ -43,6 +44,7 @@ class DataTableController extends Controller
         
         $filtervalues = DataTable::all();
         $displayTable = false;
+        $sum=0;
     	$peergroup_list = PeerGroup::pluck('peergroup_name','peergroup_id');
         $peergroup_school=PeerGroup::all();
         //$peergroup_school=PeerGroup::find(1);
@@ -56,26 +58,44 @@ class DataTableController extends Controller
         //     echo($peergroup_school->school()->pluck('school_id'));
         //     //dd($peergroup_school->school()->pluck('name'));  
 
-        return view('data.tableindex',compact('datatables','peergroup_list','peergroup_school','filtervalues','displayTable'));
+        return view('data.tableindex',compact('datatables','peergroup_list','peergroup_school','filtervalues','displayTable','sum'));
         
     }  
 
      public function datadisplay(Request $request)
      {
         $filtervalues = [];
+        //$check=[];
         $displayTable = true;
+        $count=0;
+        //$check='none';
         $peergroup_list = PeerGroup::pluck('peergroup_name','peergroup_id');
         $peergroup_school=PeerGroup::all();
         $selected_peergroup = PeerGroup::where('peergroup_id', $request['peergroup_id'])->first();
         //dd($selected_peergroup);
         $selected_school_list = $selected_peergroup->school()->pluck('name','school_id');
         //dd($peergroup_list);
-        
+        $sum=$selected_peergroup->school()->count();
+        //dd($sum);
         foreach ($selected_school_list as $school_list_id => $school_list_name) {
             array_push($filtervalues, DataTable::where('school_id', $school_list_id)->first());
-        }
-
-        //dd($filtervalues[0]);
-        return view('data.tableindex',compact('datatables','peergroup_list','peergroup_school','filtervalues','displayTable'));
+                   }
+// dd($filtervalues);
+                   //if($export)
+     //return getExport($filtervalues);
+     return view('data.tableindex',compact('datatables','peergroup_list','peergroup_school','filtervalues','displayTable','sum'));
      }
+
+     public function getExport(){
+
+        
+        $export = DataTable::find(1);
+               
+        Excel::create("UNO's Summary Data Table", function($excel) use($export){
+         $excel->sheet('Summary Table', function($sheet) use($export){
+             $sheet->fromArray($export);
+         });
+            
+        })->export('xlsx');
+    }
 }
