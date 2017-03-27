@@ -70,7 +70,7 @@ class TestDataController extends Controller
         $this->viewData['xaxis_options'] = $this->xaxis_options;
         $this->viewData['yaxis_options'] = $this->yaxis_options;
 
-                //Get selected resource parameter
+        //Get selected resource parameter
         $sel_xaxis = 'cohort_status8';
         $this->viewData['sel_xaxis'] = $sel_xaxis;
 
@@ -83,7 +83,7 @@ class TestDataController extends Controller
         
         $sel_school_ids = PeerGroup::find($sel_pgid)->school()->pluck('school_id')->toArray();
 
-          $this->viewData['sel_pgid'] = $sel_pgid;
+          $this->viewData['sel_pgid'] = $sel_pgid->toArray();
         $test_data = Student::whereIn('school_id',$sel_school_ids)->get();
 
 

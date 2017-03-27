@@ -53,7 +53,7 @@ label {
                     <div class="panel-heading">
                         <div><h4>Data Visualization</h4></div>
                     </div>                   
-                                       <div class="panel-body">
+                    <div class="panel-body">
                         {!! Form::open(['url'=>'/datarefresh', 'class'=>'form-horizontal']) !!}
                         <div>
                             <div class="col-md-3">
