@@ -20,14 +20,14 @@ class TestDataController extends Controller
  public function __construct()
     {
         //Defines resource drop down list
-        $xaxis_options = collect([''=>'',
+        $xaxis_options = collect([''=>'Resource',
             'cohort_status8'=>'cohort_status8',
             'cohort_status13'=>'cohort_status13'
         ]);
         $this->xaxis_options = $xaxis_options;
 
         //Defines performance drop down list
-        $yaxis_options = collect([''=>'',
+        $yaxis_options = collect([''=>'Performance',
             'cohort_status8'=>'cohort_status8',
             'cohort_status13'=>'cohort_status13'
         ]);
