@@ -13,7 +13,6 @@
 
 div.subsite-logos {
     display: table;
-    height: 100%;
     vertical-align: middle;
     width: 100%;
     border-collapse: collapse;
@@ -26,13 +25,6 @@ div.subsite-logos {
     max-width: 82px;
 }
 
-.subsite-logos div {
-    display: table-cell;
-    height: 100%;
-    width: 100%;
-    vertical-align: middle;
-    border-collapse: collapse;
-}
 .subsite-logos .department {
     float: left;
     margin: 0 0 0 1px;
