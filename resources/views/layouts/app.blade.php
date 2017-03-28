@@ -86,6 +86,10 @@
    
 </style>
 
+<!-- Footer -->
+{{-- @yield('footer'); --}}
+@yield('footer');
+
 <script src="{{ URL::asset('js/all.js') }}"></script>
 <script src="{{ URL::asset('js/bootstrap-typeahead.min.js') }}"></script>
 <script src="{{ URL::asset('js/jquery.ui.widget.js') }}"></script>
@@ -96,7 +100,7 @@
 <!-- Scripts -->
 @yield('scripts')
 
-<!-- Footer --><!-- Navigation Bar -->
+<!-- Footer -->
 @include('common.footer')
 
 </body>
