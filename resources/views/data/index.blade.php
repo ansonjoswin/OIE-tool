@@ -86,6 +86,10 @@ svg:not(:root) {
             </div>
         </div>
     </div>
+
+    <div class="container">
+        @include ('data.data_tabular')
+    </div>
 @endsection
 
 @section('footer')
