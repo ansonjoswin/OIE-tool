@@ -83,11 +83,14 @@ class TestDataController extends Controller
         
         $sel_school_ids = PeerGroup::find($sel_pgid)->school()->pluck('school_id')->toArray();
 
-          $this->viewData['sel_pgid'] = $sel_pgid->toArray();
+        $this->viewData['sel_pgid'] = $sel_pgid->toArray();
         $test_data = Student::whereIn('school_id',$sel_school_ids)->get();
 
-
         $this->viewData['test_data'] = json_encode($test_data);
+
+        //Get the aggregated data for the tabular view
+        $filtervalues = DataTable::all()->whereIn('school_id',$sel_school_ids);
+        $this->viewData['filtervalues'] = $filtervalues;
 
         //Call view
         return view('data.test',$this->viewData);
@@ -122,7 +125,11 @@ class TestDataController extends Controller
         $sel_pgid = $request['sel_pgid'];
         $sel_school_ids = PeerGroup::find($sel_pgid)->school()->pluck('school_id')->toArray();
 
+        //Get the aggregated data for the tabular view
+        $filtervalues = DataTable::all()->whereIn('school_id',$sel_school_ids);
+        $this->viewData['filtervalues'] = $filtervalues;
       
+        //Call view
         $this->viewData['sel_pgid'] = $sel_pgid;
 
 /*******************************This table is not available in the final migration**************/
