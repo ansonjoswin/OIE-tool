@@ -35,7 +35,8 @@ class PeerGroupsController extends Controller
         $this->viewData['selected_instcat_list'] = Instcat::pluck('desc','id')->toArray();
         $this->viewData['selected_stabbr_list'] = Stabbr::pluck('desc','id')->toArray();
         $this->viewData['selected_ccbasic_list'] = Ccbasic::pluck('desc','id')->toArray();
-        $this->viewData['ccbasicyearid'] = DataTable::distinct()->pluck('year')->toArray();
+        $this->viewData['ccbasicyearid'] = DataTable::distinct()->pluck('year', 'year')->toArray();
+        // dd(DataTable::distinct()->pluck('year','year as yr_val')->toArray());
         // $results = School::sortByName()->pluck('name','id');
         // $this->viewData['school_ids'] = $results->toArray();
     }

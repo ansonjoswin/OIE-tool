@@ -124,7 +124,7 @@ Route::resource('failed_jobs', 'Failed_jobsController');
 
 /**AJAX for Institution filter (Peer Group create/edit) - called from peergroups/partial**/
 Route::get('/this', function() {
-	Log::info('This is the get route and i');
+Log::info('This is the get route and i');
    if(Request::ajax()){
 //       return('in ajax request ');
        	$selected_instcat_list = Input::get('selected_instcat_list');
