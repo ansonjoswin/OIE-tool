@@ -50,6 +50,7 @@ Route::get('laravel-version', function()
     Route::post('schools/generateSankey', 'SchoolsController@generateReport');
     Route::resource('schools', 'SchoolsController');
 
+
 //    Route::delete('/comments/{comment}', 'CommentsController@destroy');
 //    Route::resource('comments', 'CommentsController');
 //    Route::get('comments/{student}/addforstudent', ['as' => 'comments.addforstudent',

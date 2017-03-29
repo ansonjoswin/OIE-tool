@@ -119,8 +119,13 @@ class CreateSchoolTable extends Migration
             //
             $table->bigIncrements('id');
             $table->integer('year');
-            $table->string('core_expenses_source');
-            $table->integer('core_expenses');
+            $table->integer('instruction');
+            $table->integer('research');
+            $table->integer('public_service');
+            $table->integer('academic_support');
+            $table->integer('institutional_support');
+            $table->integer('student_services');
+            $table->integer('other_expenses');
             $table->bigInteger('school_id');
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
@@ -134,8 +139,13 @@ class CreateSchoolTable extends Migration
             //
             $table->bigIncrements('id');
             $table->integer('year');
-            $table->string('core_revenue_source');
-            $table->integer('core_revenue');
+            $table->integer('tution_and_fees');
+            $table->integer('state_appropriations');
+            $table->integer('local_appropriations');
+            $table->integer('government_grants_and_contracts');
+            $table->integer('private_gifts_grants_and_contracts');
+            $table->integer('investment_return');
+            $table->integer('other_revenues');
             $table->bigInteger('school_id');
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
@@ -276,6 +286,7 @@ class CreateSchoolTable extends Migration
             $table->foreign('school_id')->references('school_id')->on('schools');
             $table->primary(['year'],['school_id']);
         });
+
 
         Schema::create('students', function (Blueprint $table) {
             $table->bigIncrements('id');

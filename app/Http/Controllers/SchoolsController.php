@@ -19,7 +19,6 @@ use Session;
 use Log;
 use DB;
 
-
 class SchoolsController extends Controller
 {
     //
@@ -146,6 +145,7 @@ class SchoolsController extends Controller
         return view('schools/generate', $this->viewData);
     }
 
+
     public function generateSankey(Request $request)
     {
         $schools = $request->input('schoollist');
@@ -202,43 +202,102 @@ class SchoolsController extends Controller
         $schools = $request->input('schoollist');
         $year = $request['term_year'];
 
-        $row = [];
+        $node = [];
         $link = [];
-        $currentschoolindex = 0;
-        $currentrevenueindex = 0;
-        $currentexpenseindex = 0;
-        $currentnodeindex = 0;
+        $currentSchoolIndex = 0;
+        $currentNodeindex = 0;
+        $currentExpenseIndex = 0;
+        $currentRevenueIndex = 0;
         $currentlinkindex = 0;
-        $total_expense = 0;
-        $total_revenue = 0;
+        $currentInstructionindex = 0;
+        $currentResearchIndex = 0;
+        $currentPubServiceIndex = 0;
+        $currentAcadSupportIndex = 0;
+        $currentInstitutionalSupportIndex = 0;
+        $currentStudentServicesIndex = 0;
+        $currentOtherExpensesIndex = 0;
+        $currentTutionFeesindex = 0;
+        $currentStateAppropriationindex = 0;
+        $currentLocalAppropriationindex = 0;
+        $currentGovtGrantindex = 0;
+        $currentPrivateGrantindex = 0;
+        $currentInvestmentReturnindex = 0;
+        $currentOtherRevenueindex = 0;
+        $totalExpense = 0;
+        $totalRevenue = 0;
 
-        foreach($schools as $school) {
+        foreach ($schools as $school) {
             $currentSchool = School::find($school);
-            $currentschoolindex = $currentnodeindex;
-            $row[$currentnodeindex++] = ['node' => $currentschoolindex, 'name' => $currentSchool->school_name];
+            $currentschoolindex = $currentNodeindex;
+            $node[$currentNodeindex++] = ['node' => $currentschoolindex, 'name' => $currentSchool->school_name];
             $expenses = $currentSchool->expense()->where('year', $year)->get();
             $revenues = $currentSchool->revenue()->where('year', $year)->get();
-            foreach($expenses as $exp) {
-                if($currentexpenseindex == 0) {
-                    $currentexpenseindex = $currentnodeindex;
-                    $row[$currentnodeindex++] = ['node' => $currentexpenseindex, 'name' => 'Expenses'];
+            foreach($expenses as $expense) {
+                if ($currentExpenseIndex == 0) {
+                    $currentExpenseIndex = $currentNodeindex;
+                    $node[$currentNodeindex++] = ['node' => $currentExpenseIndex, 'name' => 'Expenses'];
+                    $currentInstructionindex = $currentNodeindex;
+                    $node[$currentNodeindex++] = ['node' => $currentInstructionindex, 'name' => 'Instruction'];
+                    $currentResearchIndex = $currentNodeindex;
+                    $node[$currentNodeindex++] = ['node' => $currentResearchIndex, 'name' => 'Research'];
+                    $currentPubServiceIndex = $currentNodeindex;
+                    $node[$currentNodeindex++] = ['node' => $currentPubServiceIndex, 'name' => 'Public Service'];
+                    $currentAcadSupportIndex = $currentNodeindex;
+                    $node[$currentNodeindex++] = ['node' => $currentAcadSupportIndex, 'name' => 'Academic Support'];
+                    $currentInstitutionalSupportIndex = $currentNodeindex;
+                    $node[$currentNodeindex++] = ['node' => $currentInstitutionalSupportIndex, 'name' => 'Institutional Support'];
+                    $currentStudentServicesIndex = $currentNodeindex;
+                    $node[$currentNodeindex++] = ['node' => $currentStudentServicesIndex, 'name' => 'Student Services'];
+                    $currentOtherExpensesIndex = $currentNodeindex;
+                    $node[$currentNodeindex++] = ['node' => $currentOtherExpensesIndex, 'name' => 'Other Expenses'];
                 }
-                $total_expense += $exp->core_expenses;
-            }
-            $link[$currentlinkindex++] = ['source' => $currentschoolindex, 'target' => $currentexpenseindex, 'value' => $total_expense];
+                $totalExpense = $expense->instruction + $expense->research + $expense->public_service /*+$expense->academic_support +
+                    $expense->institutional_support + $expense->student_services + $expense->other_expenses*/;
 
-            foreach($revenues as $rev) {
-                if($currentrevenueindex == 0) {
-                    $currentrevenueindex = $currentnodeindex;
-                    $row[$currentnodeindex++] = ['node' => $currentrevenueindex, 'name' => 'Revenues'];
-                }
-                $total_revenue += $rev->core_revenue;
+                $link[$currentlinkindex++] = ['source' => $currentschoolindex, 'target' => $currentExpenseIndex, 'value' => $totalExpense];
+                $link[$currentlinkindex++] = ['source' => $currentExpenseIndex, 'target' => $currentInstructionindex, 'value' => $expense->instruction];
+                $link[$currentlinkindex++] = ['source' => $currentExpenseIndex, 'target' => $currentResearchIndex, 'value' => $expense->research];
+                $link[$currentlinkindex++] = ['source' => $currentExpenseIndex, 'target' => $currentPubServiceIndex, 'value' => $expense->public_service];
+                $link[$currentlinkindex++] = ['source' => $currentExpenseIndex, 'target' => $currentAcadSupportIndex, 'value' => $expense->academic_support];
+                $link[$currentlinkindex++] = ['source' => $currentExpenseIndex, 'target' => $currentInstitutionalSupportIndex, 'value' => $expense->institutional_support];
+                $link[$currentlinkindex++] = ['source' => $currentExpenseIndex, 'target' => $currentStudentServicesIndex, 'value' => $expense->student_services];
+                $link[$currentlinkindex++] = ['source' => $currentExpenseIndex, 'target' => $currentOtherExpensesIndex, 'value' => $expense->other_expenses];
             }
-            $link[$currentlinkindex++] = ['source' => $currentschoolindex, 'target' => $currentrevenueindex, 'value' => $total_revenue];
-        }
+            foreach ($revenues as $revenue) {
+                if ($currentRevenueIndex == 0) {
+                    $currentRevenueIndex = $currentNodeindex;
+                    $node[$currentNodeindex++] = ['node' => $currentRevenueIndex, 'name' => 'Revenues'];
+                    $currentTutionFeesindex = $currentNodeindex;
+                    $node[$currentNodeindex++] = ['node' => $currentTutionFeesindex, 'name' => 'Tution and Fees'];
+                    $currentStateAppropriationindex = $currentNodeindex;
+                    $node[$currentNodeindex++] = ['node' => $currentStateAppropriationindex, 'name' => 'State Appropriation'];
+                    $currentLocalAppropriationindex = $currentNodeindex;
+                    $node[$currentNodeindex++] = ['node' => $currentLocalAppropriationindex, 'name' => 'Local Appropriation'];
+                    $currentGovtGrantindex = $currentNodeindex;
+                    $node[$currentNodeindex++] = ['node' => $currentGovtGrantindex, 'name' => 'Government Grant and Contracts'];
+                    $currentPrivateGrantindex = $currentNodeindex;
+                    $node[$currentNodeindex++] = ['node' => $currentPrivateGrantindex, 'name' => 'Private Grant and Contracts'];
+                    $currentInvestmentReturnindex = $currentNodeindex;
+                    $node[$currentNodeindex++] = ['node' => $currentInvestmentReturnindex, 'name' => 'Investment Return'];
+                    $currentOtherRevenueindex = $currentNodeindex;
+                    $node[$currentNodeindex++] = ['node' => $currentOtherRevenueindex, 'name' => 'Other Revenues'];
+                }
+                $totalRevenue = $revenue->tution_and_fees + $revenue->state_appropriations + $revenue->local_appropriations + $revenue->government_grants_and_contracts +
+                    $revenue->private_gifts_grants_and_contracts + $revenue->investment_return + $revenue->other_revenues;
+
+                $link[$currentlinkindex++] = ['source' => $currentschoolindex, 'target' => $currentRevenueIndex, 'value' => $totalRevenue];
+                $link[$currentlinkindex++] = ['source' => $currentRevenueIndex, 'target' => $currentTutionFeesindex, 'value' => $revenue->tution_and_fees];
+                $link[$currentlinkindex++] = ['source' => $currentRevenueIndex, 'target' => $currentStateAppropriationindex, 'value' => $revenue->state_appropriations];
+                $link[$currentlinkindex++] = ['source' => $currentRevenueIndex, 'target' => $currentLocalAppropriationindex, 'value' => $revenue->local_appropriations];
+                $link[$currentlinkindex++] = ['source' => $currentRevenueIndex, 'target' => $currentGovtGrantindex, 'value' => $revenue->government_grants_and_contracts];
+                $link[$currentlinkindex++] = ['source' => $currentRevenueIndex, 'target' => $currentPrivateGrantindex, 'value' => $revenue->private_gifts_grants_and_contracts];
+                $link[$currentlinkindex++] = ['source' => $currentRevenueIndex, 'target' => $currentInvestmentReturnindex, 'value' => $revenue->investment_return];
+                $link[$currentlinkindex++] = ['source' => $currentRevenueIndex, 'target' => $currentOtherRevenueindex, 'value' => $revenue->other_revenues];
+            }
+            }
 
         $nodeArray = [];
-        $nodeArray = ["nodes" => $row, "links" => $link];
+        $nodeArray = ["nodes" => $node, "links" => $link];
         return $nodeArray;
     }
 }
