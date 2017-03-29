@@ -64,6 +64,7 @@ abstract class CsvDataSeeder extends Seeder
         $Csv_header_array = [];
         $mapping = $this->mapping ?: [];
         $offset = $this->offset_rows;
+
         while ( ($row = fgetcsv($handle, 0, $deliminator)) !== FALSE )
         {
             // Offset the specified number of rows

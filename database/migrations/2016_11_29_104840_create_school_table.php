@@ -115,12 +115,11 @@ class CreateSchoolTable extends Migration
         });
 
 
-        Schema::create('finance', function (Blueprint $table) {
+        Schema::create('expenses', function (Blueprint $table) {
             //
-            $table->integer('year')->unique();
-            $table->string('core_revenue_source_type');
-            $table->integer('core_revenue');
-            $table->string('core_expenses_source_type');
+            $table->bigIncrements('id');
+            $table->integer('year');
+            $table->string('core_expenses_source');
             $table->integer('core_expenses');
             $table->bigInteger('school_id');
             $table->string('created_by')->default('System');
@@ -128,9 +127,22 @@ class CreateSchoolTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('school_id')->references('school_id')->on('schools');
-            $table->primary(['year'],['school_id']);
         });
 
+
+        Schema::create('revenues', function (Blueprint $table) {
+            //
+            $table->bigIncrements('id');
+            $table->integer('year');
+            $table->string('core_revenue_source');
+            $table->integer('core_revenue');
+            $table->bigInteger('school_id');
+            $table->string('created_by')->default('System');
+            $table->string('updated_by')->default('System');
+            $table->timestamps();
+            $table->softDeletes();
+            $table->foreign('school_id')->references('school_id')->on('schools');
+        });
 
         Schema::create('completions', function (Blueprint $table) {
             //
@@ -266,63 +278,26 @@ class CreateSchoolTable extends Migration
         });
 
         Schema::create('students', function (Blueprint $table) {
-            $table->integer('year')->unique();
-            $table->bigInteger('school_id')->unique();
+            $table->bigIncrements('id');
+            $table->integer('year');
+            $table->string('degree_type');
+            $table->bigInteger('total');
+            $table->bigInteger('men');
+            $table->bigInteger('women');
+            $table->bigInteger('part_time_total');
+            $table->bigInteger('part_time_men');
+            $table->bigInteger('part_time_women');
+            $table->bigInteger('full_time_total');
+            $table->bigInteger('full_time_men');
+            $table->bigInteger('full_time_women');
+            $table->bigInteger('school_id');
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('school_id')->references('school_id')->on('schools');
-            $table->primary(['year'],['school_id']);
         });
 
-        Schema::create('all_students', function (Blueprint $table) {
-            $table->integer('year')->unique();
-            $table->string('degree_type');
-            $table->bigInteger('total');
-            $table->bigInteger('men');
-            $table->bigInteger('women');
-            $table->bigInteger('school_id');
-            $table->string('created_by')->default('System');
-            $table->string('updated_by')->default('System');
-            $table->timestamps();
-            $table->softDeletes();
-            $table->foreign('school_id')->references('school_id')->on('students');
-            $table->foreign('year')->references('year')->on('students');
-            $table->primary(['year'],['school_id']);
-        });
-
-        Schema::create('part_time_students', function (Blueprint $table) {
-            $table->integer('year')->unique();
-            $table->string('degree_type');
-            $table->bigInteger('total');
-            $table->bigInteger('men');
-            $table->bigInteger('women');
-            $table->bigInteger('school_id');
-            $table->string('created_by')->default('System');
-            $table->string('updated_by')->default('System');
-            $table->timestamps();
-            $table->softDeletes();
-            $table->foreign('school_id')->references('school_id')->on('students');
-            $table->foreign('year')->references('year')->on('students');
-            $table->primary(['year'],['school_id']);
-        });
-
-        Schema::create('full_time_students', function (Blueprint $table) {
-            $table->integer('year')->unique();
-            $table->string('degree_type');
-            $table->bigInteger('total');
-            $table->bigInteger('men');
-            $table->bigInteger('women');
-            $table->bigInteger('school_id');
-            $table->string('created_by')->default('System');
-            $table->string('updated_by')->default('System');
-            $table->timestamps();
-            $table->softDeletes();
-            $table->foreign('school_id')->references('school_id')->on('students');
-            $table->foreign('year')->references('year')->on('students');
-            $table->primary(['year'],['school_id']);
-        });
 
         Schema::create('loan_default_rate', function (Blueprint $table) {
             $table->integer('year')->unique();
@@ -376,7 +351,8 @@ class CreateSchoolTable extends Migration
         Schema::drop('test_scores');
         Schema::drop('student_financial_aid');
         Schema::drop('student_charges');
-        Schema::drop('finance');
+        Schema::drop('expenses');
+        Schema::drop('revenues');
         Schema::drop('completions');
         Schema::drop('admission');
         Schema::drop('graduation');
@@ -385,11 +361,8 @@ class CreateSchoolTable extends Migration
         Schema::drop('employee_salary');
         Schema::drop('net_price_scholarship_aid');
         Schema::drop('net_price_title-IV_aid');
-        Schema::drop('all_students');
-        Schema::drop('part_time_students');
-        Schema::drop('full_time_students');
-        Schema::drop('loan_default_rate');
         Schema::drop('students');
+        Schema::drop('loan_default_rate');
         Schema::drop('peer_group');
         Schema::drop('schools');
         Schema::drop('maps');

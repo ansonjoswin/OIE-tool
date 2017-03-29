@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Log;
+use App\PartTimeStudent;
 
 /**
  * Class User
@@ -20,5 +21,20 @@ class School extends Model
     protected $primaryKey = 'school_id';
     public static function getTableName() {
         return (new static)->getTable();
+    }
+
+    public function Student()
+    {
+        return $this->hasMany('App\Student');
+    }
+
+    public function revenue()
+    {
+        return $this->hasMany('App\Revenue');
+    }
+
+    public function expense()
+    {
+        return $this->hasMany('App\Expense');
     }
 }

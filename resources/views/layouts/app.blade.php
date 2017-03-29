@@ -76,6 +76,6 @@
     @yield('scripts')
 
     <!-- Footer -->
-    @yield('footer');
+    @yield('footer')
 </body>
 </html>

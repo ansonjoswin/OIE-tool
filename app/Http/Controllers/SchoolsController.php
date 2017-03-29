@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\AllStudent;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Permission;
 use App\Role;
 use App\School;
+use App\PartTimeStudent;
+use App\FullTimeStudent;
 use App\Http\Requests\SchoolRequest;
 
 
 use Auth;
 use Session;
 use Log;
+use DB;
 
 
 class SchoolsController extends Controller
@@ -24,10 +28,12 @@ class SchoolsController extends Controller
         $this->middleware('role:admin');
 
         $this->user = Auth::user();
+        $this->schools = School::all();
         $this->list_schools = School::lists('school_name', 'school_id');
         $this->heading = "Schools";
+        $this->vizType = ['students' => 'Student Report', 'finance' => 'Finance Report' ];
 
-        $this->viewData = [ 'user' => $this->user, 'list_schools' => $this->list_schools, 'heading' => $this->heading ];
+        $this->viewData = [ 'school' => '', 'schools' => $this->schools, 'list_schools' => $this->list_schools, 'heading' => $this->heading, 'vizType' => $this->vizType];
     }
 
     public function index()
@@ -46,6 +52,7 @@ class SchoolsController extends Controller
         $this->viewData['school'] = $object;
         $this->viewData['heading'] = "View School: ".$object->school_name;
 
+        dd("Sachin");
         return view('schools.show', $this->viewData);
     }
 
@@ -55,6 +62,7 @@ class SchoolsController extends Controller
         $this->viewData['heading'] = "New School";
 
         return view('schools.create', $this->viewData);
+
     }
 
     public function store(SchoolRequest $request)
@@ -64,7 +72,7 @@ class SchoolsController extends Controller
         $this->populateCreateFields($input);
 
         $object = School::create($input);
-      //  $this->syncPermissions($object, $request->input('permissionlist'));
+
         Session::flash('flash_message', 'School successfully added!');
         Log::info('SchoolsController.store - End: '.$object->id.'|'.$object->name);
 
@@ -114,17 +122,123 @@ class SchoolsController extends Controller
         return redirect('/schools');
     }
 
-    /**
-     * Sync up the list of permissions for the given role record.
-     *
-     * @param  User  $role
-     * @param  array  $permissions (id)
-     */
-    /*private function syncPermissions(Role $role, array $permissions)
+    public function generate()
     {
-        Log::info('RolesController.syncPermissions: Start: '.$role->name);
-        // ToDo: At somepoint need to update the timestamps and created_by/updated_by fields on the pivot table
-        $role->perms()->sync($permissions);
-//        $user->roles()->sync([$roles => ['created_by' => Auth::user()->name, 'updated_by' => Auth::user()->name]]);
-    }*/
+        $this->viewData['heading'] = 'Generate Report';
+        $row = [];
+        $link = [];
+        $nodeArray = ["nodes" => $row, "links" => $link];
+        $this->viewData['nodeArray'] = $nodeArray;
+
+        return view('schools/generate', $this->viewData);
+    }
+
+    public function generateReport(Request $request)
+    {
+        $nodeArray = [];
+        $report_type = $request['report_type'];
+        if($report_type == 'students') {
+            $nodeArray = $this->generateSankey($request);
+        } elseif ($report_type == 'finance') {
+            $nodeArray = $this->generateFinanceSankey($request);
+        }
+        $this->viewData['nodeArray'] = $nodeArray;
+        return view('schools/generate', $this->viewData);
+    }
+
+    public function generateSankey(Request $request)
+    {
+        $schools = $request->input('schoollist');
+        $year = $request['term_year'];
+
+        $node = [];
+        $link = [];
+        $currentschoolindex = 0;
+        $currentptsindex = 0;
+        $currentftsindex = 0;
+        $currentallstudentindex = 0;
+        $currentmenindex = 0;
+        $currentwomenindex = 0;
+        $currentnodeindex = 0;
+        $currentlinkindex = 0;
+        foreach($schools as $school) {
+            $currentSchool = School::find($school);
+            $currentschoolindex = $currentnodeindex;
+            $node[$currentnodeindex++] = ['node' => $currentschoolindex, 'name' => $currentSchool->school_name];
+            $students = $currentSchool->Student()->where('year', $year)->get();
+            foreach($students as $student) {
+                if($currentptsindex == 0) {
+                    $currentptsindex = $currentnodeindex;
+                    $node[$currentnodeindex++] = ['node' => $currentptsindex, 'name' => 'Part Time Students'];
+                    $currentftsindex = $currentnodeindex;
+                    $node[$currentnodeindex++] = ['node' => $currentftsindex, 'name' => 'Full Time Students'];
+                    $currentallstudentindex = $currentnodeindex;
+                    $node[$currentnodeindex++] = ['node' => $currentallstudentindex, 'name' => 'All Students'];
+                    $currentmenindex = $currentnodeindex;
+                    $node[$currentnodeindex++] = ['node' => $currentmenindex, 'name' => 'Men'];
+                    $currentwomenindex = $currentnodeindex;
+                    $node[$currentnodeindex++] = ['node' => $currentwomenindex, 'name' => 'Women'];
+                }
+                $link[$currentlinkindex++] = ['source' => $currentschoolindex, 'target' => $currentptsindex, 'value' => $student->part_time_total];
+                $link[$currentlinkindex++] = ['source' => $currentptsindex, 'target' => $currentmenindex, 'value' => $student->part_time_men];
+                $link[$currentlinkindex++] = ['source' => $currentptsindex, 'target' => $currentwomenindex, 'value' => $student->part_time_women];
+                $link[$currentlinkindex++] = ['source' => $currentschoolindex, 'target' => $currentallstudentindex, 'value' => $student->total];
+                $link[$currentlinkindex++] = ['source' => $currentallstudentindex, 'target' => $currentmenindex, 'value' => $student->men];
+                $link[$currentlinkindex++] = ['source' => $currentallstudentindex, 'target' => $currentwomenindex, 'value' => $student->women];
+                $link[$currentlinkindex++] = ['source' => $currentschoolindex, 'target' => $currentftsindex, 'value' => $student->full_time_total];
+                $link[$currentlinkindex++] = ['source' => $currentftsindex, 'target' => $currentmenindex, 'value' => $student->full_time_men];
+                $link[$currentlinkindex++] = ['source' => $currentftsindex, 'target' => $currentwomenindex, 'value' => $student->full_time_women];
+
+            }
+        }
+
+        $nodeArray = [];
+        $nodeArray = ["nodes" => $node, "links" => $link];
+        return $nodeArray;
+    }
+
+    public function generateFinanceSankey(Request $request)
+    {
+        $schools = $request->input('schoollist');
+        $year = $request['term_year'];
+
+        $row = [];
+        $link = [];
+        $currentschoolindex = 0;
+        $currentrevenueindex = 0;
+        $currentexpenseindex = 0;
+        $currentnodeindex = 0;
+        $currentlinkindex = 0;
+        $total_expense = 0;
+        $total_revenue = 0;
+
+        foreach($schools as $school) {
+            $currentSchool = School::find($school);
+            $currentschoolindex = $currentnodeindex;
+            $row[$currentnodeindex++] = ['node' => $currentschoolindex, 'name' => $currentSchool->school_name];
+            $expenses = $currentSchool->expense()->where('year', $year)->get();
+            $revenues = $currentSchool->revenue()->where('year', $year)->get();
+            foreach($expenses as $exp) {
+                if($currentexpenseindex == 0) {
+                    $currentexpenseindex = $currentnodeindex;
+                    $row[$currentnodeindex++] = ['node' => $currentexpenseindex, 'name' => 'Expenses'];
+                }
+                $total_expense += $exp->core_expenses;
+            }
+            $link[$currentlinkindex++] = ['source' => $currentschoolindex, 'target' => $currentexpenseindex, 'value' => $total_expense];
+
+            foreach($revenues as $rev) {
+                if($currentrevenueindex == 0) {
+                    $currentrevenueindex = $currentnodeindex;
+                    $row[$currentnodeindex++] = ['node' => $currentrevenueindex, 'name' => 'Revenues'];
+                }
+                $total_revenue += $rev->core_revenue;
+            }
+            $link[$currentlinkindex++] = ['source' => $currentschoolindex, 'target' => $currentrevenueindex, 'value' => $total_revenue];
+        }
+
+        $nodeArray = [];
+        $nodeArray = ["nodes" => $row, "links" => $link];
+        return $nodeArray;
+    }
 }

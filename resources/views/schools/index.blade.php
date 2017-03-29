@@ -11,6 +11,11 @@
                                 <button type="submit" id="create" class="btn btn-primary"><i class="fa fa-btn fa-file-o"></i>Create</button>
                             </form>
                         </div>
+                        <div class="pull-right">
+                            <form action="{{ url('schools/generate') }}">
+                                <button type="submit" id="create" class="btn btn-primary"><i class="fa fa-btn fa-file-o"></i>Generate</button>
+                            </form>
+                        </div>
                         <div><h4>{{ $heading }}</h4></div>
                     </div>
                     <div class="panel-body">

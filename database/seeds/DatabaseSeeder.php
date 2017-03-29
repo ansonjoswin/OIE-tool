@@ -21,6 +21,9 @@ class DatabaseSeeder extends Seeder
         $this->call(MapTableSeeder::class);
         $this->call(MappingTableSeeder::class);
         $this->call(SchoolTable::class);
+        $this->call(StudentTable::class);
+        $this->call(ExpenseTableSeeder::class);
+        $this->call(RevenueTableSeeder::class);
         $this->command->info('User, Role, Permission and School tables seeded!');
 
        // Seed the Tags table

@@ -93,6 +93,7 @@ class UsersController extends Controller
         $request['active'] = $request['active'] == '' ? false : true;
 
         $object->update($request->all());
+
         $this->syncRoles($object, $request->input('rolelist'));
         Session::flash('flash_message', 'User successfully updated!');
         Log::info('UsersController.update - End: '.$object->id.'|'.$object->name);
