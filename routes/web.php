@@ -200,7 +200,7 @@ Log::info('This is the get route and i');
         //Filter by State
         elseif($selected_instcat_list == 0 && $selected_stabbr_list != "0" && $selected_ccbasic_list == -9)
         {
-          $results = School::sortByName()->where('state', '=', $selected_stabbr_list)->pluck('name','id');
+          $results = School::where('state', '=', $selected_stabbr_list)->pluck('name','id');
           $school_ids = $results->toArray();
           return $school_ids;
         }
