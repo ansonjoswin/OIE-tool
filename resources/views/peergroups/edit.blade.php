@@ -15,7 +15,7 @@
                         <div><h4>{{ $heading }}</h4></div>
                     </div>
                     <div class="panel-body">
-                        {!! Form::model($peergroup, ['class'=>'form-horizontal', 'id'=>'pg_form', 'method'=>'PATCH', 'action'=>['PeerGroupsController@update', $peergroup->peergroup_id]]) !!}
+                        {!! Form::model($peergroup, ['class'=>'form-horizontal', 'id'=>'pg_form', 'method'=>'PATCH', 'onsubmit'=>'return validateOnSave();', 'action'=>['PeerGroupsController@update', $peergroup->peergroup_id]]) !!}
                         @include('common.errors')
                         @include('common.flash')
 
@@ -36,12 +36,10 @@
 
         function validateOnSave() {
             var rc = true;
-            if ($("select#sb_id").val() === "") {
-                alert("Please select a Type");
+            if ($("#peergroup_name").val() === "") {
                 rc = false;
-            } else if ($("input#x_number").val() === "") {
-                alert("Please input a X-number");
-                rc = false;
+            }else{
+                $("#savingModal").modal();
             }
             return rc;
         }

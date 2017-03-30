@@ -37,7 +37,7 @@
         }
 
         $(opts).remove();
-        $(destinationList).append($(opts).clone());
+        $(destinationList).append($(opts).clone());        
     };
 
     //Moves all items from sourceList to destinationList and deleting
@@ -75,4 +75,6 @@
             opts.last().next().after(opts);
         }
     };
+
+
 })(jQuery);

@@ -157,11 +157,12 @@
             <button type="button" class="btn btn-close" onclick="window.location='{{ URL::route('peergroups.index') }}'">Cancel</button>
             @if($CRUD_Action == 'Create')
                 <?php 
-                $attr = ['type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'submit_btn', 'onClick'=>'selectAll()', 'data-toggle'=>'modal', 'data-target'=>'#loadingModal', 'disabled'=>'disabled']
+                // $attr = ['type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'submit_btn', 'onClick'=>'selectAll()', 'data-toggle'=>'modal', 'data-target'=>'#loadingModal', 'disabled'=>'disabled', 'onsubmit' => 'return validateOnSave();']
+                $attr = ['type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'submit_btn', 'onClick'=>'selectAll()', 'disabled'=>'disabled']
                 ?>
             @else
                 <?php 
-                $attr = ['type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'submit_btn', 'onClick'=>'selectAll()', 'data-toggle'=>'modal', 'data-target'=>'#loadingModal']
+                $attr = ['type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'submit_btn', 'onClick'=>'selectAll()']
                 ?>                
             @endif
             {!! Form::button('<i class="fa fa-btn fa-save"></i>Save', $attr) !!}
@@ -172,7 +173,7 @@
 </div>
 
 <!-- Modal -->
-<div id="loadingModal" class="modal">
+<div id="savingModal" class="modal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="container">
@@ -263,7 +264,7 @@
         });        
 
         // Moving between Available Institutions and Selected Institutions
-        var maxSchoolSize = 2000;
+        var maxSchoolSize = 1000;
         $('#btnRight').click(function (e) {
             var sel_sch_size = $("#lstBox1 :selected").length + $("#lstBox2 option").size();
             if(sel_sch_size > maxSchoolSize){
@@ -272,7 +273,7 @@
                 $('select').moveToListAndDelete('#lstBox1', '#lstBox2');
                 e.preventDefault();
                 updateSelCount();  
-                $("#submit_btn").removeAttr("disabled");  //Enable the save button                
+                $("#submit_btn").removeAttr("disabled");  //Enable the save button   
             }
 
         });
