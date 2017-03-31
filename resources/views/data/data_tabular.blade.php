@@ -83,8 +83,8 @@
             <!-- Data Table Tab -->
             <div id="dataToggle1" class="tab-pane fade in active">
                 <div class="panel panel-default">
-                    {{-- <!-- Export Data Table -->
-                    <div class="panel-heading" > 
+                    <!-- Export Data Table -->
+                    {{-- <div class="panel-heading" > 
                      <a href="{{ URL::to('getExport') }}" class="btn " style="color:black">
                         <span style="margin: 5px 5px 0px 0px;" class="glyphicon glyphicon-save" ></span>Export Data Table</a>
                     </div>  --}}
@@ -165,7 +165,7 @@
                                         </th>
                                         <th>
                                         Associate Degree and Certificate 3-Yr Grad Rate
-                                        </th>                            
+                                        </th>                        
                                         <th>
                                         Loan Default Rate
                                         </th>
@@ -246,6 +246,7 @@
                                                     {{ $datatable['associatedegree_certi3yeargradrate'] }} 
                                                 </td>
                                                 <!-- <td class="table-text" style="font-size:10px;"> -->
+
                                                 <td class="table-text" style="width:25px">
                                                     {{ $datatable['loan_default_rate'] }} 
                                                 </td>
@@ -257,7 +258,6 @@
                     </div>
                 </div>
             </div>
-       
 
 
             <!-- Summary Tab -->

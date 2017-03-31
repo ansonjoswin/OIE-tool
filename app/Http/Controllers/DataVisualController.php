@@ -18,38 +18,38 @@ class DataVisualController extends Controller
     {
         //Defines resource drop down list
         $xaxis_options = collect([''=>'Select Resource', 
-            'inst'=>'Instructors',
-            'inst_1000'=>'Instructors per Thousand Students',
-            'admin'=>'Admin and Professional Staff',
-            'admin_1000'=>'Admin and Professional Staff per Thousand Students',
-            'noninst'=>'Non-Instruction Academic Staff',
-            'noninst_1000'=>'Non-Instruction Acadmic Staff per Thousand Students',
-            'nonadmin'=>'Non-Admin Trade and Service Staff',
-            'nonadmin_1000'=>'Non-Admin Trade and Service Staff per Thousand Students',
-            'all'=>'All Instructors and Staff',
-            'undergrad_1000'=>'Undergrad Students per Thousand Students',
+            'instruction_staff'=>'Instructors',
+            'instructors_per_thousand_student'=>'Instructors per Thousand Students',
+            'admin_professional_staff'=>'Admin and Professional Staff',
+            'admin_professionalstaff_perthousandstudent'=>'Admin and Professional Staff per Thousand Students',
+            'noninstruction_academicstaff'=>'Non-Instruction Academic Staff',
+            'noninstruction_academicstaff_perthousandstudent'=>'Non-Instruction Acadmic Staff per Thousand Students',
+            'nonadmin_trade_servicestaff'=>'Non-Admin Trade and Service Staff',
+            'nonadmin_tradeservicestaff_perthousandstudent'=>'Non-Admin Trade and Service Staff per Thousand Students',
+            'all_instructors_staff'=>'All Instructors and Staff',
+            'ug_student_perthousandstudent'=>'Undergrad Students per Thousand Students',
             'totl_salary'=>'Total Salary',
             'admin_salary'=>'Admin Salary',
-            'inst_salary'=>'Instructor Salary',
-            'inst_salary_mill'=>'Instructor Salary per Million',
-            'admin_staff_salary_mill'=>'Admin and Professional Staff Salary per Million',
-            'noninst_salary_mill'=>'Non-Instruction Academic Staff Salary per Million',
-            'nonadmin_salary_mill'=>'Non-Admin Trade and Service Staff Salary per Million'
+            'instructor_salary'=>'Instructor Salary',
+            'instructor_salarypermillion'=>'Instructor Salary per Million',
+            'adminprofessionalstaff_salarypermillion'=>'Admin and Professional Staff Salary per Million',
+            'noninstruction_academicstaff_salarypermillion'=>'Non-Instruction Academic Staff Salary per Million',
+            'nonadmin_tradeservicestaff_salarypermillion'=>'Non-Admin Trade and Service Staff Salary per Million'
         ]);
         $this->xaxis_options = $xaxis_options;
 
         //Defines performance drop down list
         $yaxis_options = collect([''=>'Select Performance',
-            'avg_sch_undergrad'=>'Average SCH per Student per AY (undergrad)',
-            'avg_sch_grad'=>'Average SCH per Student per AY (graduate)',
-            'undergrad_degrees_1000'=>'Undergrad Degrees per Thousand Undergrad Students',
-            'undergrad_cert_1000'=>'Undergrad Certificates per Thousand Undergrad Students',
-            'grad_degrees_1000'=>'Graduate Degrees per Thousand Graduate Students', 
-            'grad_cert_1000'=>'Graduate Certificates per Thousand Graduate Students',
-            'bach_grad_rate_4'=>'Bachelor Degree 4-Yr Graduation Rate', 
-            'bach_grad_rate_6'=>'Bachelor Degree 6-Yr Graduation Rate', 
-            'assoc_grad_rate_4'=>'Associate Degree and Certificate 3-Yr Graduation Rate'
-            // ,'default_rate'=>'Default Rate' 
+            'ug_average_sch_studentperay'=>'Average SCH per Student per AY (undergrad)',
+            'grad_average_sch_studentperay'=>'Average SCH per Student per AY (graduate)',
+            'ug_degrees_perthousand_ugstudent'=>'Undergrad Degrees per Thousand Undergrad Students',
+            'ug_certi_perthousand_ugstudent'=>'Undergrad Certificates per Thousand Undergrad Students',
+            'graddegree_perthousandgradstudent'=>'Graduate Degrees per Thousand Graduate Students', 
+            'grad_certi_perthousand_gradstudent'=>'Graduate Certificates per Thousand Graduate Students',
+            'bachelordegree_4yeargradrate'=>'Bachelor Degree 4-Yr Graduation Rate', 
+            'bachelordegree_6yeargradrate'=>'Bachelor Degree 6-Yr Graduation Rate', 
+            'associatedegree_certi3yeargradrate'=>'Associate Degree and Certificate 3-Yr Graduation Rate',
+            'loan_default_rate'=>'Loan Default Rate' 
         ]);
         $this->yaxis_options = $yaxis_options;
 

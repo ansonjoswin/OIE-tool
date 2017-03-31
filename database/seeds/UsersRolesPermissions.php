@@ -617,210 +617,210 @@ class PeerGroupSchoolTable extends Seeder
                      /**********************TEST Peers Schools Seeding*************/
                     /*----------------------------------------------------------*/
 
-            // $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-            // $school = School::where('name', '=','Academy of Art University')->first()->id;
-            // $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-            // DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','Academy of Art University')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','Art Center College of Design')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','Art Center College of Design')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','California College of the Arts')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','California College of the Arts')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','Fashion Institute of Design & Merchandising-Los Angeles')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','Fashion Institute of Design & Merchandising-Los Angeles')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','The Art Institute of California-Argosy University San Diego')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','The Art Institute of California-Argosy University San Diego')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','The Art Institute of California-Argosy University San Francisco')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','The Art Institute of California-Argosy University San Francisco')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','Musicians Institute')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','Musicians Institute')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','Otis College of Art and Design')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','Otis College of Art and Design')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','The Art Institute of Colorado')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','The Art Institute of Colorado')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','The Art Institute of Fort Lauderdale')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','The Art Institute of Fort Lauderdale')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','AI Miami International University of Art and Design')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','AI Miami International University of Art and Design')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','Ringling College of Art and Design')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','Ringling College of Art and Design')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','The Art Institute of Atlanta')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','The Art Institute of Atlanta')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','Savannah College of Art and Design')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','Savannah College of Art and Design')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','School of the Art Institute of Chicago')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','School of the Art Institute of Chicago')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','The Illinois Institute of Art-Chicago')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','The Illinois Institute of Art-Chicago')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','Maryland Institute College of Art')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','Maryland Institute College of Art')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','Berklee College of Music')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','Berklee College of Music')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','Massachusetts College of Art and Design')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','Massachusetts College of Art and Design')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','The New England Institute of Art')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','The New England Institute of Art')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','College for Creative Studies')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','College for Creative Studies')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','The Art Institutes International-Minnesota')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','The Art Institutes International-Minnesota')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','The Art Institute of Las Vegas')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','The Art Institute of Las Vegas')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','Pratt Institute-Main')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','Pratt Institute-Main')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','School of Visual Arts')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','School of Visual Arts')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','Columbus College of Art and Design')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','Columbus College of Art and Design')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','The Art Institute of Portland')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','The Art Institute of Portland')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','The Art Institute of Philadelphia')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','The Art Institute of Philadelphia')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','The Art Institute of Pittsburgh')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','The Art Institute of Pittsburgh')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','The University of the Arts')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','The University of the Arts')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','Rhode Island School of Design')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','Rhode Island School of Design')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','The Art Institute of Houston')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','The Art Institute of Houston')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','South University-The Art Institute of Dallas')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','South University-The Art Institute of Dallas')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','The Art Institute of Seattle')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','The Art Institute of Seattle')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','The Art Institute of California-Argosy University Hollywood')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','The Art Institute of California-Argosy University Hollywood')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','The Illinois Institute of Art-Schaumburg')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','The Illinois Institute of Art-Schaumburg')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','The Art Institute of Phoenix')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','The Art Institute of Phoenix')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','The Art Institute of California-Argosy University Los Angeles')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','The Art Institute of California-Argosy University Los Angeles')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','The Art Institute of Washington')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','The Art Institute of Washington')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','The Art Institute of California-Argosy University Orange County')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','The Art Institute of California-Argosy University Orange County')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
-//             $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
-//             $school = School::where('name', '=','The Art Institute of Pittsburgh-Online Division')->first()->id;
-//             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
-//             DB::table('peergroup_school')->insert($peergroup_school);
+            $peergroup = PeerGroup::where('name', '=', 'test')->first()->id;
+            $school = School::where('name', '=','The Art Institute of Pittsburgh-Online Division')->first()->id;
+            $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
+            DB::table('peergroup_school')->insert($peergroup_school);
 
       }
  }

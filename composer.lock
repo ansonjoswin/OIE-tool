@@ -1194,7 +1194,9 @@
                 "import",
                 "laravel"
             ],
+
             "time": "2017-03-28 10:47:04"
+
         },
         {
             "name": "monolog/monolog",

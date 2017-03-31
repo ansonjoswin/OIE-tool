@@ -91,9 +91,7 @@ console.log(jsObject)
           .attr('stroke-width',1)
           .attr('fill', 'red')
           .append('title') // Tooltip
-            .text(function (d) { return sel_xaxis+': '+xPath +
-                                 '\n '+sel_yaxis+': ' + yPath})
-     })
+               })
     .append('title') // Tooltip
       .text(function (d) { return sel_xaxis+': '+d[sel_xaxis] +
                            '\n '+sel_yaxis+': ' + d[sel_yaxis]})
@@ -109,7 +107,7 @@ console.log(jsObject)
       .attr('x',w)
       .attr('dy','.71em')
       .style({"text-anchor": "end", "font-size": "16px", "font-family": "inherit"})
-      .text(sel_xaxis)
+      .text(xaxislabel)
   // Y-axis
   svg.append('g')
       .attr('class','axis')
@@ -122,44 +120,44 @@ console.log(jsObject)
       .attr('y',-65)
       .attr('dy','.71em')
       .style({"text-anchor": "end", "font-size": "16px", "font-family": "inherit"})
-      .text(sel_yaxis)
+      .text(yaxislabel)
 
-  function yChange() {
-    var value = this.value // get the new y value
+  // function yChange() {
+  //   var value = this.value // get the new y value
 
 
-    yScale // change the yScale
-      .domain([
-        d3.min([0,d3.min(jsObject,function (d) { return d[value] })]),
-        d3.max([0,d3.max(jsObject,function (d) { return d[value] })])
-        ])
+  //   yScale // change the yScale
+  //     .domain([
+  //       d3.min([0,d3.min(jsObject,function (d) { return d[value] })]),
+  //       d3.max([0,d3.max(jsObject,function (d) { return d[value] })])
+  //       ])
 
-    yAxis.scale(yScale) // change the yScale
-    d3.select('#yAxis') // redraw the yAxis
-      .transition().duration(5)
-      .call(yAxis)
-    d3.select('#yAxisLabel') // change the yAxisLabel
-      .text(value)    
-    d3.selectAll('circle') // move the circles
-      .transition().duration(5)
-           .attr('cy',function (d) { return yScale(d[value]) })
-  }
+  //   yAxis.scale(yScale) // change the yScale
+  //   d3.select('#yAxis') // redraw the yAxis
+  //     .transition().duration(5)
+  //     .call(yAxis)
+  //   d3.select('#yAxisLabel') // change the yAxisLabel
+  //     .text(value)    
+  //   d3.selectAll('circle') // move the circles
+  //     .transition().duration(5)
+  //          .attr('cy',function (d) { return yScale(d[value]) })
+  // }
 
-  function xChange() {
-    var value = this.value // get the new x value
-    xScale // change the xScale
-      .domain([
-        d3.min([0,d3.min(jsObject,function (d) { return d[value] })]),
-        d3.max([0,d3.max(jsObject,function (d) { return d[value] })])
-        ])
-    xAxis.scale(xScale) // change the xScale
-    d3.select('#xAxis') // redraw the xAxis
-      .transition().duration(5)
-      .call(xAxis)
-    d3.select('#xAxisLabel') // change the xAxisLabel
-      .transition().duration(5)
-      .text(value)
-    d3.selectAll('circle') // move the circles
-      .transition().duration(5)
-        .attr('cx',function (d) { return xScale(d[value]) })
-  }
+  // function xChange() {
+  //   var value = this.value // get the new x value
+  //   xScale // change the xScale
+  //     .domain([
+  //       d3.min([0,d3.min(jsObject,function (d) { return d[value] })]),
+  //       d3.max([0,d3.max(jsObject,function (d) { return d[value] })])
+  //       ])
+  //   xAxis.scale(xScale) // change the xScale
+  //   d3.select('#xAxis') // redraw the xAxis
+  //     .transition().duration(5)
+  //     .call(xAxis)
+  //   d3.select('#xAxisLabel') // change the xAxisLabel
+  //     .transition().duration(5)
+  //     .text(value)
+  //   d3.selectAll('circle') // move the circles
+  //     .transition().duration(5)
+  //       .attr('cx',function (d) { return xScale(d[value]) })
+  // }
