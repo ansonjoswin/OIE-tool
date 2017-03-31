@@ -107,6 +107,10 @@ public $xaxis_options = [''=>'Select Resource',
         
         $sel_school_ids = PeerGroup::find($sel_pgid)->school()->pluck('school_id')->toArray();
 
+        // SchoolNames for the search type ahead
+        $schoolNames = School::find($sel_school_ids)->pluck('name');
+        $this->viewData['schoolNames'] = $schoolNames;
+
         $this->viewData['sel_pgid'] = $sel_pgid->toArray();
         $test_data = DataTable::whereIn('school_id',$sel_school_ids)->get();
 
@@ -154,6 +158,10 @@ public $xaxis_options = [''=>'Select Resource',
         $sel_pgid = $request['sel_pgid'];
         $sel_school_ids = PeerGroup::find($sel_pgid)->school()->pluck('school_id')->toArray();
 
+        // SchoolNames for the search type ahead
+        $schoolNames = School::find($sel_school_ids)->pluck('name');
+        $this->viewData['schoolNames'] = $schoolNames;
+        
         //Get the aggregated data for the tabular view
         $filtervalues = DataTable::all()->whereIn('school_id',$sel_school_ids);
         $this->viewData['filtervalues'] = $filtervalues;
@@ -164,6 +172,7 @@ public $xaxis_options = [''=>'Select Resource',
         $test_data = DataTable::whereIn('school_id',$sel_school_ids)->get();
 
         $this->viewData['test_data'] = json_encode($test_data);
+
 
         //Call view
         return view('data.test',$this->viewData);

@@ -88,8 +88,11 @@ label {
                                     </div>      
                                     <div class="col-md-12">
                                     {!! Form::button('<i class="fa fa-btn"></i>Refresh', ['type' => 'submit', 'class' => 'btn btn-primary']) !!} 
-                                    </div> 
-                                </div>                    
+                                    </div>
+                                    <div class="col-md-12" typeahead-section>
+                                      {!! Form::input('text', 'schoolPredictor', null, ['id' => 'schoolPredictor', 'class'=>'form-control', 'placeholder' => 'Search by school name', 'autocomplete' => 'off']) !!}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="row pull-left">               
@@ -97,6 +100,7 @@ label {
                                 @include('common.flash')
                                 <div id="chart">  </div>                        
                             </div>
+                        </div>
                         </div>
                           {!! Form::close() !!}
                     </div>         
@@ -110,9 +114,7 @@ label {
         @include ('data.data_tabular')
     </div>       
 @endsection
-
 @section('footer')
-
 <script>
   var test_data = <?php echo json_encode($test_data, JSON_HEX_TAG); ?>; 
   var sel_xaxis = <?php echo json_encode($sel_xaxis, JSON_HEX_TAG); ?>; 
@@ -122,5 +124,12 @@ label {
 </script>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="../public/js/testvisual.js"></script>
-
+<script type="text/javascript">
+  $(document).ready(function() {
+    var schoolNames = <?php echo json_encode($schoolNames, JSON_HEX_TAG); ?>;
+    $('#schoolPredictor').typeahead({
+      source: schoolNames
+    });
+  });
+</script>
 @endsection
