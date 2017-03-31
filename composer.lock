@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8defd2fc23f38b8b46ef6bc1854c61ce",
+    "hash": "3aa99fb78ce090cb2e8857980d4bba46",
     "content-hash": "bc6ef3d80195affe64ca5d392aec56d9",
     "packages": [
         {
@@ -1194,9 +1194,7 @@
                 "import",
                 "laravel"
             ],
-
             "time": "2017-03-28 10:47:04"
-
         },
         {
             "name": "monolog/monolog",
