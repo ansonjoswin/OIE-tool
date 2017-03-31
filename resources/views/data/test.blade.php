@@ -70,22 +70,22 @@ label {
                                         {!! Form::select('sel_year', array(null=>'Select Year') + $avail_years, $sel_year, ['class'=>'form-control', 'required'=>'required']) !!}
                                     @else
                                         {!! Form::select('sel_year', array(null=>'Select Year') + $avail_years, null, ['class'=>'form-control', 'required'=>'required']) !!}
-                                    @endif                                    
+                                    @endif  
                                     </div>
-                                     <div class="col-md-12">
+                                    <div class="col-md-12 margin-gap">
                                     @if(isset($sel_xaxis))
-                                        {!! Form::select('sel_xaxis', $xaxis_options, $sel_xaxis, ['class'=>'form-control']) !!}
+                                        {!! Form::select('sel_xaxis', $xaxis_options, $sel_xaxis, ['class'=>'form-control', 'required'=>'required']) !!}
                                     @else
-                                        {!! Form::select('sel_xaxis', $xaxis_options, null, ['class'=>'form-control']) !!}
+                                        {!! Form::select('sel_xaxis', $xaxis_options, null, ['class'=>'form-control', 'required'=>'required']) !!}
                                     @endif                                    
                                     </div>
                                     <div class="col-md-12 margin-gap">
                                     @if(isset($sel_yaxis))
-                                        {!! Form::select('sel_yaxis', $yaxis_options, $sel_yaxis, ['class'=>'form-control']) !!}
+                                        {!! Form::select('sel_yaxis', $yaxis_options, $sel_yaxis, ['class'=>'form-control', 'required'=>'required']) !!}
                                     @else
-                                        {!! Form::select('sel_yaxis', $yaxis_options, null, ['class'=>'form-control']) !!}
+                                        {!! Form::select('sel_yaxis', $yaxis_options, null, ['class'=>'form-control', 'required'=>'required']) !!}
                                     @endif                                    
-                                    </div>     
+                                    </div>      
                                     <div class="col-md-12">
                                     {!! Form::button('<i class="fa fa-btn"></i>Refresh', ['type' => 'submit', 'class' => 'btn btn-primary']) !!} 
                                     </div> 
@@ -117,6 +117,8 @@ label {
   var test_data = <?php echo json_encode($test_data, JSON_HEX_TAG); ?>; 
   var sel_xaxis = <?php echo json_encode($sel_xaxis, JSON_HEX_TAG); ?>; 
   var sel_yaxis = <?php echo json_encode($sel_yaxis, JSON_HEX_TAG); ?>; 
+  var xaxislabel = <?php echo json_encode($xaxis_label, JSON_HEX_TAG); ?>; 
+  var yaxislabel = <?php echo json_encode($yaxis_label, JSON_HEX_TAG); ?>; 
 </script>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="../public/js/testvisual.js"></script>
