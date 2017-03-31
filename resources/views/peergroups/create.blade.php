@@ -8,7 +8,7 @@
                     <div class="panel-heading"> {{ $heading }}</div>
 
                     <div class="panel-body" style="padding-bottom: 0px;">
-                        {!! Form::open(['url'=>'peergroups', 'class'=>'form-horizontal', 'id'=>'pg_form']) !!}
+                        {!! Form::open(['url'=>'peergroups', 'class'=>'form-horizontal', 'id'=>'pg_form', 'onsubmit'=>'return validateOnSave();']) !!}
                         @include('common.errors')
                         @include('common.flash')
 
@@ -37,17 +37,16 @@
         } );
 
 
+
         function validateOnSave() {
             var rc = true;
-            if ($("select#sb_id").val() === "") {
-                alert("Please select a Type");
+            if ($("#peergroup_name").val() === "") {
                 rc = false;
-            } else if ($("input#x_number").val() === "") {
-                alert("Please input a X-number");
-                rc = false;
+            }else{
+                $("#savingModal").modal();
             }
             return rc;
-        }  
+        }
 
 
 

@@ -20,7 +20,7 @@
                 @endif
             </div>
             <div class="col-md-3">
-                @if(($user->getRoleListAttribute()->first() == 1))
+                @if(Auth::user()->can(['manage-users','manage-roles']))
                     @if($CRUD_Action == 'Create' )
                             {!! Form::select('private_public_flag', $PriPubFlgList, null, ['class'=>'col-md-6 form-control', 'required'=>'required']) !!}
                         @else
@@ -36,24 +36,6 @@
         </div>  
     </div>
 </div>
-
-<!-- @if(($user->getRoleListAttribute()->first() == 1)) -->
-<!-- <div class="form-group{{ $errors->has('private_public_flag') ? ' has-error' : '' }}">
-    {!! Form::label('private_public_flag', 'Private/Public:', ['class' => 'col-md-4 control-label']) !!}
-    <div class="col-md-6">
-            @if($CRUD_Action == 'Create' )
-                    {!! Form::select('private_public_flag',[null=>''] + $PriPubFlgList, null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!}
-                @else
-                    {!! Form::select('private_public_flag', $PriPubFlgList, $peergroup->private_public_flag, ['class' => 'col-md-6 form-control', 'required' => 'required', 'selected' => 'selected']) !!}
-            @endif
-            @if ($errors->has('private_public_flag'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('private_public_flag') }}</strong>
-                </span>
-            @endif
-    </div>
-</div> -->
-<!-- @endif -->
 
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -137,7 +119,7 @@
                 <select multiple class="form-control" id="lstBox1">
                     @if(isset($school_ids))
                     @foreach($school_ids as $key => $value)
-                        <option value="{{ $key }}">{{ $value }} </option>
+                        <option value="{{ $key }}">{{ $value}} </option>
                     @endforeach
                     @endif
                 </select>
@@ -175,11 +157,12 @@
             <button type="button" class="btn btn-close" onclick="window.location='{{ URL::route('peergroups.index') }}'">Cancel</button>
             @if($CRUD_Action == 'Create')
                 <?php 
-                $attr = ['type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'submit_btn', 'onClick'=>'selectAll()', 'data-toggle'=>'modal', 'data-target'=>'#loadingModal', 'disabled'=>'disabled']
+                // $attr = ['type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'submit_btn', 'onClick'=>'selectAll()', 'data-toggle'=>'modal', 'data-target'=>'#loadingModal', 'disabled'=>'disabled', 'onsubmit' => 'return validateOnSave();']
+                $attr = ['type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'submit_btn', 'onClick'=>'selectAll()', 'disabled'=>'disabled']
                 ?>
             @else
                 <?php 
-                $attr = ['type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'submit_btn', 'onClick'=>'selectAll()', 'data-toggle'=>'modal', 'data-target'=>'#loadingModal']
+                $attr = ['type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'submit_btn', 'onClick'=>'selectAll()']
                 ?>                
             @endif
             {!! Form::button('<i class="fa fa-btn fa-save"></i>Save', $attr) !!}
@@ -189,7 +172,8 @@
     </div>
 </div>
 
-<div id="loadingModal" class="modal">
+<!-- Modal -->
+<div id="savingModal" class="modal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="container">
@@ -205,9 +189,7 @@
 </div>
 
 
-
 <script>
-    
 
     $(document).ready(function($){
 
@@ -229,7 +211,6 @@
                 alert("Please select a Carnegie Classification Year.");
             }else{
                 var dyn_cnt = 0;
-                console.log("instcat", selected_instcat_list, "stabbr", selected_stabbr_list, "ccbasic", selected_ccbasic_list, "ccbasicyearid", ccbasicyearid);
                 $.ajax({
                     type: "GET",
                     url: "/unoistoie-acbat/public/this",
@@ -238,15 +219,15 @@
                     success: function(data) {
                         $('#lstBox1').empty();
                         $('#dynCounter').empty();
-                        $.each(data, function(key, value) {
-                            $('#lstBox1').append("<option value='" + key +"'>" + value + "</option>");
-                            dyn_cnt++;
+                        var sort_data = sortObject(data);
+                        $.each(sort_data, function( key, value ) {
+                          $('#lstBox1').append("<option value='" + value.id +"'>" + value.name + "</option>");
+                          dyn_cnt++; 
                         });
                         $('#dynCounter').text("("+dyn_cnt+")");
                     }
                 });
             }
-
         });
 
         // Enable filter button when a filter is selected
@@ -283,7 +264,7 @@
         });        
 
         // Moving between Available Institutions and Selected Institutions
-        var maxSchoolSize = 2000;
+        var maxSchoolSize = 1000;
         $('#btnRight').click(function (e) {
             var sel_sch_size = $("#lstBox1 :selected").length + $("#lstBox2 option").size();
             if(sel_sch_size > maxSchoolSize){
@@ -292,7 +273,7 @@
                 $('select').moveToListAndDelete('#lstBox1', '#lstBox2');
                 e.preventDefault();
                 updateSelCount();  
-                $("#submit_btn").removeAttr("disabled");  //Enable the save button                
+                $("#submit_btn").removeAttr("disabled");  //Enable the save button   
             }
 
         });
@@ -334,7 +315,7 @@
         $('#selCounter').text("("+sel_cnt+")");
     }
 
-    //Selects all options in the "selected institutions" list so the user doesnt have to.
+    // Selects all options in the "selected institutions" list so the user doesnt have to.
     function selectAll() { 
         selectBox = document.getElementById("lstBox2");
         for (var i = 0; i < selectBox.options.length; i++) { 
@@ -342,6 +323,27 @@
         } 
     }
 
-  
+    // Sorts the institutions
+    function sortObject(obj) {
+        var arr = [];
+        var prop;
+        for (prop in obj) {
+            if (obj.hasOwnProperty(prop)) {
+                arr.push({
+                    'id': prop,
+                    'name': obj[prop]
+                });
+            }
+        }
+        arr.sort(function(a, b){
+            var x = a.name.toLowerCase();
+            var y = b.name.toLowerCase();
+            if (x < y) {return -1;}
+            if (x > y) {return 1;}
+            return 0;
+        });
+        return arr; // returns array
+    }
+      
 
 </script>
