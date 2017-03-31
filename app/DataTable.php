@@ -35,8 +35,8 @@ class DataTable extends Model
             'grad_certi_perhundred_gradstudent',
             'bachelordegree_4yeargradrate',
             'bachelordegree_6yeargradrate',
-            'associatedegree_certi3yeargradrate'
-
+            'associatedegree_certi3yeargradrate',
+            'loan_default_rate'
             ];
     protected $primaryKey = 'id';
     public static function getTableName() {

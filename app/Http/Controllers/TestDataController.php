@@ -104,7 +104,7 @@ public $xaxis_options = [''=>'Select Resource',
         
         $sel_pgid = PeerGroup::where('PeerGroup_Name','=',$sel_pg)
                    ->pluck('PeerGroup_ID');
-        
+
         $sel_school_ids = PeerGroup::find($sel_pgid)->school()->pluck('school_id')->toArray();
 
         // SchoolNames for the search type ahead
