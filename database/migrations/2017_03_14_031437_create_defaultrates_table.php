@@ -12,17 +12,17 @@ class CreateDefaultratesTable extends Migration
      * @return void
      */
     public function up()
-    {
+    { 
         Schema::create('defaultrates', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('opeid')->index();
+            $table->integer('opeid')->unsigned();
             $table->integer('year')->index();
-            $table->float('default_rate1')->nullable();
-            $table->float('default_rate2')->nullable();
-            $table->float('default_rate3')->nullable();
+            $table->float('loan_default_rate')->nullable();
+            $table->unique('opeid', 'year');
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
             $table->softDeletes();
             $table->foreign('opeid')->references('opeid')->on('schools')->onUpdate('cascade')->onDelete('cascade');
             //$table->foreign('School_State')->references('School_State')->on('School')->onUpdate('cascade')->onDelete('cascade');
