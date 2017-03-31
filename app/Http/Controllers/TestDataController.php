@@ -20,16 +20,24 @@ class TestDataController extends Controller
  public function __construct()
     {
         //Defines resource drop down list
-        $xaxis_options = collect([''=>'',
-            'cohort_status8'=>'cohort_status8',
-            'cohort_status13'=>'cohort_status13'
+        $xaxis_options = collect([''=>'Select Resource',
+            'all_instructors_staff'=>'Employees',
+            'admin_professional_staff'=>'Administration',
+            'instruction_staff'=>'Instructors',
+            'adminprofessionalstaff_salarypermillion'=>'Administration Salary Per Million',
+            'instructor_salarypermillion'=>'Instructor Salary Per Million',
+            'admin_professionalstaff_perthousandstudent'=>'Admin per Thousand Students',
+            'instructors_per_thousand_student'=>'Instructors per Thousand Students'
         ]);
         $this->xaxis_options = $xaxis_options;
 
         //Defines performance drop down list
-        $yaxis_options = collect([''=>'',
-            'cohort_status8'=>'cohort_status8',
-            'cohort_status13'=>'cohort_status13'
+        $yaxis_options = collect([''=>'Select Performance',
+            'grad_average_sch_studentperay'=>'Average SCH per Student per AOI',
+            'bachelordegree_4yeargradrate'=>'Graduation Rate (4 year)',
+            'bachelordegree_6yeargradrate'=>'Graduation Rate (6 year)',
+            'ug_student_perthousandstudent'=>'Bachelor\'s Degrees per Thousand Students',
+            'loan_default_rate'=>'Student Loan Default Rate'
         ]);
         $this->yaxis_options = $yaxis_options;
 
@@ -37,8 +45,6 @@ class TestDataController extends Controller
         $this->viewData['avail_years'] = DataTable::distinct()->pluck('year')->toArray();
     }
 
-
-   
     private static function getPeerGroups()
     {
         //If logged in, user can see public and private peergroups
@@ -53,7 +59,6 @@ class TestDataController extends Controller
         }
         return $peerGroups;        
     }
-
 
     public function index()
     {
@@ -70,12 +75,12 @@ class TestDataController extends Controller
         $this->viewData['xaxis_options'] = $this->xaxis_options;
         $this->viewData['yaxis_options'] = $this->yaxis_options;
 
-                //Get selected resource parameter
-        $sel_xaxis = 'cohort_status8';
+        //Get selected resource parameter
+        $sel_xaxis = 'all_instructors_staff';
         $this->viewData['sel_xaxis'] = $sel_xaxis;
 
         //Get selected performance parameter
-        $sel_yaxis = 'cohort_status13';
+        $sel_yaxis = 'grad_average_sch_studentperay';
         $this->viewData['sel_yaxis'] = $sel_yaxis;  
         
         $sel_pgid = PeerGroup::where('PeerGroup_Name','=',$sel_pg)
@@ -83,22 +88,21 @@ class TestDataController extends Controller
         
         $sel_school_ids = PeerGroup::find($sel_pgid)->school()->pluck('school_id')->toArray();
 
-          $this->viewData['sel_pgid'] = $sel_pgid;
-        $test_data = Student::whereIn('school_id',$sel_school_ids)->get();
-
+        $this->viewData['sel_pgid'] = $sel_pgid->toArray();
+        $test_data = DataTable::whereIn('school_id',$sel_school_ids)->get();
 
         $this->viewData['test_data'] = json_encode($test_data);
+
+        //Get the aggregated data for the tabular view
+        $filtervalues = DataTable::all()->whereIn('school_id',$sel_school_ids);
+        $this->viewData['filtervalues'] = $filtervalues;
 
         //Call view
         return view('data.test',$this->viewData);
     }
 
-
     public function refresh(Request $request)
-
     {
-
-       
         //Get list of available peerGroups
         $this->viewData['peerGroups'] = $this->getPeerGroups();
 
@@ -122,36 +126,18 @@ class TestDataController extends Controller
         $sel_pgid = $request['sel_pgid'];
         $sel_school_ids = PeerGroup::find($sel_pgid)->school()->pluck('school_id')->toArray();
 
+        //Get the aggregated data for the tabular view
+        $filtervalues = DataTable::all()->whereIn('school_id',$sel_school_ids);
+        $this->viewData['filtervalues'] = $filtervalues;
       
+        //Call view
         $this->viewData['sel_pgid'] = $sel_pgid;
 
-/*******************************This table is not available in the final migration**************/
-
-        $test_data = Student::whereIn('school_id',$sel_school_ids)->get();
-
-
-    /*   foreach ($selected_parameter as $student  => $school_id ) {
-            array_push($filtervalues, Student::where('school_id', $school_id->first()));
-         }
-
-*/
-
-
-            //dd($test_data);
-   /*     $selected_school_list = $selected_parameter->school()->pluck('name','school_id');
-        //Get scatterplot data based on list of schools
-      /*   $test_data = Student::find($sel_school_ids)->school()->pluck('school_id','cohort_status8','cohort_status13')->toArray();
-
-       */
-
-    
-
+        $test_data = DataTable::whereIn('school_id',$sel_school_ids)->get();
 
         $this->viewData['test_data'] = json_encode($test_data);
 
         //Call view
         return view('data.test',$this->viewData);
     }  
-
-      
 }

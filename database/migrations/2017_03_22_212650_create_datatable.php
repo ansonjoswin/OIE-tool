@@ -15,7 +15,7 @@ class CreateDatatable extends Migration
     {
         Schema::create('datatable', function(Blueprint $table)
         {
-            $table->string('id');
+            $table->bigIncrements('id');
             $table->integer('school_id')->index();
             $table->integer('year')->index();
             $table->string('school_name');
@@ -45,10 +45,9 @@ class CreateDatatable extends Migration
             $table->string('loan_default_rate')->nullable();
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
-            $table->foreign('school_id')->references('id')->on('schools')->onUpdate('cascade')->onDelete('cascade');  
-            });
-        }
-
+            $table->foreign('school_id')->references('id')->on('schools')->onUpdate('cascade')->onDelete('cascade');
+        });
+    }
     /**
      * Reverse the migrations.
      *
@@ -56,6 +55,6 @@ class CreateDatatable extends Migration
      */
     public function down()
     {
-         Schema::drop('datatable');
+        Schema::drop('datatable');
     }
 }

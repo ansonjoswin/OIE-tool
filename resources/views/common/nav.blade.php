@@ -1,4 +1,26 @@
-    <nav class="navbar navbar-default navbar-static-top">
+<link rel="stylesheet" href="{{ url('css') }}/nav.css"/>
+
+<div id="header">
+    <div class="hide-mobile main-header clearfix">
+        <div id="logohead" class="inner-content">
+            <div class="subsite-logos">
+
+                <div class="home-logo" style="padding-right: 20px; border-right: 1px solid #cccccc ;">
+                    <a href="{{ url('/') }}">
+                        <img alt="University of Nebraska Omaha"
+                             src="{{asset('images/UNO-icon-color.png')}}">
+                    </a>
+                </div>
+
+                <div>
+                    <a class="college" href="{{ url('/') }}">University of Nebraska Omaha</a>
+                    <a class="department" href="{{ url('/') }}">OIE Analytics Tool</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-inverse navbar-static-top">
         <div class="container">
             <div class="navbar-header">
 
@@ -9,12 +31,6 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-
-                <!-- Branding Image -->
-                {{--<a class="navbar-brand" href="{{ url('/') }}">Laravel</a>--}}
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <img id="portalLogo" src="{{asset('images/UNO-icon-color.png')}}">OIE Analytics Tool
-                </a>
 
                 @if (Auth::guest())
                     <a id="navDataVisual" class="navbar-brand" href="{{ url('/testvisual') }}">
@@ -108,18 +124,3 @@
             </div>
         </div>
     </nav>
-
-    <style type="text/css">
-        #portalLogo {
-            width: 50px;
-            height: 50px;
-            float: left;
-            margin-top: -14px;
-        }
-
-        #navDataVisual{
-            font-size:14px;
-            margin-left: 5px;
-        }
-    </style>
-

@@ -20,7 +20,7 @@
                 @endif
             </div>
             <div class="col-md-3">
-                @if(($user->getRoleListAttribute()->first() == 1))
+                @if(Auth::user()->can(['manage-users','manage-roles']))
                     @if($CRUD_Action == 'Create' )
                             {!! Form::select('private_public_flag', $PriPubFlgList, null, ['class'=>'col-md-6 form-control', 'required'=>'required']) !!}
                         @else
@@ -37,24 +37,6 @@
     </div>
 </div>
 
-<!-- @if(($user->getRoleListAttribute()->first() == 1)) -->
-<!-- <div class="form-group{{ $errors->has('private_public_flag') ? ' has-error' : '' }}">
-    {!! Form::label('private_public_flag', 'Private/Public:', ['class' => 'col-md-4 control-label']) !!}
-    <div class="col-md-6">
-            @if($CRUD_Action == 'Create' )
-                    {!! Form::select('private_public_flag',[null=>''] + $PriPubFlgList, null, ['class' => 'col-md-6 form-control', 'required' => 'required']) !!}
-                @else
-                    {!! Form::select('private_public_flag', $PriPubFlgList, $peergroup->private_public_flag, ['class' => 'col-md-6 form-control', 'required' => 'required', 'selected' => 'selected']) !!}
-            @endif
-            @if ($errors->has('private_public_flag'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('private_public_flag') }}</strong>
-                </span>
-            @endif
-    </div>
-</div> -->
-<!-- @endif -->
-
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="container" style="border-top: 0px; padding-top: 0px; ">
@@ -65,11 +47,11 @@
                 <div class="col-md-3" align="right">
                     {{ Form::label('instcat_lbl', 'Institution Category: ') }}
                 </div>
-                <div class="col-md-5" align="right">
+                <div class="col-md-7" align="right">
                 @if(sizeof($selected_instcat_list) == 0)
-                    {{ Form::select('instcat', $instcat_list, ['id' => 'instcat', 'class'=>'col-md-12']) }}
+                    {{ Form::select('instcat', $instcat_list, ['id' => 'instcat', 'class'=>'col-md-12 form-control']) }}
                 @else
-                    {{ Form::select('instcat', $instcat_list, $selected_instcat_list, ['id' => 'instcat', 'class'=>'col-md-12']) }}
+                    {{ Form::select('instcat', $instcat_list, $selected_instcat_list, ['id' => 'instcat', 'class'=>'col-md-12 form-control']) }}
                 @endif
                 </div>
             </div>
@@ -77,11 +59,11 @@
                 <div class="col-md-3" align="right">
                     {{ Form::label('cc_lbl', 'Carnegie Classification: ', ['data-toggle'=>'tooltip','title'=>'Carnegie Classification 2010 Basic']) }}
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-7">
                 @if(sizeof($selected_ccbasic_list) == 0)
-                    {{ Form::select('ccbasic', $ccbasic_list, ['id'=>'ccbasic', 'class'=>'col-md-12']) }}
+                    {{ Form::select('ccbasic', $ccbasic_list, ['id'=>'ccbasic', 'class'=>'col-md-12 form-control']) }}
                 @else
-                    {{ Form::select('ccbasic', $ccbasic_list, '-9', ['id'=>'ccbasic', 'class'=>'col-md-12']) }}
+                    {{ Form::select('ccbasic', $ccbasic_list, '-9', ['id'=>'ccbasic', 'class'=>'col-md-12 form-control']) }}
                 @endif
                 </div>            
             </div>
@@ -89,11 +71,11 @@
                 <div class="col-md-3" align="right">
                     {{ Form::label('yr_lbl', 'Carnegie Year: ', ['data-toggle'=>'tooltip','title'=>'Carnegie Classification 2010 Basic Year']) }}
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-2">
                 @if(sizeof($selected_ccbasic_list) == 0)
-                    {{ Form::select('ccbasicyearid', array(null=>'All') + $ccbasicyearid, ['id'=>'ccbasicyearid', 'class'=>'col-md-4']) }}
+                    {{ Form::select('ccbasicyearid', array(null=>'All') + $ccbasicyearid, ['id'=>'ccbasicyearid', 'class'=>'col-md-4 form-control']) }}
                 @else
-                    {{ Form::select('ccbasicyearid', array(null=>'All') + $ccbasicyearid, null, ['id'=>'ccbasicyearid', 'class'=>'col-md-4']) }}
+                    {{ Form::select('ccbasicyearid', array(null=>'All') + $ccbasicyearid, null, ['id'=>'ccbasicyearid', 'class'=>'col-md-4 form-control']) }}
                 @endif
                 </div>
             </div>
@@ -101,17 +83,17 @@
                 <div class="col-md-3" align="right">
                     {{ Form::label('stabbr_lbl', 'Institution State: ') }}
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-3">
                 @if(sizeof($selected_stabbr_list) == 0)
-                    {{ Form::select('stabbr', $stabbr_list, ['id'=>'stabbr', 'class'=>'col-md-6']) }}
+                    {{ Form::select('stabbr', $stabbr_list, ['id'=>'stabbr', 'class'=>'col-md-6 form-control']) }}
                 @else
-                    {{ Form::select('stabbr', $stabbr_list, $selected_stabbr_list, ['id'=>'stabbr', 'class'=>'col-md-6']) }}
+                    {{ Form::select('stabbr', $stabbr_list, $selected_stabbr_list, ['id'=>'stabbr', 'class'=>'col-md-6 form-control']) }}
                 @endif
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="padding-top: 2px;">
                 <div class="col-md-8" align="center">
-                {{ Form::button('<i class="fa fa-btn fa-sm fa-filter"></i>Filter', array('class'=>'btn btn-sm btn-gray', 'id'=>'btnFilter')) }}
+                {{ Form::button('<i class="fa fa-btn fa-filter"></i>Filter', array('class'=>'btn btn-primary', 'id'=>'btnFilter', 'disabled'=>'disabled')) }}
                 </div>
             </div>
         </div>
@@ -125,11 +107,21 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="subject-info-box-1">
-                <label>Available Institutions <label id="dynCounter">({{count($school_ids)}})</label> </label>
+                <label>Available Institutions 
+                    <label id="dynCounter">
+                        @if(isset($school_ids)) 
+                            ({{count($school_ids)}}) 
+                        @else  
+                            (0) 
+                        @endif
+                    </label> 
+                </label>
                 <select multiple class="form-control" id="lstBox1">
+                    @if(isset($school_ids))
                     @foreach($school_ids as $key => $value)
-                        <option value="{{ $key }}">{{ $value }} </option>
+                        <option value="{{ $key }}">{{ $value}} </option>
                     @endforeach
+                    @endif
                 </select>
             </div>
             <div class="subject-info-arrows text-center">
@@ -160,16 +152,28 @@
         </div>
     </div><br>
     <div class="row">
-        <div class="col-md-7">
-            <div class="pull-right">
-            {!! Form::button('<i class="fa fa-btn fa-lg fa-save"></i>Save', ['type'=>'submit', 'class'=>'btn btn-primary btn-lg', 'id'=>'submit_btn', 'onClick'=>'selectAll()', 'data-toggle'=>'modal', 'data-target'=>'#loadingModal']) !!}
+        <div class="col-md-6 col-md-offset-3" align="center">
+            <!-- {{ Form::button('Cancel', ['class'=>'btn btn-close']) }} -->
+            <button type="button" class="btn btn-close" onclick="window.location='{{ URL::route('peergroups.index') }}'">Cancel</button>
+            @if($CRUD_Action == 'Create')
+                <?php 
+                // $attr = ['type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'submit_btn', 'onClick'=>'selectAll()', 'data-toggle'=>'modal', 'data-target'=>'#loadingModal', 'disabled'=>'disabled', 'onsubmit' => 'return validateOnSave();']
+                $attr = ['type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'submit_btn', 'onClick'=>'selectAll()', 'disabled'=>'disabled']
+                ?>
+            @else
+                <?php 
+                $attr = ['type'=>'submit', 'class'=>'btn btn-primary', 'id'=>'submit_btn', 'onClick'=>'selectAll()']
+                ?>                
+            @endif
+            {!! Form::button('<i class="fa fa-btn fa-save"></i>Save', $attr) !!}
             <br/><br/>
-            </div>
+        
         </div>
     </div>
 </div>
 
-<div id="loadingModal" class="modal">
+<!-- Modal -->
+<div id="savingModal" class="modal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="container">
@@ -185,13 +189,9 @@
 </div>
 
 
-
 <script>
-    var sel_cnt = 0;
 
     $(document).ready(function($){
-
-          $('cc_lbl').tooltip();
 
         $.ajaxSetup({
             headers: {
@@ -211,7 +211,6 @@
                 alert("Please select a Carnegie Classification Year.");
             }else{
                 var dyn_cnt = 0;
-                console.log("instcat", selected_instcat_list, "stabbr", selected_stabbr_list, "ccbasic", selected_ccbasic_list, "ccbasicyearid", ccbasicyearid);
                 $.ajax({
                     type: "GET",
                     url: "/unoistoie-acbat/public/this",
@@ -220,16 +219,38 @@
                     success: function(data) {
                         $('#lstBox1').empty();
                         $('#dynCounter').empty();
-                        $.each(data, function(key, value) {
-                            $('#lstBox1').append("<option value='" + key +"'>" + value + "</option>");
-                            dyn_cnt++;
+                        var sort_data = sortObject(data);
+                        $.each(sort_data, function( key, value ) {
+                          $('#lstBox1').append("<option value='" + value.id +"'>" + value.name + "</option>");
+                          dyn_cnt++; 
                         });
                         $('#dynCounter').text("("+dyn_cnt+")");
                     }
                 });
             }
-
         });
+
+        // Enable filter button when a filter is selected
+        $("#instcat").on('change', function () {
+            toggleFilterBtn();
+        }); 
+        $("#ccbasic").on('change', function () {
+            toggleFilterBtn();
+        }); 
+        $("#ccbasicyearid").on('change', function () {
+            toggleFilterBtn();
+        }); 
+        $("#stabbr").on('change', function () {
+            toggleFilterBtn();
+        });                    
+        // Helper function to enable/disable filter button
+        function toggleFilterBtn(){
+            if( $("#instcat").val() == 0 && $("#ccbasic").val() == -9 && $("#ccbasicyearid").val() == 0 && $("#stabbr").val() == 0){
+                $("#btnFilter").attr("disabled", true);  //Disable the filter button
+            }else{
+                $("#btnFilter").removeAttr("disabled");  //Enable the filter button
+            }            
+        }
 
         // When Carnegie is selected, the Carnegie Year is defaulted
         var previous;
@@ -242,31 +263,50 @@
             previous = this.value;   // Update previous value to new value
         });        
 
-        // Script for moving between Available Institutions and Selected Institutions
+        // Moving between Available Institutions and Selected Institutions
+        var maxSchoolSize = 1000;
         $('#btnRight').click(function (e) {
-            $('select').moveToListAndDelete('#lstBox1', '#lstBox2');
-            e.preventDefault();
-            updateSelCount();
+            var sel_sch_size = $("#lstBox1 :selected").length + $("#lstBox2 option").size();
+            if(sel_sch_size > maxSchoolSize){
+                alert("Maximum number of schools is " + maxSchoolSize+ ".")
+            }else{
+                $('select').moveToListAndDelete('#lstBox1', '#lstBox2');
+                e.preventDefault();
+                updateSelCount();  
+                $("#submit_btn").removeAttr("disabled");  //Enable the save button   
+            }
+
         });
-        $('#btnAllRight').click(function (e) {
-            $('select').moveAllToListAndDelete('#lstBox1', '#lstBox2');
-            e.preventDefault();
-            updateSelCount();
+        $('#btnAllRight').click(function (e) {     
+            var sel_sch_size = $("#lstBox1 option").size() + $("#lstBox2 option").size();
+            if(sel_sch_size > maxSchoolSize){
+                alert("Maximum number of schools is " + maxSchoolSize+ ".")
+            }else{             
+                $('select').moveAllToListAndDelete('#lstBox1', '#lstBox2');
+                e.preventDefault();
+                updateSelCount();
+                $("#submit_btn").removeAttr("disabled");  //Enable the save button
+            }
         });
         $('#btnLeft').click(function (e) {
             $('select').moveToListAndDelete('#lstBox2', '#lstBox1');
             e.preventDefault();
             updateSelCount();
+            if($("#lstBox2 option").size() == 0){
+                $("#submit_btn").attr("disabled", true);  //Disable the filter button
+            }
         });
         $('#btnAllLeft').click(function (e) {
             $('select').moveAllToListAndDelete('#lstBox2', '#lstBox1');
             e.preventDefault();
             updateSelCount();
+            $("#submit_btn").attr("disabled", true);  //Disable the filter button
         });
 
     });
 
     // Update the list counters
+    var sel_cnt = 0;
     function updateSelCount(){
         dyn_cnt = $('#lstBox1 option').size(); 
         $('#dynCounter').text("("+dyn_cnt+")");        
@@ -275,7 +315,7 @@
         $('#selCounter').text("("+sel_cnt+")");
     }
 
-    //Selects all options in the "selected institutions" list so the user doesnt have to.
+    // Selects all options in the "selected institutions" list so the user doesnt have to.
     function selectAll() { 
         selectBox = document.getElementById("lstBox2");
         for (var i = 0; i < selectBox.options.length; i++) { 
@@ -283,5 +323,27 @@
         } 
     }
 
+    // Sorts the institutions
+    function sortObject(obj) {
+        var arr = [];
+        var prop;
+        for (prop in obj) {
+            if (obj.hasOwnProperty(prop)) {
+                arr.push({
+                    'id': prop,
+                    'name': obj[prop]
+                });
+            }
+        }
+        arr.sort(function(a, b){
+            var x = a.name.toLowerCase();
+            var y = b.name.toLowerCase();
+            if (x < y) {return -1;}
+            if (x > y) {return 1;}
+            return 0;
+        });
+        return arr; // returns array
+    }
+      
 
 </script>

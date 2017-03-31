@@ -53,7 +53,7 @@ label {
                     <div class="panel-heading">
                         <div><h4>Data Visualization</h4></div>
                     </div>                   
-                                       <div class="panel-body">
+                    <div class="panel-body">
                         {!! Form::open(['url'=>'/datarefresh', 'class'=>'form-horizontal']) !!}
                         <div>
                             <div class="col-md-3">
@@ -105,13 +105,17 @@ label {
             </div>
         </div>
     </div>
+
+    <div class="container">
+        @include ('data.data_tabular')
+    </div>       
 @endsection
 
 @section('footer')
 
 <script>
   var test_data = <?php echo json_encode($test_data, JSON_HEX_TAG); ?>; 
- var sel_xaxis = <?php echo json_encode($sel_xaxis, JSON_HEX_TAG); ?>; 
+  var sel_xaxis = <?php echo json_encode($sel_xaxis, JSON_HEX_TAG); ?>; 
   var sel_yaxis = <?php echo json_encode($sel_yaxis, JSON_HEX_TAG); ?>; 
 </script>
 <script src="http://d3js.org/d3.v3.min.js"></script>

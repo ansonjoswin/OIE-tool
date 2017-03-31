@@ -33,7 +33,7 @@ class DataTableController extends Controller
         // $this->stabbrs = Stabbr::all();
         // $this->results = School::pluck('name','id');
         //$this->school_ids = $this->results->toArray();
-        $this->new_array = [];
+        // $this->new_array = [];
         $this->viewData['peergroup_list'] = PeerGroup::pluck('peergroup_id','peergroup_name')->toArray();
         $this->viewData['selected_peergroup_list'] = PeerGroup::pluck('peergroup_id','peergroup_name')->toArray();
 
