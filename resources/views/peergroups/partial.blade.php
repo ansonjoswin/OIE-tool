@@ -20,7 +20,7 @@
                 @endif
             </div>
             <div class="col-md-3">
-                @if(($user->getRoleListAttribute()->first() == 1))
+                @if(Auth::user()->can(['manage-users','manage-roles']))
                     @if($CRUD_Action == 'Create' )
                             {!! Form::select('private_public_flag', $PriPubFlgList, null, ['class'=>'col-md-6 form-control', 'required'=>'required']) !!}
                         @else
