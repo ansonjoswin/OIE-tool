@@ -38,7 +38,7 @@ class PeerGroupSchoolTable extends Seeder
 
 
             $peergroup = PeerGroup::where('peergroup_name', '=', 'UNO Peers')->first()->peergroup_id;
-            $school = School::where('name', '=', 'The University of Texas at San Antonio')->first()->school_id;
+            $school = School::where('name', '=', 'The University of Texas at San Antonio')->first()->id;
             $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
             DB::table('peergroup_school')->insert($peergroup_school);
 
@@ -470,7 +470,7 @@ class PeerGroupSchoolTable extends Seeder
                       DB::table('peergroup_school')->insert($peergroup_school);
 
                 $peergroup = PeerGroup::where('peergroup_name', '=', 'DRU')->first()->peergroup_id;
-                $school = School::where('name', '=',"Texas Woman's University'")->first()->id;
+                $school = School::where('name', '=',"Texas Woman's University")->first()->id;
                 $peergroup_school = [ ['peergroup_id' => $peergroup, 'school_id' => $school, 'created_by' => 'System', 'updated_by' => 'System' ] ];
                       DB::table('peergroup_school')->insert($peergroup_school);
 
