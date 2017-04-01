@@ -62,7 +62,7 @@ Route::get('/userstats', 'UsersController@userstat');
 
 /**** DATA VISUALIZATION SCATTERPLOT ****/
 Route::resource('/datavisual', 'DataVisualController');
-Route::get('/getExport', 'TestDataController@getExport');  // Export data to excel
+Route::get('/getExport', 'DataVisualController@getExport');  // Export data to excel
 Route::post('/datarefresh', 'DataVisualController@refresh');
 /****************************************/
 

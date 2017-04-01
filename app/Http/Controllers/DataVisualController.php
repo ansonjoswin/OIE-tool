@@ -11,6 +11,7 @@ use App\DataTable;
 use DB;
 use Illuminate\Routing\Controller;
 use Auth;
+use Excel;
 
 
 
@@ -28,9 +29,6 @@ public $xaxis_options = [''=>'Select Resource',
             'nonadmin_tradeservicestaff_perthousandstudent'=>'Non-Admin Trade and Service Staff per Thousand Students',
             'all_instructors_staff'=>'All Instructors and Staff',
             'ug_student_perthousandstudent'=>'Undergrad Students per Thousand Students',
-            // 'totl_salary'=>'Total Salary',
-            // 'admin_salary'=>'Admin Salary',
-            // 'instructor_salary'=>'Instructor Salary',
             'instructor_salarypermillion'=>'Instructor Salary per Million',
             'adminprofessionalstaff_salarypermillion'=>'Admin and Professional Staff Salary per Million',
             'noninstruction_academicstaff_salarypermillion'=>'Non-Instruction Academic Staff Salary per Million',
@@ -192,8 +190,8 @@ public $xaxis_options = [''=>'Select Resource',
         //  });
         // })->export('xlsx');
 
-        return Excel::create('Filename', function($excel) use ($dataexport) {
-            $excel->sheet('Sheetname', function($sheet) use ($dataexport) {
+        return Excel::create("UNO's Summary Data Table", function($excel) use ($dataexport) {
+            $excel->sheet('Summary Table', function($sheet) use ($dataexport) {
                 // Sheet manipulation
                 $sheet->fromArray($dataexport, null, 'A1', false, false);
             });
