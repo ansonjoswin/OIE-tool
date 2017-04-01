@@ -11,6 +11,7 @@ use App\DataTable;
 use DB;
 use Illuminate\Routing\Controller;
 use Auth;
+use Excel;
 
 
 
@@ -177,4 +178,27 @@ public $xaxis_options = [''=>'Select Resource',
         //Call view
         return view('data.test',$this->viewData);
     }  
+
+    public function getExport(){
+
+        // $dataexport = DataTable::find(1);
+        $dataexport = DataTable::all()->whereIn('school_id',1);
+        // dd($dataexport);
+               
+        // Excel::create("UNO's Summary Data Table", function($excel) use($export){
+        //  $excel->sheet('Summary Table', function($sheet) use($export){
+        //      $sheet->fromArray($export);
+        //  });
+        // })->export('xlsx');
+
+        return Excel::create('Filename', function($excel) use ($dataexport) {
+            $excel->sheet('Sheetname', function($sheet) use ($dataexport) {
+                // Sheet manipulation
+                $sheet->fromArray($dataexport, null, 'A1', false, false);
+            });
+        })->export('xls');
+
+        
+    }
+
 }

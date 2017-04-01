@@ -84,20 +84,20 @@
             <div id="dataToggle1" class="tab-pane fade in active">
                 <div class="panel panel-default">
                     <!-- Export Data Table -->
-                    {{-- <div class="panel-heading" > 
+                    <div class="panel-heading" > 
                      <a href="{{ URL::to('getExport') }}" class="btn " style="color:black">
                         <span style="margin: 5px 5px 0px 0px;" class="glyphicon glyphicon-save" ></span>Export Data Table</a>
-                    </div>  --}}
+                    </div> 
 
                     <div class="panel-body">
                         @include('common.flash')
                             <div class="table-responsive">
                                 <table class="table table-condensed table-striped cds-datatable" id="table1"> 
                                     <thead> <!-- Table Headings -->
-                                        <th>
+                                        <th style="padding-top: 40px">
                                         School Name
                                         </th>
-                                        <th>
+                                        <th style="padding-top: 40px">
                                         Instruction Staff
                                         </th>
                                         <th>
@@ -278,33 +278,33 @@
                                         Admin Count
                                         </th>
                                         <th style="font-size:10px;">
-                                        Instructor Count
+                                        Inst Count
                                         </th>
                                         <th style="font-size:10px;">
-                                        Admin Salary per Million
+                                        Admin Sal per M
                                         </th>
                                         <th style="font-size:10px;">
-                                        Instructor Salary per Million
+                                        Inst Sal per M
                                         </th>
                                         <th style="font-size:10px;">
-                                        Admins per Thousand Students
+                                        Admin per Thou Students
                                         </th>
                                         <th style="font-size:10px;">
-                                        Instructors per Thousand Students
+                                        Inst per Thou Students
                                         </th>
                                         <th style="font-size:10px;">
-                                        Graduation Rate (4 year)
+                                        Graduation Rate (4 yr)
                                         </th>
                                         <th style="font-size:10px;">
-                                        Graduation Rate (6 year)
+                                        Graduation Rate (6 yr)
                                         </th>
                                         <th style="font-size:10px;">
-                                        Degrees per Thousand Students</th>
+                                        Degrees per Thou Students</th>
                                         <th style="font-size:10px;">
-                                        Average SCH per Student per AY
+                                        Avg SCH per Student per AY
                                         </th>
                                         <th style="font-size:10px;">
-                                        Loan Default Rate
+                                        LoanDflt Rate
                                         </th>
                         </thead>
                         <tbody>
