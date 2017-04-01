@@ -179,26 +179,26 @@ public $xaxis_options = [''=>'Select Resource',
         return view('data.test',$this->viewData);
     }  
 
-    public function getExport(){
+    // public function getExport(){
 
-        // $dataexport = DataTable::find(1);
-        $dataexport = DataTable::all()->whereIn('school_id',1);
-        // dd($dataexport);
+    //     // $dataexport = DataTable::find(1);
+    //     $dataexport = DataTable::all()->whereIn('school_id',1);
+    //     // dd($dataexport);
                
-        // Excel::create("UNO's Summary Data Table", function($excel) use($export){
-        //  $excel->sheet('Summary Table', function($sheet) use($export){
-        //      $sheet->fromArray($export);
-        //  });
-        // })->export('xlsx');
+    //     // Excel::create("UNO's Summary Data Table", function($excel) use($export){
+    //     //  $excel->sheet('Summary Table', function($sheet) use($export){
+    //     //      $sheet->fromArray($export);
+    //     //  });
+    //     // })->export('xlsx');
 
-        return Excel::create('Filename', function($excel) use ($dataexport) {
-            $excel->sheet('Sheetname', function($sheet) use ($dataexport) {
-                // Sheet manipulation
-                $sheet->fromArray($dataexport, null, 'A1', false, false);
-            });
-        })->export('xls');
+    //     return Excel::create('Filename', function($excel) use ($dataexport) {
+    //         $excel->sheet('Sheetname', function($sheet) use ($dataexport) {
+    //             // Sheet manipulation
+    //             $sheet->fromArray($dataexport, null, 'A1', false, false);
+    //         });
+    //     })->export('xls');
 
         
-    }
+    // }
 
 }

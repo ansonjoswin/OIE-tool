@@ -85,10 +85,11 @@
                 <div class="panel panel-default">
                     <!-- Export Data Table -->
                     <div class="panel-heading" > 
-                     <a href="{{ URL::to('getExport') }}" class="btn " style="color:black">
-                        <span style="margin: 5px 5px 0px 0px;" class="glyphicon glyphicon-save" ></span>Export Data Table</a>
+                        {!! Form::open(['route'=>'exportdata', 'class'=>'form-horizontal']) !!}
+                        {!! Form::hidden('pgid', $dataTable_pgid) !!}
+                        {!! Form::button('<i class="fa fa-btn fa-download"></i>Export Data', ['type' => 'submit', 'class' => 'btn btn-primary']) !!}
+                        {!! Form::close() !!}
                     </div> 
-
                     <div class="panel-body">
                         @include('common.flash')
                             <div class="table-responsive">
