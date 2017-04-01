@@ -43,7 +43,7 @@ class CreateDatatable extends Migration
             $table->string('bachelordegree_6yeargradrate')->nullable();
             $table->integer('associatedegree_certi3yeargradrate')->nullable();
             $table->string('loan_default_rate')->nullable();
-            $table->unique('school_id', 'year');
+            $table->unique(['school_id', 'year']);
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
             $table->foreign('school_id')->references('id')->on('schools')->onUpdate('cascade')->onDelete('cascade');

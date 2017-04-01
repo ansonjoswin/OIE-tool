@@ -20,7 +20,7 @@ class CreateFinancesTable extends Migration
             $table->float('public_total_salary_wage')->nullable();
             $table->float('privateprofit_total_salary_wage')->nullable();
             $table->float('private_nonprofit_total_salary_wage')->nullable();
-            $table->unique('school_id', 'year');
+            $table->unique(['school_id', 'year']);
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
             $table->timestamp('created_at')->useCurrent();

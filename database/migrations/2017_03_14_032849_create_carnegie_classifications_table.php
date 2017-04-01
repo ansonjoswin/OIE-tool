@@ -24,7 +24,7 @@ class CreateCarnegieClassificationsTable extends Migration
             $table->float('carnegie_enroll_profile')->nullable();
             $table->char('carnegie_size_setting')->nullable();
             $table->float('carnegie_classification2000')->nullable();
-            $table->unique('school_id', 'year');
+            $table->unique(['school_id', 'year']);
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
             $table->timestamp('created_at')->useCurrent();

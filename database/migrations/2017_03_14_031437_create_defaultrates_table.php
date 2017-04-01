@@ -18,7 +18,7 @@ class CreateDefaultratesTable extends Migration
             $table->integer('opeid')->unsigned();
             $table->integer('year')->index();
             $table->float('loan_default_rate')->nullable();
-            $table->unique('opeid', 'year');
+            $table->unique(['opeid', 'year']);
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
             $table->timestamp('created_at')->useCurrent();

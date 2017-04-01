@@ -7,8 +7,7 @@
 
                 <div class="home-logo" style="padding-right: 20px; border-right: 1px solid #cccccc ;">
                     <a href="{{ url('/') }}">
-                        <img alt="University of Nebraska Omaha"
-                             src="{{asset('images/UNO-icon-color.png')}}">
+                        <img alt="University of Nebraska Omaha" src="{{ asset('images/UNO-icon-color.png') }}" type="image/png" width='32px' height='32px'>
                     </a>
                 </div>
 
