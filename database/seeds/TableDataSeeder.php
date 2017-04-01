@@ -11,11 +11,11 @@ Class SchoolTable extends CsvDataSeeder
     {
 
        //$getfilename= DB::Table('map_tables')->where('local_filename', '=', 'schools')->value('csv_name');
-		
+
 		//$path= '/../..\resources\assets\csv';
-		
+
 		//$this->filename = __DIR__ . $path . DIRECTORY_SEPARATOR . $getfilename;
-		
+
 		$this->filename =__DIR__ . '/../..\resources\assets\csv\school_2014.csv';
 
         $this->table = 'schools';
@@ -40,16 +40,16 @@ Class CarnegieTable extends CMCsvDataSeeder
 
     public function __construct()
     {
-		
+
 		$this->filename =__DIR__ . '/../..\resources\assets\csv\carnegie_2014.csv';
          //$getfilename= DB::Table('map_tables')->where('local_filename', '=', 'fallenrollment')->value('csv_name');
-		
+
 		//$path= '/../..\resources\assets\csv';
-		
+
 		//$this->filename = __DIR__ . $path . DIRECTORY_SEPARATOR . $getfilename;
 
 
-     
+
         $this->table = 'carnegie_classifications';
     }
 
@@ -63,14 +63,14 @@ Class CarnegieTable extends CMCsvDataSeeder
     }
 }
 
-Class DataTable extends DataTableSeeder
+Class DataTable extends OtherCsvDataSeeder
 {
     public $table;
     public $filename;
 
     public function __construct()
     {
-        $this->filename =__DIR__ . '/../..\resources\assets\csv\datatable_final.csv';
+        $this->filename =__DIR__ . '/../..\resources\assets\csv\datatable_2014.csv';
 
         //$getfilename= DB::Table('map_tables')->where('local_filename', '=', 'admissions')->value('csv_name');
 
@@ -97,8 +97,8 @@ Class StudentTable extends OtherCsvDataSeeder
     public $table;
 
     public $filename;
-	
-	
+
+
 
     public function __construct()
     {
@@ -107,9 +107,9 @@ Class StudentTable extends OtherCsvDataSeeder
 		//$getfilename= DB::Table('map_tables')->where('local_filename', '=', 'admissions')->value('csv_name');
 
 		/*$path= '/../..\resources\assets\csv';
-		
+
 		$this->filename = __DIR__ . $path . DIRECTORY_SEPARATOR . $getfilename;*/
-        
+
          $this->table = 'students';
     }
 
@@ -179,7 +179,7 @@ Class DefaultRateTable extends DefaultDataSeeder
 
     public function __construct()
     {
-        $this->filename =__DIR__ . '/../..\resources\assets\csv\defaultrate_final.csv';
+        $this->filename =__DIR__ . '/../..\resources\assets\csv\defaultrate_2014.csv';
 
         //$getfilename= DB::Table('map_tables')->where('local_filename', '=', 'admissions')->value('csv_name');
 
@@ -199,4 +199,3 @@ Class DefaultRateTable extends DefaultDataSeeder
         $defaultratetable->seedFromCSV($this->filename);
     }
 }
-
