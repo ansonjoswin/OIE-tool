@@ -44,6 +44,14 @@
                         <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}"><i class="fa fa-btn fa-fw fa-home"></i>Home</a></li>
+                    @if(Auth::user())
+                        <li>
+                            <a href="{{ url('/testvisual') }}"><i class="fa fa-btn fa-fw fa-bar-chart"></i>Data Visualization</a> 
+                        </li>
+                        <li>
+                            <a href="{{ url('/peergroups') }}"><i class="fa fa-btn fa-fw fa-users"></i>Peer Groups</a>
+                        </li>
+                    @endif
                     {{-- Menu for Users with Administration Role Only --}}
                     @if(Auth::user()->can(['manage-users','manage-roles']))
                         <li class="dropdown">
@@ -66,23 +74,16 @@
                                 <li>
                                 <a href="{{ url('/userstats') }}"><i class="fa fa-btn fa-fw fa-bar-chart"></i>User Statistics</a>
                                 </li>
-                                <li>
+                                {{-- <li>
                                 <a href="{{ url('https://analytics.google.com/') }}" id="GoogleAnalytics"><i class="fa fa-btn fa-fw fa-line-chart"></i>Google Analytics</a>
-                                </li>
+                                </li> --}}
 <!--                                 <li>
                                 <a href="{{ url('/purgedata') }}"><i class="fa fa-btn fa-fw fa-exclamation-triangle"></i>Purge Data</a>
                                 </li> -->
                             </ul>
                         </li>                 
                     @endif
-                    @if(Auth::user())
-                        <li>
-                            <a href="{{ url('/peergroups') }}"><i class="fa fa-btn fa-fw fa-users"></i>Peer Groups</a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/testvisual') }}"><i class="fa fa-btn fa-fw fa-bar-chart"></i>Data Visualization</a> 
-                        </li>
-                    @endif
+                    
                     @endif
         </ul>
    
