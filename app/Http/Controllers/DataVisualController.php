@@ -174,6 +174,9 @@ public $xaxis_options = [''=>'Select Resource',
         $this->viewData['test_data'] = json_encode($test_data);
 
 
+            // $test1=$test_data->whereNotIn($sel_xaxis,[null])->toJson();
+           // dd($test1);
+
         //Call view
         return view('data.index',$this->viewData);
     }  
