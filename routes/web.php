@@ -64,16 +64,12 @@ Route::get('/userstats', 'UsersController@userstat');
 Route::resource('/testvisual', 'TestDataController');
 Route::resource('/datavisual', 'DataVisualController');
 Route::post('/datarefresh', 'TestDataController@refresh');
+Route::get('/getExport', 'TestDataController@getExport');  // Export data to excel
 /****************************************/
 
 /*** Purge Data ***/
 Route::resource('purgedata', 'PurgeDataController');
 /*******************/
-
-
-/**Export to csv****/
-Route::get('/getExport', 'DataTableController@getExport');
-/****************************************/
 
 
 /***User Table route***/
