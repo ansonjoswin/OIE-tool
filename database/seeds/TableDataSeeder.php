@@ -63,7 +63,7 @@ Class CarnegieTable extends CMCsvDataSeeder
     }
 }
 
-Class DataTable extends OtherCsvDataSeeder
+Class DataTable extends DataTableSeeder
 {
     public $table;
     public $filename;
