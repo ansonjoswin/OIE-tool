@@ -109,7 +109,7 @@ public $xaxis_options = [''=>'Select Resource',
         $sel_school_ids = PeerGroup::find($sel_pgid)->school()->pluck('school_id')->toArray();
 
         // SchoolNames for the search type ahead
-        $schoolNames = School::find($sel_school_ids)->pluck('name');
+        $schoolNames = School::find($sel_school_ids)->pluck('id','name');
         $this->viewData['schoolNames'] = $schoolNames;
 
         $this->viewData['sel_pgid'] = $sel_pgid->toArray();
@@ -160,7 +160,7 @@ public $xaxis_options = [''=>'Select Resource',
         $sel_school_ids = PeerGroup::find($sel_pgid)->school()->pluck('school_id')->toArray();
 
         // SchoolNames for the search type ahead
-        $schoolNames = School::find($sel_school_ids)->pluck('name');
+        $schoolNames = School::find($sel_school_ids)->pluck('id','name');
         $this->viewData['schoolNames'] = $schoolNames;
         
         //Get the aggregated data for the tabular view

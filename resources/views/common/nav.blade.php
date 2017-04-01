@@ -32,7 +32,7 @@
                 </button>
 
                 @if (Auth::guest())
-                    <a id="navDataVisual" class="navbar-brand" href="{{ url('/testvisual') }}">
+                    <a id="navDataVisual" class="navbar-brand" href="{{ url('/datavisual') }}">
                         <i class="fa fa-btn fa-fw fa-bar-chart"></i>Data Visualization
                     </a>
                 @endif
@@ -45,7 +45,7 @@
                     <li><a href="{{ url('/home') }}"><i class="fa fa-btn fa-fw fa-home"></i>Home</a></li>
                     @if(Auth::user())
                         <li>
-                            <a href="{{ url('/testvisual') }}"><i class="fa fa-btn fa-fw fa-bar-chart"></i>Data Visualization</a> 
+                            <a href="{{ url('/datavisual') }}"><i class="fa fa-btn fa-fw fa-bar-chart"></i>Data Visualization</a> 
                         </li>
                         <li>
                             <a href="{{ url('/peergroups') }}"><i class="fa fa-btn fa-fw fa-users"></i>Peer Groups</a>
@@ -82,7 +82,6 @@
                             </ul>
                         </li>                 
                     @endif
-                    
                     @endif
         </ul>
    
