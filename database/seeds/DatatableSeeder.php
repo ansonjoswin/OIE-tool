@@ -3,7 +3,7 @@ use Illuminate\Database\Seeder;
 use App\School;
 use App\Student;
 use App\Carnegie_Classification;
-abstract class OtherCsvDataSeeder extends Seeder
+abstract class DataTableSeeder extends Seeder
 {
     public $table;
     public $filename;
