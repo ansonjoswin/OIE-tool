@@ -60,36 +60,36 @@ label {
                                 <div class="panel-body">
                                     <div class="col-md-12">
                                     @if(isset($sel_pgid))
-                                        {!! Form::select('sel_pgid', [''=>'Select Peer Group'] + $peerGroups, $sel_pgid, ['class'=>'form-control', 'required'=>'required']) !!}
+                                        {!! Form::select('sel_pgid', [''=>'Select Peer Group'] + $peerGroups, $sel_pgid, ['class'=>'form-control refresh-graph', 'required'=>'required']) !!}
                                     @else
-                                        {!! Form::select('sel_pgid', [''=>'Select Peer Group'] + $peerGroups, null, ['class'=>'form-control', 'required'=>'required']) !!}
+                                        {!! Form::select('sel_pgid', [''=>'Select Peer Group'] + $peerGroups, null, ['class'=>'form-control refresh-graph', 'required'=>'required']) !!}
                                     @endif
                                     </div>
                                     <div class="col-md-12 margin-gap">
                                     @if(isset($sel_year))
-                                        {!! Form::select('sel_year', array(null=>'Select Year') + $avail_years, $sel_year, ['class'=>'form-control', 'required'=>'required']) !!}
+                                        {!! Form::select('sel_year', array(null=>'Select Year') + $avail_years, $sel_year, ['class'=>'form-control refresh-graph', 'required'=>'required']) !!}
                                     @else
-                                        {!! Form::select('sel_year', array(null=>'Select Year') + $avail_years, null, ['class'=>'form-control', 'required'=>'required']) !!}
+                                        {!! Form::select('sel_year', array(null=>'Select Year') + $avail_years, null, ['class'=>'form-control refresh-graph', 'required'=>'required']) !!}
                                     @endif  
                                     </div>
                                     <div class="col-md-12 margin-gap">
                                     @if(isset($sel_xaxis))
-                                        {!! Form::select('sel_xaxis', $xaxis_options, $sel_xaxis, ['class'=>'form-control', 'required'=>'required']) !!}
+                                        {!! Form::select('sel_xaxis', $xaxis_options, $sel_xaxis, ['class'=>'form-control refresh-graph', 'required'=>'required']) !!}
                                     @else
-                                        {!! Form::select('sel_xaxis', $xaxis_options, null, ['class'=>'form-control', 'required'=>'required']) !!}
+                                        {!! Form::select('sel_xaxis', $xaxis_options, null, ['class'=>'form-control refresh-graph', 'required'=>'required']) !!}
                                     @endif                                    
                                     </div>
                                     <div class="col-md-12 margin-gap">
                                     @if(isset($sel_yaxis))
-                                        {!! Form::select('sel_yaxis', $yaxis_options, $sel_yaxis, ['class'=>'form-control', 'required'=>'required']) !!}
+                                        {!! Form::select('sel_yaxis', $yaxis_options, $sel_yaxis, ['class'=>'form-control refresh-graph', 'required'=>'required']) !!}
                                     @else
-                                        {!! Form::select('sel_yaxis', $yaxis_options, null, ['class'=>'form-control', 'required'=>'required']) !!}
-                                    @endif                                    
+                                        {!! Form::select('sel_yaxis', $yaxis_options, null, ['class'=>'form-control refresh-graph', 'required'=>'required']) !!}
+                                    @endif                        
                                     </div>      
-                                    <div class="col-md-12">
-                                    {!! Form::button('<i class="fa fa-btn"></i>Refresh', ['type' => 'submit', 'class' => 'btn btn-primary']) !!} 
+                                    <div class="col-md-12 margin-gap">
+                                    {!! Form::button('<i class="fa fa-btn"></i>Refresh', ['type' => 'submit', 'class' => 'btn btn-primary', 'id'=>'graphSubmitBtn']) !!} 
                                     </div>
-                                    <div class="col-md-12" typeahead-section>
+                                    <div class="col-md-12 margin-gap" typeahead-section>
                                       {!! Form::input('text', 'schoolPredictor', null, ['id' => 'schoolPredictor', 'class'=>'form-control', 'placeholder' => 'Search by school name', 'autocomplete' => 'off']) !!}
                                     </div>
                                 </div>
@@ -122,6 +122,12 @@ label {
   var xaxislabel = <?php echo json_encode($xaxis_label, JSON_HEX_TAG); ?>; 
   var yaxislabel = <?php echo json_encode($yaxis_label, JSON_HEX_TAG); ?>;
   var selectedSchoolId = -1;
+
+  // Refresh graph on changing fields
+  $( ".refresh-graph" ).change(function() {
+    $("#graphSubmitBtn").click();
+  });
+
 </script>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="../public/js/datavisual.js"></script>
@@ -141,6 +147,14 @@ label {
       },
       updater: function(item) {
         selectedSchoolId = schoolIds[item];
+        for(var jsIndex = 0; jsIndex < jsObject.length; jsIndex++) {
+          if(jsObject[jsIndex].school_id == selectedSchoolId) {
+            var d = jsObject[jsIndex];
+            var xPos = xScale(d[sel_xaxis] );
+            var yPos = yScale(d[sel_yaxis] );
+            drawPath(d, xPos, yPos);
+          }
+        }
         return item;
       }
     });

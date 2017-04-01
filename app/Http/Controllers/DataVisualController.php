@@ -28,9 +28,6 @@ public $xaxis_options = [''=>'Select Resource',
             'nonadmin_tradeservicestaff_perthousandstudent'=>'Non-Admin Trade and Service Staff per Thousand Students',
             'all_instructors_staff'=>'All Instructors and Staff',
             'ug_student_perthousandstudent'=>'Undergrad Students per Thousand Students',
-            'totl_salary'=>'Total Salary',
-            'admin_salary'=>'Admin Salary',
-            'instructor_salary'=>'Instructor Salary',
             'instructor_salarypermillion'=>'Instructor Salary per Million',
             'adminprofessionalstaff_salarypermillion'=>'Admin and Professional Staff Salary per Million',
             'noninstruction_academicstaff_salarypermillion'=>'Non-Instruction Academic Staff Salary per Million',
@@ -177,9 +174,13 @@ public $xaxis_options = [''=>'Select Resource',
         $this->viewData['test_data'] = json_encode($test_data);
 
 
+            // $test1=$test_data->whereNotIn($sel_xaxis,[null])->toJson();
+           // dd($test1);
+
         //Call view
         return view('data.index',$this->viewData);
     }  
+
 
     public function getExport(Request $request){
         $pgid = $request['pgid'];
@@ -199,8 +200,6 @@ public $xaxis_options = [''=>'Select Resource',
                 $sheet->fromArray($dataexport);
             });
         })->export('xlsx');
-
-        
     }
 
 }

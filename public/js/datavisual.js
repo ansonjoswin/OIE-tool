@@ -93,86 +93,49 @@ jsObject = JSON.parse(test_data);
       .on("click", function(d,i) {
         xPos = d3.select(this).attr("cx"),
         yPos = d3.select(this).attr("cy");
-        xPath = d[sel_xaxis];
-        yPath = d[sel_yaxis];
-        svg.selectAll(".crossPath").remove();
-        svg.selectAll(".crossCircle").remove();
-        svg.append("svg:line")
-          .attr('class', 'crossPath')
-          .attr("x1", 0).attr("y1", yPos)
-          .attr("x2", w).attr("y2", yPos)
-          .style("stroke", "red")
-          .style("stroke-width", 1);
-        svg.append("svg:line")
-          .attr('class', 'crossPath')
-          .attr("x1", xPos).attr("y1", 0)
-          .attr("x2", xPos).attr("y2", h)
-          .style("stroke", "red")
-          .style("stroke-width", 1);
-        svg.append('circle')
-          .attr('class', 'crossCircle')
-          .attr('cx',function (d) { return xPos })
-          .attr('cy',function (d) { return yPos })
-          .attr('r','3')
-          .attr('stroke','red')
-          .attr('stroke-width',1)
-          .attr('fill', 'red')
-          .append('title') // Tooltip
-            .text("School Name"+" : "+ d.school_name+ "\n"+
-              "Undergraduate Headcount"+" : "+d.ug_student_perthousandstudent+ "\n"+
-              "Graduation Rate (4 year)"+" : "+d.bachelordegree_4yeargradrate + "\n"+
-              "Graduation Rate (6 year)"+" : "+d.bachelordegree_6yeargradrate + "\n"+
-              "Employees"+" : "+d.all_instructors_staff + "\n"+
-              "Admins"+" : "+d.admin_professional_staff + "\n"+
-              "Instructors"+" : "+d.instruction_staff + "\n"+
-              "Bachelor's Degrees"+" : "+d.instruction_staff + "\n"+
-              "Instructor Salary per Million"+" : "+d.instructor_salarypermillion + "\n"+
-              "Admin Salary per Million"+" : "+d.adminprofessionalstaff_salarypermillion + "\n"+
-              "Degrees per Thousand Students"+" : "+d.ug_degrees_perthousand_ugstudent + "\n"+
-              "Admins per Thousand Students"+" : "+d.admin_professionalstaff_perthousandstudent + "\n"+
-              "Instructors per Thousand Students"+" : "+d.instructors_per_thousand_student + "\n"+
-              "Average SCH per Student per AY"+" : "+d.grad_average_sch_studentperay + "\n"+
-              "Loan Default Rate"+" : "+d.loan_default_rate)
+        drawPath(d, xPos, yPos);
       })
     .append('title') // Tooltip
-      .text(function (d) { return sel_xaxis+': '+d[sel_xaxis] +
-                           '\n '+sel_yaxis+': ' + d[sel_yaxis]})
-  // function yChange() {
-  //   var value = this.value // get the new y value
+      .text(function (d) { return ( "School Name"+" : "+d.school_name )})
 
+  function drawPath(d, xPos, yPos) {
+    svg.selectAll(".crossPath").remove();
+    svg.selectAll(".crossCircle").remove();
+    svg.append("svg:line")
+      .attr('class', 'crossPath')
+      .attr("x1", 0).attr("y1", yPos)
+      .attr("x2", w).attr("y2", yPos)
+      .style("stroke", "red")
+      .style("stroke-width", 1);
+    svg.append("svg:line")
+      .attr('class', 'crossPath')
+      .attr("x1", xPos).attr("y1", 0)
+      .attr("x2", xPos).attr("y2", h)
+      .style("stroke", "red")
+      .style("stroke-width", 1);
+    svg.append('circle')
+      .attr('class', 'crossCircle')
+      .attr('cx',function (d) { return xPos })
+      .attr('cy',function (d) { return yPos })
+      .attr('r','3')
+      .attr('stroke','red')
+      .attr('stroke-width',1)
+      .attr('fill', 'red')
+      .append('title') // Tooltip
+        .text("School Name"+" : "+ d.school_name+ "\n"+
+          "Undergraduate Headcount"+" : "+d.ug_student_perthousandstudent+ "\n"+
+          "Graduation Rate (4 year)"+" : "+d.bachelordegree_4yeargradrate + "\n"+
+          "Graduation Rate (6 year)"+" : "+d.bachelordegree_6yeargradrate + "\n"+
+          "Employees"+" : "+d.all_instructors_staff + "\n"+
+          "Admins"+" : "+d.admin_professional_staff + "\n"+
+          "Instructors"+" : "+d.instruction_staff + "\n"+
+          "Bachelor's Degrees"+" : "+d.instruction_staff + "\n"+
+          "Instructor Salary per Million"+" : "+d.instructor_salarypermillion + "\n"+
+          "Admin Salary per Million"+" : "+d.adminprofessionalstaff_salarypermillion + "\n"+
+          "Degrees per Thousand Students"+" : "+d.ug_degrees_perthousand_ugstudent + "\n"+
+          "Admins per Thousand Students"+" : "+d.admin_professionalstaff_perthousandstudent + "\n"+
+          "Instructors per Thousand Students"+" : "+d.instructors_per_thousand_student + "\n"+
+          "Average SCH per Student per AY"+" : "+d.grad_average_sch_studentperay + "\n"+
+          "Loan Default Rate"+" : "+d.loan_default_rate)
 
-  //   yScale // change the yScale
-  //     .domain([
-  //       d3.min([0,d3.min(jsObject,function (d) { return d[value] })]),
-  //       d3.max([0,d3.max(jsObject,function (d) { return d[value] })])
-  //       ])
-
-  //   yAxis.scale(yScale) // change the yScale
-  //   d3.select('#yAxis') // redraw the yAxis
-  //     .transition().duration(5)
-  //     .call(yAxis)
-  //   d3.select('#yAxisLabel') // change the yAxisLabel
-  //     .text(value)    
-  //   d3.selectAll('circle') // move the circles
-  //     .transition().duration(5)
-  //          .attr('cy',function (d) { return yScale(d[value]) })
-  // }
-
-  // function xChange() {
-  //   var value = this.value // get the new x value
-  //   xScale // change the xScale
-  //     .domain([
-  //       d3.min([0,d3.min(jsObject,function (d) { return d[value] })]),
-  //       d3.max([0,d3.max(jsObject,function (d) { return d[value] })])
-  //       ])
-  //   xAxis.scale(xScale) // change the xScale
-  //   d3.select('#xAxis') // redraw the xAxis
-  //     .transition().duration(5)
-  //     .call(xAxis)
-  //   d3.select('#xAxisLabel') // change the xAxisLabel
-  //     .transition().duration(5)
-  //     .text(value)
-  //   d3.selectAll('circle') // move the circles
-  //     .transition().duration(5)
-  //       .attr('cx',function (d) { return xScale(d[value]) })
-  // }
+  }
