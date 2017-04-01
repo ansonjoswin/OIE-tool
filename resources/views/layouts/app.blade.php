@@ -8,7 +8,7 @@
 
     <title>OIE ANALYTICAL PROJECT| UNO </title>
 
-    <link rel="icon" type="image/png" href="{{ url('images') }}/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" href="{{ asset('images/favicon-32x32') }}" type="image/png">
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
