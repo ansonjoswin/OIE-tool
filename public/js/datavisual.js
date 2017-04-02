@@ -96,47 +96,7 @@ jsObject = JSON.parse(test_data);
         drawPath(d, xPos, yPos);
       })
     .append('title') // Tooltip
-      .text(function (d) { return sel_xaxis+': '+d[sel_xaxis] +
-                           '\n '+sel_yaxis+': ' + d[sel_yaxis]})
-  // function yChange() {
-  //   var value = this.value // get the new y value
-
-
-  //   yScale // change the yScale
-  //     .domain([
-  //       d3.min([0,d3.min(jsObject,function (d) { return d[value] })]),
-  //       d3.max([0,d3.max(jsObject,function (d) { return d[value] })])
-  //       ])
-
-  //   yAxis.scale(yScale) // change the yScale
-  //   d3.select('#yAxis') // redraw the yAxis
-  //     .transition().duration(5)
-  //     .call(yAxis)
-  //   d3.select('#yAxisLabel') // change the yAxisLabel
-  //     .text(value)    
-  //   d3.selectAll('circle') // move the circles
-  //     .transition().duration(5)
-  //          .attr('cy',function (d) { return yScale(d[value]) })
-  // }
-
-  // function xChange() {
-  //   var value = this.value // get the new x value
-  //   xScale // change the xScale
-  //     .domain([
-  //       d3.min([0,d3.min(jsObject,function (d) { return d[value] })]),
-  //       d3.max([0,d3.max(jsObject,function (d) { return d[value] })])
-  //       ])
-  //   xAxis.scale(xScale) // change the xScale
-  //   d3.select('#xAxis') // redraw the xAxis
-  //     .transition().duration(5)
-  //     .call(xAxis)
-  //   d3.select('#xAxisLabel') // change the xAxisLabel
-  //     .transition().duration(5)
-  //     .text(value)
-  //   d3.selectAll('circle') // move the circles
-  //     .transition().duration(5)
-  //       .attr('cx',function (d) { return xScale(d[value]) })
-  // }
+      .text(function (d) { return ( "School Name"+" : "+d.school_name )})
 
   function drawPath(d, xPos, yPos) {
     svg.selectAll(".crossPath").remove();
