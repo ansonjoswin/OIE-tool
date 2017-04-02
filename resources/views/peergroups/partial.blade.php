@@ -55,7 +55,7 @@
                 @endif
                 </div>
             </div>
-            <div class="row">
+            <div class="row margin-gap">
                 <div class="col-md-3" align="right">
                     {{ Form::label('cc_lbl', 'Carnegie Classification: ', ['data-toggle'=>'tooltip','title'=>'Carnegie Classification 2010 Basic']) }}
                 </div>
@@ -67,7 +67,7 @@
                 @endif
                 </div>            
             </div>
-            <div class="row">
+            <div class="row margin-gap">
                 <div class="col-md-3" align="right">
                     {{ Form::label('yr_lbl', 'Carnegie Year: ', ['data-toggle'=>'tooltip','title'=>'Carnegie Classification 2010 Basic Year']) }}
                 </div>
@@ -79,7 +79,7 @@
                 @endif
                 </div>
             </div>
-            <div class="row">
+            <div class="row margin-gap">
                 <div class="col-md-3" align="right">
                     {{ Form::label('stabbr_lbl', 'Institution State: ') }}
                 </div>
@@ -91,7 +91,7 @@
                 @endif
                 </div>
             </div>
-            <div class="row" style="padding-top: 2px;">
+            <div class="row margin-gap" style="padding-top: 2px;">
                 <div class="col-md-8" align="center">
                 {{ Form::button('<i class="fa fa-btn fa-filter"></i>Filter', array('class'=>'btn btn-primary', 'id'=>'btnFilter', 'disabled'=>'disabled')) }}
                 </div>
