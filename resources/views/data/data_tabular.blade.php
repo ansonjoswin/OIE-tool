@@ -83,6 +83,7 @@
             <!-- Data Table Tab -->
             <div id="dataToggle1" class="tab-pane fade in active">
                 <div class="panel panel-default">
+                    <!-- <div id="test_output">test output - {{ $filtervalues->count() }}</div> -->
                     <!-- Export Data Table -->
                     <div class="panel-heading" > 
                         {!! Form::open(['route'=>'exportdata', 'class'=>'form-horizontal']) !!}
@@ -93,12 +94,12 @@
                     <div class="panel-body">
                         @include('common.flash')
                             <div class="table-responsive">
-                                <table class="table table-condensed table-striped cds-datatable" id="table1"> 
+                                <table class="table table-condensed" id="table1">    <!-- cds-datatable table-striped-->
                                     <thead> <!-- Table Headings -->
-                                        <th style="padding-top: 40px">
+                                        <th>
                                         School Name
                                         </th>
-                                        <th style="padding-top: 40px">
+                                        <th>
                                         Instructors
                                         </th>
                                         <th>
@@ -366,12 +367,40 @@
 @endif
 
 
-{{-- <script>
+<script>
          $(document).ready(function() {
              $('table.cds-datatable').on( 'draw.dt', function () {
                  $('tr').tooltip({html: true, placement: 'auto' });
              } );
  
              $('tr').tooltip({html: true, placement: 'auto' });
-        }
-</script> --}}
+       
+
+            // Iterate through each row in the table and change its color depending on if its in top, middle, or bottom third          
+            var counter = 0;
+            // var totalcount = $('#table1 tr').length;
+            // var totalcount = $('#school_count').val();
+            var totalcount = <?php echo $filtervalues->count(); ?>;
+            // $('#test_output').append(" - " +totalcount);
+            var oneThird = totalcount / 3;
+            var topThreshold = oneThird;
+            var midThreshold = oneThird *2;
+            var bottomThreshold = totalcount;
+            $('tr').each(function () {
+                counter++;
+                if(counter > 1 && counter <= topThreshold){
+                    // console.log("top: "+counter);
+                    $(this).css('background-color', '#FFFFFF');
+                }else if(counter > topThreshold && counter <= midThreshold){
+                    // console.log("mid: "+counter);
+                    $(this).css('background-color', '#d6d6d6');
+                }else if (counter > midThreshold){
+                    // console.log("bottom: "+counter);
+                    $(this).css('background-color', '#FFFFFF');
+                }
+            });
+
+
+        });
+
+</script>
