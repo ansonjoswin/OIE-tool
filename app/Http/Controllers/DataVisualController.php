@@ -162,7 +162,7 @@ public $xaxis_options = [''=>'Select Resource',
         $this->viewData['schoolNames'] = $schoolNames;
         
         //Get the aggregated data for the tabular view
-        $filtervalues = DataTable::all()->whereIn('school_id',$sel_school_ids);
+        $filtervalues = DataTable::orderBy('school_name')->whereIn('school_id',$sel_school_ids)->get();
         $this->viewData['filtervalues'] = $filtervalues;
         $this->viewData['dataTable_pgid'] = $sel_pgid;
       
