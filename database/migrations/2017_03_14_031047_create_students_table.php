@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 <?php
 
 use Illuminate\Support\Facades\Schema;
