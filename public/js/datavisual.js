@@ -2,8 +2,8 @@ jsObject = JSON.parse(test_data);
 
   // Variables
   var body = d3.select("#chart")
-  var margin = { top: 50, right: 50, bottom: 50, left: 100 }
-  var h = 500 - margin.top - margin.bottom
+  var margin = { top: 20, right: 50, bottom: 50, left: 80 }
+  var h = 530 - margin.top - margin.bottom
   var w = 800 - margin.left - margin.right
 
   // SVG
