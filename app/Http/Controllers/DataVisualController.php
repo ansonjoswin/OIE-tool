@@ -17,7 +17,7 @@ use Excel;
 class DataVisualController extends Controller
 {
 
-public $xaxis_options = [''=>'Select Resource', 
+public $xaxis_options = [ 
             'instruction_staff'=>'Instructors',
             'instructors_per_thousand_student'=>'Instructors per Thousand Students',
             'admin_professional_staff'=>'Admin and Professional Staff',
@@ -34,7 +34,7 @@ public $xaxis_options = [''=>'Select Resource',
             'nonadmin_tradeservicestaff_salarypermillion'=>'Non-Admin Trade and Services Staff Salary per Million'
         ];
 
- public $yaxis_options = [''=>'Select Performance',
+ public $yaxis_options = [
             'ug_average_sch_studentperay'=>'Average SCH per Student per AY (undergrad)',
             'grad_average_sch_studentperay'=>'Average SCH per Student per AY (graduate)',
             'ug_degrees_perthousand_ugstudent'=>'Undergrad Degrees per Thousand Undergrad Students',
