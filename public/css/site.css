@@ -88,3 +88,8 @@ body {
   width: 70%;
   margin-bottom: 5px;
 }
+
+.margin-gap {    
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
