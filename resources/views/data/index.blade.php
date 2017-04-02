@@ -39,7 +39,12 @@ label {
 }
 
 .margin-gap {
-  margin: 10px 0;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.analytics-label {
+  margin: -3px -15px 5px 0;
 }
     </style>
     <!-- End CSS (Styling) -->
@@ -54,54 +59,62 @@ label {
                         <div><h4>Data Visualization</h4></div>
                     </div>                   
                     <div class="panel-body">
-                        {!! Form::open(['url'=>'/datarefresh', 'class'=>'form-horizontal']) !!}
+                        {!! Form::open(['url'=>'/datarefresh', 'class'=>'form-horizontal', 'id'=>'analyticsForm']) !!}
                         <div>
-                            <div class="col-md-3">
+                            <div class="col-md-12">
                                 <div class="panel-body">
-                                    <div class="col-md-12">
-                                    @if(isset($sel_pgid))
-                                        {!! Form::select('sel_pgid', [''=>'Select Peer Group'] + $peerGroups, $sel_pgid, ['class'=>'form-control refresh-graph', 'required'=>'required']) !!}
-                                    @else
-                                        {!! Form::select('sel_pgid', [''=>'Select Peer Group'] + $peerGroups, null, ['class'=>'form-control refresh-graph', 'required'=>'required']) !!}
-                                    @endif
+                                  <div class="row col-md-3">
+                                    <div class="col-md-5" align="right">
+                                        <label class="analytics-label">Peer Group</label>
                                     </div>
-                                    <div class="col-md-12 margin-gap">
-                                    @if(isset($sel_year))
-                                        {!! Form::select('sel_year', array(null=>'Select Year') + $avail_years, $sel_year, ['class'=>'form-control refresh-graph', 'required'=>'required']) !!}
-                                    @else
-                                        {!! Form::select('sel_year', array(null=>'Select Year') + $avail_years, null, ['class'=>'form-control refresh-graph', 'required'=>'required']) !!}
-                                    @endif  
+                                    <div class="col-md-7" align="right">
+                                      {!! Form::select('sel_pgid', $peerGroups, $sel_pgid, ['class'=>'form-control refresh-graph', 'required'=>'required']) !!}
+                                     </div>
+                                  </div>
+                                  <div class="row col-md-2">
+                                    <div class="col-md-3" align="right">
+                                        <label class="analytics-label">Year</label>
                                     </div>
-                                    <div class="col-md-12 margin-gap">
-                                    @if(isset($sel_xaxis))
-                                        {!! Form::select('sel_xaxis', $xaxis_options, $sel_xaxis, ['class'=>'form-control refresh-graph', 'required'=>'required']) !!}
-                                    @else
-                                        {!! Form::select('sel_xaxis', $xaxis_options, null, ['class'=>'form-control refresh-graph', 'required'=>'required']) !!}
-                                    @endif                                    
+                                    <div class="col-md-9" align="right">
+                                      {!! Form::select('sel_year', $avail_years, $sel_year, ['class'=>'form-control refresh-graph', 'required'=>'required']) !!} 
                                     </div>
-                                    <div class="col-md-12 margin-gap">
-                                    @if(isset($sel_yaxis))
-                                        {!! Form::select('sel_yaxis', $yaxis_options, $sel_yaxis, ['class'=>'form-control refresh-graph', 'required'=>'required']) !!}
-                                    @else
-                                        {!! Form::select('sel_yaxis', $yaxis_options, null, ['class'=>'form-control refresh-graph', 'required'=>'required']) !!}
-                                    @endif                        
-                                    </div>      
-                                    <div class="col-md-12 margin-gap">
-                                    {!! Form::button('<i class="fa fa-btn"></i>Refresh', ['type' => 'submit', 'class' => 'btn btn-primary', 'id'=>'graphSubmitBtn']) !!} 
+                                  </div>
+                                  <div class="row col-md-4">
+                                    <div class="col-md-3" align="right">
+                                        <label class="analytics-label">Resource</label>
                                     </div>
-                                    <div class="col-md-12 margin-gap" typeahead-section>
-                                      {!! Form::input('text', 'schoolPredictor', null, ['id' => 'schoolPredictor', 'class'=>'form-control', 'placeholder' => 'Search by school name', 'autocomplete' => 'off']) !!}
+                                    <div class="col-md-9" align="right">
+                                      {!! Form::select('sel_xaxis', $xaxis_options, $sel_xaxis, ['class'=>'form-control refresh-graph', 'required'=>'required']) !!}
                                     </div>
+                                  </div>
+                                  <div class="row col-md-4">
+                                    <div class="col-md-3" align="right">
+                                        <label class="analytics-label">Performance</label>
+                                    </div>
+                                    <div class="col-md-9" align="right">
+                                      {!! Form::select('sel_yaxis', $yaxis_options, $sel_yaxis, ['class'=>'form-control refresh-graph', 'required'=>'required']) !!}  
+                                    </div>
+                                  </div>
+                                  <div class="row col-md-7 margin-gap col-md-offset-2">
+                                    <div class="col-md-4" align="right">
+                                        <label class="analytics-label">Institution Name</label>
+                                    </div>
+                                    <div class="col-md-8" align="right" typeahead-section>
+                                      {!! Form::input('text', 'schoolPredictor', null, ['id' => 'schoolPredictor', 'Placeholder'=>'Search here', 'class'=>'form-control', 'autocomplete' => 'off']) !!}
+                                    </div>
+                                  </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row pull-left">               
-                            <div class="col-md-10">
+                            <div class="col-md-12 col-md-offset-2 panel panel-default">
                                 @include('common.flash')
-                                      <div class="panel-body"> 
-                                      @if(isset($count)) <h4>No data found for the selected criteria </h4>
-                                      @endif </div>
-                                <div id="chart">  </div>                        
+                                <div class="panel-body"> 
+                                  @if(isset($count)) 
+                                    <h4>No data found for the selected criteria </h4>
+                                  @endif 
+                                  <div id="chart"></div>
+                                </div>                        
                             </div>
                         </div>
                         </div>
@@ -128,7 +141,7 @@ label {
 
   // Refresh graph on changing fields
   $( ".refresh-graph" ).change(function() {
-    $("#graphSubmitBtn").click();
+    $("#analyticsForm").submit();
   });
 
 </script>
