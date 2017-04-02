@@ -86,16 +86,5 @@ class DataTableController extends Controller
      return view('data.tableindex',compact('datatables','peergroup_list','peergroup_school','filtervalues','displayTable','sum'));
      }
 
-     public function getExport(){
 
-        
-        $export = DataTable::find(1);
-               
-        Excel::create("UNO's Summary Data Table", function($excel) use($export){
-         $excel->sheet('Summary Table', function($sheet) use($export){
-             $sheet->fromArray($export);
-         });
-            
-        })->export('xlsx');
-    }
 }

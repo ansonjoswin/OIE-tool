@@ -3,6 +3,9 @@
     font-size: .75em;
     color: #999;
     margin-top: 20px;
+     position: relative;
+    overflow: hidden;
+    bottom:-490px;
 }
 
 #footer .inner-content {

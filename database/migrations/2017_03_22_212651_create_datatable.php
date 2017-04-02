@@ -43,6 +43,10 @@ class CreateDatatable extends Migration
             $table->string('bachelordegree_6yeargradrate')->nullable();
             $table->integer('associatedegree_certi3yeargradrate')->nullable();
             $table->string('loan_default_rate')->nullable();
+<<<<<<< HEAD:database/migrations/2017_03_22_212650_create_datatable.php
+=======
+            $table->unique(['school_id', 'year']);
+>>>>>>> 754bc367df9400c202fec53ac8160905187f4959:database/migrations/2017_03_22_212651_create_datatable.php
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
             $table->foreign('school_id')->references('id')->on('schools')->onUpdate('cascade')->onDelete('cascade');

@@ -20,18 +20,31 @@ class DatabaseSeeder extends Seeder
         $this->call(StabbrSeeder::class);
         $this->call(CcbasicSeeder::class);
 
-         //Seed the System Users/Roles/Permissions tables
+        //Seed the System Users/Roles/Permissions tables
         $this->call(RolesTableSeeder::class);
         $this->call(PermissionsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(RoleUserTableSeeder::class);
         $this->call(UsersRolesPermissions::class);
-		    $this->call(SchoolTable::class);
+        //$this->call(MappingTableSeeder::class);
+
+        //Seed Main Tables
+        $this->call(SchoolTable::class);
         $this->call(CarnegieTable::class);
-        $this->call(StudentTable::class);
-		    $this->call(FinanceTable::class);
-        $this->call(EmployeeTable::class);
         $this->call(DataTable::class);
+
+        //Seed Peergroups
+        $this->call(PeerGroupSeeder::class);
+        $this->call(PeerGroupSchoolTable::class);
+
+        //Seed child tables
+        $this->call(StudentTable::class);
+        $this->call(FinanceTable::class);
+        $this->call(EmployeeTable::class);
+        $this->call(DefaultRateTable::class);
+
+        
+        
         $this->command->info('Tables seeded!');
 
 

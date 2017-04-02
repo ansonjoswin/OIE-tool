@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-8 col-md-offset-2" style="padding-top: 20px">
                 <div class="panel panel-default">
                     <div class="panel-heading" style="text-align: center;">Welcome {{$user->name}} !</div>
 
@@ -53,7 +53,7 @@
 
             </div>
         </div>
-        <div class="row">
+        <div class="row" >
             <div class="col-md-8 col-md-offset-2" style="padding-top: 30px">
                 <div class="panel panel-default">
                     <div class="panel-heading" style="text-align: center;"><h4>Discussions</h4></div>
@@ -79,19 +79,20 @@
                         </div>
 
                     </div>
+
                 </div>
             </div>
+           </div>
+           
 
 
             <!-- Posted Comments -->
-
+                       
 
             @if(count($comments) > 0)
 
-
+                <div class="form-horizontal" style="padding-top: 30px"></div>
                 @foreach($comments as $comment)
-
-
 
                     <div class="col-md-8 col-md-offset-2 well">
 
