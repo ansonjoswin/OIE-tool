@@ -98,6 +98,9 @@ label {
                         <div class="row pull-left">               
                             <div class="col-md-10">
                                 @include('common.flash')
+                                      <div class="panel-body"> 
+                                      @if(isset($count)) <h4>No data found for the selected criteria </h4>
+                                      @endif </div>
                                 <div id="chart">  </div>                        
                             </div>
                         </div>
