@@ -64,6 +64,7 @@ Route::get('/userstats', 'UsersController@userstat');
 Route::resource('/datavisual', 'DataVisualController');
 Route::post('/datarefresh', 'DataVisualController@refresh');
 Route::post('data/getExport', ['as'=>'exportdata', 'uses'=>'DataVisualController@getExport']);
+
 /****************************************/
 
 /*** Purge Data ***/

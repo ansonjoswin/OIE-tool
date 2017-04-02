@@ -169,13 +169,20 @@ public $xaxis_options = [''=>'Select Resource',
         //Call view
         $this->viewData['sel_pgid'] = $sel_pgid;
 
-        $test_data = DataTable::whereIn('school_id',$sel_school_ids)->get();
+        $test_data = DataTable::whereIn('school_id',$sel_school_ids)->whereNotNull($sel_yaxis)->whereNotNull($sel_xaxis)->where('year',$sel_year)->get();
 
-        $this->viewData['test_data'] = json_encode($test_data);
+        $result_cnt=$test_data->count();
 
-
-            // $test1=$test_data->whereNotIn($sel_xaxis,[null])->toJson();
-           // dd($test1);
+        if($result_cnt>0){
+            $this->viewData['test_data'] = json_encode($test_data);
+        }
+        else{
+             $this->viewData['test_data'] = '';
+             $this->viewData['count'] = $result_cnt ;
+         }
+        
+        // $missing_schools=DataTable::whereIn('school_id',$sel_school_ids)->whereNull($sel_yaxis)->whereNull($sel_xaxis)->where('year',$sel_year)->pluck('school_id','school_name');
+        //        dd($missing_schools);
 
         //Call view
         return view('data.index',$this->viewData);

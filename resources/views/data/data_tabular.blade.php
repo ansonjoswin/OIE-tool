@@ -153,11 +153,7 @@
                                         Undergrad Certificates per Thousand Undergrad Students
                                         </th>
                                         <th>
-<<<<<<< HEAD
-                                        Grad Degrees per Hundred
-=======
                                         Graduate Degrees per Hundred Graduate Students
->>>>>>> origin/feature-merge-all
                                         </th>
                                         <th>
                                         Graduate Certificates per Hundred Graduate Students
