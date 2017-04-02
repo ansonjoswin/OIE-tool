@@ -41,11 +41,13 @@
 {{--@section('footer')--}}
 {{--@endsection--}}
 
+    {{--Added carousel with site navigation instructions--}}
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2" style="padding-top: 20px">
                 <div class="panel panel-default">
-                    <div class="panel-heading" style="text-align: center;">Welcome!</div>
+                    <div class="panel-heading" style="text-align: center;">Welcome! Please
+                        <a href={{URL::route('login')}} >login</a>, <a href={{URL::route('register')}} >register for an account</a> or view public peer groups in <a href={{URL::route('datavisual.index')}} >Data Visualization</a></div>
 
                     <div class="panel-body">
                         <!-- Carousel
@@ -60,22 +62,23 @@
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner" style="text-align: center;">
                                 <div class="item active" style="text-align: center;">
-                                    {{--<a href="http://www.unomaha.edu/college-of-information-science-and-technology"--}}
-                                    {{--target="_blank">--}}
+                                    <a href="{{ URL::route('peergroups.create') }}">
                                     <img src=" {{ asset('images/peergroupcreate.jpg') }}" class="img-responsive">
                                     </a>
                                 </div>
                                 <div class="item" style="text-align: center;">
-                                    {{--<a href="http://www.nacada.ksu.edu" target="_blank">--}}
-                                    {{--<a href="http://www.unomaha.edu/college-of-information-science-and-technology/academics/advising.php"--}}
-                                       {{--target="_blank">--}}
+                                    <a href="{{ URL::route('peergroups.index') }}">
                                         <img src="{{ asset('images/peergrouplist.jpg') }}" class="img-responsive">
-                                        {{-- {{ HTML::image('/images/StudentFaculty.jpg', '', array('class' => ' img-responsive')) }} --}}
                                     </a>
                                 </div>
                                 <div class="item" style="text-align: center;">
-                                    {{--<a href="http://www.unomaha.edu" target="_blank">--}}
+                                    <a href="{{ URL::route('datavisual.index') }}">
                                         <img src="{{ asset('images/datavisualizationUNO.jpg') }}" class="img-responsive">
+                                    </a>
+                                </div>
+                                <div class="item" style="text-align: center;">
+                                    <a href="{{ URL::route('datavisual.index') }}">
+                                    <img src="{{ asset('images/datavisualizationtooltip.jpg') }}" class="img-responsive">
                                     </a>
                                 </div>
                             </div>

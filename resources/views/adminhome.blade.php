@@ -20,9 +20,9 @@
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner" style="text-align: center;">
                                 <div class="item active" style="text-align: center;">
-                                    {{--<a href="http://www.unomaha.edu/college-of-information-science-and-technology"--}}
-                                       {{--target="_blank">--}}
-                                        <img src=" {{ asset('images/peergroupcreate.jpg') }}" class="img-responsive">
+                                    <a href="http://www.unomaha.edu/college-of-information-science-and-technology"
+                                       target="_blank">
+                                        <img src=" {{ asset('images/User.png') }}" class="img-responsive">
                                     </a>
                                 </div>
                                 <div class="item" style="text-align: center;">
