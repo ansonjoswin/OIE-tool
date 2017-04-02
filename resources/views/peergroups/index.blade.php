@@ -25,7 +25,9 @@
                                     <th>Created By</th>
                                     @endif
                                     <th>Created Date</th>
+                                    @if(Auth::user()->can(['manage-users','manage-roles']))
                                     <th>Private/Public?</th>
+                                    @endif
                                     <th>Action</th>
                                     </thead>
                                     <tbody> <!-- Table Body -->
@@ -38,7 +40,9 @@
                                             <td class="table-text"><div>{{ $peergroup->created_by}}</div></td>
                                             @endif
                                             <td class="table-text"><div>{{ $peergroup->created_at->format('m/d/Y')}}</div></td>
+                                            @if(Auth::user()->can(['manage-users','manage-roles']))
                                             <td class="table-text"><div>{{ $peergroup->private_public_flag}}</div></td>
+                                            @endif
                                             <td>
                                                 {!! Form::open(['route'=>'pg_delete_url', 'class'=>'form-horizontal', 'onsubmit'=>'return ConfirmDelete()']) !!}
                                                 {!! Form::hidden('pg_id', $peergroup->peergroup_id, array('id'=>'pg_id', 'class'=>'btn btn-danger')) !!}
