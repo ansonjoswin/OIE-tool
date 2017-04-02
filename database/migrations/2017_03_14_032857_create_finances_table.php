@@ -17,9 +17,9 @@ class CreateFinancesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('school_id')->index();
             $table->integer('year')->index();
-            $table->float('public_total_salary_wage')->nullable();
-            $table->float('privateprofit_total_salary_wage')->nullable();
-            $table->float('private_nonprofit_total_salary_wage')->nullable();
+            $table->bigInteger('public_total_salary_wage')->nullable();
+            $table->bigInteger('privateprofit_total_salary_wage')->nullable();
+            $table->bigInteger('private_nonprofit_total_salary_wage')->nullable();
             $table->unique(['school_id', 'year']);
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');

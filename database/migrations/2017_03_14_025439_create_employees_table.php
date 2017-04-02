@@ -57,7 +57,7 @@ class CreateEmployeesTable extends Migration
             $table->integer('adminprofessionalstaff_salarypermillion')->nullable();
             $table->integer('noninstruction_academicstaff_salarypermillion')->nullable();
             $table->integer('nonadmin_tradeservicestaff_salarypermillion')->nullable();
-            $table->unique('school_id', 'year');
+            $table->unique(['school_id', 'year']);
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
             $table->timestamp('created_at')->useCurrent();

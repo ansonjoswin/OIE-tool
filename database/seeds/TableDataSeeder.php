@@ -63,33 +63,6 @@ Class CarnegieTable extends CMCsvDataSeeder
     }
 }
 
-Class DataTable extends OtherCsvDataSeeder
-{
-    public $table;
-    public $filename;
-
-    public function __construct()
-    {
-        $this->filename =__DIR__ . '/../..\resources\assets\csv\datatable_2014.csv';
-
-        //$getfilename= DB::Table('map_tables')->where('local_filename', '=', 'admissions')->value('csv_name');
-
-        // $path= '/../..\resources\assets\csv';
-
-        // $this->filename = __DIR__ . $path . DIRECTORY_SEPARATOR . $getfilename;
-
-        $this->table = 'datatable';
-    }
-
-    public function run()
-    {
-        $datatable = new DataTable();
-        $datatable->setTableName($this->table);
-        $datatable->setFileName($this->filename);
-        $datatable->setColumnMapping();
-        $datatable->seedFromCSV($this->filename);
-    }
-}
 
 
 Class StudentTable extends OtherCsvDataSeeder
@@ -197,5 +170,33 @@ Class DefaultRateTable extends DefaultDataSeeder
         $defaultratetable->setFileName($this->filename);
         $defaultratetable->setColumnMapping();
         $defaultratetable->seedFromCSV($this->filename);
+    }
+}
+
+Class DataTable extends OtherCsvDataSeeder
+{
+    public $table;
+    public $filename;
+
+    public function __construct()
+    {
+        $this->filename =__DIR__ . '/../..\resources\assets\csv\datatable_2014.csv';
+
+        //$getfilename= DB::Table('map_tables')->where('local_filename', '=', 'admissions')->value('csv_name');
+
+        // $path= '/../..\resources\assets\csv';
+
+        // $this->filename = __DIR__ . $path . DIRECTORY_SEPARATOR . $getfilename;
+
+        $this->table = 'datatable';
+    }
+
+    public function run()
+    {
+        $datatable = new DataTable();
+        $datatable->setTableName($this->table);
+        $datatable->setFileName($this->filename);
+        $datatable->setColumnMapping();
+        $datatable->seedFromCSV($this->filename);
     }
 }

@@ -44,7 +44,7 @@ class CreateStudentsTable extends Migration
             $table->integer('bachelordegree_4yeargradrate')->nullable();
             $table->integer('bachelordegree_6yeargradrate')->nullable();
             $table->integer('associatedegree_certi3yeargradrate')->nullable();
-            $table->unique('school_id', 'year');
+            $table->unique(['school_id', 'year']);
             $table->string('created_by')->default('System');
             $table->string('updated_by')->default('System');
             $table->timestamp('created_at')->useCurrent();
