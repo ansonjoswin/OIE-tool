@@ -99,7 +99,7 @@
                                         School Name
                                         </th>
                                         <th style="padding-top: 40px">
-                                        Instruction Staff
+                                        Instructors
                                         </th>
                                         <th>
                                         Instructors per Thousand Students
@@ -108,25 +108,25 @@
                                         Admin and Professional Staff
                                         </th>
                                         <th>
-                                        Admin and Professional Staff per Thousand
+                                        Admin and Professional Staff per Thousand Students
                                         </th>
                                         <th>
                                         Non-instruction Academic Staff
                                         </th>
                                         <th>
-                                        Non-instruction Academic Staff per Thousand
+                                        Non-instruction Academic Staff per Thousand Students
                                         </th>
                                         <th>
                                         Non-admin Trade and Services Staff
                                         </th>
                                         <th>
-                                        Non-admin Trade and Services Staff per Thousand
+                                        Non-admin Trade and Services Staff per Thousand Students
                                         </th>
                                         <th>
                                         All Instructors and Staff
                                         </th>
                                         <th>
-                                        UG Student per Thousand Student
+                                        Undergraduate Student per Thousand Students
                                         </th>
                                         <th>
                                         Instructor Salary per Million
@@ -138,7 +138,7 @@
                                         Non-instruction Academic Staff Salary per Million
                                         </th>
                                         <th>
-                                        Non-admin Trade Service Staff Salary per Million
+                                        Non-admin Trade Services Staff Salary per Million
                                         </th>
                                         <th>
                                         Average SCH per Student per AY (undergrad)
@@ -147,25 +147,25 @@
                                         Average SCH per Student per AY (grad)
                                         </th>
                                         <th>
-                                        Undergrad Degrees per Thousand
+                                        Undergrad Degrees per Thousand Undergrad Students
                                         </th>
                                         <th>
-                                        Undergrad Certificate per Thousand
+                                        Undergrad Certificates per Thousand Undergrad Students
                                         </th>
                                         <th>
-                                        Grad Degrees per Thousand
+                                        Graduate Degrees per Hundred Graduate Students
                                         </th>
                                         <th>
-                                        Grad Certificate per Thousand
+                                        Graduate Certificates per Hundred Graduate Students
                                         </th>
                                         <th>
-                                        Bachelor Degree 4-Yr Grad Rate
+                                        Bachelor Degree 4-Yr Graduation Rate
                                         </th>
                                         <th>
-                                        Bachelor Degree 6-Yr Grad Rate
+                                        Bachelor Degree 6-Yr Graduation Rate
                                         </th>
                                         <th>
-                                        Associate Degree and Certificate 3-Yr Grad Rate
+                                        Associate Degree and Certificate 3-Yr Graduation Rate
                                         </th>                        
                                         <th>
                                         Loan Default Rate

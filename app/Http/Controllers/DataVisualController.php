@@ -24,14 +24,14 @@ public $xaxis_options = [''=>'Select Resource',
             'admin_professionalstaff_perthousandstudent'=>'Admin and Professional Staff per Thousand Students',
             'noninstruction_academicstaff'=>'Non-Instruction Academic Staff',
             'noninstruction_academicstaff_perthousandstudent'=>'Non-Instruction Acadmic Staff per Thousand Students',
-            'nonadmin_trade_servicestaff'=>'Non-Admin Trade and Service Staff',
-            'nonadmin_tradeservicestaff_perthousandstudent'=>'Non-Admin Trade and Service Staff per Thousand Students',
+            'nonadmin_trade_servicestaff'=>'Non-Admin Trade and Services Staff',
+            'nonadmin_tradeservicestaff_perthousandstudent'=>'Non-Admin Trade and Services Staff per Thousand Students',
             'all_instructors_staff'=>'All Instructors and Staff',
             'ug_student_perthousandstudent'=>'Undergrad Students per Thousand Students',
             'instructor_salarypermillion'=>'Instructor Salary per Million',
             'adminprofessionalstaff_salarypermillion'=>'Admin and Professional Staff Salary per Million',
             'noninstruction_academicstaff_salarypermillion'=>'Non-Instruction Academic Staff Salary per Million',
-            'nonadmin_tradeservicestaff_salarypermillion'=>'Non-Admin Trade and Service Staff Salary per Million'
+            'nonadmin_tradeservicestaff_salarypermillion'=>'Non-Admin Trade and Services Staff Salary per Million'
         ];
 
  public $yaxis_options = [''=>'Select Performance',
