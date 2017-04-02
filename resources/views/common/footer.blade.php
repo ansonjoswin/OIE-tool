@@ -9,7 +9,7 @@
                 <p><i class="fa fa-exclamation-circle fa-1"></i>
                     <a data-toggle="modal" data-target=".demo-popup1"
                        target="_blank"
-                       rel="nofollow" href=""> T&C </a>
+                       rel="nofollow" href=""> Terms & Conditions </a>
                                 &nbsp; &nbsp;
                     <a data-toggle="modal" data-target=".demo-popup2"
                        target="_blank"
