@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 
+
  <html>   <link rel='stylesheet' href='style.css'> </html>
     <!-- CSS (Styling) -->
     <style type="text/css">
@@ -8,44 +9,36 @@
 .axis text {
   font: 10px sans-serif;
 }
-
 .axis path,
 .axis line {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
 }
-
 .bar {
   fill: steelblue;
   fill-opacity: .9;
 }
-
 .bar:hover {
   fill: orange;
 }
-
 label {
   position: absolute;
   top: 10px;
   right: 10px;
 }
-
 #chart {
   float: left;
 }
 .typeahead-section {
   margin-top: 40px;
 }
-
 .margin-top-section {
   margin-top: 25px;
 }
-
 .margin-bottom-section {
   margin-bottom: 10px;
 }
-
 .analytics-label {
   margin: -3px -15px 5px 0;
 }
@@ -63,10 +56,10 @@ label {
                     </div>                   
                     <div class="panel-body">
                         <button id="filterCollapseBtn" class="btn btn-primary btn-md" data-toggle="collapse" data-target="#analyticsFormSection">Show Filters</button>
-                        <div id="analyticsFormSection" class="collapse">
-                          {!! Form::open(['url'=>'/datarefresh', 'class'=>'form-horizontal', 'id'=>'analyticsForm']) !!}
+                        <div id="analyticsFormSection" class="collapse">                          
                           <div class="col-md-12">
                             <div class="panel-body">
+                            {!! Form::open(['url'=>'/datarefresh', 'class'=>'form-horizontal', 'id'=>'analyticsForm']) !!}
                               <div class="row col-md-3">
                                 <div class="col-md-5" align="right">
                                     <label class="analytics-label">Peer Group</label>
@@ -107,6 +100,20 @@ label {
                                   {!! Form::input('text', 'schoolPredictor', null, ['id' => 'schoolPredictor', 'Placeholder'=>'Search here', 'class'=>'form-control', 'autocomplete' => 'off']) !!}
                                 </div>
                               </div>
+                                 {!! Form::close() !!}
+                                <div class="row col-md-7 margin-top-section col-md-offset-2">
+                                <div class="col-md-10" align="right">
+                                  {!! Form::open(['route'=>'missingschool', 'class'=>'form-horizontal']) !!}
+                                  {!! Form::hidden('sel_pgid',$dataTable_pgid) !!}
+                                  {!! Form::hidden('sel_year',$sel_year) !!}
+                                  {!! Form::hidden('sel_xaxis',$sel_xaxis) !!}
+                                  {!! Form::hidden('sel_yaxis',$sel_yaxis) !!}
+                                  
+                                  <button type="submit" id="missing-schools" class="btn btn-primary">Click here for Missing Schools</button>
+                                  {!! Form::close() !!}
+                                     
+                                </div> 
+                            </div>
                             </div>
                           </div>
                         </div>
@@ -122,7 +129,7 @@ label {
                             </div>
                         </div>
                         </div>
-                          {!! Form::close() !!}
+                         
                     </div>         
 
                 </div>
@@ -142,16 +149,13 @@ label {
   var xaxislabel = <?php echo json_encode($xaxis_label, JSON_HEX_TAG); ?>; 
   var yaxislabel = <?php echo json_encode($yaxis_label, JSON_HEX_TAG); ?>;
   var selectedSchoolId = -1;
-
   // Refresh graph on changing fields
   $( ".refresh-graph" ).change(function() {
     $("#analyticsForm").submit();
   });
-
   $("#filterCollapseBtn").click(function() {
     $("#filterCollapseBtn").text() == "Show Filters" ? $("#filterCollapseBtn").text("Hide Filters") : $("#filterCollapseBtn").text("Show Filters");
   });
-
 </script>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="../public/js/datavisual.js"></script>

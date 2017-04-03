@@ -114,6 +114,8 @@ Route::get('/data',function() {
 Route::resource('uploads','UploadsController');
 Route::post('uploads/enqueue','UploadsController@enqueue');
 Route::resource('/logs', 'LogViewerController');
+//Route::post('missingschool', 'DataVisualController@missingschools');
+Route::post('data/missingschool', ['as'=>'missingschool', 'uses'=>'DataVisualController@missingschools']);  
 Route::resource('jobs','JobsController');
 Route::resource('failed_jobs', 'Failed_jobsController');
 /*******************/
