@@ -11,7 +11,7 @@ use App\Carnegie_Classification;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/missingschool', 'DataTableController@index');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -25,6 +25,13 @@ Route::get('laravel-version', function()
 {
     $laravel = app();
     return 'Your Laravel Version is '.$laravel::VERSION;
+});
+
+// Route::get('/contact', function () {
+//     return view('contact');
+// });
+Route::get('/map', function () {
+    return view('map');
 });
 
 
@@ -48,12 +55,25 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 /*******************/
 
+// //#######################################################################################
+// //This is the Route to sent a mail and is only accessible when called.
+// //#######################################################################################
+// Route::post('/sendmail', function (\Illuminate\Http\Request $request, \Illuminate\Mail\Mailer $mailer) {
+//   $mailer
+//     ->to($request->input('email'))
+//     ->send(new \App\Mail\Notify($request->input('messages')));
+//   return redirect()->back();
+// })->name('sendmail');
 
 /***Password Routes***/
 Route::get('resetPassword', 'HomeController@resetPassword');
 Route::post('updatePassword', 'HomeController@updatePassword');
 /*******************/
 
+/***Contact Form Routes***/
+Route::get('contact','ContactController@getIndex');
+Route::post('contact','ContactController@postIndex');
+/*******************/
 
 /***User Statistics Routes***/
 Route::get('/userstats', 'UsersController@userstat');

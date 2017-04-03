@@ -92,6 +92,9 @@
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li>
+                        <a href="{{ url('/contact') }}"><i class="fa fa-btn fa-fw fa-phone"></i>Contact Us</a>
+                        </li>
+                        <li>
                             <a href="{{ url('/login') }}"><i class="fa fa-btn fa-fw fa-user"></i>Login</a>
                         </li>
                         <li>

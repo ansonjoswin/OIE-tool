@@ -11,8 +11,10 @@
     <link rel="icon" href="{{ asset('images/favicon-32x32') }}" type="image/png">
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{{--     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous"> --}}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
+
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css">
@@ -28,6 +30,65 @@
         .footer-section {
             margin-top: 10px;
         }
+
+        .spiked-title {
+  position: relative;
+  text-transform: uppercase;
+  width: 75%;
+  max-width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: .5em 1em;
+  overflow: visible;
+  font-weight: normal;
+  letter-spacing: 2px;
+  margin-bottom: 1em; }
+  .page-template-gothenburg-php .spiked-title {
+    font-size: 14px;
+    padding: .75em 1em .7em; }
+    @media (min-width: 480px) {
+      .page-template-gothenburg-php .spiked-title {
+        font-size: 16px;
+        padding: .5em 1em; } }
+  /*.spiked-title:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -45px;
+    width: 0;
+    height: 0;
+    border-top: 0px solid transparent;
+    border-bottom: 40px solid transparent; }*/
+
+.spiked-title.grey, .bg-red .spiked-title.button, .bg-red .file-input .spiked-title.btn, .file-input .bg-red .spiked-title.btn {
+  background-color: #1d3035;
+  color: #fff; 
+
+}
+  /*.spiked-title.grey:after, .bg-red .spiked-title.button:after, .bg-red .file-input .spiked-title.btn:after, .file-input .bg-red .spiked-title.btn:after
+   {
+    border-left: 45px solid #1d3035;
+     }*/
+     .spiked-title.light-grey {
+  background-color: #979797;
+  color: #fff; }
+  .spiked-title.light-grey:after {
+    border-left: 45px solid #979797; }
+
+.spiked-title.dark-red {
+  background-color: #1d3035;
+  color: #fff; }
+  .spiked-title.dark-red:after {
+    border-left: 45px solid #1d3035; }
+
+
+     #map{
+        width: 700px;
+        height:400px;
+        margin: auto;
+     }
     </style>
     <link href="{{ URL::asset('css/all.css') }}" rel="stylesheet">
     <link href="{{ url(mix('css/app.css')) }}" rel="stylesheet"> 
@@ -45,6 +106,8 @@
     <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
 
 <!-- Navigation Bar -->
 @include('common.nav')
@@ -96,6 +159,12 @@
 <script src="{{ URL::asset('js/jquery.knob.js') }}"></script>
 <script src="{{ URL::asset('js/jquery.iframe-transport.js') }}"></script>
 <script src="{{ URL::asset('js/jquery.fileupload.js') }}"></script>
+
+<!-- Contact Form JavaScript -->
+    {{Html::script('js/jqBootstrapValidation.js')}}
+    <!-- <script src="js/jqBootstrapValidation.js"></script> -->
+    {{Html::script('js/contact_me.js')}}
+    <!-- <script src="js/contact_me.js"></script> -->
 
 <!-- Scripts -->
 @yield('scripts')

@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 587),
+    'port' => env('MAIL_PORT', 465),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'eaglefinancialservices2016@gmail.com'),
-        'name' => env('MAIL_FROM_NAME', 'OIE Website'),
+        'address' => env('MAIL_FROM_ADDRESS' , 'unooieist@unomaha.edu'),
+        'name' => env('MAIL_FROM_NAME', 'UNO OIE Analytics User'),
     ],
 
     /*
@@ -71,7 +71,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
 
     /*
     |--------------------------------------------------------------------------

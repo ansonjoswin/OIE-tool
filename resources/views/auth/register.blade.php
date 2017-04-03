@@ -2,10 +2,12 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
+        <div class="row" style="padding-top: 2%">
             <div class="col-md-8 col-md-offset-2">
+            <h4 class="spiked-title grey" style="text-align: center; width: 100%">Register <i class="fa fa-btn fa-user"></i></h4>
                 <div class="panel panel-default">
-                    <div class="panel-heading">Register</div>
+
+                    <div class="panel-heading"><strong>Register with us!</strong></div>
                     <div class="panel-body">
                         <form id="registrationForm" class="form-horizontal" role="form" method="POST"
                               action="{{ url('/register') }}">
