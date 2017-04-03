@@ -54,10 +54,11 @@ label {
                         <div><h4>Data Visualization</h4></div>
                     </div>                   
                     <div class="panel-body">
-                        {!! Form::open(['url'=>'/datarefresh', 'class'=>'form-horizontal']) !!}
+                       
                         <div>
                             <div class="col-md-3">
                                 <div class="panel-body">
+                                 {!! Form::open(['url'=>'/datarefresh', 'class'=>'form-horizontal']) !!}
                                     <div class="col-md-12">
                                     @if(isset($sel_pgid))
                                         {!! Form::select('sel_pgid', [''=>'Select Peer Group'] + $peerGroups, $sel_pgid, ['class'=>'form-control refresh-graph', 'required'=>'required']) !!}
@@ -92,8 +93,27 @@ label {
                                     <div class="col-md-12 margin-gap" typeahead-section>
                                       {!! Form::input('text', 'schoolPredictor', null, ['id' => 'schoolPredictor', 'class'=>'form-control', 'placeholder' => 'Search by school name', 'autocomplete' => 'off']) !!}
                                     </div>
-                                </div>
-                            </div>
+                                  <!--    <div class="pull-left">
+                                     
+                                      {!! Form::open(array('url' => ['missingschool'])) !!}
+                                            <a href="{{ url('/missingschool') }}" class="btn btn-primary">Click here for missing schools</a>
+                                       {!! Form::close() !!}
+                                    </div> -->
+                                    {!! Form::close() !!}
+                                 </div>
+                        
+                     <div class="pull-left">
+                        {!! Form::open(['route'=>'missingschool', 'class'=>'form-horizontal']) !!}
+                        {!! Form::hidden('sel_pgid',$dataTable_pgid) !!}
+                        {!! Form::hidden('sel_year',$sel_year) !!}
+                        {!! Form::hidden('sel_xaxis',$sel_xaxis) !!}
+                        {!! Form::hidden('sel_yaxis',$sel_yaxis) !!}
+                        
+                        <button type="submit" id="missing-schools" class="btn btn-primary">Click here for missing schools</button>
+                        {!! Form::close() !!}
+                           
+                      </div> 
+                   </div>
                         </div>
                         <div class="row pull-left">               
                             <div class="col-md-10">
@@ -105,9 +125,9 @@ label {
                             </div>
                         </div>
                         </div>
-                          {!! Form::close() !!}
+                                                         
                     </div>         
-
+                              
                 </div>
             </div>
         </div>

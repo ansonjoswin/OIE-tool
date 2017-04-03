@@ -110,10 +110,19 @@ public $xaxis_options = [''=>'Select Resource',
         $schoolNames = School::find($sel_school_ids)->pluck('id','name');
         $this->viewData['schoolNames'] = $schoolNames;
 
-        // Get aggregated data for the selected peergroup schools
-        $test_data = DataTable::whereIn('school_id',$sel_school_ids)->get();
-        $this->viewData['test_data'] = json_encode($test_data);
+            $test_data = DataTable::whereIn('school_id',$sel_school_ids)->whereNotNull($sel_yaxis)->whereNotNull($sel_xaxis)->where('year',$sel_year)->get();
 
+        $result_cnt=$test_data->count();
+
+        if($result_cnt>0){
+            $this->viewData['test_data'] = json_encode($test_data);
+        }
+        else{
+             $this->viewData['test_data'] = '';
+             $this->viewData['count'] = $result_cnt ;
+         }
+        
+        
         //Get the aggregated data for the tabular view
         $filtervalues = DataTable::all()->whereIn('school_id',$sel_school_ids);
         $this->viewData['filtervalues'] = $filtervalues;
@@ -181,13 +190,31 @@ public $xaxis_options = [''=>'Select Resource',
              $this->viewData['count'] = $result_cnt ;
          }
         
-        // $missing_schools=DataTable::whereIn('school_id',$sel_school_ids)->whereNull($sel_yaxis)->whereNull($sel_xaxis)->where('year',$sel_year)->pluck('school_id','school_name');
-        //        dd($missing_schools);
-
         //Call view
         return view('data.index',$this->viewData);
     }  
 
+   public function missingschools(Request $request){
+
+       $sel_year =$request['sel_year'];
+       $sel_xaxis = $request['sel_xaxis'];
+       $sel_yaxis =$request['sel_yaxis'];
+       $sel_pgid=$request['sel_pgid'];
+ 
+
+    $sel_school_ids = PeerGroup::find($sel_pgid)->school()->pluck('school_id')->toArray();
+
+
+    $missing_schools=DataTable::whereIn('school_id',$sel_school_ids)->where('year',$sel_year)->where(function($q) use ($sel_yaxis, $sel_xaxis) {$q->orwhereNull($sel_yaxis)->orwhereNull($sel_xaxis);
+         })->pluck('school_name');
+
+ 
+
+    $this->viewData['missing_schools'] = $missing_schools->toArray();
+
+   
+    return view('data.missingschool',$this->viewData);
+   }
 
     public function getExport(Request $request){
         $pgid = $request['pgid'];
