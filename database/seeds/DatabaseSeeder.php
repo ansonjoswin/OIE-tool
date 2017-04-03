@@ -31,20 +31,21 @@ class DatabaseSeeder extends Seeder
         //Seed Main Tables
         $this->call(SchoolTable::class);
         $this->call(CarnegieTable::class);
+        //Seed child tables
+        $this->call(StudentTable::class);
+        $this->call(FinanceTable::class);
+        $this->call(EmployeeTable::class);
+        $this->call(DefaultRateTable::class);
         $this->call(DataTable::class);
 
         //Seed Peergroups
         $this->call(PeerGroupSeeder::class);
         $this->call(PeerGroupSchoolTable::class);
 
-        //Seed child tables
-        $this->call(StudentTable::class);
-        $this->call(FinanceTable::class);
-        $this->call(EmployeeTable::class);
-        $this->call(DefaultRateTable::class);
 
-        
-        
+
+
+
         $this->command->info('Tables seeded!');
 
 
@@ -71,4 +72,3 @@ class TagsTableSeeder extends Seeder {
         Tag::create([ 'name' => 'Undergraduate']);
     }
 }
-

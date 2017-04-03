@@ -6,9 +6,11 @@
                 <div class="col-md-8 col-md-offset-2">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <div class="pull-right">
-                                <a href="{{ url()->previous() }}" class="btn btn-default">Back</a>
-                            </div>
+                            <!-- <div class="pull-right">                                
+                                <form action="{{ url()->previous() }}" method="GET">
+                                <button type="submit" id="back-btn" class="btn btn-primary">Back</button>
+                                </form>
+                            </div> -->
                             <div><h4>Missing schools for the selection criteria</h4></div>
                         </div>
                         <div class="panel-body">
