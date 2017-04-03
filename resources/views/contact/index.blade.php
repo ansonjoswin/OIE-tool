@@ -9,6 +9,9 @@
 <!-- ************** Contact Us paragraph************** !-->
 			<div class="col-md-6">
 			<h4 class="spiked-title grey" style="text-align: center;">Contact Us <i class="fa fa-btn fa-address-book"></i></h4>
+            <div class="panel panel-default" style="width:75%; height: 311px">
+            <div class="panel-heading"><strong>If you wish to send a mail</strong></div>
+            <div class="panel-body">
 			  <div class="txt " style="padding-left: 10%;padding-top: 2%; font-size: 17px;">
 			     <p><strong>Hank Robbinson<br></strong></p>
 			     <p><strong>6001 Dodge St, Omaha, NE 68182<br>
@@ -20,6 +23,8 @@
 			 	<p><strong><a href="mailto:trobinson@unomaha.edu" target="_blank">trobinson@unomaha.edu</a></strong></p>
 			 	</div> 
 			 </div>
+             </div>
+             </div>
 
 
 <!-- ************* Contact us form************ !-->
