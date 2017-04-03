@@ -26,10 +26,11 @@ class CreateStudentsTable extends Migration
             $table->integer('inst_activity_type')->nullable();
             $table->integer('under_certi_award_level1')->nullable();
             $table->integer('grad_certi_award_level6')->nullable();
-            $table->integer('under_degree_award _level3')->nullable();
+            $table->integer('under_degree_award_level3')->nullable();
             $table->integer('grad_degree_award_level7')->nullable();
+            $table->integer('under_degree_award_level5')->nullable();
             $table->integer('cohort_status13')->nullable();
-            $table->integer('cohort_status15')->nullable();
+            $table->integer('cohort_status9')->nullable();
             $table->integer('cohort_status8')->nullable();
             $table->integer('cohort_status30')->nullable();
             $table->integer('cohort_status29')->nullable();
@@ -38,10 +39,10 @@ class CreateStudentsTable extends Migration
             $table->integer('grad_average_sch_studentperay')->nullable();
             $table->integer('ug_degrees_perthousand_ugstudent')->nullable();
             $table->integer('ug_certi_perthousand_ugstudent')->nullable();
-            $table->integer('graddegree_perthousandgradstudent')->nullable();
-            $table->integer('grad_certi_perthousand_gradstudent')->nullable();
-            $table->string('bachelordegree_4yeargradrate')->nullable();
-            $table->string('bachelordegree_6yeargradrate')->nullable();
+            $table->integer('graddegree_perhundredgradstudent')->nullable();
+            $table->integer('grad_certi_perhundred_gradstudent')->nullable();
+            $table->integer('bachelordegree_4yeargradrate')->nullable();
+            $table->integer('bachelordegree_6yeargradrate')->nullable();
             $table->integer('associatedegree_certi3yeargradrate')->nullable();
             $table->unique(['school_id', 'year']);
             $table->string('created_by')->default('System');
@@ -64,3 +65,4 @@ class CreateStudentsTable extends Migration
         Schema::drop('students');
     }
 }
+

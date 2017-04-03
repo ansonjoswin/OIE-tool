@@ -11,33 +11,30 @@ use App\DataTable;
 use DB;
 use Illuminate\Routing\Controller;
 use Auth;
-
+use Excel;
 
 
 class DataVisualController extends Controller
 {
 
-public $xaxis_options = [''=>'Select Resource', 
+public $xaxis_options = [ 
             'instruction_staff'=>'Instructors',
             'instructors_per_thousand_student'=>'Instructors per Thousand Students',
             'admin_professional_staff'=>'Admin and Professional Staff',
             'admin_professionalstaff_perthousandstudent'=>'Admin and Professional Staff per Thousand Students',
             'noninstruction_academicstaff'=>'Non-Instruction Academic Staff',
             'noninstruction_academicstaff_perthousandstudent'=>'Non-Instruction Acadmic Staff per Thousand Students',
-            'nonadmin_trade_servicestaff'=>'Non-Admin Trade and Service Staff',
-            'nonadmin_tradeservicestaff_perthousandstudent'=>'Non-Admin Trade and Service Staff per Thousand Students',
+            'nonadmin_trade_servicestaff'=>'Non-Admin Trade and Services Staff',
+            'nonadmin_tradeservicestaff_perthousandstudent'=>'Non-Admin Trade and Services Staff per Thousand Students',
             'all_instructors_staff'=>'All Instructors and Staff',
             'ug_student_perthousandstudent'=>'Undergrad Students per Thousand Students',
-            // 'totl_salary'=>'Total Salary',
-            // 'admin_salary'=>'Admin Salary',
-            // 'instructor_salary'=>'Instructor Salary',
             'instructor_salarypermillion'=>'Instructor Salary per Million',
             'adminprofessionalstaff_salarypermillion'=>'Admin and Professional Staff Salary per Million',
             'noninstruction_academicstaff_salarypermillion'=>'Non-Instruction Academic Staff Salary per Million',
-            'nonadmin_tradeservicestaff_salarypermillion'=>'Non-Admin Trade and Service Staff Salary per Million'
+            'nonadmin_tradeservicestaff_salarypermillion'=>'Non-Admin Trade and Services Staff Salary per Million'
         ];
 
- public $yaxis_options = [''=>'Select Performance',
+ public $yaxis_options = [
             'ug_average_sch_studentperay'=>'Average SCH per Student per AY (undergrad)',
             'grad_average_sch_studentperay'=>'Average SCH per Student per AY (graduate)',
             'ug_degrees_perthousand_ugstudent'=>'Undergrad Degrees per Thousand Undergrad Students',
@@ -76,8 +73,9 @@ public $xaxis_options = [''=>'Select Resource',
                  
     public function index()
     {
+        //Define default peergroup
+        $default_pg_name = 'DRU';
 
-        $sel_pg = 'DRU';
         //Get list of available peerGroups
         $this->viewData['peerGroups'] = $this->getPeerGroups();
 
@@ -97,28 +95,38 @@ public $xaxis_options = [''=>'Select Resource',
         $sel_yaxis = 'graddegree_perhundredgradstudent';
         $this->viewData['sel_yaxis'] = $sel_yaxis;  
 
+        //Get selected x-axis and y-axis label names
         $xaxis_label= array_get($this->xaxis_options, $sel_xaxis);
-         $yaxis_label= array_get($this->yaxis_options, $sel_yaxis);
-          $this->viewData['xaxis_label'] = $xaxis_label;
-          $this->viewData['yaxis_label'] = $yaxis_label;
+        $yaxis_label= array_get($this->yaxis_options, $sel_yaxis);
+        $this->viewData['xaxis_label'] = $xaxis_label;
+        $this->viewData['yaxis_label'] = $yaxis_label;
         
-        $sel_pgid = PeerGroup::where('PeerGroup_Name','=',$sel_pg)
-                   ->pluck('PeerGroup_ID');
-        
+        //Get the ids of the peergroup and peergroup schools
+        $sel_pgid = PeerGroup::where('PeerGroup_Name','=',$default_pg_name)->pluck('PeerGroup_ID');
         $sel_school_ids = PeerGroup::find($sel_pgid)->school()->pluck('school_id')->toArray();
+        $this->viewData['sel_pgid'] = $sel_pgid->toArray();
 
-        // SchoolNames for the search type ahead
+        // Get SchoolNames for the search type ahead
         $schoolNames = School::find($sel_school_ids)->pluck('id','name');
         $this->viewData['schoolNames'] = $schoolNames;
 
-        $this->viewData['sel_pgid'] = $sel_pgid->toArray();
-        $test_data = DataTable::whereIn('school_id',$sel_school_ids)->get();
+            $test_data = DataTable::whereIn('school_id',$sel_school_ids)->whereNotNull($sel_yaxis)->whereNotNull($sel_xaxis)->where('year',$sel_year)->get();
 
-        $this->viewData['test_data'] = json_encode($test_data);
+        $result_cnt=$test_data->count();
 
+        if($result_cnt>0){
+            $this->viewData['test_data'] = json_encode($test_data);
+        }
+        else{
+             $this->viewData['test_data'] = '';
+             $this->viewData['count'] = $result_cnt ;
+         }
+        
+        
         //Get the aggregated data for the tabular view
-        $filtervalues = DataTable::all()->whereIn('school_id',$sel_school_ids);
+        $filtervalues = DataTable::orderBy('school_name')->whereIn('school_id',$sel_school_ids)->get();
         $this->viewData['filtervalues'] = $filtervalues;
+        $this->viewData['dataTable_pgid'] = $sel_pgid->first();
 
         //Call view
         return view('data.index',$this->viewData);
@@ -163,43 +171,69 @@ public $xaxis_options = [''=>'Select Resource',
         $this->viewData['schoolNames'] = $schoolNames;
         
         //Get the aggregated data for the tabular view
-        $filtervalues = DataTable::all()->whereIn('school_id',$sel_school_ids);
+        $filtervalues = DataTable::orderBy('school_name')->whereIn('school_id',$sel_school_ids)->get();
         $this->viewData['filtervalues'] = $filtervalues;
+        $this->viewData['dataTable_pgid'] = $sel_pgid;
       
         //Call view
         $this->viewData['sel_pgid'] = $sel_pgid;
 
-        $test_data = DataTable::whereIn('school_id',$sel_school_ids)->get();
+        $test_data = DataTable::whereIn('school_id',$sel_school_ids)->whereNotNull($sel_yaxis)->whereNotNull($sel_xaxis)->where('year',$sel_year)->get();
 
-        $this->viewData['test_data'] = json_encode($test_data);
+        $result_cnt=$test_data->count();
 
-
-            // $test1=$test_data->whereNotIn($sel_xaxis,[null])->toJson();
-           // dd($test1);
-
+        if($result_cnt>0){
+            $this->viewData['test_data'] = json_encode($test_data);
+        }
+        else{
+             $this->viewData['test_data'] = '';
+             $this->viewData['count'] = $result_cnt ;
+         }
+        
         //Call view
         return view('data.index',$this->viewData);
     }  
-        public function getExport(){
 
-        // $dataexport = DataTable::find(1);
-        $dataexport = DataTable::all()->whereIn('school_id',1);
+   public function missingschools(Request $request){
+
+       $sel_year =$request['sel_year'];
+       $sel_xaxis = $request['sel_xaxis'];
+       $sel_yaxis =$request['sel_yaxis'];
+       $sel_pgid=$request['sel_pgid'];
+ 
+
+    $sel_school_ids = PeerGroup::find($sel_pgid)->school()->pluck('school_id')->toArray();
+
+
+    $missing_schools=DataTable::whereIn('school_id',$sel_school_ids)->where('year',$sel_year)->where(function($q) use ($sel_yaxis, $sel_xaxis) {$q->orwhereNull($sel_yaxis)->orwhereNull($sel_xaxis);
+         })->pluck('school_name');
+
+ 
+
+    $this->viewData['missing_schools'] = $missing_schools->toArray();
+
+   
+    return view('data.missingschool',$this->viewData);
+   }
+
+    public function getExport(Request $request){
+        $pgid = $request['pgid'];
+        $school_ids = PeerGroup::find($pgid)->school()->pluck('school_id')->toArray();
+        $dataexport = DataTable::all()->whereIn('school_id',$school_ids);
+            // ->pluck('school_name','instruction_staff','instructors_per_thousand_student','admin_professional_staff','adminprofessionalstaff_salarypermillion','noninstruction_academicstaff','noninstruction_academicstaff_perthousandstudent','nonadmin_trade_servicestaff','nonadmin_tradeservicestaff_perthousandstudent','all_instructors_staff','ug_student_perthousandstudent','instructor_salarypermillion','adminprofessionalstaff_salarypermillion','noninstruction_academicstaff_salarypermillion','nonadmin_tradeservicestaff_salarypermillion','ug_average_sch_studentperay','grad_average_sch_studentperay','ug_degrees_perthousand_ugstudent','ug_certi_perthousand_ugstudent','graddegree_perthousandgradstudent','grad_certi_perthousand_gradstudent','bachelordegree_4yeargradrate','bachelordegree_6yeargradrate','associatedegree_certi3yeargradrate','loan_default_rate');     
         // dd($dataexport);
                
         // Excel::create("UNO's Summary Data Table", function($excel) use($export){
-        //  $excel->sheet('Summary Table', function($sheet) use($export){
-        //      $sheet->fromArray($export);
-        //  });
+        //   $excel->sheet('Summary Table', function($sheet) use($export){
+        //       $sheet->fromArray($export);
+        //   });
         // })->export('xlsx');
 
-        return Excel::create('Filename', function($excel) use ($dataexport) {
-            $excel->sheet('Sheetname', function($sheet) use ($dataexport) {
-                // Sheet manipulation
-                $sheet->fromArray($dataexport, null, 'A1', false, false);
+        Excel::create('University of Nebraska Omaha', function($excel) use ($dataexport) {
+            $excel->sheet('Export', function($sheet) use ($dataexport) {
+                $sheet->fromArray($dataexport);
             });
-        })->export('xls');
-
-        
+        })->export('xlsx');
     }
 
 }
