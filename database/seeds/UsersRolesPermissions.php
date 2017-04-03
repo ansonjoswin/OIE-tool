@@ -57,12 +57,12 @@ class RoleUserTableSeeder extends Seeder {
 
         $user = User::where('name', '=', 'Administrator')->first()->id;
         $role = Role::where('name', '=', 'admin')->first()->id;
-        $role_user = [ ['role_id' => $role, 'User_ID' => $user, 'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create() ] ];
+        $role_user = [ ['role_id' => $role, 'user_id' => $user, 'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create() ] ];
         DB::table('role_user')->insert($role_user);
 
         $user = User::where('name', '=', 'Sachin Pawaskar')->first()->id;
         $role = Role::where('name', '=', 'admin')->first()->id;
-        $role_user = [ ['role_id' => $role, 'User_ID' => $user, 'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create() ] ];
+        $role_user = [ ['role_id' => $role, 'user_id' => $user, 'created_by' => 'System', 'updated_by' => 'System', 'created_at' => date_create(), 'updated_at' => date_create() ] ];
         DB::table('role_user')->insert($role_user);
 
         $user = User::where('name', '=', 'Hank Robinson')->first()->id;

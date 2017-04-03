@@ -31,29 +31,25 @@ class DatabaseSeeder extends Seeder
         //Seed Main Tables
         $this->call(SchoolTable::class);
         $this->call(CarnegieTable::class);
-        //Seed child tables
+
+        //Seed Datatable
+         $this->call(DataTable::class);
+
+         //Seed Peergroups
+        $this->call(PeerGroupSeeder::class);
+        $this->call(PeerGroupSchoolTable::class);
+
+        //Seed other tables
         $this->call(StudentTable::class);
         $this->call(FinanceTable::class);
         $this->call(EmployeeTable::class);
         $this->call(DefaultRateTable::class);
-        $this->call(DataTable::class);
-
-        //Seed Peergroups
-        $this->call(PeerGroupSeeder::class);
-        $this->call(PeerGroupSchoolTable::class);
-
-
-
-
-
+       
         $this->command->info('Tables seeded!');
-
 
         // Seed the Tags table
         //$this->call(TagsTableSeeder::class);
-        $this->command->info('Tags tables seeded!');
-
-
+        //$this->command->info('Tags tables seeded!');
     }
 }
 

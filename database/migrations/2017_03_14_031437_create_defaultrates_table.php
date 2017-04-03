@@ -24,7 +24,7 @@ class CreateDefaultratesTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
             $table->softDeletes();
-            $table->foreign('opeid')->references('opeid')->on('schools')->onUpdate('cascade')->onDelete('cascade');
+            //$table->foreign('opeid')->references('opeid')->on('schools')->onUpdate('cascade')->onDelete('cascade');
             //$table->foreign('School_State')->references('School_State')->on('School')->onUpdate('cascade')->onDelete('cascade');
 
         });
