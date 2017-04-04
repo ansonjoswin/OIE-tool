@@ -96,7 +96,7 @@ jsObject = JSON.parse(test_data);
         drawPath(d, xPos, yPos);
       })
     .append('title') // Tooltip
-      .text(function (d) { return ( "School Name"+" : "+d.school_name )})
+      .text(function (d) { return ( d.school_name )}) //removed "School Name:" from tooltip
 
   function drawPath(d, xPos, yPos) {
     svg.selectAll(".crossPath").remove();
@@ -122,20 +122,33 @@ jsObject = JSON.parse(test_data);
       .attr('stroke-width',1)
       .attr('fill', 'red')
       .append('title') // Tooltip
-        .text("School Name"+" : "+ d.school_name+ "\n"+
-          "Undergraduate Headcount"+" : "+d.ug_student_perthousandstudent+ "\n"+
-          "Graduation Rate (4 year)"+" : "+d.bachelordegree_4yeargradrate + "\n"+
-          "Graduation Rate (6 year)"+" : "+d.bachelordegree_6yeargradrate + "\n"+
-          "Employees"+" : "+d.all_instructors_staff + "\n"+
-          "Admins"+" : "+d.admin_professional_staff + "\n"+
-          "Instructors"+" : "+d.instruction_staff + "\n"+
-          "Bachelor's Degrees"+" : "+d.instruction_staff + "\n"+
-          "Instructor Salary per Million"+" : "+d.instructor_salarypermillion + "\n"+
-          "Admin Salary per Million"+" : "+d.adminprofessionalstaff_salarypermillion + "\n"+
-          "Degrees per Thousand Students"+" : "+d.ug_degrees_perthousand_ugstudent + "\n"+
-          "Admins per Thousand Students"+" : "+d.admin_professionalstaff_perthousandstudent + "\n"+
-          "Instructors per Thousand Students"+" : "+d.instructors_per_thousand_student + "\n"+
-          "Average SCH per Student per AY"+" : "+d.grad_average_sch_studentperay + "\n"+
-          "Loan Default Rate"+" : "+d.loan_default_rate)
+        // Changed tooltip variables to match Resource and Performance lists
+        // The maximum length of any string including tool tips is 1023, so I've left some fields out for now
+        .text(d.school_name+ "\n"
+          // "Instructors"+" : "+d.instruction_staff + "\n"
+          +"Instructors per Thousand Students"+" : "+d.instructors_per_thousand_student + "\n"
+          // "Admin and Professional Staff"+" : "+d.admin_professional_staff + "\n"+
+          +"Admin & Professional Staff per Thousand Students"+" : "+d.admin_professionalstaff_perthousandstudent + "\n"
+          // "Non-Instruction Academic Staff"+" : "+d.noninstruction_academicstaff + "\n"+
+          // +"Non-Instruction Academic Staff per Thousand Students"+" : "+d.noninstruction_academicstaff_perthousandstudent + "\n"
+          // "Non-Admin Trade and Services Staff"+" : "+d.nonadmin_trade_servicestaff + "\n"+
+          // +"Non-Admin Trade and Services Staff per Thousand Students"+" : "+d.nonadmin_tradeservicestaff_perthousandstudent + "\n"+
+          +"All Instructors & Staff"+" : "+d.all_instructors_staff + "\n"
+          +"Undergrad Students per Thousand Students"+" : "+d.ug_student_perthousandstudent + "\n"
+          +"Instructor Salary per Million"+" : "+d.instructor_salarypermillion + "\n"
+          // +"Admin and Professional Staff Salary per Million"+" : "+d.adminprofessionalstaff_salarypermillion + "\n"
+          // +"Non-Instruction Academic Staff Salary per Million"+" : "+d.noninstruction_academicstaff_salarypermillion + "\n"+
+          // +"Non-Admin Trade and Services Staff Salary per Million"+" : "+d.nonadmin_tradeservicestaff_salarypermillion + "\n"+
+          +"Avg SCH per Student per AY (undergrad)"+" : "+d.ug_average_sch_studentperay + "\n"
+          +"Avg SCH per Student per AY (grad)"+" : "+d.grad_average_sch_studentperay + "\n"
+          +"Undergrad Degrees per Thousand Undergrad Students"+" : "+d.ug_degrees_perthousand_ugstudent + "\n"
+          // +"Undergrad Certificates per Thousand Undergrad Students"+" : "+d.ug_certi_perthousand_ugstudent + "\n"
+          +"Grad Degrees per Hundred Grad Students"+" : "+d.graddegree_perhundredgradstudent + "\n"
+          // +"Graduate Certificates per Hundred Graduate Students"+" : "+grad_certi_perhundred_gradstudent + "\n"
+          +"Bachelor Degree 4-Yr Graduation Rate"+" : "+d.bachelordegree_4yeargradrate + "\n"
+          +"Bachelor Degree 6-Yr Graduation Rate"+" : "+d.bachelordegree_6yeargradrate + "\n"
+          // +"Associate Degree and Certificate 3-Yr Graduation Rate"+" : "+d.associatedegree_certi3yeargradrate + "\n"
+          // +"Loan Default Rate"+" : "+d.loan_default_rate
+        )
 
   }

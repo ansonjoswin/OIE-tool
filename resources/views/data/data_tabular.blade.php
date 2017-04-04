@@ -190,7 +190,7 @@
                                                     {{ $datatable['admin_professional_staff'] }} 
                                                 </td>
                                                 <td class="table-text" style="font-size:10px;">
-                                                     {{ $datatable['adminprofessionalstaff_salarypermillion'] }} 
+                                                     {{ $datatable['admin_professionalstaff_perthousandstudent'] }}
                                                 </td>
                                                 <td class="table-text" style="font-size:10px;">
                                                     {{ $datatable['noninstruction_academicstaff'] }} 
@@ -235,10 +235,10 @@
                                                      {{ $datatable['ug_certi_perthousand_ugstudent'] }} 
                                                 </td>
                                                 <td class="table-text" style="font-size:10px;">
-                                                    {{ $datatable['graddegree_perthousandgradstudent'] }} 
+                                                    {{ $datatable['graddegree_perhundredgradstudent'] }}
                                                 </td>
                                                 <td class="table-text" style="font-size:10px;">
-                                                    {{ $datatable['grad_certi_perthousand_gradstudent'] }} 
+                                                    {{ $datatable['grad_certi_perhundred_gradstudent'] }}
                                                 </td>
                                                 <td class="table-text" style="font-size:10px;">
                                                     {{ $datatable['bachelordegree_4yeargradrate'] }} 
