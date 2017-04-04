@@ -91,9 +91,9 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li>
+                       {{--  <li>
                         <a href="{{ url('/contact') }}"><i class="fa fa-btn fa-fw fa-phone"></i>Contact Us</a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="{{ url('/login') }}"><i class="fa fa-btn fa-fw fa-user"></i>Login</a>
                         </li>
