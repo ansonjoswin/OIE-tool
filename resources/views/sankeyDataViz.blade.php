@@ -34,14 +34,14 @@
         <script>
 
         var sankeyArray = '<?php echo json_encode($nodeArray);?>';
-        var units = "Widgets";
+        var units = "Dollars";
 
         var margin = {top: 10, right: 10, bottom: 10, left: 10},
                 width = 1200 - margin.left - margin.right,
                 height = 900 - margin.top - margin.bottom;
 
         var formatNumber = d3.format(",.0f"),    // zero decimal places
-                format = function(d) { return formatNumber(d) + " " + units; },
+                format = function(d) { return formatNumber(d.value) + " " + d.units; },
                 color = d3.scale.category20();
 
         // append the svg canvas to the page
@@ -77,6 +77,10 @@
                     .enter().append("path")
                     .attr("class", "link")
                     .attr("d", path)
+                    .attr("id", function(d,i){
+                        d.id = i;
+                        return "link-"+i;
+                    })
                     .style("stroke-width", function(d) { return Math.max(1, d.dy); })
                     .sort(function(a, b) { return b.dy - a.dy; });
 
@@ -84,7 +88,7 @@
             link.append("title")
                     .text(function(d) {
                         return d.source.name + " → " +
-                                d.target.name + "\n" + format(d.value); });
+                                d.target.name + "\n" + format(d); });
 
 // add in the nodes
             var node = svg.append("g").selectAll(".node")
@@ -93,6 +97,7 @@
                     .attr("class", "node")
                     .attr("transform", function(d) {
                         return "translate(" + d.x + "," + d.y + ")"; })
+                    .on("click", highlight_node_links)
                     .call(d3.behavior.drag()
                             .origin(function(d) { return d; })
                             .on("dragstart", function() {
@@ -109,7 +114,7 @@
                         return d3.rgb(d.color).darker(2); })
                     .append("title")
                     .text(function(d) {
-                        return d.name + "\n" + format(d.value); });
+                        return d.name + "\n" + format(d); });
 
 // add in the title for the nodes
             node.append("text")
@@ -132,6 +137,51 @@
                     ) + ")");
                 sankey.relayout();
                 link.attr("d", path);
+            }
+
+            function highlight_node_links(node,i){
+
+                var remainingNodes=[],
+                        nextNodes=[];
+
+                var stroke_opacity = 0;
+                if( d3.select(this).attr("data-clicked") == "1" ){
+                    d3.select(this).attr("data-clicked","0");
+                    stroke_opacity = 0.2;
+                }else{
+                    d3.select(this).attr("data-clicked","1");
+                    stroke_opacity = 0.5;
+                }
+
+                var traverse = [{
+                    linkType : "sourceLinks",
+                    nodeType : "target"
+                },{
+                    linkType : "targetLinks",
+                    nodeType : "source"
+                }];
+
+                traverse.forEach(function(step){
+                    node[step.linkType].forEach(function(link) {
+                        remainingNodes.push(link[step.nodeType]);
+                        highlight_link(link.id, stroke_opacity);
+                    });
+
+                    while (remainingNodes.length) {
+                        nextNodes = [];
+                        remainingNodes.forEach(function(node) {
+                            node[step.linkType].forEach(function(link) {
+                                nextNodes.push(link[step.nodeType]);
+                                highlight_link(link.id, stroke_opacity);
+                            });
+                        });
+                        remainingNodes = nextNodes;
+                    }
+                });
+            }
+
+            function highlight_link(id,opacity){
+                d3.select("#link-"+id).style("stroke-opacity", opacity);
             }
         }
 

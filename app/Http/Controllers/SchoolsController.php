@@ -164,30 +164,30 @@ class SchoolsController extends Controller
         foreach($schools as $school) {
             $currentSchool = School::find($school);
             $currentschoolindex = $currentnodeindex;
-            $node[$currentnodeindex++] = ['node' => $currentschoolindex, 'name' => $currentSchool->school_name];
+            $node[$currentnodeindex++] = ['node' => $currentschoolindex, 'name' => $currentSchool->school_name, 'units' => 'Students'];
             $students = $currentSchool->Student()->where('year', $year)->get();
             foreach($students as $student) {
                 if($currentptsindex == 0) {
                     $currentptsindex = $currentnodeindex;
-                    $node[$currentnodeindex++] = ['node' => $currentptsindex, 'name' => 'Part Time Students'];
+                    $node[$currentnodeindex++] = ['node' => $currentptsindex, 'name' => 'Part Time Students', 'units' => 'Students'];
                     $currentftsindex = $currentnodeindex;
-                    $node[$currentnodeindex++] = ['node' => $currentftsindex, 'name' => 'Full Time Students'];
+                    $node[$currentnodeindex++] = ['node' => $currentftsindex, 'name' => 'Full Time Students', 'units' => 'Students'];
                     $currentallstudentindex = $currentnodeindex;
-                    $node[$currentnodeindex++] = ['node' => $currentallstudentindex, 'name' => 'All Students'];
+                    $node[$currentnodeindex++] = ['node' => $currentallstudentindex, 'name' => 'All Students', 'units' => 'Students'];
                     $currentmenindex = $currentnodeindex;
-                    $node[$currentnodeindex++] = ['node' => $currentmenindex, 'name' => 'Men'];
+                    $node[$currentnodeindex++] = ['node' => $currentmenindex, 'name' => 'Men', 'units' => 'Students'];
                     $currentwomenindex = $currentnodeindex;
-                    $node[$currentnodeindex++] = ['node' => $currentwomenindex, 'name' => 'Women'];
+                    $node[$currentnodeindex++] = ['node' => $currentwomenindex, 'name' => 'Women', 'units' => 'Students'];
                 }
-                $link[$currentlinkindex++] = ['source' => $currentschoolindex, 'target' => $currentptsindex, 'value' => $student->part_time_total];
-                $link[$currentlinkindex++] = ['source' => $currentptsindex, 'target' => $currentmenindex, 'value' => $student->part_time_men];
-                $link[$currentlinkindex++] = ['source' => $currentptsindex, 'target' => $currentwomenindex, 'value' => $student->part_time_women];
-                $link[$currentlinkindex++] = ['source' => $currentschoolindex, 'target' => $currentallstudentindex, 'value' => $student->total];
-                $link[$currentlinkindex++] = ['source' => $currentallstudentindex, 'target' => $currentmenindex, 'value' => $student->men];
-                $link[$currentlinkindex++] = ['source' => $currentallstudentindex, 'target' => $currentwomenindex, 'value' => $student->women];
-                $link[$currentlinkindex++] = ['source' => $currentschoolindex, 'target' => $currentftsindex, 'value' => $student->full_time_total];
-                $link[$currentlinkindex++] = ['source' => $currentftsindex, 'target' => $currentmenindex, 'value' => $student->full_time_men];
-                $link[$currentlinkindex++] = ['source' => $currentftsindex, 'target' => $currentwomenindex, 'value' => $student->full_time_women];
+                $link[$currentlinkindex++] = ['source' => $currentschoolindex, 'target' => $currentptsindex, 'value' => $student->part_time_total, 'units' => 'Students'];
+                $link[$currentlinkindex++] = ['source' => $currentptsindex, 'target' => $currentmenindex, 'value' => $student->part_time_men, 'units' => 'Students'];
+                $link[$currentlinkindex++] = ['source' => $currentptsindex, 'target' => $currentwomenindex, 'value' => $student->part_time_women, 'units' => 'Students'];
+                $link[$currentlinkindex++] = ['source' => $currentschoolindex, 'target' => $currentallstudentindex, 'value' => $student->total, 'units' => 'Students'];
+                $link[$currentlinkindex++] = ['source' => $currentallstudentindex, 'target' => $currentmenindex, 'value' => $student->men, 'units' => 'Students'];
+                $link[$currentlinkindex++] = ['source' => $currentallstudentindex, 'target' => $currentwomenindex, 'value' => $student->women, 'units' => 'Students'];
+                $link[$currentlinkindex++] = ['source' => $currentschoolindex, 'target' => $currentftsindex, 'value' => $student->full_time_total, 'units' => 'Students'];
+                $link[$currentlinkindex++] = ['source' => $currentftsindex, 'target' => $currentmenindex, 'value' => $student->full_time_men, 'units' => 'Students'];
+                $link[$currentlinkindex++] = ['source' => $currentftsindex, 'target' => $currentwomenindex, 'value' => $student->full_time_women, 'units' => 'Students'];
 
             }
         }
@@ -229,39 +229,39 @@ class SchoolsController extends Controller
         foreach ($schools as $school) {
             $currentSchool = School::find($school);
             $currentschoolindex = $currentNodeindex;
-            $node[$currentNodeindex++] = ['node' => $currentschoolindex, 'name' => $currentSchool->school_name];
+            $node[$currentNodeindex++] = ['node' => $currentschoolindex, 'name' => $currentSchool->school_name, 'units' => 'Dollars'];
             $expenses = $currentSchool->expense()->where('year', $year)->get();
             $revenues = $currentSchool->revenue()->where('year', $year)->get();
             foreach($expenses as $expense) {
                 if ($currentExpenseIndex == 0) {
                     $currentExpenseIndex = $currentNodeindex;
-                    $node[$currentNodeindex++] = ['node' => $currentExpenseIndex, 'name' => 'Expenses'];
+                    $node[$currentNodeindex++] = ['node' => $currentExpenseIndex, 'name' => 'Expenses', 'units' => 'Dollars'];
                     $currentInstructionindex = $currentNodeindex;
-                    $node[$currentNodeindex++] = ['node' => $currentInstructionindex, 'name' => 'Instruction'];
+                    $node[$currentNodeindex++] = ['node' => $currentInstructionindex, 'name' => 'Instruction', 'units' => 'Dollars'];
                     $currentResearchIndex = $currentNodeindex;
-                    $node[$currentNodeindex++] = ['node' => $currentResearchIndex, 'name' => 'Research'];
+                    $node[$currentNodeindex++] = ['node' => $currentResearchIndex, 'name' => 'Research', 'units' => 'Dollars'];
                     $currentPubServiceIndex = $currentNodeindex;
-                    $node[$currentNodeindex++] = ['node' => $currentPubServiceIndex, 'name' => 'Public Service'];
+                    $node[$currentNodeindex++] = ['node' => $currentPubServiceIndex, 'name' => 'Public Service', 'units' => 'Dollars'];
                     $currentAcadSupportIndex = $currentNodeindex;
-                    $node[$currentNodeindex++] = ['node' => $currentAcadSupportIndex, 'name' => 'Academic Support'];
+                    $node[$currentNodeindex++] = ['node' => $currentAcadSupportIndex, 'name' => 'Academic Support', 'units' => 'Dollars'];
                     $currentInstitutionalSupportIndex = $currentNodeindex;
-                    $node[$currentNodeindex++] = ['node' => $currentInstitutionalSupportIndex, 'name' => 'Institutional Support'];
+                    $node[$currentNodeindex++] = ['node' => $currentInstitutionalSupportIndex, 'name' => 'Institutional Support', 'units' => 'Dollars'];
                     $currentStudentServicesIndex = $currentNodeindex;
-                    $node[$currentNodeindex++] = ['node' => $currentStudentServicesIndex, 'name' => 'Student Services'];
+                    $node[$currentNodeindex++] = ['node' => $currentStudentServicesIndex, 'name' => 'Student Services', 'units' => 'Dollars'];
                     $currentOtherExpensesIndex = $currentNodeindex;
-                    $node[$currentNodeindex++] = ['node' => $currentOtherExpensesIndex, 'name' => 'Other Expenses'];
+                    $node[$currentNodeindex++] = ['node' => $currentOtherExpensesIndex, 'name' => 'Other Expenses', 'units' => 'Dollars'];
                 }
-                $totalExpense = $expense->instruction + $expense->research + $expense->public_service /*+$expense->academic_support +
-                    $expense->institutional_support + $expense->student_services + $expense->other_expenses*/;
+                $totalExpense = $expense->instruction + $expense->research + $expense->public_service + $expense->academic_support +
+                    $expense->institutional_support + $expense->student_services + $expense->other_expenses;
 
-                $link[$currentlinkindex++] = ['source' => $currentschoolindex, 'target' => $currentExpenseIndex, 'value' => $totalExpense];
-                $link[$currentlinkindex++] = ['source' => $currentExpenseIndex, 'target' => $currentInstructionindex, 'value' => $expense->instruction];
-                $link[$currentlinkindex++] = ['source' => $currentExpenseIndex, 'target' => $currentResearchIndex, 'value' => $expense->research];
-                $link[$currentlinkindex++] = ['source' => $currentExpenseIndex, 'target' => $currentPubServiceIndex, 'value' => $expense->public_service];
-                $link[$currentlinkindex++] = ['source' => $currentExpenseIndex, 'target' => $currentAcadSupportIndex, 'value' => $expense->academic_support];
-                $link[$currentlinkindex++] = ['source' => $currentExpenseIndex, 'target' => $currentInstitutionalSupportIndex, 'value' => $expense->institutional_support];
-                $link[$currentlinkindex++] = ['source' => $currentExpenseIndex, 'target' => $currentStudentServicesIndex, 'value' => $expense->student_services];
-                $link[$currentlinkindex++] = ['source' => $currentExpenseIndex, 'target' => $currentOtherExpensesIndex, 'value' => $expense->other_expenses];
+                $link[$currentlinkindex++] = ['source' => $currentschoolindex, 'target' => $currentExpenseIndex, 'value' => $totalExpense, 'units' => 'Dollars'];
+                $link[$currentlinkindex++] = ['source' => $currentExpenseIndex, 'target' => $currentInstructionindex, 'value' => $expense->instruction, 'units' => 'Dollars'];
+                $link[$currentlinkindex++] = ['source' => $currentExpenseIndex, 'target' => $currentResearchIndex, 'value' => $expense->research, 'units' => 'Dollars'];
+                $link[$currentlinkindex++] = ['source' => $currentExpenseIndex, 'target' => $currentPubServiceIndex, 'value' => $expense->public_service, 'units' => 'Dollars'];
+                $link[$currentlinkindex++] = ['source' => $currentExpenseIndex, 'target' => $currentAcadSupportIndex, 'value' => $expense->academic_support, 'units' => 'Dollars'];
+                $link[$currentlinkindex++] = ['source' => $currentExpenseIndex, 'target' => $currentInstitutionalSupportIndex, 'value' => $expense->institutional_support, 'units' => 'Dollars'];
+                $link[$currentlinkindex++] = ['source' => $currentExpenseIndex, 'target' => $currentStudentServicesIndex, 'value' => $expense->student_services, 'units' => 'Dollars'];
+                $link[$currentlinkindex++] = ['source' => $currentExpenseIndex, 'target' => $currentOtherExpensesIndex, 'value' => $expense->other_expenses, 'units' => 'Dollars'];
             }
             foreach ($revenues as $revenue) {
                 if ($currentRevenueIndex == 0) {
@@ -285,14 +285,14 @@ class SchoolsController extends Controller
                 $totalRevenue = $revenue->tution_and_fees + $revenue->state_appropriations + $revenue->local_appropriations + $revenue->government_grants_and_contracts +
                     $revenue->private_gifts_grants_and_contracts + $revenue->investment_return + $revenue->other_revenues;
 
-                $link[$currentlinkindex++] = ['source' => $currentschoolindex, 'target' => $currentRevenueIndex, 'value' => $totalRevenue];
-                $link[$currentlinkindex++] = ['source' => $currentRevenueIndex, 'target' => $currentTutionFeesindex, 'value' => $revenue->tution_and_fees];
-                $link[$currentlinkindex++] = ['source' => $currentRevenueIndex, 'target' => $currentStateAppropriationindex, 'value' => $revenue->state_appropriations];
-                $link[$currentlinkindex++] = ['source' => $currentRevenueIndex, 'target' => $currentLocalAppropriationindex, 'value' => $revenue->local_appropriations];
-                $link[$currentlinkindex++] = ['source' => $currentRevenueIndex, 'target' => $currentGovtGrantindex, 'value' => $revenue->government_grants_and_contracts];
-                $link[$currentlinkindex++] = ['source' => $currentRevenueIndex, 'target' => $currentPrivateGrantindex, 'value' => $revenue->private_gifts_grants_and_contracts];
-                $link[$currentlinkindex++] = ['source' => $currentRevenueIndex, 'target' => $currentInvestmentReturnindex, 'value' => $revenue->investment_return];
-                $link[$currentlinkindex++] = ['source' => $currentRevenueIndex, 'target' => $currentOtherRevenueindex, 'value' => $revenue->other_revenues];
+                $link[$currentlinkindex++] = ['source' => $currentschoolindex, 'target' => $currentRevenueIndex, 'value' => $totalRevenue, 'units' => 'Dollars'];
+                $link[$currentlinkindex++] = ['source' => $currentRevenueIndex, 'target' => $currentTutionFeesindex, 'value' => $revenue->tution_and_fees, 'units' => 'Dollars'];
+                $link[$currentlinkindex++] = ['source' => $currentRevenueIndex, 'target' => $currentStateAppropriationindex, 'value' => $revenue->state_appropriations, 'units' => 'Dollars'];
+                $link[$currentlinkindex++] = ['source' => $currentRevenueIndex, 'target' => $currentLocalAppropriationindex, 'value' => $revenue->local_appropriations, 'units' => 'Dollars'];
+                $link[$currentlinkindex++] = ['source' => $currentRevenueIndex, 'target' => $currentGovtGrantindex, 'value' => $revenue->government_grants_and_contracts, 'units' => 'Dollars'];
+                $link[$currentlinkindex++] = ['source' => $currentRevenueIndex, 'target' => $currentPrivateGrantindex, 'value' => $revenue->private_gifts_grants_and_contracts, 'units' => 'Dollars'];
+                $link[$currentlinkindex++] = ['source' => $currentRevenueIndex, 'target' => $currentInvestmentReturnindex, 'value' => $revenue->investment_return, 'units' => 'Dollars'];
+                $link[$currentlinkindex++] = ['source' => $currentRevenueIndex, 'target' => $currentOtherRevenueindex, 'value' => $revenue->other_revenues, 'units' => 'Dollars'];
             }
             }
 
