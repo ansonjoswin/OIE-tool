@@ -4,7 +4,8 @@
     <style>
         #hero {
             border-bottom: 4px solid #E6233F;
-            padding-top: 25px;
+            /*padding-top: 25px;*/
+            padding-top: 11px;
             height: auto;
             background-color: #b8b8b8;
             font-size: 18px;
@@ -12,6 +13,7 @@
             font-family: 'sans-serif';
             -webkit-font-smoothing: antialiased;
             margin-top: -22px;
+            text-align: center;
         }
 
         .inner-content {
@@ -23,7 +25,7 @@
     </style>
     <div id="hero">
         <div class="inner-content">
-            <h1>Administrative Cost Benchmarking Analytics Tool</h1>
+            <h1  style="margin-top: 1px" >Administrative Cost Benchmarking Analytics Tool</h1>
         </div>
     </div>
     {{--<div class="container">--}}
@@ -44,9 +46,9 @@
     {{--Added carousel with site navigation instructions--}}
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2" style="padding-top: 20px">
+            <div class="col-md-10 col-md-offset-1" style="padding-top: 20px">
                 <div class="panel panel-default">
-                    <div class="panel-heading" style="text-align: center;">Welcome! Please
+                    <div class="panel-heading" style="text-align: center">Welcome! Please
                         <a href={{URL::route('login')}} >login</a>, <a href={{URL::route('register')}} >register for an account</a> or view public peer groups in <a href={{URL::route('datavisual.index')}} >Data Visualization</a></div>
 
                     <div class="panel-body">
@@ -99,7 +101,7 @@
 
 @endsection
 
-@section('footer')
+
     <style>
         /* -----------------------------------------------
         CUSTOMIZE THE CAROUSEL
@@ -113,7 +115,8 @@
         /* Since positioning the image, we need to help out the caption */
         /* Declare heights because of positioning of img element */
         .carousel .item {
-            height: 400px; /*background-color:#555;*/
+            /*height: 400px; !*background-color:#555;*!*/
+            height: 600px; /*background-color:#555;*/
         }
 
         .carousel img { /*position: absolute;*/ /*top: 0;*/ /*left: 0;*/
@@ -146,4 +149,5 @@
             margin-right: -30px !important
         }
     </style>
+@section('footer')
 @endsection
