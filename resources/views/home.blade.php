@@ -49,36 +49,15 @@
                      </div>
                      <!-- /.carousel -->
                 </div>
-
-
-
             </div>
-
         </div>
     </div>
-</div>
+{{-- </div> --}}
 <br>
 <br>
 <br>
 <br>
-<!-- Comments Form -->
-                {{-- <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-            <div class="panel-heading" style="text-align: center;"><h4>Discussions</h4></div>
-
-                 <div class="panel-body">
-                                        <form role="form">
-                        <div class="form-group">
-                            <textarea class="form-control" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
-
-                <hr> --}}
-
-
-
+<div class="row" >
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
             <div class="panel-heading" style="text-align: center;"><h4>Discussions</h4></div>
@@ -104,17 +83,14 @@
                 </div>
             </div>
             </div>
-
+        </div>
 
            <!-- Posted Comments -->
 
 
                 @if(count($comments) > 0)
 
-
-                    @foreach($comments as $comment)
-
-
+                   @foreach($comments as $comment)
                         @if($comment->is_active)
                             <div class="col-md-8 col-md-offset-2 well" style="margin-top: 20px;">
 
@@ -161,19 +137,15 @@
                                 {!!Form::close()!!}
                             </div>
                         </div>
+                        </div>
                         @endif
-                </div>
 
-
+               
                    @endforeach
-
+                    </div>
+                </div>
                     @endif
-
-
 @endsection
-
-
-
 
 <style>
     /*!* -----------------------------------------------*/
