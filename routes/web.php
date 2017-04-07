@@ -89,6 +89,10 @@ Route::resource('usercomments', 'UserCommentsController');
 Route::resource('replies', 'CommentRepliesController');
 /*******************/
 
+/****Year functionality Routes****/
+Route::get('/years', 'UploadsController@yeardisplay');
+
+/*******************/
 
 /**Summary Table Route**/
 Route::post('datadisplay', 'DataTableController@datadisplay');

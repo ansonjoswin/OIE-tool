@@ -37,6 +37,7 @@ class UploadsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+ 
     public function index()
 	{
          if (Auth::check())
@@ -44,12 +45,19 @@ class UploadsController extends Controller
             $user = Auth::user();
             if ($user->hasRole('admin'))
                 return view('uploads.index', compact('user'));
-            elseif ($user->hasRole('student'))
+                elseif ($user->hasRole('student'))
                 return view('uploads.index', compact('user'));
-            else
+                else
                 return view('home', compact('user'));
         }
 	}
+
+public function yeardisplay()
+    {
+        return view('years.year');
+    }
+
+
 
     public function enqueue(Request $request)
     {

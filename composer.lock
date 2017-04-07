@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8defd2fc23f38b8b46ef6bc1854c61ce",
+    "hash": "3aa99fb78ce090cb2e8857980d4bba46",
     "content-hash": "bc6ef3d80195affe64ca5d392aec56d9",
     "packages": [
         {
@@ -550,9 +550,7 @@
                 "markdown",
                 "parser"
             ],
-
-            "time": "2017-03-29T16:04:15+00:00"
-
+            "time": "2017-03-29 16:04:15"
         },
         {
             "name": "facebook/webdriver",
@@ -808,16 +806,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.4.16",
+            "version": "v5.4.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "6cf379ec34d08bcdc9c7183e369a8fdf04ade80d"
+                "reference": "f7675d59e3863a58ecdff1a5ee1dcd0cff788f4b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/6cf379ec34d08bcdc9c7183e369a8fdf04ade80d",
-                "reference": "6cf379ec34d08bcdc9c7183e369a8fdf04ade80d",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/f7675d59e3863a58ecdff1a5ee1dcd0cff788f4b",
+                "reference": "f7675d59e3863a58ecdff1a5ee1dcd0cff788f4b",
                 "shasum": ""
             },
             "require": {
@@ -933,7 +931,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-03-21 19:34:41"
+            "time": "2017-04-03 13:07:39"
         },
         {
             "name": "laravel/tinker",
@@ -1196,9 +1194,7 @@
                 "import",
                 "laravel"
             ],
-
-            "time": "2017-03-28T10:47:04+00:00"
-
+            "time": "2017-03-28 10:47:04"
         },
         {
             "name": "monolog/monolog",
@@ -1731,9 +1727,7 @@
                 "identifier",
                 "uuid"
             ],
-
-            "time": "2017-03-26T20:37:53+00:00"
-
+            "time": "2017-03-26 20:37:53"
         },
         {
             "name": "rap2hpoutre/laravel-log-viewer",
@@ -3366,9 +3360,7 @@
                 "testing",
                 "xunit"
             ],
-
-            "time": "2017-04-02T07:44:40+00:00"
-
+            "time": "2017-04-02 07:44:40"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -3558,16 +3550,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.7.18",
+            "version": "5.7.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "c6884c0d4b8a7277de7ae3c9e597aff138c6365f"
+                "reference": "69c4f49ff376af2692bad9cebd883d17ebaa98a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c6884c0d4b8a7277de7ae3c9e597aff138c6365f",
-                "reference": "c6884c0d4b8a7277de7ae3c9e597aff138c6365f",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/69c4f49ff376af2692bad9cebd883d17ebaa98a1",
+                "reference": "69c4f49ff376af2692bad9cebd883d17ebaa98a1",
                 "shasum": ""
             },
             "require": {
@@ -3636,9 +3628,7 @@
                 "testing",
                 "xunit"
             ],
-
-            "time": "2017-04-02T15:44:48+00:00"
-
+            "time": "2017-04-03 02:22:27"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
